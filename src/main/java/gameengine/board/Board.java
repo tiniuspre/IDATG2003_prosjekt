@@ -11,11 +11,9 @@ import java.util.Map;
  * @since 13.02.2025
  */
 
-public abstract class Board {
+public class Board {
   protected Map<Integer, Tile> tiles;
   protected int width;
   protected int height;
 
-  public abstract void initBoard();
-  public abstract void updateBoard();
 }
