@@ -1,5 +1,6 @@
 package gameengine.board;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,7 +16,7 @@ public abstract class Board {
   /**
    * The tiles of the board.
    */
-  private Map<Integer, Tile> tiles;
+  private final Map<Integer, Tile> tiles = new HashMap<>();
   /**
    * The width of the board.
    */
@@ -34,5 +35,11 @@ public abstract class Board {
   public Board(final int inputWidth, final int inputHeight) {
     this.width = inputWidth;
     this.height = inputHeight;
+  }
+  /**
+   * Creates the board.
+   */
+  public void createBoard() {
+    //Creates the board
   }
 }
