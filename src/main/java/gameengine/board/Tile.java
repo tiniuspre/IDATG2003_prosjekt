@@ -10,6 +10,14 @@ package gameengine.board;
  */
 
 public abstract class Tile {
-  protected int number;
-  protected TileAction action;
+  /**
+   * The number of the tile.
+   */
+  private int number;
+  /**
+   * The action of the tile.
+   */
+  private TileAction action;
+
+
 }

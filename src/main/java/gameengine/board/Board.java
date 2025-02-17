@@ -12,7 +12,16 @@ import java.util.Map;
  */
 
 public class Board {
-  protected Map<Integer, Tile> tiles;
-  protected int width;
-  protected int height;
+  /**
+   * The tiles of the board.
+   */
+  private Map<Integer, Tile> tiles;
+  /**
+   * The width of the board.
+   */
+  private int width;
+  /**
+   * The height of the board.
+   */
+  private int height;
 }
