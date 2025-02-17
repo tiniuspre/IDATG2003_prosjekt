@@ -11,7 +11,7 @@ import java.util.Map;
  * @since 13.02.2025
  */
 
-public class Board {
+public abstract class Board {
   /**
    * The tiles of the board.
    */
@@ -19,9 +19,20 @@ public class Board {
   /**
    * The width of the board.
    */
-  private int width;
+  private final int width;
   /**
    * The height of the board.
    */
-  private int height;
+  private final int height;
+  /**
+   * Constructs a new {@code Board} object
+   * with the specified inputWidth and inputHeight.
+   *
+   * @param inputWidth the inputWidth of the board.
+   * @param inputHeight the inputHeight of the board.
+   */
+  public Board(final int inputWidth, final int inputHeight) {
+    this.width = inputWidth;
+    this.height = inputHeight;
+  }
 }
