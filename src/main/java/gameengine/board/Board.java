@@ -15,5 +15,4 @@ public class Board {
   protected Map<Integer, Tile> tiles;
   protected int width;
   protected int height;
-
 }

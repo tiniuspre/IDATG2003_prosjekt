@@ -9,5 +9,8 @@ package gameengine.board;
  * @since 13.02.2025
  */
 public interface TileAction {
+  /**
+   * The action that should be performed when a player lands on the tile.
+   */
   void landAction();
 }
