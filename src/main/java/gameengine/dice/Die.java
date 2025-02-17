@@ -27,10 +27,10 @@ public class Die {
   /**
    * Constructs a new {@code Die} object with the specified dice number.
    *
-   * @param numberOfDice the number of the die.
+   * @param numberOfDie the number of the die.
    */
-  public Die(final int numberOfDice) {
-    this.diceNumber = numberOfDice;
+  public Die(final int numberOfDie) {
+    this.diceNumber = numberOfDie;
   }
 
   /**
