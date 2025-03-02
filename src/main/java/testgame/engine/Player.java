@@ -36,4 +36,8 @@ public class Player {
     }
     position += steps;
   }
+
+  public void moveBack(int tileNumber) {
+    setPosition(tileNumber);
+  }
 }
