@@ -16,15 +16,15 @@ public abstract class Board {
   /**
    * The tiles of the board.
    */
-  private final Map<Integer, Tile> tiles = new HashMap<>();
+  protected final Map<Integer, Tile> tiles = new HashMap<>();
   /**
    * The width of the board.
    */
-  private final int width;
+  protected final int width;
   /**
    * The height of the board.
    */
-  private final int height;
+  protected final int height;
   /**
    * Constructs a new {@code Board} object
    * with the specified inputWidth and inputHeight.
@@ -41,5 +41,9 @@ public abstract class Board {
    */
   public void createBoard() {
     //Creates the board
+  }
+
+  public Map<Integer, Tile> getTiles() {
+    return tiles;
   }
 }
