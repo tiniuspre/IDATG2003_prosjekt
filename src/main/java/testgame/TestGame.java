@@ -114,16 +114,16 @@ public class TestGame {
   }
 
   /**
-   * Returns true if the game is finished.
+   * Returns true if the game is not finished.
    *
-   * @return true if the game is finished.
+   * @return true if the game is not finished.
    */
-  public boolean isFinished() {
+  public boolean isNotFinished() {
     for (Player player : players) {
       if (player.getPosition() >= board.getBoardSize()) {
-        return true;
+        return false;
       }
     }
-    return false;
+    return true;
   }
 }

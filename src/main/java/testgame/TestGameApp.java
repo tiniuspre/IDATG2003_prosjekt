@@ -32,9 +32,9 @@ public final class TestGameApp {
     TEST_GAME.addPlayer("Bob");
     TEST_GAME.setBoard();
     TEST_GAME.printStatus();
-    while (!TEST_GAME.isFinished()) {
+    while (TEST_GAME.isNotFinished()) {
       TEST_GAME.playOneRound();
-      if (!TEST_GAME.isFinished()) {
+      if (TEST_GAME.isNotFinished()) {
         TEST_GAME.printStatus();
       }
     }
