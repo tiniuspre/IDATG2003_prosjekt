@@ -1,6 +1,7 @@
 package testgame.engine;
 
 import gameengine.board.Board;
+import gameengine.board.Tile;
 import testgame.engine.tiles.LadderTile;
 import testgame.engine.tiles.NormalTile;
 import testgame.engine.tiles.SnakeTile;
@@ -43,14 +44,24 @@ public class TestGameBoard extends Board {
   }
 
   public void addSnakeTiles() {
-    tiles.put(14, new SnakeTile(14, 3, 2));
-    tiles.put(17, new SnakeTile(17, 6, 2));
-    tiles.put(31, new SnakeTile(31, 2, 3));
-    tiles.put(35, new SnakeTile(35, 6, 3));
-    tiles.put(39, new SnakeTile(39, 10, 3));
+    tiles.put(14, new SnakeTile(14, 3, 3, 5));
+    tiles.put(17, new SnakeTile(17, 6, 3, 2));
+    tiles.put(31, new SnakeTile(31, 8, 4, 10));
   }
 
   public void addLadderTiles() {
-    tiles.put(5, new LadderTile(5, 5, 1));
+    tiles.put(4, new LadderTile(4, 2, 3, 15));
+    tiles.put(9, new LadderTile(9, 5, 2, 22));
+    tiles.put(20, new LadderTile(20, 10, 3, 30));
+  }
+
+  public Tile getTile(int tileNumber) {
+    if (!tiles.containsKey(tileNumber)) {
+      throw new IllegalArgumentException("Tile number does not exist.");
+    }
+    return tiles.get(tileNumber);
+  }
+  public int getBoardSize() {
+    return width * height;
   }
 }
