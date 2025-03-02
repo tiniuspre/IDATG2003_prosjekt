@@ -1,20 +1,14 @@
 package testgame.engine.tiles;
 
+import gameengine.board.TileAction;
+import testgame.engine.actions.SnakeAction;
+
 public class SnakeTile extends TestGameTile {
 
-  private int destinationX;
-  private int destinationY;
+  private TileAction action;
 
-  public SnakeTile(final int number, final int posX, final int posY) {
+  public SnakeTile(final int number, final int posX, final int posY, final int snakeTailNumber) {
     super(number, posX, posY);
-  }
-
-  public void setDestination(final int positionX, final int positionY) {
-    this.destinationX = positionX;
-    this.destinationY = positionY;
-  }
-
-  public int[] getDestination() {
-    return new int[] {destinationX, destinationY};
+    setAction(new SnakeAction(number,snakeTailNumber));
   }
 }

@@ -12,5 +12,5 @@ public interface TileAction {
   /**
    * The action that should be performed when a player lands on the tile.
    */
-  void landAction();
+  int landAction(int position);
 }

@@ -26,8 +26,8 @@ public class SnakeAction implements TileAction {
   }
 
   @Override
-  public void landAction() {
-    System.out.println("You landed on a snake! Go back to tile " + snakeTail + ".");
+  public int landAction(int position) {
+    return snakeTail;
   }
 }
 

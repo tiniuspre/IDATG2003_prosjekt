@@ -26,7 +26,7 @@ public class LadderAction implements TileAction {
   }
 
   @Override
-  public void landAction() {
-    System.out.println("You landed on a ladder! Climb up to tile " + ladderTop + ".");
+  public int landAction(int position) {
+    return ladderTop;
   }
 }

@@ -1,23 +1,14 @@
 package testgame.engine.tiles;
 
+import gameengine.board.TileAction;
+import testgame.engine.actions.LadderAction;
 
 public class LadderTile extends TestGameTile {
 
-  private int destinationX;
-  private int destinationY;
+  private TileAction action;
 
-
-  public LadderTile(final int number, final int posX, final int posY) {
+  public LadderTile(final int number, final int posX, final int posY, final int ladderTopNumber) {
     super(number, posX, posY);
+    setAction(new LadderAction(number,ladderTopNumber));
   }
-
-  public void setDestination(final int positionX, final int positionY) {
-    this.destinationX = positionX;
-    this.destinationY = positionY;
-  }
-
-  public int[] getDestination() {
-    return new int[] {destinationX, destinationY};
-  }
-
 }
