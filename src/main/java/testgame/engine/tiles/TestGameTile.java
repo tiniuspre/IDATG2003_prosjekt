@@ -17,6 +17,7 @@ public class TestGameTile extends Tile {
   public TestGameTile(final int number, final int posX, final int posY) {
     super(number, posX, posY);
   }
+
 }
 
 
