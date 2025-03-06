@@ -54,7 +54,8 @@ public class Player {
    *
    * @param inputPosition the inputPosition of the player.
    */
-  public void setPosition(final int inputPosition) {
+  public void setPosition(final int inputPosition)
+      throws IllegalArgumentException {
     if (inputPosition < 0) {
       throw new IllegalArgumentException("Invalid inputPosition");
     }
@@ -75,7 +76,7 @@ public class Player {
    *
    * @param steps the number of steps to move.
    */
-  public void move(final int steps) {
+  public void move(final int steps) throws IllegalArgumentException {
     if (steps < 0) {
       throw new IllegalArgumentException("Invalid steps");
     }
@@ -87,7 +88,7 @@ public class Player {
    *
    * @param tileNumber the number of the tile to move back to.
    */
-  public void moveBack(final int tileNumber) {
+  public void moveBack(final int tileNumber) throws IllegalArgumentException {
     if (tileNumber < 0 || tileNumber > getPosition()) {
       throw new IllegalArgumentException("Invalid tile to move back to.");
     }
