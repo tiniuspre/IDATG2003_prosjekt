@@ -48,7 +48,7 @@ public abstract class Board {
    * @param inputWidth the width of the board.
    * @throws IllegalArgumentException if the width is less than 0.
    */
-  public void setWidth(final int inputWidth) {
+  public void setWidth(final int inputWidth) throws IllegalArgumentException {
     if (inputWidth < 0) {
       throw new IllegalArgumentException("Invalid board width.");
     }
@@ -60,7 +60,7 @@ public abstract class Board {
    * @param inputHeight the height of the board.
    * @throws IllegalArgumentException if the height is less than 0.
    */
-  public void setHeight(final int inputHeight) {
+  public void setHeight(final int inputHeight) throws IllegalArgumentException {
     if (inputHeight < 0) {
       throw new IllegalArgumentException("Invalid height width");
     }
