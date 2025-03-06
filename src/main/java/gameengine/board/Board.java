@@ -20,11 +20,11 @@ public abstract class Board {
   /**
    * The width of the board.
    */
-  protected final int width;
+  protected int width;
   /**
    * The height of the board.
    */
-  protected final int height;
+  protected int height;
   /**
    * Constructs a new {@code Board} object
    * with the specified inputWidth and inputHeight.
@@ -33,8 +33,8 @@ public abstract class Board {
    * @param inputHeight the inputHeight of the board.
    */
   public Board(final int inputWidth, final int inputHeight) {
-    this.width = inputWidth;
-    this.height = inputHeight;
+    setWidth(inputWidth);
+    setHeight(inputHeight);
   }
   /**
    * Creates the board.
@@ -42,8 +42,35 @@ public abstract class Board {
   public void createBoard() {
     //Creates the board
   }
-
-  public Map<Integer, Tile> getTiles() {
+  /**
+   * Sets the width of the board.
+   *
+   * @param inputWidth the width of the board.
+   * @throws IllegalArgumentException if the width is less than 0.
+   */
+  public void setWidth(final int inputWidth) {
+    if (inputWidth < 0) {
+      throw new IllegalArgumentException("Invalid board width.");
+    }
+    this.width = inputWidth;
+  }
+  /**
+   * Sets the height of the board.
+   *
+   * @param inputHeight the height of the board.
+   * @throws IllegalArgumentException if the height is less than 0.
+   */
+  public void setHeight(final int inputHeight) {
+    if (inputHeight < 0) {
+      throw new IllegalArgumentException("Invalid height width");
+    }
+  }
+  /**
+   * Returns the tiles of the board.
+   *
+   * @return the tiles of the board.
+   */
+  public final Map<Integer, Tile> getTiles() {
     return tiles;
   }
 }
