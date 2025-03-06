@@ -50,7 +50,12 @@ public class Dice {
     return sum;
   }
 
-  public int getNumberOfDice() {
+  /**
+   * Accessor method for the number of dice.
+   *
+   * @return the number of dice.
+   */
+  public final int getNumberOfDice() {
     return numberOfDice;
   }
 }
