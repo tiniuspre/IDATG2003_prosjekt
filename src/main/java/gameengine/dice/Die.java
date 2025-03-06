@@ -59,7 +59,8 @@ public class Die {
    *
    * @param inputDiceNumber the number of the die.
    */
-  public void setDieNumber(final int inputDiceNumber) throws IllegalArgumentException {
+  public void setDieNumber(final int inputDiceNumber)
+      throws IllegalArgumentException {
     if (inputDiceNumber < 0) {
       throw new IllegalArgumentException("Invalid dice number.");
     }
