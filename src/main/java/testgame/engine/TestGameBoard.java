@@ -34,15 +34,15 @@ public class TestGameBoard extends Board {
   @Override
   public void createBoard() {
     int num = 1;
-    for (int row = 1; row < height + 1; row++) {
+    for (int row = 1; row < getHeight() + 1; row++) {
       if (row % 2 == 0) {
-        for (int col = width; col > 0; col--) {
-          tiles.put(num, new NormalTile(num, col, row));
+        for (int col = getWidth(); col > 0; col--) {
+          getTiles().put(num, new NormalTile(num, col, row));
           num++;
         }
       } else {
-        for (int col = 1; col < width + 1; col++) {
-          tiles.put(num, new NormalTile(num, col, row));
+        for (int col = 1; col < getWidth() + 1; col++) {
+          getTiles().put(num, new NormalTile(num, col, row));
           num++;
         }
       }
@@ -53,18 +53,18 @@ public class TestGameBoard extends Board {
    * Temporary method to add snake tiles to the board.
    */
   public void addSnakeTiles() {
-    tiles.put(14, new SnakeTile(14, 3, 3, 5));
-    tiles.put(17, new SnakeTile(17, 6, 3, 2));
-    tiles.put(31, new SnakeTile(31, 8, 4, 10));
+    getTiles().put(14, new SnakeTile(14, 3, 3, 5));
+    getTiles().put(17, new SnakeTile(17, 6, 3, 2));
+    getTiles().put(31, new SnakeTile(31, 8, 4, 10));
   }
 
   /**
    * Temporary method to add ladder tiles to the board.
    */
   public void addLadderTiles() {
-    tiles.put(4, new LadderTile(4, 2, 3, 15));
-    tiles.put(9, new LadderTile(9, 5, 2, 22));
-    tiles.put(20, new LadderTile(20, 10, 3, 30));
+    getTiles().put(4, new LadderTile(4, 2, 3, 15));
+    getTiles().put(9, new LadderTile(9, 5, 2, 22));
+    getTiles().put(20, new LadderTile(20, 10, 3, 30));
   }
 
   /**
@@ -76,10 +76,10 @@ public class TestGameBoard extends Board {
    *        (is not on the board).
    */
   public Tile getTile(final int tileNumber) throws IllegalArgumentException {
-    if (!tiles.containsKey(tileNumber)) {
+    if (!getTiles().containsKey(tileNumber)) {
       throw new IllegalArgumentException("Tile number does not exist.");
     }
-    return tiles.get(tileNumber);
+    return getTiles().get(tileNumber);
   }
 
   /**
@@ -88,6 +88,6 @@ public class TestGameBoard extends Board {
    * @return the size of the board.
    */
   public int getBoardSize() {
-    return width * height;
+    return getWidth() * getHeight();
   }
 }
