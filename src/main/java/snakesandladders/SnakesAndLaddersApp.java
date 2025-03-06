@@ -31,10 +31,9 @@ public final class SnakesAndLaddersApp {
     TEST_GAME.addPlayer("Alice");
     TEST_GAME.addPlayer("Bob");
     TEST_GAME.setBoard();
-    TEST_GAME.printStatus();
     while (TEST_GAME.isNotFinished()) {
-      TEST_GAME.playOneRound();
       TEST_GAME.printStatus();
+      TEST_GAME.playOneRound();
     }
     System.out.println(TEST_GAME.getWinner().getName() + " wins!");
   }
