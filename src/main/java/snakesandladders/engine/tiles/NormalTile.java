@@ -1,4 +1,4 @@
-package testgame.engine.tiles;
+package snakesandladders.engine.tiles;
 
 /**
  * The {@code NormalTile} class represents a normal tile
@@ -7,9 +7,9 @@ package testgame.engine.tiles;
  * @author jonastomren
  * @version 13.02.2025
  * @since 13.02.2025
- * @see TestGameTile
+ * @see SnakesAndLaddersTile
  */
-public class NormalTile extends TestGameTile {
+public class NormalTile extends SnakesAndLaddersTile {
   /**
    * Constructs a new {@code LadderTile} object with the
    * specified number of the tile, position x-axis,

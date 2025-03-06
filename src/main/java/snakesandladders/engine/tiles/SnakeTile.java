@@ -1,6 +1,6 @@
-package testgame.engine.tiles;
+package snakesandladders.engine.tiles;
 
-import testgame.engine.actions.SnakeAction;
+import snakesandladders.engine.actions.SnakeAction;
 
 /**
  * The {@code SnakeTile} class represents a snake tile
@@ -9,9 +9,9 @@ import testgame.engine.actions.SnakeAction;
  * @author jonastomren
  * @version 13.02.2025
  * @since 13.02.2025
- * @see TestGameTile
+ * @see SnakesAndLaddersTile
  */
-public class SnakeTile extends TestGameTile {
+public class SnakeTile extends SnakesAndLaddersTile {
   /**
    * Constructs a new {@code LadderTile} object with the
    * specified number of the tile, position x-axis,

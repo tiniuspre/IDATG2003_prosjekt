@@ -1,12 +1,12 @@
-package testgame;
+package snakesandladders;
 
 import gameengine.dice.Dice;
 import java.util.ArrayList;
 import java.util.List;
-import testgame.engine.Player;
-import testgame.engine.TestGameBoard;
-import testgame.engine.tiles.LadderTile;
-import testgame.engine.tiles.SnakeTile;
+import snakesandladders.engine.Player;
+import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.tiles.LadderTile;
+import snakesandladders.engine.tiles.SnakeTile;
 
 /**
  * The {@code TestGame} class represents the test snaked and ladders game.
@@ -21,15 +21,15 @@ import testgame.engine.tiles.SnakeTile;
  * @author jonastomren
  * @version 13.02.2025
  * @since 13.02.2025
- * @see TestGameBoard
+ * @see SnakesAndLaddersBoard
  * @see Player
  * @see Dice
  */
-public class TestGame {
+public class SnakesAndLadders {
   /**
    * The game board with width 10 and height 9.
    */
-  private final TestGameBoard board = new TestGameBoard(10, 9);
+  private final SnakesAndLaddersBoard board = new SnakesAndLaddersBoard(10, 9);
   /**
    * The list of players in the game.
    */

@@ -1,10 +1,10 @@
-package testgame.engine;
+package snakesandladders.engine;
 
 import gameengine.board.Board;
 import gameengine.board.Tile;
-import testgame.engine.tiles.LadderTile;
-import testgame.engine.tiles.NormalTile;
-import testgame.engine.tiles.SnakeTile;
+import snakesandladders.engine.tiles.LadderTile;
+import snakesandladders.engine.tiles.NormalTile;
+import snakesandladders.engine.tiles.SnakeTile;
 
 /**
  * The {@code TestGameBoard} class represents the game board in the test game,
@@ -15,14 +15,14 @@ import testgame.engine.tiles.SnakeTile;
  * @since 13.02.2025
  * @see Board
  */
-public class TestGameBoard extends Board {
+public class SnakesAndLaddersBoard extends Board {
   /**
    * Constructor for the TestGameBoard class.
    *
    * @param width the width of the board.
    * @param height  the height of the board.
    */
-  public TestGameBoard(final int width, final int height) {
+  public SnakesAndLaddersBoard(final int width, final int height) {
     super(width, height);
   }
 

@@ -1,8 +1,8 @@
 package gameengine.board;
 
 import junit.framework.TestCase;
-import testgame.engine.actions.LadderAction;
-import testgame.engine.tiles.NormalTile;
+import snakesandladders.engine.actions.LadderAction;
+import snakesandladders.engine.tiles.NormalTile;
 
 import static org.junit.Assert.assertThrows;
 

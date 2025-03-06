@@ -1,4 +1,4 @@
-package testgame.engine;
+package snakesandladders.engine;
 
 /**
  * The {@code Player} class represents a player in the test

@@ -1,4 +1,4 @@
-package testgame.engine;
+package snakesandladders.engine;
 
 import junit.framework.TestCase;
 

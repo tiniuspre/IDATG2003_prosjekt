@@ -1,4 +1,4 @@
-package testgame;
+package snakesandladders;
 
 /**
  * The {@code TestGameApp} class is the temporary main class
@@ -7,18 +7,18 @@ package testgame;
  * @author jonastomren
  * @since 13.02.2025
  * @version 13.02.2025
- * @see TestGame
+ * @see SnakesAndLadders
  */
-public final class TestGameApp {
+public final class SnakesAndLaddersApp {
   /**
    * Initializes a new {@code TestGame} snaked and ladders object.
    */
-  private static final TestGame TEST_GAME = new TestGame();
+  private static final SnakesAndLadders TEST_GAME = new SnakesAndLadders();
 
   /**
    * Private constructor to hide the implicit public one.
    */
-  private TestGameApp() {
+  private SnakesAndLaddersApp() {
     // Private constructor to hide the implicit public one.
   }
 
