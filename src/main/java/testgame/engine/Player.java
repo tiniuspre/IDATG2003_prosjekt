@@ -88,6 +88,9 @@ public class Player {
    * @param tileNumber the number of the tile to move back to.
    */
   public void moveBack(final int tileNumber) {
+    if (tileNumber < 0 || tileNumber > getPosition()) {
+      throw new IllegalArgumentException("Invalid tile to move back to.");
+    }
     setPosition(tileNumber);
   }
 }
