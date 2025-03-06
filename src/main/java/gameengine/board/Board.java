@@ -16,15 +16,15 @@ public abstract class Board {
   /**
    * The tiles of the board.
    */
-  protected final Map<Integer, Tile> tiles = new HashMap<>();
+  private final Map<Integer, Tile> tiles = new HashMap<>();
   /**
    * The width of the board.
    */
-  protected int width;
+  private int width;
   /**
    * The height of the board.
    */
-  protected int height;
+  private int height;
   /**
    * Constructs a new {@code Board} object
    * with the specified inputWidth and inputHeight.
@@ -73,5 +73,23 @@ public abstract class Board {
    */
   public final Map<Integer, Tile> getTiles() {
     return tiles;
+  }
+
+  /**
+   * Accessor method for the width of the board.
+   *
+   * @return the width of the board.
+   */
+  public final int getWidth() {
+    return width;
+  }
+
+  /**
+   * Accessor method for the height of the board.
+   *
+   * @return the height of the board.
+   */
+  public final int getHeight() {
+    return height;
   }
 }
