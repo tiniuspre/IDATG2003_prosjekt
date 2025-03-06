@@ -64,6 +64,7 @@ public abstract class Board {
     if (inputHeight < 0) {
       throw new IllegalArgumentException("Invalid height width");
     }
+    this.height = inputHeight;
   }
   /**
    * Returns the tiles of the board.
