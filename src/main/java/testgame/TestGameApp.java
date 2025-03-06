@@ -34,9 +34,7 @@ public final class TestGameApp {
     TEST_GAME.printStatus();
     while (TEST_GAME.isNotFinished()) {
       TEST_GAME.playOneRound();
-      if (TEST_GAME.isNotFinished()) {
-        TEST_GAME.printStatus();
-      }
+      TEST_GAME.printStatus();
     }
     System.out.println(TEST_GAME.getWinner().getName() + " wins!");
   }
