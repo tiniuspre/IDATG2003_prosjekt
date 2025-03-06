@@ -18,7 +18,7 @@ public class Die {
   /**
    * The number of the die.
    */
-  private final int diceNumber;
+  private int diceNumber;
   /**
    * The last rolled value of the die.
    */
@@ -30,7 +30,7 @@ public class Die {
    * @param numberOfDie the number of the die.
    */
   public Die(final int numberOfDie) {
-    this.diceNumber = numberOfDie;
+    setDieNumber(numberOfDie);
   }
 
   /**
@@ -52,5 +52,26 @@ public class Die {
    */
   public final int getLastRolledValue() {
     return lastRolledValue;
+  }
+
+  /**
+   * Sets the number of the die.
+   *
+   * @param inputDiceNumber the number of the die.
+   */
+  public void setDieNumber(final int inputDiceNumber) {
+    if (inputDiceNumber < 0) {
+      throw new IllegalArgumentException("Invalid dice number.");
+    }
+    this.diceNumber = inputDiceNumber;
+  }
+
+  /**
+   * Accessor method for the number of the dice.
+   *
+   * @return the number of the dice.
+   */
+  public int getDieNumber() {
+    return diceNumber;
   }
 }
