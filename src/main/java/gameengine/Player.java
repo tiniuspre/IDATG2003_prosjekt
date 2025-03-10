@@ -1,4 +1,4 @@
-package snakesandladders.engine;
+package gameengine;
 
 /**
  * The {@code Player} class represents a player in the test
@@ -8,7 +8,7 @@ package snakesandladders.engine;
  * @version 13.02.2025
  * @since 13.02.2025
  */
-public class Player {
+public abstract class Player {
   /**
    * The name of the player.
    */

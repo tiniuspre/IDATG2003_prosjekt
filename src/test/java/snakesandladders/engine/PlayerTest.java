@@ -1,15 +1,16 @@
 package snakesandladders.engine;
 
+import gameengine.Player;
 import junit.framework.TestCase;
 
 import static org.junit.Assert.assertThrows;
 
 public class PlayerTest extends TestCase {
 
-  static Player testPlayer = new Player("test");
+  static Player testPlayer = new SnakesAndLaddersPlayer("test");
 
   public void testTestSetName() {
-    assertThrows(IllegalArgumentException.class, () -> new Player(""));
+    assertThrows(IllegalArgumentException.class, () -> new SnakesAndLaddersPlayer(""));
   }
 
   public void testSetPosition() {
