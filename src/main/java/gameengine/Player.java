@@ -5,7 +5,7 @@ package gameengine;
  * snakes and ladders game.
  *
  * @author jonastomren
- * @version 13.02.2025
+ * @version 10.03.2025
  * @since 13.02.2025
  */
 public abstract class Player {
