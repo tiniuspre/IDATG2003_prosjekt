@@ -45,8 +45,6 @@ public class SnakesAndLadders {
    */
   public void setBoard() {
     board.createBoard();
-    board.addSnakeTiles();
-    board.addLadderTiles();
   }
 
   /**

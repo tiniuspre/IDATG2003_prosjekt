@@ -2,9 +2,7 @@ package snakesandladders.engine;
 
 import gameengine.board.Board;
 import gameengine.board.Tile;
-import snakesandladders.engine.tiles.LadderTile;
 import snakesandladders.engine.tiles.NormalTile;
-import snakesandladders.engine.tiles.SnakeTile;
 
 /**
  * The {@code TestGameBoard} class represents the game board in the test game,
@@ -49,23 +47,6 @@ public class SnakesAndLaddersBoard extends Board {
     }
   }
 
-  /**
-   * Temporary method to add snake tiles to the board.
-   */
-  public void addSnakeTiles() {
-    getTiles().put(14, new SnakeTile(14, 3, 3, 5));
-    getTiles().put(17, new SnakeTile(17, 6, 3, 2));
-    getTiles().put(31, new SnakeTile(31, 8, 4, 10));
-  }
-
-  /**
-   * Temporary method to add ladder tiles to the board.
-   */
-  public void addLadderTiles() {
-    getTiles().put(4, new LadderTile(4, 2, 3, 15));
-    getTiles().put(9, new LadderTile(9, 5, 2, 22));
-    getTiles().put(20, new LadderTile(20, 10, 3, 30));
-  }
 
   /**
    * Returns the tile object with the specified tile number.
