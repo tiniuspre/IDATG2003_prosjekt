@@ -14,7 +14,8 @@ public class SnakesAndLaddersTile extends Tile {
    * @param posX the x position of the tile.
    * @param posY the y position of the tile.
    */
-  public SnakesAndLaddersTile(final int number, final int posX, final int posY) {
+  public SnakesAndLaddersTile(final int number, final int posX,
+                              final int posY) {
     super(number, posX, posY);
   }
 
