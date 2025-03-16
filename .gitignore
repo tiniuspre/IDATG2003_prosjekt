@@ -1,3 +1,7 @@
+# Json files
+src/main/resources/json-files/
+src/test/resources/json-files/*
+
 # Compiled class file
 *.class
 
