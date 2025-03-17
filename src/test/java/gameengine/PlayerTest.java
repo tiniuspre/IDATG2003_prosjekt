@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-  static Player testPlayer = new SnakesAndLaddersPlayer("test","piece");
+  static Player testPlayer = new SnakesAndLaddersPlayer("test","hat");
 
   @Test
   public void testTestSetName() {
