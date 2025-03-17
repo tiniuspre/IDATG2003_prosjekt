@@ -1,12 +1,10 @@
 package snakesandladders.engine;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+class SnakesAndLaddersBoardTest {
 
-import static org.junit.Assert.assertThrows;
-
-public class SnakesAndLaddersBoardTest extends TestCase {
-
-
+  @Test
   public void testGetTile() {
     SnakesAndLaddersBoard testGameBoard = new SnakesAndLaddersBoard(10,9);
     testGameBoard.createBoard();
