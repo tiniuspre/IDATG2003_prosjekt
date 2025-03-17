@@ -12,14 +12,18 @@ import gameengine.Player;
  * @see gameengine.Player
  */
 public class SnakesAndLaddersPlayer extends Player {
-
+  /**
+   * The piece of the player.
+   */
   private SnakesAndLaddersPiece piece;
   /**
    * Constructor for the SnakesAndLaddersPlayer class.
    *
    * @param inputName the name of the player.
+   * @param inputPiece the piece of the player.
    */
-  public SnakesAndLaddersPlayer(final String inputName, final String inputPiece) {
+  public SnakesAndLaddersPlayer(final String inputName,
+                                final String inputPiece) {
     super(inputName);
     setPiece(inputPiece);
   }
@@ -30,13 +34,19 @@ public class SnakesAndLaddersPlayer extends Player {
    * @param inputPiece the piece of the player.
    * @throws IllegalArgumentException if the piece is null or empty.
    */
-  public void setPiece(final String inputPiece) throws IllegalArgumentException {
+  public void setPiece(final String inputPiece)
+      throws IllegalArgumentException {
     if (inputPiece == null || inputPiece.isBlank()) {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
     this.piece = SnakesAndLaddersPiece.fromString(inputPiece);
   }
 
+  /**
+   * Returns the piece of the player.
+   *
+   * @return the piece of the player.
+   */
   public String getPiece() {
     return piece.getValue();
   }
