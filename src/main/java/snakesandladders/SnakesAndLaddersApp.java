@@ -28,8 +28,8 @@ public final class SnakesAndLaddersApp {
    * @param args the command-line arguments.
    */
   public static void main(final String[] args) {
-    TEST_GAME.addPlayer("Alice");
-    TEST_GAME.addPlayer("Bob");
+    TEST_GAME.addPlayer("Alice","hat");
+    TEST_GAME.addPlayer("Bob","car");
     TEST_GAME.setBoard();
     while (TEST_GAME.isNotFinished()) {
       TEST_GAME.printStatus();

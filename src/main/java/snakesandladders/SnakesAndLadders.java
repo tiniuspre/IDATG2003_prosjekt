@@ -52,8 +52,8 @@ public class SnakesAndLadders {
    *
    * @param name the name of the player.
    */
-  public void addPlayer(final String name) {
-    players.add(new SnakesAndLaddersPlayer(name));
+  public void addPlayer(final String name, final String piece) {
+    players.add(new SnakesAndLaddersPlayer(name,piece));
   }
 
   /**
