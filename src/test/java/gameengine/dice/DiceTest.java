@@ -1,15 +1,15 @@
 package gameengine.dice;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+class DiceTest {
 
-public class DiceTest extends TestCase {
-
+  @Test
   public void testDice() {
     Dice testDice = new Dice(3);
     assertEquals(3,testDice.getNumberOfDice());
     assertThrows(IllegalArgumentException.class,() -> new Dice(-2));
   }
-
+  
 }

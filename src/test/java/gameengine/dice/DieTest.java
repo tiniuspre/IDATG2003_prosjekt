@@ -1,27 +1,22 @@
 package gameengine.dice;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+class DieTest {
 
-/**
- * The {@code DieTest} class tests the behavior of the {@code Die} class.
- */
-public class DieTest extends TestCase {
-
+  @Test
   public void testRoll() {
     Die test = new Die(1);
     int result = test.roll();
-    Assert.assertTrue(result >= 1 && result <= 6);
-
+    assertTrue(result >= 1 && result <= 6);
   }
 
+  @Test
   public void testSetDieNumber() {
     Die test = new Die(1);
     test.setDieNumber(2);
     assertEquals(2,test.getDieNumber());
     assertThrows(IllegalArgumentException.class, () -> test.setDieNumber(-1));
   }
-
 }
