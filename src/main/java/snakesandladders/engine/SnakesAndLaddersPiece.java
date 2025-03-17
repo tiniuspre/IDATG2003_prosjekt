@@ -40,7 +40,7 @@ public enum SnakesAndLaddersPiece {
    *
    * @param inputValue the value of the piece.
    */
-  SnakesAndLaddersPiece(String inputValue) {
+  SnakesAndLaddersPiece(final String inputValue) {
     setValue(inputValue);
   }
 
@@ -58,7 +58,7 @@ public enum SnakesAndLaddersPiece {
    *
    * @param inputValue the value of the piece.
    */
-  public void setValue(String inputValue) {
+  public void setValue(final String inputValue) {
     this.value = inputValue;
   }
 
@@ -68,12 +68,13 @@ public enum SnakesAndLaddersPiece {
    * @param text the text to convert to a piece.
    * @return the piece as a string.
    */
-  public static SnakesAndLaddersPiece fromString(String text) {
+  public static SnakesAndLaddersPiece fromString(final String text) {
     for (SnakesAndLaddersPiece b : SnakesAndLaddersPiece.values()) {
       if (b.value.equalsIgnoreCase(text)) {
         return b;
       }
     }
-    throw new IllegalArgumentException("No constant with text " + text + " found.");
+    throw new IllegalArgumentException("No constant with text "
+        + text + " found.");
   }
 }
