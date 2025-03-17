@@ -1,9 +1,9 @@
 package snakesandladders;
 
+import gameengine.Player;
 import gameengine.dice.Dice;
 import java.util.ArrayList;
 import java.util.List;
-import gameengine.Player;
 import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.tiles.LadderTile;
@@ -51,9 +51,10 @@ public class SnakesAndLadders {
    * Adds a player to the game.
    *
    * @param name the name of the player.
+   * @param piece the piece of the player.
    */
   public void addPlayer(final String name, final String piece) {
-    players.add(new SnakesAndLaddersPlayer(name,piece));
+    players.add(new SnakesAndLaddersPlayer(name, piece));
   }
 
   /**
