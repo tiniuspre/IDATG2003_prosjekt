@@ -34,7 +34,7 @@ public class SnakesAndLaddersPlayer extends Player {
     if (inputPiece == null || inputPiece.isBlank()) {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
-    piece = SnakesAndLaddersPiece.fromString(inputPiece);
+    this.piece = SnakesAndLaddersPiece.fromString(inputPiece);
   }
 
   public String getPiece() {

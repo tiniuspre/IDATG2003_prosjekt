@@ -20,9 +20,6 @@ public enum SnakesAndLaddersPiece {
   }
 
   public void setValue(String inputValue) {
-    if (value == null || value.isBlank()) {
-      throw new IllegalArgumentException("Piece cannot be null or empty");
-    }
     this.value = inputValue;
   }
 
