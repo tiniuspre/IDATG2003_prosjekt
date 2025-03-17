@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
-  static Player testPlayer = new SnakesAndLaddersPlayer("test");
+  static Player testPlayer = new SnakesAndLaddersPlayer("test","piece");
 
   @Test
   public void testTestSetName() {
-    assertThrows(IllegalArgumentException.class, () -> new SnakesAndLaddersPlayer(""));
+    assertThrows(IllegalArgumentException.class, () -> new SnakesAndLaddersPlayer("",""));
   }
 
   @Test
