@@ -29,15 +29,19 @@ public class SnakesAndLaddersBoard extends Board {
    * the first row going from left to right,
    * the second row going from right to left, and so on.
    */
-  //TODO: Remove createBoard method when hardcoded board is added.
+  //NOTE: Remove createBoard method when hardcoded board is added.
   @Override
   public void createBoard() {
     int num = 1;
     for (int row = 1; row < getHeight() + 1; row++) {
-      boolean isEvenRow = row % 2 == 0; // even rows go from right to left
-      int start = isEvenRow ? getWidth() : 1; // start from the right if even row
-      int end = isEvenRow ? 0 : getWidth() + 1; // start from left if odd row
-      int increment = isEvenRow ? -1 : 1; // decrement if even row, increment if odd row
+      // even rows go from right to left
+      boolean isEvenRow = row % 2 == 0;
+      // start from the right if even row
+      int start = isEvenRow ? getWidth() : 1;
+      // start from left if odd row
+      int end = isEvenRow ? 0 : getWidth() + 1;
+      // decrement if even row, increment if odd row
+      int increment = isEvenRow ? -1 : 1;
 
       // add columns to the row
       for (int col = start; col != end; col += increment) {
