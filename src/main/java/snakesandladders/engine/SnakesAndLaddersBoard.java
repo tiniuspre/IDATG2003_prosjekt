@@ -29,20 +29,20 @@ public class SnakesAndLaddersBoard extends Board {
    * the first row going from left to right,
    * the second row going from right to left, and so on.
    */
+  //TODO: Remove createBoard method when hardcoded board is added.
   @Override
   public void createBoard() {
     int num = 1;
-    for (int row = 1; row < getHeight() + 1; row++) {
-      if (row % 2 == 0) {
-        for (int col = getWidth(); col > 0; col--) {
-          getTiles().put(num, new NormalTile(num, col, row));
-          num++;
-        }
-      } else {
-        for (int col = 1; col < getWidth() + 1; col++) {
-          getTiles().put(num, new NormalTile(num, col, row));
-          num++;
-        }
+    for (int row = 1; row < getHeight(); row++) {
+      boolean isEvenRow = row % 2 == 0; // even rows go from right to left
+      int start = isEvenRow ? getWidth() : 1; // start from the right if even row
+      int end = isEvenRow ? 0 : getWidth() + 1; // start from left if odd row
+      int increment = isEvenRow ? -1 : 1; // decrement if even row, increment if odd row
+
+      // add columns to the row
+      for (int col = start; col != end; col += increment) {
+        getTiles().put(num, new NormalTile(num, col, row));
+        num++;
       }
     }
   }
