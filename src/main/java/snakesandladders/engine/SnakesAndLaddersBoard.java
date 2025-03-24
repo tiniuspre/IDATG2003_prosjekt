@@ -33,7 +33,7 @@ public class SnakesAndLaddersBoard extends Board {
   @Override
   public void createBoard() {
     int num = 1;
-    for (int row = 1; row < getHeight(); row++) {
+    for (int row = 1; row < getHeight() + 1; row++) {
       boolean isEvenRow = row % 2 == 0; // even rows go from right to left
       int start = isEvenRow ? getWidth() : 1; // start from the right if even row
       int end = isEvenRow ? 0 : getWidth() + 1; // start from left if odd row
