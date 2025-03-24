@@ -34,7 +34,7 @@ public abstract class Player {
    * @throws IllegalArgumentException if the name is null or empty.
    */
   public void setName(final String inputName) throws IllegalArgumentException {
-    if (inputName == null || inputName.isEmpty() || inputName.isBlank()) {
+    if (inputName == null || inputName.isBlank()) {
       throw new IllegalArgumentException("Name cannot be null or empty");
     }
     this.name = inputName;
