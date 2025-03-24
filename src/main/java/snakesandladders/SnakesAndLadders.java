@@ -34,7 +34,7 @@ public class SnakesAndLadders {
   /**
    * The list of players in the game.
    */
-  private final List<Player> players = new ArrayList<>();
+  private final List<SnakesAndLaddersPlayer> players = new ArrayList<>();
   /**
    * The dice used in the game.
    */
@@ -61,7 +61,7 @@ public class SnakesAndLadders {
    * Plays one round of the game.
    */
   public void playOneRound() {
-    for (Player player : players) {
+    for (SnakesAndLaddersPlayer player : players) {
       int roll = dice.rollDice();
       if (player.getPosition() + roll >= board.getBoardSize()) {
         reachedEndOfBoard(player);
@@ -94,7 +94,7 @@ public class SnakesAndLadders {
    *
    * @param player the player to move back.
    */
-  public void landOnSnake(final Player player) {
+  public void landOnSnake(final SnakesAndLaddersPlayer player) {
     SnakeTile snakeTile = (SnakeTile) board.getTile(player.getPosition());
     player.moveBack(snakeTile.getAction().landAction(player.getPosition()));
     System.out.println(player.getName()
