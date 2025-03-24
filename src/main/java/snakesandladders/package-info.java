@@ -3,4 +3,4 @@
  * It includes the core functionality and components
  * required to run the test game.
  */
-package testgame;
+package snakesandladders;
