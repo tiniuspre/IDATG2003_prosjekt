@@ -64,28 +64,55 @@ public class SnakesAndLadders {
     for (Player player : players) {
       int roll = dice.rollDice();
       if (player.getPosition() + roll >= board.getBoardSize()) {
-        player.setPosition(board.getBoardSize());
-        System.out.println(player.getName()
-            + " has reached the end of the board.");
+        reachedEndOfBoard(player);
       } else {
         player.move(roll);
       }
       if (board.getTile(player.getPosition())
           .getClass().equals(SnakeTile.class)) {
-        SnakeTile snakeTile = (SnakeTile) board.getTile(player.getPosition());
-        player.moveBack(snakeTile.getAction().landAction(player.getPosition()));
-        System.out.println(player.getName()
-            + " landed on a snake and moved back to position "
-            + player.getPosition());
+        landOnSnake(player);
       } else if (board.getTile(player.getPosition())
           .getClass().equals(LadderTile.class)) {
-        LadderTile ladderTile = (LadderTile)
-            board.getTile(player.getPosition());
-        player.move(ladderTile.getAction().landAction(player.getPosition()));
-        System.out.println(player.getName()
-            + " climbed a ladder to position " + player.getPosition());
+        landOnLadder(player);
       }
     }
+  }
+
+  /**
+   * Moves the player to the end of the board.
+   *
+   * @param player the player to move to the end of the board.
+   */
+  public void reachedEndOfBoard(final Player player) {
+    player.setPosition(board.getBoardSize());
+    System.out.println(player.getName()
+        + " has reached the end of the board.");
+  }
+
+  /**
+   * Moves the player back to the tail of the snake.
+   *
+   * @param player the player to move back.
+   */
+  public void landOnSnake(final Player player) {
+    SnakeTile snakeTile = (SnakeTile) board.getTile(player.getPosition());
+    player.moveBack(snakeTile.getAction().landAction(player.getPosition()));
+    System.out.println(player.getName()
+        + " landed on a snake and moved back to position "
+        + player.getPosition());
+  }
+
+  /**
+   * Moves the player to the top of the ladder.
+   *
+   * @param player the player to move up the ladder.
+   */
+  public void landOnLadder(final Player player) {
+    LadderTile ladderTile = (LadderTile)
+        board.getTile(player.getPosition());
+    player.move(ladderTile.getAction().landAction(player.getPosition()));
+    System.out.println(player.getName()
+        + " climbed a ladder to position " + player.getPosition());
   }
 
   /**
