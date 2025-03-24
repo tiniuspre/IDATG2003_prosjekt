@@ -51,6 +51,18 @@ public class SnakesAndLaddersPlayer extends Player {
     return piece.getValue();
   }
 
+  /**
+   * Moves the player forward a number of steps.
+   *
+   * @param steps the number of steps to move.
+   */
+  public void move(final int steps) throws IllegalArgumentException {
+    if (steps < 0) {
+      throw new IllegalArgumentException("Invalid steps");
+    }
+    setPosition(getPosition() + steps);
+  }
+
 
   /**
    * Moves the player back to a specific tile.

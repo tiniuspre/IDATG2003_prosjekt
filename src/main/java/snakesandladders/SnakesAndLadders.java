@@ -107,7 +107,7 @@ public class SnakesAndLadders {
    *
    * @param player the player to move up the ladder.
    */
-  public void landOnLadder(final Player player) {
+  public void landOnLadder(final SnakesAndLaddersPlayer player) {
     LadderTile ladderTile = (LadderTile)
         board.getTile(player.getPosition());
     player.move(ladderTile.getAction().landAction(player.getPosition()));

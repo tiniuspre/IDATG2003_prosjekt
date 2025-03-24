@@ -16,7 +16,7 @@ public abstract class Player {
   /**
    * The position of the player on the board.
    */
-  private int position = 0;
+  private int position;
 
   /**
    * Constructor for the Player class.
@@ -25,6 +25,7 @@ public abstract class Player {
    */
   public Player(final String inputName) {
     setName(inputName);
+    setPosition(0);
   }
 
   /**
@@ -71,15 +72,4 @@ public abstract class Player {
     return position;
   }
 
-  /**
-   * Moves the player forward a number of steps.
-   *
-   * @param steps the number of steps to move.
-   */
-  public void move(final int steps) throws IllegalArgumentException {
-    if (steps < 0) {
-      throw new IllegalArgumentException("Invalid steps");
-    }
-    position += steps;
-  }
 }

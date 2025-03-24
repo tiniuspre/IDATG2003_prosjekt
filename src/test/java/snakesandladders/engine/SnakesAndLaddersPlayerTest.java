@@ -23,4 +23,11 @@ class SnakesAndLaddersPlayerTest {
     assertThrows(IllegalArgumentException.class, () -> testPlayer.moveBack(5));
     assertThrows(IllegalArgumentException.class, () -> testPlayer.moveBack(-2));
   }
+
+  @Test
+  public void testMove() {
+    testPlayer.move(3);
+    assertEquals(3,testPlayer.getPosition());
+    assertThrows(IllegalArgumentException.class,() -> testPlayer.move(-1));
+  }
 }

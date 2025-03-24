@@ -20,11 +20,5 @@ class PlayerTest {
     assertEquals(2,testPlayer.getPosition());
     assertThrows(IllegalArgumentException.class, () -> testPlayer.setPosition(-1));
   }
-  @Test
-  public void testMove() {
-    testPlayer.move(3);
-    assertEquals(3,testPlayer.getPosition());
-    assertThrows(IllegalArgumentException.class,() -> testPlayer.move(-1));
-  }
 
 }
