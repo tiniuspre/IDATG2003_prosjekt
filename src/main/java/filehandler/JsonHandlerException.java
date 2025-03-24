@@ -1,0 +1,19 @@
+package filehandler;
+
+/**
+ * Exception thrown when an error occurs in the JSONHandler class.
+ *
+ * @since 24.03.2025
+ * @version 24.03.2025
+ * @author jonastomren
+ */
+public class JsonHandlerException extends RuntimeException {
+  /**
+   * Constructor for the JsonHandlerException class.
+   *
+   * @param message The error message.
+   */
+  public JsonHandlerException(final String message) {
+    super(message);
+  }
+}

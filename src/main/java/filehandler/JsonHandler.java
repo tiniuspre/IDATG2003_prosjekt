@@ -17,12 +17,12 @@ import java.util.logging.Logger;
  * @version 12.03.2025
  * @since 11.03.2025
  */
-public class Jsonhandler {
+public class JsonHandler {
   /**
    * The LOGGER object is used to log messages to the console.
    */
   private static final Logger LOGGER = Logger
-      .getLogger(Jsonhandler.class.getName());
+      .getLogger(JsonHandler.class.getName());
   /**
    * The OBJECT_MAPPER object is used to map objects to and from json.
    */
@@ -37,7 +37,7 @@ public class Jsonhandler {
    *
    * @param inputPath the path to the json file.
    */
-  public Jsonhandler(final String inputPath) {
+  public JsonHandler(final String inputPath) {
     setPath(inputPath);
   }
 
@@ -48,7 +48,7 @@ public class Jsonhandler {
    * @throws IllegalArgumentException if the path is null´or empty.
    */
   public void setPath(final String inputPath) throws IllegalArgumentException {
-    if (inputPath == null || inputPath.isEmpty() || inputPath.isBlank()) {
+    if (inputPath == null || inputPath.isBlank()) {
       throw new IllegalArgumentException("Path cannot be null");
     }
     this.path = inputPath;
@@ -71,18 +71,19 @@ public class Jsonhandler {
   public void writeToFile(final Object obj) throws IOException {
     File jsonFile = new File(getPath());
     if (jsonFile.getParentFile().mkdirs()) {
-      LOGGER.log(Level.INFO, "Directory not found, "
+      LOGGER.log(Level.WARNING, "Directory not found, "
           + "created new directory at: " + jsonFile.getParentFile());
     }
     if (jsonFile.createNewFile()) {
-      LOGGER.log(Level.INFO, "File not found,"
-          + " created new file at: " + jsonFile);
+      LOGGER.log(Level.WARNING, "File not found, "
+          + "created new file at: " + jsonFile);
     }
     try {
       OBJECT_MAPPER.writeValue(jsonFile, obj);
       LOGGER.log(Level.INFO, "File written to: " + jsonFile);
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error writing to file", e);
+      throw new JsonHandlerException(e.getMessage());
     }
   }
 
@@ -99,8 +100,12 @@ public class Jsonhandler {
       throw new NullPointerException("Type cannot be null");
     }
     File jsonFile = new File(getPath());
+    if (jsonFile.getParentFile().mkdirs()) {
+      LOGGER.log(Level.WARNING, "Directory not found, "
+          + "created new directory at: " + jsonFile.getParentFile());
+    }
     if (jsonFile.createNewFile()) {
-      LOGGER.log(Level.INFO, "File not found, "
+      LOGGER.log(Level.WARNING, "File not found, "
           + "created new file at: " + jsonFile);
     }
     try {
@@ -109,6 +114,18 @@ public class Jsonhandler {
     } catch (IOException e) {
       LOGGER.log(Level.SEVERE, "Error reading from file", e);
       return new ArrayList<>();
+    }
+  }
+
+  /**
+   * Delete the json file.
+   */
+  public void deleteFile() {
+    File jsonFile = new File(getPath());
+    if (jsonFile.delete()) {
+      LOGGER.log(Level.WARNING, "File deleted: " + jsonFile);
+    } else {
+      throw new JsonHandlerException("File not found.");
     }
   }
 
