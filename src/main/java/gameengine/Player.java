@@ -32,6 +32,12 @@ public abstract class Player {
   }
 
   /**
+   * Constructor for the Player class.
+   * NOTE: Only for file handling.
+   */
+  public Player() {}
+
+  /**
    * Sets the name of the player.
    *
    * @param inputName the name of the player.
