@@ -4,6 +4,7 @@ module IDATG2003.prosjekt {
   requires org.jetbrains.annotations;
   requires java.logging;
   requires com.fasterxml.jackson.databind;
+  requires com.opencsv;
   opens filehandler to com.fasterxml.jackson.databind;
 
 }
