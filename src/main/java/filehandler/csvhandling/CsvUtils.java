@@ -1,5 +1,6 @@
 package filehandler.csvhandling;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -76,5 +77,44 @@ public final class CsvUtils {
       LOGGER.log(Level.WARNING, "File not found, created new file at: " + file);
     }
     return file;
+  }
+
+  /**
+   * Converts a string value to the specified type.
+   *
+   * @param type The class type to convert to.
+   * @param value The string value to convert.
+   * @return The converted value.
+   */
+  public static Object convertValue(Class<?> type, String value) {
+    if (type == int.class || type == Integer.class) return Integer.parseInt(value);
+    if (type == double.class || type == Double.class) return Double.parseDouble(value);
+    if (type == boolean.class || type == Boolean.class) return Boolean.parseBoolean(value);
+
+    return value; // Default: treat as String
+  }
+
+  /**
+   * Sets the value of a field in a record object.
+   *
+   * @param <T> The type of the record object.
+   * @param record The record object to set the field value in.
+   * @param field The field to set the value for.
+   * @param value The value to set.
+   */
+  public static <T> void setField(T record, Field field, String value) {
+    Class<?> clazz = record.getClass();
+    while (clazz != null) {
+      try {
+        field.setAccessible(true);
+
+        field.set(record, convertValue(field.getType(), value));
+        return;
+      } catch (IllegalArgumentException | IllegalAccessException e) {
+        throw new CsvHandlerException(e.getMessage());
+      } catch (NoSuchFieldError e) {
+        clazz = clazz.getSuperclass();
+      }
+    }
   }
 }

@@ -59,10 +59,6 @@ public final class CsvHandler {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       List<Field> fields = CsvUtils.getAllFieldNames(records.getFirst().getClass());
 
-      // Write CSV Header
-      writer.write(String.join(",", fields.stream().map(Field::getName).toArray(String[]::new)));
-      writer.newLine();
-
       // Write CSV Data
       for (T record : records) {
         List<String> values = new ArrayList<>();
@@ -78,6 +74,37 @@ public final class CsvHandler {
         writer.newLine();
       }
     }
+  }
+
+  /**
+   * Reads a list of objects from a CSV file.
+   *
+   * @param <T> the type of objects in the list
+   * @param type the class type of the objects to read
+   * @return the list of objects read from the CSV file
+   * @throws IOException if an I/O error occurs
+   */
+  public <T> List<T> readFromFile(Class<T> type) throws IOException {
+    String filePath = getPath();
+    List<T> records = new ArrayList<>();
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        String[] values = line.split(",");
+        T record = type.getDeclaredConstructor().newInstance();
+        List<Field> fields = CsvUtils.getAllFieldNames(type);
+        for (int i = 0; i < fields.size(); i++) {
+          Field field = fields.get(i);
+          CsvUtils.setField(record, field, values[i]);
+        }
+        records.add(record);
+      }
+    } catch (Exception e) {
+      LOGGER.severe("Error reading from file: " + e.getMessage());
+      throw new CsvHandlerException(e.getMessage());
+    }
+    return records;
   }
 
   // TODO: Implement read and write methods for csv files.
