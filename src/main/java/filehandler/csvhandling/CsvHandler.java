@@ -1,21 +1,33 @@
 package filehandler.csvhandling;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * The {@code CsvHandler} class handles all writing, and reading to and from the csv files.
+ * The {@code CsvHandler} class handles all writing,
+ * and reading to and from the csv files.
  *
  * @since 15.03.2025
  * @version 25.03.2025
  * @author jonastomren
  */
 public final class CsvHandler {
-
-  private static final Logger LOGGER = Logger.getLogger(CsvHandler.class.getName());
+  /**
+   * Logger for the CsvHandler class.
+   */
+  private static final Logger LOGGER = Logger
+      .getLogger(CsvHandler.class.getName());
+  /**
+   * The path to the CSV file.
+   */
   private String path = "";
 
   /**
@@ -50,14 +62,15 @@ public final class CsvHandler {
    * @throws IOException if an I/O error occurs
    * @throws IllegalArgumentException if the records list is null or empty
    */
-  public <T> void writeToFile(List<T> records) throws IOException {
+  public <T> void writeToFile(final List<T> records) throws IOException {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
       throw new CsvHandlerException("Records list is empty.");
     }
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-      List<Field> fields = CsvUtils.getAllFieldNames(records.getFirst().getClass());
+      List<Field> fields = CsvUtils
+          .getAllFieldNames(records.getFirst().getClass());
 
       // Write CSV Data
       for (T record : records) {
@@ -83,7 +96,7 @@ public final class CsvHandler {
    * @param type the class type of the objects to read
    * @return the list of objects read from the CSV file
    */
-  public <T> List<T> readFromFile(Class<T> type) {
+  public <T> List<T> readFromFile(final Class<T> type) {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
 
@@ -105,6 +118,4 @@ public final class CsvHandler {
     }
     return records;
   }
-
-  // TODO: Implement read and write methods for csv files.
 }
