@@ -1,4 +1,4 @@
-package filehandler;
+package filehandler.csvhandling;
 
 /**
  * Exception thrown when an error occurs in the CsvHandler class.

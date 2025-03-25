@@ -1,4 +1,4 @@
-package filehandler;
+package filehandler.csvhandling;
 
 import java.io.*;
 import java.lang.reflect.Field;

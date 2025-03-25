@@ -1,4 +1,4 @@
-package filehandler;
+package filehandler.jsonhandling;
 
 /**
  * Exception thrown when an error occurs in the JSONHandler class.
