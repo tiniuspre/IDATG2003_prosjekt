@@ -27,7 +27,7 @@ public final class CsvHandler {
    */
   public void setPath(final String inputPath) throws IOException {
     if (!CsvUtils.isValidCsvPath(inputPath)) {
-      throw new IllegalArgumentException("Path cannot be null");
+      throw new CsvHandlerException("Path cannot be null");
     }
     File file = CsvUtils.createNewFile(inputPath);
     this.path = inputPath;
@@ -53,7 +53,7 @@ public final class CsvHandler {
   public <T> void writeToFile(List<T> records) throws IOException {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
-      throw new IllegalArgumentException("Records list is empty.");
+      throw new CsvHandlerException("Records list is empty.");
     }
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
