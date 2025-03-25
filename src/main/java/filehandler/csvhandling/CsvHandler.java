@@ -82,9 +82,8 @@ public final class CsvHandler {
    * @param <T> the type of objects in the list
    * @param type the class type of the objects to read
    * @return the list of objects read from the CSV file
-   * @throws IOException if an I/O error occurs
    */
-  public <T> List<T> readFromFile(Class<T> type) throws IOException {
+  public <T> List<T> readFromFile(Class<T> type) {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
 
