@@ -86,10 +86,16 @@ public final class CsvUtils {
    * @param value The string value to convert.
    * @return The converted value.
    */
-  public static Object convertValue(Class<?> type, String value) {
-    if (type == int.class || type == Integer.class) return Integer.parseInt(value);
-    if (type == double.class || type == Double.class) return Double.parseDouble(value);
-    if (type == boolean.class || type == Boolean.class) return Boolean.parseBoolean(value);
+  public static Object convertValue(final Class<?> type, final String value) {
+    if (type == int.class || type == Integer.class) {
+      return Integer.parseInt(value);
+    }
+    if (type == double.class || type == Double.class) {
+      return Double.parseDouble(value);
+    }
+    if (type == boolean.class || type == Boolean.class) {
+      return Boolean.parseBoolean(value);
+    }
 
     return value; // Default: treat as String
   }
@@ -102,7 +108,8 @@ public final class CsvUtils {
    * @param field The field to set the value for.
    * @param value The value to set.
    */
-  public static <T> void setField(T record, Field field, String value) {
+  public static <T> void setField(final T record,
+                                  final Field field, final String value) {
     Class<?> clazz = record.getClass();
     while (clazz != null) {
       try {
