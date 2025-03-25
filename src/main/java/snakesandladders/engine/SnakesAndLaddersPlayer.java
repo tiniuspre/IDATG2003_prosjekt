@@ -1,5 +1,6 @@
 package snakesandladders.engine;
 
+import com.opencsv.bean.CsvBindByName;
 import gameengine.Player;
 
 /**
@@ -15,6 +16,7 @@ public class SnakesAndLaddersPlayer extends Player {
   /**
    * The piece of the player.
    */
+  @CsvBindByName(column = "Piece")
   private SnakesAndLaddersPiece piece;
   /**
    * Constructor for the SnakesAndLaddersPlayer class.
