@@ -17,9 +17,12 @@ import java.util.logging.Logger;
  * @version 25.03.2025
  * @author jonastomren
  */
-public class CsvUtils {
-
-  private static final Logger LOGGER = Logger.getLogger(CsvUtils.class.getName());
+public final class CsvUtils {
+  /**
+   * Logger for the CsvUtils class.
+   */
+  private static final Logger LOGGER = Logger
+      .getLogger(CsvUtils.class.getName());
 
   /**
    * Private constructor to prevent instantiation.
@@ -56,16 +59,18 @@ public class CsvUtils {
   }
 
   /**
-   * Creates a new file at the specified path, including any necessary parent directories.
+   * Creates a new file at the specified path,
+   * including any necessary parent directories.
    *
    * @param path The path where the new file should be created.
    * @return The created file.
    * @throws IOException If an I/O error occurs.
    */
-  public static File createNewFile(String path) throws IOException {
+  public static File createNewFile(final String path) throws IOException {
     File file = new File(path);
     if (file.getParentFile().mkdirs()) {
-      LOGGER.log(Level.WARNING, "Directory not found, created new directory at: " + file.getParentFile());
+      LOGGER.log(Level.WARNING, "Directory not found, "
+          + "created new directory at: " + file.getParentFile());
     }
     if (file.createNewFile()) {
       LOGGER.log(Level.WARNING, "File not found, created new file at: " + file);
