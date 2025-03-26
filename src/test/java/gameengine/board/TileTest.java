@@ -1,7 +1,6 @@
 package gameengine.board;
 
 import org.junit.jupiter.api.Test;
-import snakesandladders.engine.actions.LadderAction;
 import snakesandladders.engine.tiles.NormalTile;
 
 import static org.junit.jupiter.api.Assertions.*;

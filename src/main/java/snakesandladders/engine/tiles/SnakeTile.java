@@ -1,6 +1,5 @@
 package snakesandladders.engine.tiles;
 
-import gameengine.board.TileAction;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.SnakeAction;
 
@@ -29,8 +28,7 @@ public class SnakeTile extends SnakesAndLaddersTile {
    */
   public SnakeTile(final int number, final int posX,
                    final int posY, final int snakeTailNumber) {
-    super(number, posX, posY);
-
+    super(number, posX, posY, new SnakeAction(number, snakeTailNumber));
   }
 
   /**

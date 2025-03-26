@@ -1,6 +1,7 @@
 package snakesandladders.engine.tiles;
 
 import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.actions.SwitchAction;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class SwitchTile extends SnakesAndLaddersTile {
    * @param posY position on the y-axis.
    */
   public SwitchTile(final int number, final int posX, final int posY) {
-    super(number, posX, posY);
+    super(number, posX, posY, new SwitchAction());
   }
 
   /**
