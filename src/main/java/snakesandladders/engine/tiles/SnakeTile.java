@@ -1,6 +1,5 @@
 package snakesandladders.engine.tiles;
 
-import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.SnakeAction;
 
@@ -35,7 +34,7 @@ public class SnakeTile extends SnakesAndLaddersTile {
    *
    * @param player the player to move back.
    */
-  public void landOnSnake(final SnakesAndLaddersPlayer player {
+  public void landOnSnake(final SnakesAndLaddersPlayer player) {
     player.moveBack(this.getAction().landAction(player.getPosition()));
     System.out.println(player.getName()
         + " landed on a snake and moved back to position "

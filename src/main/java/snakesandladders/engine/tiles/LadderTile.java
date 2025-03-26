@@ -1,6 +1,5 @@
 package snakesandladders.engine.tiles;
 
-import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.LadderAction;
 
