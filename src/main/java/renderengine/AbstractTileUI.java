@@ -15,14 +15,14 @@ public abstract class AbstractTileUI {
   /**
    * Creates and returns the JavaFX node for a tile.
    *
-   * \@return a Node representing the tile.
+   * @return a Node representing the tile.
    */
   public abstract Node createTileNode();
 
   /**
    * Updates the tile node’s state (for example, color or highlight).
    *
-   * \@param state any state or parameter you need to pass in.
+   * @param state any state or parameter you need to pass in.
    */
   public abstract void updateTileState(Object state);
 }
