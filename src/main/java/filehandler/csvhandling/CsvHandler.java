@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /**
  * The {@code CsvHandler} class handles all writing,
@@ -20,11 +20,6 @@ import java.util.logging.Logger;
  * @author jonastomren
  */
 public final class CsvHandler {
-  /**
-   * Logger for the CsvHandler class.
-   */
-  private static final Logger LOGGER = Logger
-      .getLogger(CsvHandler.class.getName());
   /**
    * The path to the CSV file.
    */
@@ -39,7 +34,7 @@ public final class CsvHandler {
    */
   public void setPath(final String inputPath) throws IOException {
     if (!CsvUtils.isValidCsvPath(inputPath)) {
-      throw new CsvHandlerException("Path cannot be null");
+      throw new CsvHandlerException("Path cannot be null",Level.SEVERE);
     }
     File file = CsvUtils.createNewFile(inputPath);
     this.path = inputPath;
@@ -65,12 +60,12 @@ public final class CsvHandler {
   public <T> void writeToFile(final List<T> records) throws IOException {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
-      throw new CsvHandlerException("Records list is empty.");
+      throw new CsvHandlerException("Records list is empty.",Level.WARNING);
     }
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       List<Field> fields = CsvUtils
-          .getAllFieldNames(records.getFirst().getClass());
+          .getAllFields(records.getFirst().getClass());
 
       // Write CSV Data
       for (T record : records) {
@@ -109,7 +104,7 @@ public final class CsvHandler {
         // Get Constructor of generic class.
         T record = type.getDeclaredConstructor().newInstance();
         // Get fields of generic class.
-        List<Field> fields = CsvUtils.getAllFieldNames(type);
+        List<Field> fields = CsvUtils.getAllFields(type);
         // Set values to fields.
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
@@ -119,8 +114,7 @@ public final class CsvHandler {
         records.add(record);
       }
     } catch (Exception e) {
-      LOGGER.severe("Error reading from file: " + e.getMessage());
-      throw new CsvHandlerException(e.getMessage());
+      throw new CsvHandlerException(e.getMessage(),Level.SEVERE);
     }
     return records;
   }
