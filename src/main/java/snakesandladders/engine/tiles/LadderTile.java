@@ -25,8 +25,7 @@ public class LadderTile extends SnakesAndLaddersTile {
    */
   public LadderTile(final int number, final int posX,
                     final int posY, final int ladderTopNumber) {
-    super(number, posX, posY);
-    setAction(new LadderAction(number, ladderTopNumber));
+    super(number, posX, posY, new LadderAction(number, ladderTopNumber));
   }
 
   /**
@@ -35,7 +34,7 @@ public class LadderTile extends SnakesAndLaddersTile {
    * @param player the player to move up the ladder.
    */
   public void landOnLadder(final SnakesAndLaddersPlayer player) {
-    this.getAction();
+    this.getTileAction().landAction(player);
     System.out.println(player.getName()
         + " climbed a ladder to position " + player.getPosition());
   }

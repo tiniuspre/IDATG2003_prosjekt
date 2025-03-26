@@ -25,8 +25,7 @@ public class SnakeTile extends SnakesAndLaddersTile {
    */
   public SnakeTile(final int number, final int posX,
                    final int posY, final int snakeTailNumber) {
-    super(number, posX, posY);
-    setAction(new SnakeAction(number, snakeTailNumber));
+    super(number, posX, posY, new SnakeAction(number, snakeTailNumber));
   }
 
   /**
@@ -35,7 +34,7 @@ public class SnakeTile extends SnakesAndLaddersTile {
    * @param player the player to move back.
    */
   public void landOnSnake(final SnakesAndLaddersPlayer player) {
-    this.getAction();
+    this.getTileAction().landAction(player);
     System.out.println(player.getName()
         + " landed on a snake and moved back to position "
         + player.getPosition());

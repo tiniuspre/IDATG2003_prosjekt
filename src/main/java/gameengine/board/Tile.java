@@ -15,10 +15,6 @@ public abstract class Tile {
    */
   private int number;
   /**
-   * The action of the tile.
-   */
-  private TileAction action;
-  /**
    * The x position of the tile.
    */
   private int posX;
@@ -39,29 +35,6 @@ public abstract class Tile {
     setNumber(num);
     setPosX(positionX);
     setPosY(positionY);
-  }
-
-  /**
-   * Accessor method for the action of the tile.
-   *
-   * @return the action of the tile.
-   */
-  public final TileAction getAction() {
-    return action;
-  }
-
-  /**
-   * Sets the action of the tile.
-   *
-   * @param tileAction the action of the tile.
-   * @throws IllegalArgumentException if the input action is null.
-   */
-  public final void setAction(final TileAction tileAction)
-      throws IllegalArgumentException {
-    if (tileAction == null) {
-      throw new IllegalArgumentException("Action of the tile cannot be null.");
-    }
-    this.action = tileAction;
   }
 
   /**
