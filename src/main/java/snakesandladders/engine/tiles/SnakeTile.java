@@ -35,7 +35,7 @@ public class SnakeTile extends SnakesAndLaddersTile {
    * @param player the player to move back.
    */
   public void landOnSnake(final SnakesAndLaddersPlayer player) {
-    player.moveBack(this.getAction().landAction(player.getPosition()));
+    this.getAction();
     System.out.println(player.getName()
         + " landed on a snake and moved back to position "
         + player.getPosition());
