@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class testMain {
+  // TODO: REMOVE THIS CLASS
   public static void main(String[] args) {
     String filePath = Constants.SNL_PLAYER_FILE_PATH;
     CsvHandler csvHandler = new CsvHandler();
