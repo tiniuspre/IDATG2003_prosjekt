@@ -72,12 +72,12 @@ public class SnakesAndLadders {
           .getClass().equals(SnakeTile.class)) {
         SnakeTile snakeTile = (SnakeTile)
             board.getTile(player.getPosition());
-        snakeTile.landOnSnake(player, board);
+        snakeTile.landOnSnake(player);
       } else if (board.getTile(player.getPosition())
           .getClass().equals(LadderTile.class)) {
         LadderTile ladderTile = (LadderTile)
             board.getTile(player.getPosition());
-        ladderTile.landOnLadder(player,board);
+        ladderTile.landOnLadder(player);
       }
     }
   }

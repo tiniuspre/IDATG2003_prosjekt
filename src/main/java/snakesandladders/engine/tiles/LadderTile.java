@@ -35,7 +35,7 @@ public class LadderTile extends SnakesAndLaddersTile {
    *
    * @param player the player to move up the ladder.
    */
-  public void landOnLadder(final SnakesAndLaddersPlayer player, final SnakesAndLaddersBoard board) {
+  public void landOnLadder(final SnakesAndLaddersPlayer player) {
     player.move(this.getAction().landAction(player.getPosition()));
     System.out.println(player.getName()
         + " climbed a ladder to position " + player.getPosition());
