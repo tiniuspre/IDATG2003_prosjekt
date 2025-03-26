@@ -1,10 +1,8 @@
 package snakesandladders.engine.tiles;
 
+import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.SwitchAction;
-
-import java.util.List;
-
 /**
  * The {@code SwitchTile} class represents a switch tile
  * in the snakes and ladders game.
@@ -33,8 +31,11 @@ public class SwitchTile extends SnakesAndLaddersTile {
    * @param playerToSwitch the player who landed on the switch tile.
    * @param playerList the list of all players in the game.
    */
-  public void landOnSwitch(final SnakesAndLaddersPlayer playerToSwitch, final List<SnakesAndLaddersPlayer> playerList) {
-    System.out.println(playerToSwitch.getName() + " landed on a switch tile and switched positions with another player.");
+  public void landOnSwitch(final SnakesAndLaddersPlayer playerToSwitch,
+                           final List<SnakesAndLaddersPlayer> playerList) {
+    System.out.println(playerToSwitch.getName()
+        + " landed on a switch tile and "
+        + "switched positions with another player.");
     this.getTileAction().landAction(playerToSwitch, playerList);
   }
 }

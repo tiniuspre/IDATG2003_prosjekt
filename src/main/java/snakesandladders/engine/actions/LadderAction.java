@@ -1,9 +1,9 @@
 package snakesandladders.engine.actions;
 
 import gameengine.board.TileAction;
+import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 
-import java.util.List;
 
 /**
  * The {@code LadderAction} class represents the action,
@@ -14,7 +14,8 @@ import java.util.List;
  * @since 13.02.2025
  * @see TileAction
  */
-public class LadderAction implements TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> {
+public class LadderAction implements TileAction<SnakesAndLaddersPlayer,
+    List<SnakesAndLaddersPlayer>> {
   /**
    * The bottom of the ladder.
    */
@@ -50,10 +51,20 @@ public class LadderAction implements TileAction<SnakesAndLaddersPlayer, List<Sna
     this.ladderBottom = inputLadderBottom;
   }
 
+  /**
+   * Returns the bottom of the ladder.
+   *
+   * @return the bottom of the ladder.
+   */
   public int getLadderBottom() {
     return this.ladderBottom;
   }
 
+  /**
+   * Returns the top of the ladder.
+   *
+   * @return the top of the ladder.
+   */
   public int getLadderTop() {
     return this.ladderTop;
   }
@@ -80,7 +91,8 @@ public class LadderAction implements TileAction<SnakesAndLaddersPlayer, List<Sna
    * @param player the player to be moved.
    */
   @Override
-  public void landAction(SnakesAndLaddersPlayer player, List<SnakesAndLaddersPlayer> playerList) {
+  public void landAction(final SnakesAndLaddersPlayer player,
+                         final List<SnakesAndLaddersPlayer> playerList) {
     player.setPosition(getLadderTop());
   }
 }

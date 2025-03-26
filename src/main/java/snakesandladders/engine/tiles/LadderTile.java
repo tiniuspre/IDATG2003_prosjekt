@@ -1,9 +1,9 @@
 package snakesandladders.engine.tiles;
 
+import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.LadderAction;
 
-import java.util.List;
 
 /**
  * The {@code LadderTile} class represents a ladder tile
@@ -34,8 +34,10 @@ public class LadderTile extends SnakesAndLaddersTile {
    * Moves the player to the top of the ladder.
    *
    * @param player the player to move up the ladder.
+   * @param playerList the list of players.
    */
-  public void landOnLadder(final SnakesAndLaddersPlayer player, final List<SnakesAndLaddersPlayer> playerList) {
+  public void landOnLadder(final SnakesAndLaddersPlayer player,
+                           final List<SnakesAndLaddersPlayer> playerList) {
     this.getTileAction().landAction(player, playerList);
     System.out.println(player.getName()
         + " climbed a ladder to position " + player.getPosition());

@@ -2,16 +2,19 @@ package snakesandladders.engine.tiles;
 
 import gameengine.board.Tile;
 import gameengine.board.TileAction;
+import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 
-import java.util.List;
 
 /**
  * The {@code TestGameTile} class represents the game tile in the test game.
  */
 public class SnakesAndLaddersTile extends Tile {
-
-  private TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> tileAction;
+  /**
+   * The action of the tile.
+   */
+  private TileAction<SnakesAndLaddersPlayer,
+      List<SnakesAndLaddersPlayer>> tileAction;
 
   /**
    * Constructor for the SnakesAndLaddersTile class.
@@ -19,12 +22,14 @@ public class SnakesAndLaddersTile extends Tile {
    * @param number the number of the tile.
    * @param posX the x position of the tile.
    * @param posY the y position of the tile.
-   * @param tileAction the action of the tile.
+   * @param inputAction the action of the tile.
    */
   public SnakesAndLaddersTile(final int number, final int posX,
-                              final int posY, TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> tileAction ) {
+                              final int posY,
+                              final TileAction<SnakesAndLaddersPlayer,
+          List<SnakesAndLaddersPlayer>> inputAction) {
     super(number, posX, posY);
-    setTileAction(tileAction);
+    setTileAction(inputAction);
   }
 
   /**
@@ -44,7 +49,8 @@ public class SnakesAndLaddersTile extends Tile {
    *
    * @param inputAction the action of the tile.
    */
-  public void setTileAction(TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> inputAction) {
+  public void setTileAction(final TileAction<SnakesAndLaddersPlayer,
+      List<SnakesAndLaddersPlayer>> inputAction) {
     if (inputAction == null) {
       throw new IllegalArgumentException("Action cannot be null");
     }
@@ -56,7 +62,8 @@ public class SnakesAndLaddersTile extends Tile {
    *
    * @return the action of the tile.
    */
-  public TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> getTileAction() {
+  public TileAction<SnakesAndLaddersPlayer,
+      List<SnakesAndLaddersPlayer>> getTileAction() {
     return tileAction;
   }
 

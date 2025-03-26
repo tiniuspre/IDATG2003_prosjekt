@@ -11,7 +11,9 @@ import java.util.logging.Logger;
  * @author jonastomren
  */
 public class JsonHandlerException extends RuntimeException {
-
+  /**
+   * Logger for JsonHandlerException class.
+   */
   public static final Logger LOGGER = Logger
       .getLogger(JsonHandlerException.class.getName());
   /**

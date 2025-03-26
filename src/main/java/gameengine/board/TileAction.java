@@ -7,6 +7,8 @@ package gameengine.board;
  * @author jonastomren
  * @version 13.02.2025
  * @since 13.02.2025
+ * @param <R> parameter 1.
+ * @param <T> parameter 2.
  */
 public interface TileAction<T, R> {
   /**

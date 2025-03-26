@@ -1,10 +1,11 @@
 package snakesandladders.engine.actions;
 
 import gameengine.board.TileAction;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
-
 import java.util.List;
 import java.util.Random;
+import snakesandladders.engine.SnakesAndLaddersPlayer;
+
+
 /**
  * The {@code SwitchAction} class represents the action,
  * of a ladder in the test snakes and ladders game.
@@ -14,11 +15,13 @@ import java.util.Random;
  * @since 26.03.2025
  * @see TileAction
  */
-public class SwitchAction implements TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>>{
+public class SwitchAction implements TileAction<SnakesAndLaddersPlayer,
+    List<SnakesAndLaddersPlayer>> {
   /**
    * Constructor for SwitchAction class.
    */
-  public SwitchAction() {}
+  public SwitchAction() {
+  }
 
 
   /**
@@ -28,7 +31,8 @@ public class SwitchAction implements TileAction<SnakesAndLaddersPlayer, List<Sna
    * @param listOfPlayers list of players.
    */
   @Override
-  public void landAction(SnakesAndLaddersPlayer playerToSwitch, List<SnakesAndLaddersPlayer> listOfPlayers) {
+  public void landAction(final SnakesAndLaddersPlayer playerToSwitch,
+                         final List<SnakesAndLaddersPlayer> listOfPlayers) {
     Random random = new Random();
     int randomPlayer;
     do {
@@ -39,7 +43,8 @@ public class SwitchAction implements TileAction<SnakesAndLaddersPlayer, List<Sna
     playerToSwitch.setPosition(playerToSwitchWith.getPosition());
     playerToSwitchWith.setPosition(temp);
     System.out.println(playerToSwitch.getName() + " is now at position "
-        + playerToSwitch.getPosition() + " and " + playerToSwitchWith.getName() +
-        " is now at position " + playerToSwitchWith.getPosition());
+        + playerToSwitch.getPosition() + " and "
+        + playerToSwitchWith.getName()
+        + " is now at position " + playerToSwitchWith.getPosition());
   }
 }
