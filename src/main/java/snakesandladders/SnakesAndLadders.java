@@ -8,6 +8,7 @@ import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.tiles.LadderTile;
 import snakesandladders.engine.tiles.SnakeTile;
+import snakesandladders.engine.tiles.SwitchTile;
 
 /**
  * The {@code TestGame} class represents the test snaked and ladders game.
@@ -72,12 +73,17 @@ public class SnakesAndLadders {
           .getClass().equals(SnakeTile.class)) {
         SnakeTile snakeTile = (SnakeTile)
             board.getTile(player.getPosition());
-        snakeTile.landOnSnake(player);
+        snakeTile.landOnSnake(player, players);
       } else if (board.getTile(player.getPosition())
           .getClass().equals(LadderTile.class)) {
         LadderTile ladderTile = (LadderTile)
             board.getTile(player.getPosition());
-        ladderTile.landOnLadder(player);
+        ladderTile.landOnLadder(player, players);
+      } else if (board.getTile(player.getPosition())
+          .getClass().equals(SwitchTile.class)) {
+        SwitchTile switchtile = (SwitchTile)
+            board.getTile(player.getPosition());
+        switchtile.landOnSwitch(player, players);
       }
     }
   }

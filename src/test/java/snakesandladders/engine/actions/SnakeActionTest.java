@@ -1,8 +1,10 @@
-
 package snakesandladders.engine.actions;
 
 import org.junit.jupiter.api.Test;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,7 +48,8 @@ class SnakeActionTest {
     SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer();
     player.setPosition(5);
     SnakeAction snakeAction = new SnakeAction(5, 2);
-    snakeAction.landAction(player);
+    List<SnakesAndLaddersPlayer> playerList = new ArrayList<>();
+    snakeAction.landAction(player, playerList);
     assertEquals(2, player.getPosition());
   }
 }

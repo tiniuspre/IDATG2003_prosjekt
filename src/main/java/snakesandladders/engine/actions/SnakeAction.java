@@ -4,6 +4,8 @@ package snakesandladders.engine.actions;
 import gameengine.board.TileAction;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 
+import java.util.List;
+
 /**
  * The {@code SnakeAction} class represents the action,
  * of a snake in the test snakes and ladders game.
@@ -13,7 +15,7 @@ import snakesandladders.engine.SnakesAndLaddersPlayer;
  * @since 13.02.2025
  * @see TileAction
  */
-public class SnakeAction implements TileAction<SnakesAndLaddersPlayer, Void> {
+public class SnakeAction implements TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>> {
   /**
    * The head of the snake.
    */
@@ -88,7 +90,7 @@ public class SnakeAction implements TileAction<SnakesAndLaddersPlayer, Void> {
    * @param player the player to be moved.
    */
   @Override
-  public void landAction(SnakesAndLaddersPlayer player) {
+  public void landAction(SnakesAndLaddersPlayer player, List<SnakesAndLaddersPlayer> playerList) {
     player.setPosition(getSnakeTail());
   }
 }
