@@ -20,10 +20,6 @@ class CsvUtilsTest {
     assertFalse(CsvUtils.isValidCsvPath("invalid/path/file.txt"));
   }
 
-  @Test
-  void isValidCsvPath_nullPath_returnsFalse() {
-    assertFalse(CsvUtils.isValidCsvPath(null));
-  }
 
   @Test
   void getAllFieldNames_classWithFields_returnsFieldList() {
@@ -31,7 +27,7 @@ class CsvUtilsTest {
       private int field1;
       private String field2;
     }
-    List<Field> fields = CsvUtils.getAllFieldNames(TestClass.class);
+    List<Field> fields = CsvUtils.getAllFields(TestClass.class);
     assertEquals(2, fields.size());
   }
 

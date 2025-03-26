@@ -49,7 +49,7 @@ public final class CsvUtils {
    * @param clazz The class to retrieve field names from.
    * @return A list of fields from the class and its superclasses.
    */
-  public static List<Field> getAllFieldNames(Class<?> clazz) {
+  public static List<Field> getAllFields(Class<?> clazz) {
     List<Field> fieldNames = new ArrayList<>();
 
     while (clazz != null) {
@@ -118,7 +118,7 @@ public final class CsvUtils {
         field.set(record, convertValue(field.getType(), value));
         return;
       } catch (IllegalArgumentException | IllegalAccessException e) {
-        throw new CsvHandlerException(e.getMessage());
+        throw new CsvHandlerException(e.getMessage(), Level.SEVERE);
       } catch (NoSuchFieldError e) {
         clazz = clazz.getSuperclass();
       }
