@@ -19,9 +19,9 @@ import snakesandladders.engine.tiles.SnakeTile;
  * If a player lands on a ladder tile, the player climbs the ladder to the top.
  * The game is won by the player who reaches the end of the board first.
  *
- * @author jonastomren
+ * @author jonastomren, tiniuspre
  * @version 13.02.2025
- * @since 13.02.2025
+ * @since 25.02.2025
  * @see SnakesAndLaddersBoard
  * @see SnakesAndLaddersPlayer
  * @see Dice
@@ -35,10 +35,25 @@ public class SnakesAndLadders {
    * The list of players in the game.
    */
   private final List<SnakesAndLaddersPlayer> players = new ArrayList<>();
+  private final Dice dice = new Dice(2); // 2 six-sided dice
+
   /**
-   * The dice used in the game.
+   * Returns the game board.
+   *
+   * @return the game board.
    */
-  private final Dice dice = new Dice(2);
+  public SnakesAndLaddersBoard getBoard() {
+    return board;
+  }
+
+  /**
+   * Returns the list of players in the game.
+   *
+   * @return the list of players.
+   */
+  public List<SnakesAndLaddersPlayer> getPlayers() {
+    return players;
+  }
 
   /**
    * Sets up the game board with snakes and ladders.
@@ -48,45 +63,42 @@ public class SnakesAndLadders {
   }
 
   /**
-   * Adds a player to the game.
+   * Adds a player to the game and places the player on the first tile.
    *
    * @param name the name of the player.
    * @param piece the piece of the player.
    */
   public void addPlayer(final String name, final String piece) {
-    players.add(new SnakesAndLaddersPlayer(name, piece));
+    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer(name, piece);
+    player.setPosition(1);
+    players.add(player);
   }
 
   /**
    * Plays one round of the game.
    */
-  public void playOneRound() {
-    for (SnakesAndLaddersPlayer player : players) {
-      int roll = dice.rollDice();
-      if (player.getPosition() + roll >= board.getBoardSize()) {
-        reachedEndOfBoard(player);
-      } else {
-        player.move(roll);
-      }
-      if (board.getTile(player.getPosition())
-          .getClass().equals(SnakeTile.class)) {
-        landOnSnake(player);
-      } else if (board.getTile(player.getPosition())
-          .getClass().equals(LadderTile.class)) {
-        landOnLadder(player);
-      }
+  public int playOneTurn(SnakesAndLaddersPlayer player) {
+    if (player.getPosition() >= board.getBoardSize()) {
+      return 0;
     }
-  }
 
-  /**
-   * Moves the player to the end of the board.
-   *
-   * @param player the player to move to the end of the board.
-   */
-  public void reachedEndOfBoard(final Player player) {
-    player.setPosition(board.getBoardSize());
-    System.out.println(player.getName()
-        + " has reached the end of the board.");
+    int roll = dice.rollDice();
+    int newPos = player.getPosition() + roll;
+
+    if (newPos >= board.getBoardSize()) {
+      player.setPosition(board.getBoardSize());
+      return roll;
+    }
+
+    player.move(roll);
+
+    if (board.getTile(player.getPosition()) instanceof SnakeTile) {
+      landOnSnake(player);
+    } else if (board.getTile(player.getPosition()) instanceof LadderTile) {
+      landOnLadder(player);
+    }
+
+    return roll;
   }
 
   /**
@@ -94,9 +106,11 @@ public class SnakesAndLadders {
    *
    * @param player the player to move back.
    */
-  public void landOnSnake(final SnakesAndLaddersPlayer player) {
+  private void landOnSnake(final SnakesAndLaddersPlayer player) {
     SnakeTile snakeTile = (SnakeTile) board.getTile(player.getPosition());
-    player.moveBack(snakeTile.getAction().landAction(player.getPosition()));
+    int tailPos = snakeTile.getAction().landAction(player.getPosition());
+
+    player.moveBack(tailPos);
     System.out.println(player.getName()
         + " landed on a snake and moved back to position "
         + player.getPosition());
@@ -113,16 +127,6 @@ public class SnakesAndLadders {
     player.move(ladderTile.getAction().landAction(player.getPosition()));
     System.out.println(player.getName()
         + " climbed a ladder to position " + player.getPosition());
-  }
-
-  /**
-   * Prints the status of the players in the game with their current positions.
-   */
-  public void printStatus() {
-    for (Player player : players) {
-      System.out.println(player.getName()
-          + " is at position " + player.getPosition());
-    }
   }
 
   /**
