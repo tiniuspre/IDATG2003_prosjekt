@@ -1,6 +1,5 @@
 package filehandler.csvhandling;
 
-import com.opencsv.bean.CsvBindByName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
