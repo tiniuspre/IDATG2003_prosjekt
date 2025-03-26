@@ -49,13 +49,15 @@ public final class CsvUtils {
    * @param clazz The class to retrieve field names from.
    * @return A list of fields from the class and its superclasses.
    */
-  @SuppressWarnings("FinalParameters")
-  public static List<Field> getAllFields(Class<?> clazz) {
+  public static List<Field> getAllFields(final Class<?> clazz) {
+    Class<?> clazzCopy = clazz;
     List<Field> fieldNames = new ArrayList<>();
 
-    while (clazz != null) {
-      fieldNames.addAll(Arrays.asList(clazz.getDeclaredFields()));
-      clazz = clazz.getSuperclass();
+    while (clazzCopy != null && clazzCopy != Object.class) {
+      Arrays.stream(clazzCopy.getDeclaredFields())
+          .filter(field -> !fieldNames.contains(field))
+          .forEach(fieldNames::add);
+      clazzCopy = clazzCopy.getSuperclass();
     }
     return fieldNames;
   }

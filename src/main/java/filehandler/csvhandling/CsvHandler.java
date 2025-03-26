@@ -66,7 +66,6 @@ public final class CsvHandler {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       List<Field> fields = CsvUtils
           .getAllFields(records.getFirst().getClass());
-
       // Write CSV Data
       for (T record : records) {
         // Get values of fields.
