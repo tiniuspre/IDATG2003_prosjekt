@@ -60,24 +60,28 @@ public final class CsvHandler {
   public <T> void writeToFile(final List<T> records) throws IOException {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
-      throw new CsvHandlerException("Records list is empty.",Level.WARNING);
+      throw new CsvHandlerException("Records list is empty.",Level.SEVERE);
     }
-
+    // Creates BufferedWriter to write line by line.
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       List<Field> fields = CsvUtils
           .getAllFields(records.getFirst().getClass());
 
       // Write CSV Data
       for (T record : records) {
+        // Get values of fields.
         List<String> values = new ArrayList<>();
         for (Field field : fields) {
+          // Set field accessible.
           field.setAccessible(true);
           try {
+            // Add value to list.
             values.add(field.get(record).toString());
           } catch (IllegalAccessException e) {
             values.add(""); // Handle inaccessible fields gracefully
           }
         }
+        // Write values to file.
         writer.write(String.join(",", values));
         writer.newLine();
       }
