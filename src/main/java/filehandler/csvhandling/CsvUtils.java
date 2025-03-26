@@ -49,7 +49,7 @@ public final class CsvUtils {
    * @param clazz The class to retrieve field names from.
    * @return A list of fields from the class and its superclasses.
    */
-  // CHECKSTYLE:OFF FinalParameters
+  @SuppressWarnings("FinalParameters")
   public static List<Field> getAllFields(Class<?> clazz) {
     List<Field> fieldNames = new ArrayList<>();
 
@@ -59,7 +59,6 @@ public final class CsvUtils {
     }
     return fieldNames;
   }
-  // CHECKSTYLE:ON
   /**
    * Creates a new file at the specified path,
    * including any necessary parent directories.
