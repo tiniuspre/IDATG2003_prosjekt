@@ -23,6 +23,12 @@ public class JsonHandlerException extends RuntimeException {
     super(message);
   }
 
+  /**
+   * Constructor for the JsonHandlerException class.
+   *
+   * @param message The error message.
+   * @param level The level of the error message.
+   */
   public JsonHandlerException(final String message, final Level level) {
     super(message);
     LOGGER.log(level, message);
