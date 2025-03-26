@@ -82,8 +82,7 @@ public class JsonHandler {
       OBJECT_MAPPER.writeValue(jsonFile, obj);
       LOGGER.log(Level.INFO, "File written to: " + jsonFile);
     } catch (IOException e) {
-      LOGGER.log(Level.SEVERE, "Error writing to file", e);
-      throw new JsonHandlerException(e.getMessage());
+      throw new JsonHandlerException(e.getMessage(), Level.SEVERE);
     }
   }
 
@@ -125,7 +124,7 @@ public class JsonHandler {
     if (jsonFile.delete()) {
       LOGGER.log(Level.WARNING, "File deleted: " + jsonFile);
     } else {
-      throw new JsonHandlerException("File not found.");
+      throw new JsonHandlerException("File not found.", Level.SEVERE);
     }
   }
 

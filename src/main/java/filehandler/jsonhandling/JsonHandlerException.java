@@ -1,5 +1,8 @@
 package filehandler.jsonhandling;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Exception thrown when an error occurs in the JSONHandler class.
  *
@@ -8,6 +11,9 @@ package filehandler.jsonhandling;
  * @author jonastomren
  */
 public class JsonHandlerException extends RuntimeException {
+
+  public static final Logger LOGGER = Logger
+      .getLogger(JsonHandlerException.class.getName());
   /**
    * Constructor for the JsonHandlerException class.
    *
@@ -15,5 +21,10 @@ public class JsonHandlerException extends RuntimeException {
    */
   public JsonHandlerException(final String message) {
     super(message);
+  }
+
+  public JsonHandlerException(final String message, final Level level) {
+    super(message);
+    LOGGER.log(level, message);
   }
 }
