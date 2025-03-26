@@ -5,9 +5,28 @@ import snakesandladders.engine.SnakesAndLaddersPlayer;
 
 import java.util.List;
 import java.util.Random;
-
+/**
+ * The {@code SwitchAction} class represents the action,
+ * of a ladder in the test snakes and ladders game.
+ *
+ * @author jonastomren
+ * @version 26.03.2025
+ * @since 26.03.2025
+ * @see TileAction
+ */
 public class SwitchAction implements TileAction<SnakesAndLaddersPlayer, List<SnakesAndLaddersPlayer>>{
+  /**
+   * Constructor for SwitchAction class.
+   */
+  public SwitchAction() {}
 
+
+  /**
+   * Switches the landing player with a random player.
+   *
+   * @param playerToSwitch the parameter.
+   * @param listOfPlayers list of players.
+   */
   @Override
   public void landAction(SnakesAndLaddersPlayer playerToSwitch, List<SnakesAndLaddersPlayer> listOfPlayers) {
     Random random = new Random();
