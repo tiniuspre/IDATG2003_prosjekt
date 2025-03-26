@@ -1,5 +1,7 @@
 package snakesandladders.engine.tiles;
 
+import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.LadderAction;
 
 /**
@@ -26,5 +28,16 @@ public class LadderTile extends SnakesAndLaddersTile {
                     final int posY, final int ladderTopNumber) {
     super(number, posX, posY);
     setAction(new LadderAction(number, ladderTopNumber));
+  }
+
+  /**
+   * Moves the player to the top of the ladder.
+   *
+   * @param player the player to move up the ladder.
+   */
+  public void landOnLadder(final SnakesAndLaddersPlayer player, final SnakesAndLaddersBoard board) {
+    player.move(this.getAction().landAction(player.getPosition()));
+    System.out.println(player.getName()
+        + " climbed a ladder to position " + player.getPosition());
   }
 }

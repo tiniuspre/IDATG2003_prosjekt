@@ -70,10 +70,14 @@ public class SnakesAndLadders {
       }
       if (board.getTile(player.getPosition())
           .getClass().equals(SnakeTile.class)) {
-        landOnSnake(player);
+        SnakeTile snakeTile = (SnakeTile)
+            board.getTile(player.getPosition());
+        snakeTile.landOnSnake(player, board);
       } else if (board.getTile(player.getPosition())
           .getClass().equals(LadderTile.class)) {
-        landOnLadder(player);
+        LadderTile ladderTile = (LadderTile)
+            board.getTile(player.getPosition());
+        ladderTile.landOnLadder(player,board);
       }
     }
   }
@@ -89,31 +93,7 @@ public class SnakesAndLadders {
         + " has reached the end of the board.");
   }
 
-  /**
-   * Moves the player back to the tail of the snake.
-   *
-   * @param player the player to move back.
-   */
-  public void landOnSnake(final SnakesAndLaddersPlayer player) {
-    SnakeTile snakeTile = (SnakeTile) board.getTile(player.getPosition());
-    player.moveBack(snakeTile.getAction().landAction(player.getPosition()));
-    System.out.println(player.getName()
-        + " landed on a snake and moved back to position "
-        + player.getPosition());
-  }
 
-  /**
-   * Moves the player to the top of the ladder.
-   *
-   * @param player the player to move up the ladder.
-   */
-  public void landOnLadder(final SnakesAndLaddersPlayer player) {
-    LadderTile ladderTile = (LadderTile)
-        board.getTile(player.getPosition());
-    player.move(ladderTile.getAction().landAction(player.getPosition()));
-    System.out.println(player.getName()
-        + " climbed a ladder to position " + player.getPosition());
-  }
 
   /**
    * Prints the status of the players in the game with their current positions.

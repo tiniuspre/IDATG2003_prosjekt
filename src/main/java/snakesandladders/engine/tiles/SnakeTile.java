@@ -1,5 +1,8 @@
 package snakesandladders.engine.tiles;
 
+import gameengine.board.Board;
+import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.SnakeAction;
 
 /**
@@ -26,5 +29,17 @@ public class SnakeTile extends SnakesAndLaddersTile {
                    final int posY, final int snakeTailNumber) {
     super(number, posX, posY);
     setAction(new SnakeAction(number, snakeTailNumber));
+  }
+
+  /**
+   * Moves the player back to the tail of the snake.
+   *
+   * @param player the player to move back.
+   */
+  public void landOnSnake(final SnakesAndLaddersPlayer player, final SnakesAndLaddersBoard board) {
+    player.moveBack(this.getAction().landAction(player.getPosition()));
+    System.out.println(player.getName()
+        + " landed on a snake and moved back to position "
+        + player.getPosition());
   }
 }
