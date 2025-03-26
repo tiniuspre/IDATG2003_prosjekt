@@ -22,7 +22,7 @@ public abstract class AbstractGameUI extends Application {
    * @param primaryStage the primary stage for the application.
    */
   @Override
-  public void start(Stage primaryStage) {
+  public void start(final Stage primaryStage) {
     initializeUI(primaryStage);
     primaryStage.setTitle(getGameTitle());
     primaryStage.show();
