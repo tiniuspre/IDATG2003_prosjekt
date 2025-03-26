@@ -4,7 +4,8 @@ import javafx.scene.Node;
 
 /**
  * Abstract base class for rendering a player or piece on the board.
- * Subclasses should provide specific implementations for creating and updating the player's visual representation.
+ * Subclasses should provide specific implementations for creating
+ * and updating the player's visual representation.
  *
  * @author tiniuspre
  * @version 25.03.2025
