@@ -11,7 +11,9 @@ import java.util.logging.Logger;
  * @author jonastomren
  */
 public class CsvHandlerException extends RuntimeException {
-
+  /**
+   * Logger for the CsvHandlerException class.
+   */
   private static final Logger LOGGER = Logger
       .getLogger(CsvHandlerException.class.getName());
   /**
