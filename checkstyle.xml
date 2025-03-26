@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<checkstyle>
+    <!-- Include the Sun ruleset -->
+    <module name="Checker">
+        <!-- Use the Sun coding standards ruleset -->
+        <module name="TreeWalker">
+            <!-- Add Sun checks, assuming this is the Sun ruleset -->
+            <module name="FinalParameters"/>
+
+            <!-- Disable FinalParameters rule specifically -->
+            <module name="FinalParameters">
+                <property name="enabled" value="false"/>
+            </module>
+
+            <!-- Other checks can go here as needed -->
+            <!-- For example, you can add MethodLength, or any other check -->
+            <module name="MethodLength">
+                <property name="max" value="100"/>
+            </module>
+
+        </module>
+    </module>
+</checkstyle>
