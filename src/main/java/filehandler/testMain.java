@@ -14,7 +14,7 @@ public class testMain {
     String filePath = Constants.SNL_PLAYER_FILE_PATH;
     CsvHandler csvHandler = new CsvHandler();
 
-    List<SnakesAndLaddersPlayer> newPlayerList = new ArrayList<>();
+    List<SnakesAndLaddersPlayer> newPlayerList;
 
     List<Player> playerList = List.of(
         new SnakesAndLaddersPlayer("Player1", "cat"),
