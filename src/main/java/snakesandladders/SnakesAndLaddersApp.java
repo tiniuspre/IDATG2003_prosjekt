@@ -1,20 +1,18 @@
 package snakesandladders;
 
+import javafx.application.Application;
+import snakesandladders.ui.SnakesAndLaddersUI;
+
 /**
- * The {@code TestGameApp} class is the temporary main class
+ * The {@code SnakesAndLaddersApp} class is the main class
  * for the test snaked and ladders game.
  *
- * @author jonastomren
- * @since 13.02.2025
+ * @author jonastomren, tiniuspre
+ * @since 25.02.2025
  * @version 13.02.2025
  * @see SnakesAndLadders
  */
 public final class SnakesAndLaddersApp {
-  /**
-   * Initializes a new {@code TestGame} snaked and ladders object.
-   */
-  private static final SnakesAndLadders TEST_GAME = new SnakesAndLadders();
-
   /**
    * Private constructor to hide the implicit public one.
    */
@@ -23,18 +21,11 @@ public final class SnakesAndLaddersApp {
   }
 
   /**
-   * The main method for the test snakes and ladders game.
+   * The main method. Invokes the JavaFX UI in SnakesAndLaddersUI.
    *
    * @param args the command-line arguments.
    */
   public static void main(final String[] args) {
-    TEST_GAME.addPlayer("Alice", "hat");
-    TEST_GAME.addPlayer("Bob", "car");
-    TEST_GAME.setBoard();
-    while (TEST_GAME.isNotFinished()) {
-      TEST_GAME.printStatus();
-      TEST_GAME.playOneRound();
-    }
-    System.out.println(TEST_GAME.getWinner().getName() + " wins!");
+    Application.launch(SnakesAndLaddersUI.class, args);
   }
 }

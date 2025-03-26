@@ -1,5 +1,6 @@
 package snakesandladders.ui;
 
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -128,14 +129,5 @@ public class SnakesAndLaddersUI extends AbstractGameUI {
   private SnakesAndLaddersPlayer getCurrentPlayer() {
     List<SnakesAndLaddersPlayer> p = game.getPlayers();
     return p.get(currentPlayerIndex);
-  }
-
-  /**
-   * The main entry point for the application.
-   *
-   * @param args the command line arguments.
-   */
-  public static void main(String[] args) {
-    launch(args);
   }
 }
