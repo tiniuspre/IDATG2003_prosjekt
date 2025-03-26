@@ -87,6 +87,7 @@ public final class CsvUtils {
    * @return The converted value.
    */
   public static Object convertValue(final Class<?> type, final String value) {
+    // NOTE : Maybe add switch case if possible.
     if (type == int.class || type == Integer.class) {
       return Integer.parseInt(value);
     }
