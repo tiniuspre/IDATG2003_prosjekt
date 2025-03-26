@@ -100,16 +100,22 @@ public final class CsvHandler {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
 
+    // Creates BufferedReader to read line by line.
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       String line;
       while ((line = reader.readLine()) != null) {
+        // Declare regex.
         String[] values = line.split(",");
+        // Get Constructor of generic class.
         T record = type.getDeclaredConstructor().newInstance();
+        // Get fields of generic class.
         List<Field> fields = CsvUtils.getAllFieldNames(type);
+        // Set values to fields.
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
           CsvUtils.setField(record, field, values[i]);
         }
+        // Add record to list.
         records.add(record);
       }
     } catch (Exception e) {
