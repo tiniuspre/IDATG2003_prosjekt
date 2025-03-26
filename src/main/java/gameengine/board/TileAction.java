@@ -8,7 +8,7 @@ package gameengine.board;
  * @version 13.02.2025
  * @since 13.02.2025
  */
-public interface TileAction<T, R> {
+public interface TileAction<T> {
   /**
    * The action that should be performed when a player lands on the tile.
    *
