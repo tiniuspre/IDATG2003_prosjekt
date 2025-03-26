@@ -3,4 +3,6 @@ module IDATG2003.prosjekt {
   requires javafx.graphics;
   requires org.jetbrains.annotations;
 
+  exports snakesandladders;
+  exports snakesandladders.ui;
 }
