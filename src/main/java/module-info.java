@@ -8,5 +8,4 @@ module IDATG2003.prosjekt {
   opens filehandler to com.fasterxml.jackson.databind;
   opens filehandler.csvhandling to com.fasterxml.jackson.databind;
   opens filehandler.jsonhandling to com.fasterxml.jackson.databind;
-
 }
