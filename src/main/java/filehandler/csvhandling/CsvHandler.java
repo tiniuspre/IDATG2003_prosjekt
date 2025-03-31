@@ -21,7 +21,12 @@ import java.util.logging.Level;
  * @author jonastomren
  */
 public final class CsvHandler extends AbstractFileHandler {
-
+  /**
+   * Constructor for the CsvHandler class.
+   *
+   * @param inputPath the path of the csv file.
+   * @throws IOException if an I/O error occurs.
+   */
   public CsvHandler(final String inputPath) throws IOException {
     super(inputPath);
   }
