@@ -1,8 +1,5 @@
 package filehandler.csvhandling;
 
-
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,12 +16,6 @@ import java.util.logging.Logger;
  * @author jonastomren
  */
 public final class CsvUtils {
-  /**
-   * Logger for the CsvUtils class.
-   */
-  private static final Logger LOGGER = Logger
-      .getLogger(CsvUtils.class.getName());
-
   /**
    * Private constructor to prevent instantiation.
    * Throws IllegalStateException if called.
