@@ -14,52 +14,84 @@ import snakesandladders.engine.SnakesAndLaddersPlayer;
  * @since 25.03.2025
  */
 public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
-
+  /**
+   * The size of a tile in pixels.
+   */
   private int tileSize;
+  /**
+   * The player instance.
+   */
   private SnakesAndLaddersPlayer player;
+  /**
+   * The piece node.
+   */
   private Circle pieceNode;
 
   /**
    * Constructs a SnakesAndLaddersPlayerUI with the given parameters.
    *
-   * @param tileSize the size of the tile.
-   * @param player the player instance.
+   * @param tileSizePx the size of the tile.
+   * @param playerInstance the player instance.
    * @param boardHeight the height of the board.
    */
-  public SnakesAndLaddersPlayerUI(int tileSize,
-                                  SnakesAndLaddersPlayer player,
-                                  int boardHeight) {
-    setTileSize(tileSize);
-    setPlayer(player);
+  public SnakesAndLaddersPlayerUI(final int tileSizePx,
+                                  final SnakesAndLaddersPlayer playerInstance,
+                                  final int boardHeight) {
+    setTileSize(tileSizePx);
+    setPlayer(playerInstance);
     setBoardHeight(boardHeight);
   }
 
-  private void setTileSize(int tileSize) {
-    this.tileSize = tileSize;
+  /**
+   * Sets the size of the tile.
+   *
+   * @param tileSizePx the size of the tile.
+   */
+  private void setTileSize(final int tileSizePx) {
+    this.tileSize = tileSizePx;
   }
 
-  private void setPlayer(SnakesAndLaddersPlayer player) {
-    this.player = player;
+  /**
+   * Sets the player instance.
+   *
+   * @param playerInstance the player instance.
+   */
+  private void setPlayer(final SnakesAndLaddersPlayer playerInstance) {
+    this.player = playerInstance;
   }
 
+  /**
+   * Returns the player instance.
+   *
+   * @return the player instance.
+   */
   private SnakesAndLaddersPlayer getPlayer() {
     return player;
   }
 
-  private void setBoardHeight(int boardHeight) {
+  /**
+   * Sets the height of the board.
+   *
+   * @param boardHeight the height of the board.
+   */
+  private void setBoardHeight(final int boardHeight) {
   }
 
-  private void setPieceNode(Circle pieceNode) {
-    this.pieceNode = pieceNode;
+  /**
+   * Sets the piece node.
+   *
+   * @param pieceNodeParam the piece node.
+   */
+  private void setPieceNode(final Circle pieceNodeParam) {
+    this.pieceNode = pieceNodeParam;
   }
-
 
   /**
    * Creates and returns the visual representation of the player.
    *
    * @return a Node representing the player's piece.
    *
-   * TODO: Change with file handling
+   * NOTE: Change with file handling
    */
   @Override
   public Node createPlayerNode() {
@@ -93,7 +125,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    * @param newY the new Y coordinate.
    */
   @Override
-  public void updatePlayerPosition(double newX, double newY) {
+  public void updatePlayerPosition(final double newX, final double newY) {
     if (this.pieceNode != null) {
       this.pieceNode.setTranslateX(newX);
       this.pieceNode.setTranslateY(newY);
@@ -106,7 +138,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    * @param info some player info to display.
    */
   @Override
-  public void updatePlayerInfo(Object info) {
+  public void updatePlayerInfo(final Object info) {
     // Not used
   }
 }
