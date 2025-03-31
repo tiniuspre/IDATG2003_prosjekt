@@ -72,14 +72,14 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
    */
   @Override
   public void renderBoard() {
-    boardRoot.getChildren().clear();
+    getBoardRoot().getChildren().clear();
 
     // 1) Draw each tile (with ID text)
     board.getTiles().values().forEach(tile -> {
       SnakesAndLaddersTileUI tileUI =
           new SnakesAndLaddersTileUI(tileSize, tile, board.getHeight());
       // The tileUI returns a Group containing the rectangle + tile number text
-      boardRoot.getChildren().add(tileUI.createTileNode());
+      getBoardRoot().getChildren().add(tileUI.createTileNode());
     });
 
     // 2) Draw tile->tile arrows
@@ -94,7 +94,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
           = new SnakesAndLaddersPlayerUI(tileSize, p, board.getHeight());
       playerUIs.put(p, playerUI);
 
-      boardRoot.getChildren().add(playerUI.createPlayerNode());
+      getBoardRoot().getChildren().add(playerUI.createPlayerNode());
       updatePlayerPosition(p);
     }
   }
@@ -127,7 +127,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
 
       // Group them so we can add to the Pane
       Group arrowGroup = new Group(line, arrowHead);
-      boardRoot.getChildren().add(arrowGroup);
+      getBoardRoot().getChildren().add(arrowGroup);
     }
   }
 
@@ -213,7 +213,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
     line.setStroke(color);
     line.setStrokeWidth(3.0);
 
-    boardRoot.getChildren().add(line);
+    getBoardRoot().getChildren().add(line);
   }
 
   /**

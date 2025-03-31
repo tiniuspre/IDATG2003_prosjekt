@@ -35,6 +35,9 @@ public class SnakesAndLadders {
    * The list of players in the game.
    */
   private final List<SnakesAndLaddersPlayer> players = new ArrayList<>();
+  /**
+   * The dice used in the game.
+   */
   private final Dice dice = new Dice(2); // 2 six-sided dice
 
   /**
@@ -76,8 +79,10 @@ public class SnakesAndLadders {
 
   /**
    * Plays one round of the game.
+   * @param player the player to play the turn.
+   * @return the roll of the dice.
    */
-  public int playOneTurn(SnakesAndLaddersPlayer player) {
+  public int playOneTurn(final SnakesAndLaddersPlayer player) {
     if (player.getPosition() >= board.getBoardSize()) {
       return 0;
     }

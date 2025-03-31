@@ -19,7 +19,7 @@ public abstract class AbstractBoardUI {
    * The root node that visually represents the board area.
    * This Pane serves as the container for all visual elements of the board.
    */
-  protected Pane boardRoot = new Pane();
+  private final Pane boardRoot = new Pane();
 
   /**
    * Subclasses implement how the board is drawn or updated.

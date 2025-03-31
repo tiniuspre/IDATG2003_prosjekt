@@ -60,18 +60,19 @@ public class SnakesAndLaddersBoard extends Board {
   /**
    * Helper method to create either a NormalTile, LadderTile, or SnakeTile
    * for a given tileNum, col, row. Hardcoded for demonstration.
-   *
-   * TODO: To be replaced with file handling in the future.
+   * @param tileNum the number of the tile.
+   * @param col the column of the tile.
+   * @param row the row of the tile.
+   * @return the created tile.
+   * NOTE: To be replaced with file handling in the future.
    */
-  private Tile createTile(int tileNum, int col, int row) {
+  private Tile createTile(final int tileNum, final int col, final int row) {
     Tile tile = new NormalTile(tileNum, col, row);
 
     // tile 2 to tile 22
     if (tileNum == 2) {
       tile = new LadderTile(tileNum, col, row, 22);
-    }
-    // tile 14 to tile 7
-    else if (tileNum == 14) {
+    } else if (tileNum == 14) {     // tile 14 to tile 7
       tile = new SnakeTile(tileNum, col, row, 7);
     }
     return tile;
