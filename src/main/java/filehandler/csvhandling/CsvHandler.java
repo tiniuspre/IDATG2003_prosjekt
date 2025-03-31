@@ -1,5 +1,7 @@
 package filehandler.csvhandling;
 
+import filehandler.AbstractFileHandler;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,34 +21,10 @@ import java.util.logging.Level;
  * @version 25.03.2025
  * @author jonastomren
  */
-public final class CsvHandler {
-  /**
-   * The path to the CSV file.
-   */
-  private String path = "";
+public final class CsvHandler extends AbstractFileHandler {
 
-  /**
-   * Sets the path for the CSV file.
-   *
-   * @param inputPath the path to the CSV file
-   * @throws IOException if an I/O error occurs
-   * @throws IllegalArgumentException if the path is invalid
-   */
-  public void setPath(final String inputPath) throws IOException {
-    if (!CsvUtils.isValidCsvPath(inputPath)) {
-      throw new CsvHandlerException("Path cannot be null", Level.SEVERE);
-    }
-    File file = CsvUtils.createNewFile(inputPath);
-    this.path = inputPath;
-  }
-
-  /**
-   * Gets the path of the CSV file.
-   *
-   * @return the path of the CSV file
-   */
-  public String getPath() {
-    return path;
+  public CsvHandler(final String inputPath) throws IOException {
+    super(inputPath);
   }
 
   /**

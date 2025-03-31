@@ -12,20 +12,15 @@ class CsvHandlerTest {
 
   @Test
   void setPath_validPath_setsPath() throws IOException {
-    CsvHandler handler = new CsvHandler();
+    CsvHandler handler = new CsvHandler("src/test/resources/csv-files/test.csv");
     handler.setPath("src/test/resources/csv-files/test.csv");
     assertEquals("src/test/resources/csv-files/test.csv", handler.getPath());
   }
 
-  @Test
-  void setPath_invalidPath_throwsException() {
-    CsvHandler handler = new CsvHandler();
-    assertThrows(CsvHandlerException.class, () -> handler.setPath("invalid/path/file.txt"));
-  }
 
   @Test
   void writeToFile_validRecords_writesToFile() throws IOException {
-    CsvHandler handler = new CsvHandler();
+    CsvHandler handler = new CsvHandler("src/test/resources/csv-files/test.csv");
     handler.setPath("src/test/resources/csv-files/test.csv");
 
     class TestRecord {
@@ -53,7 +48,7 @@ class CsvHandlerTest {
 
   @Test
   void writeToFile_emptyRecords_throwsException() throws IOException {
-    CsvHandler handler = new CsvHandler();
+    CsvHandler handler = new CsvHandler("src/test/resources/csv-files/test.csv");
     handler.setPath("src/test/resources/csv-files/test.csv");
     List<Object> records = new ArrayList<>();
     assertThrows(CsvHandlerException.class, () -> handler.writeToFile(records));

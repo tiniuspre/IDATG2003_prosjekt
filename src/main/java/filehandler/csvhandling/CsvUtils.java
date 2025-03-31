@@ -61,25 +61,6 @@ public final class CsvUtils {
     }
     return fieldNames;
   }
-  /**
-   * Creates a new file at the specified path,
-   * including any necessary parent directories.
-   *
-   * @param path The path where the new file should be created.
-   * @return The created file.
-   * @throws IOException If an I/O error occurs.
-   */
-  public static File createNewFile(final String path) throws IOException {
-    File file = new File(path);
-    if (file.getParentFile().mkdirs()) {
-      LOGGER.log(Level.WARNING, "Directory not found, "
-          + "created new directory at: " + file.getParentFile());
-    }
-    if (file.createNewFile()) {
-      LOGGER.log(Level.WARNING, "File not found, created new file at: " + file);
-    }
-    return file;
-  }
 
   /**
    * Converts a string value to the specified type.

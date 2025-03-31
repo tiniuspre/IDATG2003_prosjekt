@@ -1,6 +1,8 @@
 package filehandler.jsonhandling;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import filehandler.AbstractFileHandler;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.logging.Logger;
  * @version 12.03.2025
  * @since 11.03.2025
  */
-public class JsonHandler {
+public class JsonHandler extends AbstractFileHandler {
   /**
    * The LOGGER object is used to log messages to the console.
    */
@@ -27,41 +29,16 @@ public class JsonHandler {
    * The OBJECT_MAPPER object is used to map objects to and from json.
    */
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-  /**
-   * The path to the json file.
-   */
-  private String path = "";
 
   /**
    * Constructor for the JSONHandler class.
    *
    * @param inputPath the path to the json file.
    */
-  public JsonHandler(final String inputPath) {
-    setPath(inputPath);
+  public JsonHandler(final String inputPath) throws IOException {
+    super(inputPath);
   }
 
-  /**
-   * Set the path to the json file.
-   *
-   * @param inputPath the path to the json file.
-   * @throws IllegalArgumentException if the path is null´or empty.
-   */
-  public void setPath(final String inputPath) throws IllegalArgumentException {
-    if (inputPath == null || inputPath.isBlank()) {
-      throw new IllegalArgumentException("Path cannot be null");
-    }
-    this.path = inputPath;
-  }
-
-  /**
-   * Get the path to the json file.
-   *
-   * @return the path to the json file.
-   */
-  public String getPath() {
-    return this.path;
-  }
 
   /**
    * Write an object to a json file.
@@ -94,6 +71,7 @@ public class JsonHandler {
    * @return a list of objects read from the json file.
    * @throws IOException if an error occurs while reading from the file.
    */
+  @Override
   public <T> List<T> readFromFile(final Class<T> type) throws IOException {
     if (type == null) {
       throw new NullPointerException("Type cannot be null");
@@ -119,6 +97,7 @@ public class JsonHandler {
   /**
    * Delete the json file.
    */
+  @Override
   public void deleteFile() {
     File jsonFile = new File(getPath());
     if (jsonFile.delete()) {
@@ -128,4 +107,13 @@ public class JsonHandler {
     }
   }
 
+  /**
+   * Checks if a string is a valid CSV file path.
+   *
+   * @param path The file path to check.
+   * @return True if the path is a valid CSV file path, false otherwise.
+   */
+  public static boolean isValidJsonPath(final String path) {
+    return path != null && path.endsWith(".json");
+  }
 }

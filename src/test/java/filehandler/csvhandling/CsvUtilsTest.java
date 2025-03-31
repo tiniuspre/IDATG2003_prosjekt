@@ -31,12 +31,6 @@ class CsvUtilsTest {
     assertEquals(2, fields.size());
   }
 
-  @Test
-  void createNewFile_validPath_createsFile() throws IOException {
-    File file = CsvUtils.createNewFile("src/test/resources/csv-files/test.csv");
-    assertTrue(file.exists());
-    file.delete();
-  }
 
   @Test
   void convertValue_intType_returnsInteger() {

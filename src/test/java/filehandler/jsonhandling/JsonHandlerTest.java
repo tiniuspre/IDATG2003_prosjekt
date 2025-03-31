@@ -41,8 +41,8 @@ class JsonHandlerTest {
   }
 
   @Test
-  void setPath() {
-    JsonHandler jsonhandler = new JsonHandler("pretest.json");
+  void setPath() throws IOException {
+    JsonHandler jsonhandler = new JsonHandler("json-files/pretest.json");
     jsonhandler.setPath("json-files/test.json");
     assertEquals("json-files/test.json", jsonhandler.getPath());
     assertThrows(IllegalArgumentException.class, () -> jsonhandler.setPath(null));
@@ -63,7 +63,7 @@ class JsonHandlerTest {
   }
 
   @AfterAll
-  static void tearDown() {
+  static void tearDown() throws IOException {
     JsonHandler jsonHandler = new JsonHandler(testFilePath);
     jsonHandler.deleteFile();
   }
