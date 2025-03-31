@@ -14,10 +14,15 @@ import java.util.logging.Logger;
  * Provides methods to create, set path, and read from files.
  */
 public abstract class AbstractFileHandler {
-
+  /**
+   * The path of the file.
+   */
   private String path = "";
-
-  private static final Logger LOGGER = Logger.getLogger(AbstractFileHandler.class.getName());
+  /**
+   * The logger of the File Handler.
+   */
+  private static final Logger LOGGER =
+      Logger.getLogger(AbstractFileHandler.class.getName());
 
   /**
    * Constructor to initialize the file handler with the given path.
@@ -60,8 +65,10 @@ public abstract class AbstractFileHandler {
     if (inputPath == null || inputPath.isBlank()) {
       throw new IllegalArgumentException("Path cannot be null.");
     }
-    if (!CsvUtils.isValidCsvPath(inputPath) || !JsonHandler.isValidJsonPath(inputPath)) {
-      throw new FileHandlerException("Not valid json or csv path.", Level.SEVERE);
+    if (!CsvUtils.isValidCsvPath(inputPath)
+        || !JsonHandler.isValidJsonPath(inputPath)) {
+      throw new FileHandlerException(
+          "Not valid json or csv path.", Level.SEVERE);
     }
     File file = createNewFile(inputPath);
     this.path = inputPath;
@@ -91,6 +98,6 @@ public abstract class AbstractFileHandler {
   /**
    * Deletes the file.
    */
-  public void deleteFile() {}
-
+  public void deleteFile() {
+  }
 }
