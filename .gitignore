@@ -2,9 +2,8 @@
 json-files
 src/test/resources/json-files/*
 
-# Csv files
-csv-files
-src/test/resources/csv-files/*
+# CSV files
+*.csv
 
 # Compiled class file
 *.class
