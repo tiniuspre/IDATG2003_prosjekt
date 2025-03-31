@@ -1,7 +1,6 @@
 package filehandler;
 
 import filehandler.csvhandling.CsvUtils;
-import filehandler.csvhandling.FileHandlerException;
 import filehandler.jsonhandling.JsonHandler;
 
 import java.io.File;
