@@ -16,9 +16,9 @@ import java.util.logging.Level;
  * The {@code CsvHandler} class handles all writing,
  * and reading to and from the csv files.
  *
- * @since 15.03.2025
- * @version 25.03.2025
  * @author jonastomren
+ * @version 31.03.2025
+ * @since 15.03.2025
  */
 public final class CsvHandler extends AbstractFileHandler {
   /**

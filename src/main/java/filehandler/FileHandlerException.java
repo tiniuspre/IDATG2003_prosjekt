@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 /**
  * Exception thrown when an error occurs in the CsvHandler class.
  *
- * @since 25.03.2025
- * @version 25.03.2025
  * @author jonastomren
+ * @version 31.03.2025
+ * @since 25.03.2025
  */
 public class FileHandlerException extends RuntimeException {
   /**

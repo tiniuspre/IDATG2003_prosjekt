@@ -6,9 +6,9 @@ import java.util.logging.Logger;
 /**
  * Exception thrown when an error occurs in the JSONHandler class.
  *
- * @since 24.03.2025
- * @version 24.03.2025
  * @author jonastomren
+ * @version 31.03.2025
+ * @since 24.03.2025
  */
 public class JsonHandlerException extends RuntimeException {
   /**

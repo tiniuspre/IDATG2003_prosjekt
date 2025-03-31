@@ -4,9 +4,9 @@ package constants;
  * Utility class containing constants.
  * This class should not be instantiated.
  *
+ * @author tiniuspre, jonastomren
+ * @version 31.03.2025
  * @since 25.03.2025
- * @version 25.03.2025
- * @author tinius, jonastomren
  */
 public final class Constants {
 

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * adapt to different objects needed for input.
  *
  * @author jonastomren
- * @version 12.03.2025
+ * @version 31.03.2025
  * @since 11.03.2025
  */
 public class JsonHandler extends AbstractFileHandler {

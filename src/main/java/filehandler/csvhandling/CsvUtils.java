@@ -10,9 +10,9 @@ import java.util.logging.Level;
  * Utility class for handling CSV file operations.
  * This class should not be instantiated.
  *
- * @since 25.03.2025
- * @version 25.03.2025
  * @author jonastomren
+ * @version 31.03.2025
+ * @since 25.03.2025
  */
 public final class CsvUtils {
   /**
