@@ -2,7 +2,6 @@ package snakesandladders.ui;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import gameengine.board.Tile;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -28,30 +27,48 @@ import snakesandladders.engine.tiles.SnakeTile;
  * @since 25.03.2025
  */
 public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
-
+  /**
+   * The Snakes and Ladders game instance.
+   */
   private final SnakesAndLadders game;
+  /**
+   * The game board.
+   */
   private final SnakesAndLaddersBoard board;
-
+  /**
+   * Map of player -> player UI.
+   */
   private final Map<SnakesAndLaddersPlayer, SnakesAndLaddersPlayerUI> playerUIs
       = new HashMap<>();
 
-  // TODO: Change with file handling
+  // Tile: 50x50 px
+  /**
+   * The size of a tile in pixels.
+   */
   private final int tileSize = 50;
+  /**
+   * The size of the arrow.
+   */
+  private final int arrowSize = 6;
+  /**
+   * The size of the arrow head.
+   */
+  private final int arrowHeadSize = 3;
 
   /**
    * Constructs a SnakesAndLaddersBoardUI with the given game.
    *
-   * @param game the Snakes and Ladders game instance.
+   * @param gameInstance the Snakes and Ladders game instance.
    */
-  public SnakesAndLaddersBoardUI(SnakesAndLadders game) {
-    this.game = game;
+  public SnakesAndLaddersBoardUI(final SnakesAndLadders gameInstance) {
+    this.game = gameInstance;
     this.board = game.getBoard();
   }
 
+  // NOTE: Change with file handling
   /**
-   * Renders the game board, including tiles, arrows, snakes, ladders, and player pieces.
-   *
-   * TODO: Change with file handling
+   * Renders the game board, including tiles,
+   * arrows, snakes, ladders, and player pieces.
    */
   @Override
   public void renderBoard() {
@@ -124,13 +141,13 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
    * @param endY the ending Y coordinate.
    * @return a Polygon representing the arrowhead.
    */
-  private Polygon createArrowHead(double startX, double startY,
-                                  double endX, double endY) {
+  private Polygon createArrowHead(final double startX, final double startY,
+                                  final double endX, final double endY) {
     // A small triangle polygon around (0,0)
     Polygon arrowHead = new Polygon(
         0, 0,
-        -6, -3,
-        -6, 3
+        -arrowSize, -arrowHeadSize,
+        -arrowSize, arrowSize
     );
     arrowHead.setFill(Color.DARKGRAY);
 
@@ -171,13 +188,16 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
   }
 
   /**
-   * Draws a thicker line from tile startNum to endNum, used for snakes & ladders.
+   * Draws a thicker line from tile startNum to endNum,
+   * used for snakes & ladders.
    *
    * @param startNum the starting tile number.
    * @param endNum the ending tile number.
    * @param color the color of the line.
    */
-  private void drawLine(int startNum, int endNum, Color color) {
+  private void drawLine(
+      final int startNum,
+      final int endNum, final Color color) {
     Tile startTile = board.getTile(startNum);
     Tile endTile = board.getTile(endNum);
 
@@ -208,13 +228,15 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
   /**
    * Updates the position of a player's piece on the board.
    *
-   * @param p the player whose position is to be updated.
+   * @param player the player whose position is to be updated.
    */
-  private void updatePlayerPosition(SnakesAndLaddersPlayer p) {
-    SnakesAndLaddersPlayerUI ui = playerUIs.get(p);
-    if (ui == null) return;
+  private void updatePlayerPosition(final SnakesAndLaddersPlayer player) {
+    SnakesAndLaddersPlayerUI ui = playerUIs.get(player);
+    if (ui == null) {
+      return;
+    }
 
-    int tileNum = p.getPosition();
+    int tileNum = player.getPosition();
     Tile tile = board.getTile(tileNum);
 
     double xPos = (tile.getPosX() - 1) * tileSize + tileSize * 0.2;
