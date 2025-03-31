@@ -12,24 +12,67 @@ import renderengine.AbstractTileUI;
 /**
  * Concrete tile UI for a single tile in Snakes and Ladders,
  * also showing the tile ID in the top-right corner.
+ *
+ * @author tiniuspre
+ * @version 25.03.2025
+ * @since 25.03.2025
  */
 public class SnakesAndLaddersTileUI extends AbstractTileUI {
-
-  private final int tileSize;
-  private final Tile tile;
-  private final int boardHeight;
+  /**
+   * The size of a tile in pixels.
+   */
+  private int tileSize;
+  /**
+   * The tile instance.
+   */
+  private Tile tile;
+  /**
+   * The height of the board.
+   */
+  private int boardHeight;
 
   /**
    * Constructs a SnakesAndLaddersTileUI with the given parameters.
    *
-   * @param tileSize the size of the tile.
-   * @param tile the tile instance.
-   * @param boardHeight the height of the board.
+   * @param tileSizePx the size of the tile.
+   * @param tileParam the tile instance.
+   * @param boardHeightParam the height of the board.
    */
-  public SnakesAndLaddersTileUI(int tileSize, Tile tile, int boardHeight) {
-    this.tileSize = tileSize;
-    this.tile = tile;
-    this.boardHeight = boardHeight;
+  public SnakesAndLaddersTileUI(
+      final int tileSizePx,
+      final Tile tileParam,
+      final int boardHeightParam
+  ) {
+    setTileSize(tileSizePx);
+    setTile(tileParam);
+    setBoardHeight(boardHeightParam);
+  }
+
+  /**
+   * Sets the size of the tile.
+   *
+   * @param tileSizePx the size of the tile in pixels.
+   */
+  private void setTileSize(final int tileSizePx) {
+    this.tileSize = tileSizePx;
+  }
+
+  /**
+   * Sets the tile instance.
+   *
+   * @param tileInstance the tile instance.
+   */
+  private void setTile(final Tile tileInstance) {
+    this.tile = tileInstance;
+  }
+
+  /**
+   * Sets the height of the board.
+   *
+   * @param boardHeightParam the height of the board.
+   */
+  private void setBoardHeight(final int boardHeightParam) {
+    this.boardHeight = boardHeightParam;
   }
 
   /**
@@ -76,12 +119,12 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
   }
 
   /**
-   * Updates the tile node’s state (not used in this implementation).
+   * Updates the tile node\’s state (not used in this implementation).
    *
    * @param state any state or parameter you need to pass in.
    */
   @Override
-  public void updateTileState(Object state) {
+  public void updateTileState(final Object state) {
     // Not used
   }
 }
