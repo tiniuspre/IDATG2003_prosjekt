@@ -70,7 +70,7 @@ public abstract class AbstractFileHandler {
       throw new IllegalArgumentException("Path cannot be null.");
     }
     if (!CsvUtils.isValidCsvPath(inputPath)
-        || !JsonHandler.isValidJsonPath(inputPath)) {
+        && !JsonHandler.isValidJsonPath(inputPath)) {
       throw new FileHandlerException(
           "Not valid json or csv path.", Level.SEVERE);
     }
