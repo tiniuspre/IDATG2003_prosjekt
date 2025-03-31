@@ -1,6 +1,5 @@
 package snakesandladders.ui;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,11 +23,25 @@ import java.util.List;
  * @since 25.03.2025
  */
 public class SnakesAndLaddersUI extends AbstractGameUI {
-
+  /**
+   * The game instance.
+   */
   private SnakesAndLadders game;
+  /**
+   * The board UI.
+   */
   private SnakesAndLaddersBoardUI boardUI;
+  /**
+   * The status label.
+   */
   private Label statusLabel;
+  /**
+   * The current player label.
+   */
   private Label currentPlayerLabel;
+  /**
+   * The index of the current player.
+   */
   private int currentPlayerIndex = 0;
 
   /**
@@ -47,7 +60,7 @@ public class SnakesAndLaddersUI extends AbstractGameUI {
    * @param primaryStage the primary stage for this application.
    */
   @Override
-  protected void initializeUI(Stage primaryStage) {
+  protected void initializeUI(final Stage primaryStage) {
     game = new SnakesAndLadders();
     game.setBoard(); // build the board with snakes/ladders
 
