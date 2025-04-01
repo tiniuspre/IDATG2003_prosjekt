@@ -14,9 +14,9 @@ public interface TileAction<T, R> {
   /**
    * The action that should be performed when a player lands on the tile.
    *
-   * @param param the parameter.
-   * @param param2 the second parameter.
+   * @param actionParam1 the parameter.
+   * @param actionParam2 the second parameter.
    */
-  void landAction(T param, R param2);
+  void landAction(T actionParam1, R actionParam2);
 
 }
