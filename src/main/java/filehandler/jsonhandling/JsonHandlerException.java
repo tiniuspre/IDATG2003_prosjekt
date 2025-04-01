@@ -1,5 +1,7 @@
 package filehandler.jsonhandling;
 
+import filehandler.FileHandlerException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,7 +12,7 @@ import java.util.logging.Logger;
  * @version 31.03.2025
  * @since 24.03.2025
  */
-public class JsonHandlerException extends RuntimeException {
+public class JsonHandlerException extends FileHandlerException {
   /**
    * Logger for JsonHandlerException class.
    */

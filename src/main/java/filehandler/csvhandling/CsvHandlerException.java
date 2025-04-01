@@ -1,5 +1,7 @@
 package filehandler.csvhandling;
 
+import filehandler.FileHandlerException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,7 +12,7 @@ import java.util.logging.Logger;
  * @version 31.03.2025
  * @since 25.03.2025
  */
-public class CsvHandlerException extends RuntimeException {
+public class CsvHandlerException extends FileHandlerException {
   /**
    * Logger for the CsvHandlerException class.
    */
