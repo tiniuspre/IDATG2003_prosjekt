@@ -60,18 +60,13 @@ public final class CsvUtils {
    * @return The converted value.
    */
   public static Object convertValue(final Class<?> type, final String value) {
-    // NOTE : Maybe add switch case if possible.
-    if (type == int.class || type == Integer.class) {
-      return Integer.parseInt(value);
-    }
-    if (type == double.class || type == Double.class) {
-      return Double.parseDouble(value);
-    }
-    if (type == boolean.class || type == Boolean.class) {
-      return Boolean.parseBoolean(value);
-    }
-
-    return value; // Default: treat as String
+    return switch (type.getSimpleName()) {
+      case "int", "Integer" -> Integer.parseInt(value);
+      case "double", "Double" -> Double.parseDouble(value);
+      case "boolean", "Boolean" -> Boolean.parseBoolean(value);
+      case "String" -> value;
+      default -> throw new CsvHandlerException("Unsupported type: " + type);
+    };
   }
 
   /**
