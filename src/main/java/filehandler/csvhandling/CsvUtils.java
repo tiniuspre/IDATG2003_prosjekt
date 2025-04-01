@@ -54,6 +54,8 @@ public final class CsvUtils {
 
   /**
    * Converts a string value to the specified type.
+   * If the string value should remain a string it
+   * simply returns the string.
    *
    * @param type The class type to convert to.
    * @param value The string value to convert.
