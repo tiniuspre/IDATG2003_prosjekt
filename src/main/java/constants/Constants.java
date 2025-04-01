@@ -29,6 +29,11 @@ public final class Constants {
   public static final String SNL_PLAYER_FILE_PATH_TEST =
       "src/test/resources/csv-files/snakes_players_test.csv";
 
+  // CSV Field Settings
+
+  public static final String DECLARE_NAME = "Name";
+
+  public static final String DECLARE_PIECE = "Piece";
   /**
    * Private constructor to prevent instantiation.
    * Throws IllegalStateException if called.
