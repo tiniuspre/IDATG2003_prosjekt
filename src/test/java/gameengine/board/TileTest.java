@@ -1,21 +1,12 @@
 package gameengine.board;
 
 import org.junit.jupiter.api.Test;
-import snakesandladders.engine.actions.LadderAction;
 import snakesandladders.engine.tiles.NormalTile;
 
 import static org.junit.jupiter.api.Assertions.*;
 class TileTest {
 
   static NormalTile testTile = new NormalTile(2,2,2);
-  static TileAction testAction = new LadderAction(2,3);
-
-  @Test
-  public void testSetAction() {
-    testTile.setAction(testAction);
-    assertEquals(testAction,testTile.getAction());
-    assertThrows(IllegalArgumentException.class,() -> testTile.setAction(null));
-  }
   @Test
   public void testSetPosX() {
     testTile.setPosX(3);

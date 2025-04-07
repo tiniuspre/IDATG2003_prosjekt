@@ -4,9 +4,9 @@ package constants;
  * Utility class containing constants.
  * This class should not be instantiated.
  *
+ * @author tiniuspre, jonastomren
+ * @version 31.03.2025
  * @since 25.03.2025
- * @version 25.03.2025
- * @author tinius, jonastomren
  */
 public final class Constants {
 
@@ -29,6 +29,18 @@ public final class Constants {
   public static final String SNL_PLAYER_FILE_PATH_TEST =
       "src/test/resources/csv-files/snakes_players_test.csv";
 
+  // CSV Field Settings
+  /**
+   * Declares the field of the player name to the
+   * CSV handler.
+   */
+  public static final String DECLARE_NAME = "Name";
+
+  /**
+   * Declares the field of the player piece to the
+   * CSV handler.
+   */
+  public static final String DECLARE_PIECE = "Piece";
   /**
    * Private constructor to prevent instantiation.
    * Throws IllegalStateException if called.

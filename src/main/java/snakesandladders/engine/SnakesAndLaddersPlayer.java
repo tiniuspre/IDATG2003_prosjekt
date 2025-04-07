@@ -1,5 +1,7 @@
 package snakesandladders.engine;
 
+import com.opencsv.bean.CsvBindByName;
+import constants.Constants;
 import gameengine.Player;
 
 /**
@@ -15,7 +17,8 @@ public class SnakesAndLaddersPlayer extends Player {
   /**
    * The piece of the player.
    */
-  private SnakesAndLaddersPiece piece;
+  @CsvBindByName(column = Constants.DECLARE_PIECE)
+  private String piece;
   /**
    * Constructor for the SnakesAndLaddersPlayer class.
    *
@@ -29,6 +32,13 @@ public class SnakesAndLaddersPlayer extends Player {
   }
 
   /**
+   * Constructor for the SnakesAndLaddersPlayer class.
+   * NOTE: Only for file handling.
+   */
+  public SnakesAndLaddersPlayer() {
+  }
+
+  /**
    * Sets the piece of the player.
    *
    * @param inputPiece the piece of the player.
@@ -39,7 +49,7 @@ public class SnakesAndLaddersPlayer extends Player {
     if (inputPiece == null || inputPiece.isBlank()) {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
-    this.piece = SnakesAndLaddersPiece.fromString(inputPiece);
+    this.piece = inputPiece;
   }
 
   /**
@@ -48,7 +58,7 @@ public class SnakesAndLaddersPlayer extends Player {
    * @return the piece of the player.
    */
   public String getPiece() {
-    return piece.getValue();
+    return piece;
   }
 
   /**

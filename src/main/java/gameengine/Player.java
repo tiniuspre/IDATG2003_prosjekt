@@ -1,5 +1,8 @@
 package gameengine;
 
+import com.opencsv.bean.CsvBindByName;
+import constants.Constants;
+
 /**
  * The {@code Player} class represents a player in the test
  * snakes and ladders game.
@@ -12,6 +15,7 @@ public abstract class Player {
   /**
    * The name of the player.
    */
+  @CsvBindByName(column = Constants.DECLARE_NAME)
   private String name;
   /**
    * The position of the player on the board.
@@ -26,6 +30,13 @@ public abstract class Player {
   public Player(final String inputName) {
     setName(inputName);
     setPosition(0);
+  }
+
+  /**
+   * Constructor for the Player class.
+   * NOTE: Only for file handling.
+   */
+  public Player() {
   }
 
   /**

@@ -1,3 +1,10 @@
+# Json files
+json-files
+src/test/resources/json-files/*
+
+# CSV files
+*.csv
+
 # Compiled class file
 *.class
 
