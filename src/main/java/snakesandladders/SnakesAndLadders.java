@@ -22,7 +22,7 @@ import snakesandladders.engine.tiles.SwitchTile;
  *
  * @author jonastomren
  * @version 13.02.2025
- * @since 13.02.2025
+ * @since 26.02.2025
  * @see SnakesAndLaddersBoard
  * @see SnakesAndLaddersPlayer
  * @see Dice
