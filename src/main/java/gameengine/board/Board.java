@@ -1,7 +1,6 @@
 package gameengine.board;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * The {@code Board} class represents the game board in the game engine.
@@ -107,6 +106,7 @@ public abstract class Board {
    * @param inputName the name of the board.
    * @throws IllegalArgumentException if the name is null or empty.
    */
+  @JsonSetter("name")
   public void setName(final String inputName) throws IllegalArgumentException {
     if (inputName == null || inputName.isBlank()) {
       throw new IllegalArgumentException("Invalid name of board.");
