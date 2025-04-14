@@ -1,4 +1,4 @@
-package gameengine;
+package gameengine.player;
 
 import com.opencsv.bean.CsvBindByName;
 import constants.Constants;
