@@ -1,8 +1,7 @@
 package snakesandladders;
 
-import gameengine.player.Player;
 import gameengine.dice.Dice;
-
+import gameengine.player.Player;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,7 @@ import snakesandladders.engine.SnakesLaddersLoader;
 import snakesandladders.engine.actions.SpecialActionFactory;
 
 /**
- * The {@code TestGame} class represents the test snaked and ladders game.
+ * The {@code SnakesAndLadders} class represents the snaked and ladders game.
  *
  * <p>The game is played on a board with snakes and ladders.
  * The players take turns to roll dice
@@ -22,14 +21,16 @@ import snakesandladders.engine.actions.SpecialActionFactory;
  * The game is won by the player who reaches the end of the board first.
  *
  * @author jonastomren
- * @version 13.02.2025
+ * @version 14.04.2025
  * @since 26.02.2025
  * @see SnakesAndLaddersBoard
  * @see SnakesAndLaddersPlayer
  * @see Dice
  */
 public class SnakesAndLadders {
-
+  /**
+   * The game board for the Snakes and Ladders game.
+   */
   private SnakesAndLaddersBoard board;
 
   /**
@@ -41,6 +42,9 @@ public class SnakesAndLadders {
    */
   private final Dice dice = new Dice(2);
 
+  /**
+   * Default constructor for the {@code SnakesAndLadders} class.
+   */
   public SnakesAndLadders() {
   }
 
@@ -131,9 +135,18 @@ public class SnakesAndLadders {
     return true;
   }
 
+  /**
+   * Checks if the player is on a special tile (snake, ladder, or switch).
+   *
+   * @param player the player to check.
+   */
   public void checkSpecialTile(final Player player) {
+    // Gets Player position
     Integer playerPos = player.getPosition();
-    SpecialActionFactory specialActionFactory = new SpecialActionFactory(board, players, player);
+    // Prepares a special action factory.
+    SpecialActionFactory specialActionFactory =
+        new SpecialActionFactory(board, players, player);
+    // Checks if the player is on a special tile and applies the action.
     if (board.getSnakes().containsKey(playerPos)) {
       specialActionFactory.createSpecialAction("Snake")
           .ifPresent(snake -> snake.apply(player));
