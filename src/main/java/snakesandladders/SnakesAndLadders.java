@@ -140,6 +140,9 @@ public class SnakesAndLadders {
     } else if (board.getLadders().containsKey(playerPos)) {
       specialActionFactory.createSpecialAction("Ladder")
           .ifPresent(ladder -> ladder.apply(player));
+    } else if (board.getSwitches().contains(playerPos)) {
+      specialActionFactory.createSpecialAction("Switch")
+          .ifPresent(switchAction -> switchAction.apply(player));
     }
   }
 }

@@ -1,9 +1,11 @@
 package snakesandladders.engine;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import gameengine.board.Board;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,7 +23,10 @@ public class SnakesAndLaddersBoard extends Board {
 
   private Map<Integer, Integer> ladders;
 
+  private List<Integer> switches;
+
   private Integer size;
+
   /**
    * Constructor for the TestGameBoard class.
    *
@@ -36,6 +41,7 @@ public class SnakesAndLaddersBoard extends Board {
    * Default constructor for the SnakesAndLaddersBoard class.
    * Used exclusively for JSON deserialization.
    */
+  @JsonCreator
   public SnakesAndLaddersBoard() {
   }
   @JsonSetter("snakes")
@@ -57,6 +63,14 @@ public class SnakesAndLaddersBoard extends Board {
   @JsonSetter("size")
   public void setSize(final int inputSize) {
     this.size = inputSize;
+  }
+  @JsonSetter("switches")
+  public void setSwitches(final List<Integer> inputSwitches) {
+    this.switches = inputSwitches;
+  }
+  @JsonGetter("switches")
+  public List<Integer> getSwitches() {
+    return switches;
   }
 
   /**
