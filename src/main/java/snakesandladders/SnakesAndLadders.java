@@ -1,14 +1,14 @@
 package snakesandladders;
 
-import gameengine.Player;
+import gameengine.player.Player;
 import gameengine.dice.Dice;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.tiles.LadderTile;
-import snakesandladders.engine.tiles.SnakeTile;
-import snakesandladders.engine.tiles.SwitchTile;
+import snakesandladders.engine.SnakesLaddersLoader;
 
 /**
  * The {@code TestGame} class represents the test snaked and ladders game.
@@ -28,10 +28,9 @@ import snakesandladders.engine.tiles.SwitchTile;
  * @see Dice
  */
 public class SnakesAndLadders {
-  /**
-   * The game board with width 10 and height 9.
-   */
-  private final SnakesAndLaddersBoard board = new SnakesAndLaddersBoard(10, 9);
+
+  private SnakesAndLaddersBoard board;
+
   /**
    * The list of players in the game.
    */
@@ -41,11 +40,14 @@ public class SnakesAndLadders {
    */
   private final Dice dice = new Dice(2);
 
+  public SnakesAndLadders() {
+  }
+
   /**
    * Sets up the game board with snakes and ladders.
    */
-  public void setBoard() {
-    board.createBoard();
+  public void setBoard() throws IOException {
+    board = SnakesLaddersLoader.loadBoard("Classic");
   }
 
   /**
@@ -69,22 +71,10 @@ public class SnakesAndLadders {
       } else {
         player.move(roll);
       }
-      if (board.getTile(player.getPosition())
-          .getClass().equals(SnakeTile.class)) {
-        SnakeTile snakeTile = (SnakeTile)
-            board.getTile(player.getPosition());
-        snakeTile.landOnSnake(player, players);
-      } else if (board.getTile(player.getPosition())
-          .getClass().equals(LadderTile.class)) {
-        LadderTile ladderTile = (LadderTile)
-            board.getTile(player.getPosition());
-        ladderTile.landOnLadder(player, players);
-      } else if (board.getTile(player.getPosition())
-          .getClass().equals(SwitchTile.class)) {
-        SwitchTile switchtile = (SwitchTile)
-            board.getTile(player.getPosition());
-        switchtile.landOnSwitch(player, players);
-      }
+      System.out.println(player.getName()
+          + " rolled a " + roll
+          + " and moved to position " + player.getPosition());
+      checkSpecialTile(player.getPosition());
     }
   }
 
@@ -138,5 +128,13 @@ public class SnakesAndLadders {
       }
     }
     return true;
+  }
+
+  public void checkSpecialTile(final Integer playerPos) {
+    if (board.getSnakes().containsKey(playerPos)) {
+      System.out.println("You landed on a snake!");
+    } else if (board.getLadders().containsKey(playerPos)) {
+      System.out.println("You landed on a ladder!");
+    }
   }
 }
