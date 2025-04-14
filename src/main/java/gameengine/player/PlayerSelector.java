@@ -1,12 +1,23 @@
 package gameengine.player;
 
+import snakesandladders.engine.SnakesAndLaddersPlayer;
+
 import java.util.List;
 
 public class PlayerSelector {
 
-  public Player selectRandomPlayer(final List<Player> players, final Player current) {
+  private final List<SnakesAndLaddersPlayer> allPlayers;
+
+  private final Player current;
+
+  public PlayerSelector(final List<SnakesAndLaddersPlayer> players, final Player currentPlayer) {
+    this.allPlayers = players;
+    this.current = currentPlayer;
+  }
+
+  public Player selectRandomPlayer() {
     // Filter out the current player from the list
-    List<Player> availablePlayers = players.stream()
+    List<SnakesAndLaddersPlayer> availablePlayers = allPlayers.stream()
         .filter(player -> !player.equals(current))
         .toList();
     // If no players are available, throw an exception
