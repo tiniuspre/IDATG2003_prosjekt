@@ -1,5 +1,6 @@
 package snakesandladders.engine;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.opencsv.bean.CsvBindByName;
 import constants.Constants;
 import gameengine.player.Player;
@@ -35,6 +36,7 @@ public class SnakesAndLaddersPlayer extends Player {
    * Constructor for the SnakesAndLaddersPlayer class.
    * NOTE: Only for file handling.
    */
+  @JsonCreator
   public SnakesAndLaddersPlayer() {
   }
 
