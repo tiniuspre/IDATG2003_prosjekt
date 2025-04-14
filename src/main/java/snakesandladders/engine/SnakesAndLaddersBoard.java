@@ -1,8 +1,10 @@
 package snakesandladders.engine;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import gameengine.board.Board;
-import gameengine.board.Tile;
-import snakesandladders.engine.tiles.NormalTile;
+
+import java.util.Map;
 
 /**
  * The {@code TestGameBoard} class represents the game board in the test game,
@@ -14,6 +16,12 @@ import snakesandladders.engine.tiles.NormalTile;
  * @see Board
  */
 public class SnakesAndLaddersBoard extends Board {
+
+  private Map<Integer, Integer> snakes;
+
+  private Map<Integer, Integer> ladders;
+
+  private Integer size;
   /**
    * Constructor for the TestGameBoard class.
    *
@@ -25,46 +33,30 @@ public class SnakesAndLaddersBoard extends Board {
   }
 
   /**
-   * Creates the board in a "snakes and ladders" format with alternating rows,
-   * the first row going from left to right,
-   * the second row going from right to left, and so on.
+   * Default constructor for the SnakesAndLaddersBoard class.
+   * Used exclusively for JSON deserialization.
    */
-  //NOTE: Remove createBoard method when hardcoded board is added.
-  @Override
-  public void createBoard() {
-    int num = 1;
-    for (int row = 1; row < getHeight() + 1; row++) {
-      // even rows go from right to left
-      boolean isEvenRow = row % 2 == 0;
-      // start from the right if even row
-      int start = isEvenRow ? getWidth() : 1;
-      // start from left if odd row
-      int end = isEvenRow ? 0 : getWidth() + 1;
-      // decrement if even row, increment if odd row
-      int increment = isEvenRow ? -1 : 1;
-
-      // add columns to the row
-      for (int col = start; col != end; col += increment) {
-        getTiles().put(num, new NormalTile(num, col, row));
-        num++;
-      }
-    }
+  public SnakesAndLaddersBoard() {
   }
-
-
-  /**
-   * Returns the tile object with the specified tile number.
-   *
-   * @param tileNumber the number of the tile.
-   * @return the tile object with the specified tile number.
-   * @throws IllegalArgumentException if the tile number does not exist,
-   *        (is not on the board).
-   */
-  public Tile getTile(final int tileNumber) throws IllegalArgumentException {
-    if (!getTiles().containsKey(tileNumber)) {
-      throw new IllegalArgumentException("Tile number does not exist.");
-    }
-    return getTiles().get(tileNumber);
+  @JsonSetter("snakes")
+  public void setSnakes(final Map<Integer, Integer> inputSnakes) {
+    this.snakes = inputSnakes;
+  }
+  @JsonGetter("snakes")
+  public Map<Integer, Integer> getSnakes() {
+    return snakes;
+  }
+  @JsonSetter("ladders")
+  public void setLadders(final Map<Integer, Integer> inputLadders) {
+    this.ladders = inputLadders;
+  }
+  @JsonGetter("ladders")
+  public Map<Integer, Integer> getLadders() {
+    return ladders;
+  }
+  @JsonSetter("size")
+  public void setSize(final int inputSize) {
+    this.size = inputSize;
   }
 
   /**
@@ -72,7 +64,8 @@ public class SnakesAndLaddersBoard extends Board {
    *
    * @return the size of the board.
    */
+  @JsonGetter("size")
   public int getBoardSize() {
-    return getWidth() * getHeight();
+    return size;
   }
 }
