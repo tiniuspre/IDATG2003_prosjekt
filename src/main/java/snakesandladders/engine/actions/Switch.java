@@ -1,14 +1,28 @@
 package snakesandladders.engine.actions;
 
 import gameengine.player.Player;
-
-import java.util.Map;
+import gameengine.player.PlayerSelector;
 
 public class Switch implements SpecialAction {
 
+  private final PlayerSelector playerSelector;
+
+  public Switch(final PlayerSelector playerContext) {
+    this.playerSelector = playerContext;
+  }
+
   @Override
-  public void apply(final Map.Entry<Integer, Integer> switchPosition, final Player currentPlayer) {
-    // Logic for applying the switch action
-    System.out.println("Switch action applied!");
+  public void apply(final Player currentPlayer) {
+    Player targetPlayer = playerSelector.selectRandomPlayer();
+
+    int currentPlayerPosition = currentPlayer.getPosition();
+    int targetPlayerPosition = targetPlayer.getPosition();
+
+    currentPlayer.setPosition(targetPlayerPosition);
+    targetPlayer.setPosition(currentPlayerPosition);
+
+    System.out.println(currentPlayer.getName() + " switched positions with " + targetPlayer.getName() + "! " +
+        currentPlayer.getName() + " is now at " + targetPlayerPosition + " and " +
+        targetPlayer.getName() + " is now at " + currentPlayerPosition);
   }
 }
