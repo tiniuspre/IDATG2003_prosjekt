@@ -43,12 +43,6 @@ public abstract class Board {
     // Default constructor
   }
   /**
-   * Creates the board.
-   */
-  public void createBoard() {
-    //Creates the board
-  }
-  /**
    * Sets the width of the board.
    *
    * @param inputWidth the width of the board.
