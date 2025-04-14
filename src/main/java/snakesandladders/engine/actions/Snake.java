@@ -22,6 +22,6 @@ public class Snake implements SpecialAction {
       throw new IllegalArgumentException("Invalid snake position: " + endPos);
     }
     System.out.println(currentPlayer.getName() + " hit a snake! Moved from " + startPos + " to " + endPos);
-  };
+  }
 
 }
