@@ -1,5 +1,6 @@
 package gameengine;
 
+import gameengine.player.Player;
 import org.junit.jupiter.api.Test;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 
