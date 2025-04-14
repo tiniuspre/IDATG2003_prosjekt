@@ -9,6 +9,7 @@ import java.util.List;
 import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.SnakesLaddersLoader;
+import snakesandladders.engine.actions.SpecialActionFactory;
 
 /**
  * The {@code TestGame} class represents the test snaked and ladders game.
@@ -74,7 +75,7 @@ public class SnakesAndLadders {
       System.out.println(player.getName()
           + " rolled a " + roll
           + " and moved to position " + player.getPosition());
-      checkSpecialTile(player.getPosition());
+      checkSpecialTile(player);
     }
   }
 
@@ -130,11 +131,15 @@ public class SnakesAndLadders {
     return true;
   }
 
-  public void checkSpecialTile(final Integer playerPos) {
+  public void checkSpecialTile(final Player player) {
+    Integer playerPos = player.getPosition();
+    SpecialActionFactory specialActionFactory = new SpecialActionFactory(board, players, player);
     if (board.getSnakes().containsKey(playerPos)) {
-      System.out.println("You landed on a snake!");
+      specialActionFactory.createSpecialAction("Snake")
+          .ifPresent(snake -> snake.apply(player));
     } else if (board.getLadders().containsKey(playerPos)) {
-      System.out.println("You landed on a ladder!");
+      specialActionFactory.createSpecialAction("Ladder")
+          .ifPresent(ladder -> ladder.apply(player));
     }
   }
 }
