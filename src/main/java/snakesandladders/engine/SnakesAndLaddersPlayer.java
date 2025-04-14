@@ -2,7 +2,7 @@ package snakesandladders.engine;
 
 import com.opencsv.bean.CsvBindByName;
 import constants.Constants;
-import gameengine.Player;
+import gameengine.player.Player;
 
 /**
  * The {@code SnakesAndLaddersPlayer} class represents a player
@@ -11,7 +11,7 @@ import gameengine.Player;
  * @author jonastomren
  * @version 10.03.2025
  * @since 10.03.2025
- * @see gameengine.Player
+ * @see Player
  */
 public class SnakesAndLaddersPlayer extends Player {
   /**
