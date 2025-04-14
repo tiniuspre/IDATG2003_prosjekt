@@ -15,6 +15,9 @@ import java.util.Map;
  * This class is designed to be compatible
  * with JSON serialization and deserialization.
  *
+ * @author jonastomren
+ * @version 14.04.2025
+ * @since 14.04.2025
  * @see Board
  */
 public class SnakesAndLaddersBoard extends Board {
