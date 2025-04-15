@@ -53,6 +53,20 @@ public final class CsvUtils {
   }
 
   /**
+   * Retrieves all fields of a given class, excluding those
+   * annotated with a CsvIgnore annotation.
+   *
+   * @param clazz The class to retrieve field names from.
+   * @return A list of fields from the class and its superclasses,
+   *        excluding those annotated with CsvIgnore.
+   */
+  public static List<Field> getFilteredFields(final Class<?> clazz) {
+    return getAllFields(clazz).stream()
+        .filter(field -> !field.isAnnotationPresent(CsvIgnore.class))
+        .toList();
+  }
+
+  /**
    * Converts a string value to the specified type.
    * If the string value should remain a string it
    * simply returns the string.
