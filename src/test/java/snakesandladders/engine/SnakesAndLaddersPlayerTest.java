@@ -10,7 +10,7 @@ class SnakesAndLaddersPlayerTest {
 
   @Test
   void setPiece() {
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("Jonas", "hat");
+    assertDoesNotThrow(() -> new SnakesAndLaddersPlayer("Jonas", "hat"));
     assertThrows(IllegalArgumentException.class, () -> new SnakesAndLaddersPlayer("Jonas", ""));
   }
 
