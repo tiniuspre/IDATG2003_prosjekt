@@ -2,6 +2,7 @@ package gameengine.player;
 
 import com.opencsv.bean.CsvBindByName;
 import constants.Constants;
+import filehandler.csvhandling.CsvIgnore;
 
 /**
  * The {@code Player} class represents a player in the test
@@ -20,6 +21,7 @@ public abstract class Player {
   /**
    * The position of the player on the board.
    */
+  @CsvIgnore
   private int position;
 
   /**
