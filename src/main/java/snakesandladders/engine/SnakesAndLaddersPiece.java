@@ -10,5 +10,28 @@ package snakesandladders.engine;
  * @see SnakesAndLaddersPlayer
  */
 public enum SnakesAndLaddersPiece {
-  HAT, CAR, DOG, BOOT, CAT, WHEELBARROW
+  /**
+   * Enum value representing a hat.
+   */
+  HAT,
+  /**
+   * Enum value representing a car.
+   */
+  CAR,
+  /**
+   * Enum value representing a dog.
+   */
+  DOG,
+  /**
+   * Enum value representing a boot.
+   */
+  BOOT,
+  /**
+   * Enum value representing a thimble.
+   */
+  CAT,
+  /**
+   * Enum value representing a wheelbarrow.
+   */
+  WHEELBARROW
 }
