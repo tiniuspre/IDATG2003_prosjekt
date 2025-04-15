@@ -47,7 +47,8 @@ public final class CsvHandler extends AbstractFileHandler {
     // Creates BufferedWriter to write line by line.
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       // Get fields of class.
-      List<Field> fields = CsvUtils.getFilteredFields(records.getFirst().getClass());
+      List<Field> fields = CsvUtils
+          .getFilteredFields(records.getFirst().getClass());
       // Write CSV Data
       for (T record : records) {
         // Get values of fields.
