@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @version 31.03.2025
  * @since 11.03.2025
  */
-public class JsonHandler extends AbstractFileHandler {
+public final class JsonHandler extends AbstractFileHandler {
   /**
    * The LOGGER object is used to log messages to the console.
    */
