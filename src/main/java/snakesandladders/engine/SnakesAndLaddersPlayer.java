@@ -51,6 +51,11 @@ public class SnakesAndLaddersPlayer extends Player {
     if (inputPiece == null || inputPiece.isBlank()) {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
+    try {
+      SnakesAndLaddersPiece.valueOf(inputPiece.toUpperCase());
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException("Invalid piece: " + inputPiece);
+    }
     this.piece = inputPiece;
   }
 
