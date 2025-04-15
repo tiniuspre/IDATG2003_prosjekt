@@ -17,7 +17,7 @@ class SpecialActionFactoryTest {
   void setUp() {
     SnakesAndLaddersBoard board = new SnakesAndLaddersBoard(10, 9);
     SnakesAndLaddersPlayer currentPlayer = new SnakesAndLaddersPlayer("CurrentPlayer", "hat");
-    SnakesAndLaddersPlayer otherPlayer = new SnakesAndLaddersPlayer("OtherPlayer", "shoe");
+    SnakesAndLaddersPlayer otherPlayer = new SnakesAndLaddersPlayer("OtherPlayer", "car");
     List<SnakesAndLaddersPlayer> players = List.of(currentPlayer, otherPlayer);
     factory = new SpecialActionFactory(board, players, currentPlayer);
   }
