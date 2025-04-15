@@ -1,6 +1,5 @@
 package snakesandladders.engine;
 
-import filehandler.jsonhandling.JsonHandlerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +20,6 @@ class SnakesLaddersLoaderTest {
   @Test
   @DisplayName("Exception is thrown when board name is not found")
   void exceptionThrownWhenBoardNameNotFound() {
-    assertThrows(JsonHandlerException.class, () -> SnakesLaddersLoader.loadBoard("NonExistentBoard"));
+    assertThrows(IllegalArgumentException.class, () -> SnakesLaddersLoader.loadBoard("NonExistentBoard"));
   }
 }

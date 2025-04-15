@@ -42,8 +42,8 @@ public final class SnakesLaddersLoader {
         .readFromFile(SnakesAndLaddersBoard.class);
     // Checks if the board list is null or empty
     if (board == null) {
-      throw new IllegalArgumentException(
-          "Failed to load the board from JSON file.");
+      throw new JsonHandlerException(
+          "Failed to load the boards from JSON file.");
     } else if (board.isEmpty()) {
       throw new JsonHandlerException("No boards found in JSON file.");
     }
@@ -59,8 +59,8 @@ public final class SnakesLaddersLoader {
       throw new IllegalArgumentException("Board not found in JSON file.");
     } catch (Exception e) {
       // Throws an exception if an error occurs while processing the file
-      throw new JsonHandlerException(
-          "Failed to load the board from JSON file.");
+      throw new IllegalArgumentException(
+          e.getMessage());
     }
   }
 }

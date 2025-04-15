@@ -1,13 +1,15 @@
 package snakesandladders;
 
+import gameengine.board.Board;
+import gameengine.board.BoardFactory;
 import gameengine.dice.Dice;
 import gameengine.player.Player;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import snakesandladders.engine.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.SnakesLaddersLoader;
 import snakesandladders.engine.actions.SpecialActionFactory;
 
 /**
@@ -51,8 +53,13 @@ public class SnakesAndLadders {
   /**
    * Sets up the game board with snakes and ladders.
    */
-  public void setBoard() throws IOException {
-    board = SnakesLaddersLoader.loadBoard("Classic");
+  public void setBoard() {
+    Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "Classic");
+    if (loadedBoard.isPresent()) {
+      board = (SnakesAndLaddersBoard) loadedBoard.get();
+    } else {
+      throw new IllegalArgumentException("Failed to load the board.");
+    }
   }
 
   /**
