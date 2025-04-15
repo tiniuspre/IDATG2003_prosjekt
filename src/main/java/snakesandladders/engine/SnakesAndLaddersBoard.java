@@ -61,9 +61,13 @@ public class SnakesAndLaddersBoard extends Board {
    *
    * @param inputSnakes a map where keys are the start
    *                   positions of snakes and values are the end positions.
+   * @throws IllegalArgumentException if the inputSnakes is null or empty.
    */
   @JsonSetter("snakes")
   public void setSnakes(final Map<Integer, Integer> inputSnakes) {
+    if (inputSnakes == null || inputSnakes.isEmpty()) {
+      throw new IllegalArgumentException("Snakes cannot be null or empty.");
+    }
     this.snakes = inputSnakes;
   }
 
@@ -83,9 +87,13 @@ public class SnakesAndLaddersBoard extends Board {
    *
    * @param inputLadders a map where keys are the start
    *                    positions of ladders and values are the end positions.
+   * @throws IllegalArgumentException if the inputLadders is null or empty.
    */
   @JsonSetter("ladders")
   public void setLadders(final Map<Integer, Integer> inputLadders) {
+    if (inputLadders == null || inputLadders.isEmpty()) {
+      throw new IllegalArgumentException("Ladders cannot be null or empty.");
+    }
     this.ladders = inputLadders;
   }
 
@@ -104,9 +112,14 @@ public class SnakesAndLaddersBoard extends Board {
    * Sets the size of the board.
    *
    * @param inputSize the size of the board.
+   * @throws IllegalArgumentException if the input
+   *        size is not a positive integer.
    */
   @JsonSetter("size")
   public void setSize(final int inputSize) {
+    if (inputSize <= 0) {
+      throw new IllegalArgumentException("Size must be a positive integer.");
+    }
     this.size = inputSize;
   }
 
@@ -118,6 +131,9 @@ public class SnakesAndLaddersBoard extends Board {
    */
   @JsonSetter("switches")
   public void setSwitches(final List<Integer> inputSwitches) {
+    if (inputSwitches == null || inputSwitches.isEmpty()) {
+      throw new IllegalArgumentException("Switches cannot be null or empty.");
+    }
     this.switches = inputSwitches;
   }
 
