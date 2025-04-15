@@ -1,4 +1,4 @@
-package snakesandladders.engine;
+package snakesandladders.engine.board;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;

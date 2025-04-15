@@ -1,6 +1,6 @@
 package gameengine.board;
 
-import snakesandladders.engine.SnakesLaddersLoader;
+import snakesandladders.engine.board.SnakesLaddersLoader;
 import java.util.Optional;
 import java.util.logging.Logger;
 

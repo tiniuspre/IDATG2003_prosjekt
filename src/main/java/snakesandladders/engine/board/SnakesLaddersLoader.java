@@ -1,7 +1,8 @@
-package snakesandladders.engine;
+package snakesandladders.engine.board;
 
 import filehandler.jsonhandling.JsonHandler;
 import filehandler.jsonhandling.JsonHandlerException;
+
 import java.io.IOException;
 import java.util.List;
 

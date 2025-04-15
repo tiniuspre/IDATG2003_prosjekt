@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.board.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 import snakesandladders.engine.actions.SpecialActionFactory;
 

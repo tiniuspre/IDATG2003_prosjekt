@@ -4,7 +4,7 @@ import gameengine.player.Player;
 import gameengine.player.PlayerSelector;
 import java.util.List;
 import java.util.Optional;
-import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.board.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
 
 

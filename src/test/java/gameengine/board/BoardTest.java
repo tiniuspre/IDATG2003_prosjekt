@@ -2,7 +2,7 @@ package gameengine.board;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import snakesandladders.engine.SnakesAndLaddersBoard;
+import snakesandladders.engine.board.SnakesAndLaddersBoard;
 
 
 import static org.junit.jupiter.api.Assertions.*;

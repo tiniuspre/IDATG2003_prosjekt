@@ -1,4 +1,4 @@
-package snakesandladders.engine;
+package snakesandladders.engine.board;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
