@@ -53,7 +53,7 @@ public final class SnLBoardConfig {
    */
   public void configureJumps(final List<Jump> inputJumps) {
     if (inputJumps == null || inputJumps.isEmpty()) {
-      throw new IllegalArgumentException("Jumps cannot be null or empty.");
+      throw new SnLBoardException("Jumps cannot be null or empty.");
     }
     for (Jump jump : inputJumps) {
       if (jump.getFrom() > jump.getTo()) {
@@ -74,7 +74,7 @@ public final class SnLBoardConfig {
   @JsonSetter("jumps")
   public void setJumps(final List<Jump> inputJumps) {
     if (inputJumps == null || inputJumps.isEmpty()) {
-      throw new IllegalArgumentException("Jumps cannot be null or empty.");
+      throw new SnLBoardException("Jumps cannot be null or empty.");
     }
     this.jumps.clear();
     this.jumps.addAll(inputJumps);
