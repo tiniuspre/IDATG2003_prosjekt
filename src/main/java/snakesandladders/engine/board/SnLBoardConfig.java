@@ -41,6 +41,7 @@ public final class SnLBoardConfig {
    * Default constructor for the SnLBoardConfig class.
    * This constructor is used for JSON deserialization.
    */
+  @JsonCreator
   public SnLBoardConfig() {
     // Default constructor
   }
