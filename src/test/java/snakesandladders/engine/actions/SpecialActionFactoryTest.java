@@ -1,7 +1,6 @@
 package snakesandladders.engine.actions;
 
 import constants.Constants;
-import gameengine.player.PlayerSelector;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import snakesandladders.engine.board.tile.SnLTile;
 import java.util.List;
 import java.util.Optional;
 
-import static javafx.beans.binding.Bindings.when;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialActionFactoryTest {
