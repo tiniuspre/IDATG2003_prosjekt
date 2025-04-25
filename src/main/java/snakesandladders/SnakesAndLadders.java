@@ -1,5 +1,6 @@
 package snakesandladders;
 
+import constants.Constants;
 import gameengine.board.Board;
 import gameengine.board.BoardFactory;
 import gameengine.dice.Dice;
@@ -8,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import snakesandladders.engine.actions.SpecialActionFactory;
 import snakesandladders.engine.board.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.actions.SpecialActionFactory;
+import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
 
 /**
  * The {@code SnakesAndLadders} class represents the snaked and ladders game.
@@ -54,7 +56,7 @@ public class SnakesAndLadders {
    * Sets up the game board with snakes and ladders.
    */
   public void setBoard() {
-    Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "Classic");
+    Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "test");
     if (loadedBoard.isPresent()) {
       board = (SnakesAndLaddersBoard) loadedBoard.get();
     } else {
@@ -82,11 +84,11 @@ public class SnakesAndLadders {
         reachedEndOfBoard(player);
       } else {
         player.move(roll);
+        System.out.println(player.getName()
+            + " rolled a " + roll
+            + " and moved to position " + player.getPosition());
+        checkSpecialTile(player);
       }
-      System.out.println(player.getName()
-          + " rolled a " + roll
-          + " and moved to position " + player.getPosition());
-      checkSpecialTile(player);
     }
   }
 
@@ -147,21 +149,42 @@ public class SnakesAndLadders {
    *
    * @param player the player to check.
    */
+//  public void checkSpecialTile(final Player player) {
+//    // Gets Player position
+//    Integer playerPos = player.getPosition();
+//    // Prepares a special action factory.
+//    SpecialActionFactory specialActionFactory =
+//        new SpecialActionFactory(board, players, player);
+//    // Checks if the player is on a special tile and applies the action.
+//    if (board.getSnakes().containsKey(playerPos)) {
+//      specialActionFactory.createSpecialAction("Snake")
+//          .ifPresent(snake -> snake.apply(player));
+//    } else if (board.getLadders().containsKey(playerPos)) {
+//      specialActionFactory.createSpecialAction("Ladder")
+//          .ifPresent(ladder -> ladder.apply(player));
+//    } else if (board.getSwitches().contains(playerPos)) {
+//      specialActionFactory.createSpecialAction("Switch")
+//          .ifPresent(switchAction -> switchAction.apply(player));
+//    }
+//  }
+
   public void checkSpecialTile(final Player player) {
     // Gets Player position
-    Integer playerPos = player.getPosition();
+    int playerPos = player.getPosition();
     // Prepares a special action factory.
     SpecialActionFactory specialActionFactory =
-        new SpecialActionFactory(board, players, player);
+        new SpecialActionFactory(players, player);
+    // Gets the current tile of the player.
+    SnakesAndLaddersTile currentTile = board.getTile(playerPos);
     // Checks if the player is on a special tile and applies the action.
-    if (board.getSnakes().containsKey(playerPos)) {
-      specialActionFactory.createSpecialAction("Snake")
+    if (board.getTile(playerPos).getType().equals(Constants.SNAKE)) {
+      specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(snake -> snake.apply(player));
-    } else if (board.getLadders().containsKey(playerPos)) {
-      specialActionFactory.createSpecialAction("Ladder")
+    } else if (board.getTile(playerPos).getType().equals(Constants.LADDER)) {
+      specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(ladder -> ladder.apply(player));
-    } else if (board.getSwitches().contains(playerPos)) {
-      specialActionFactory.createSpecialAction("Switch")
+    } else if (board.getTile(playerPos).getType().equals(Constants.SWITCH)) {
+      specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(switchAction -> switchAction.apply(player));
     }
   }
