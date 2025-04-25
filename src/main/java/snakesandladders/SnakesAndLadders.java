@@ -55,7 +55,7 @@ public class SnakesAndLadders implements Subject {
   /**
    * The list of observers for the game.
    */
-  private List<Observer> observers = new ArrayList<>();
+  private final List<Observer> observers = new ArrayList<>();
 
   /**
    * Default constructor for the {@code SnakesAndLadders} class.
@@ -170,15 +170,10 @@ public class SnakesAndLadders implements Subject {
     // Gets the current tile of the player.
     SnLTile currentTile = board.getTile(playerPos);
     // Checks if the player is on a special tile and applies the action.
-    if (board.getTile(playerPos).getType().equals(Constants.SNAKE)) {
-      specialActionFactory.createSpecialAction(currentTile)
+    switch (currentTile.getType()) {
+      case Constants.SNAKE, Constants.LADDER, Constants.SWITCH
+          -> specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(snake -> snake.apply(player));
-    } else if (board.getTile(playerPos).getType().equals(Constants.LADDER)) {
-      specialActionFactory.createSpecialAction(currentTile)
-          .ifPresent(ladder -> ladder.apply(player));
-    } else if (board.getTile(playerPos).getType().equals(Constants.SWITCH)) {
-      specialActionFactory.createSpecialAction(currentTile)
-          .ifPresent(switchAction -> switchAction.apply(player));
     }
   }
   @Override
