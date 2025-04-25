@@ -174,6 +174,7 @@ public class SnakesAndLadders implements Subject {
       case Constants.SNAKE, Constants.LADDER, Constants.SWITCH
           -> specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(snake -> snake.apply(player));
+      default -> throw new SnLBoardException("Invalid tile type.");
     }
   }
 
@@ -183,7 +184,7 @@ public class SnakesAndLadders implements Subject {
    * @param observer the observer to register.
    */
   @Override
-  public void registerObserver(Observer observer) {
+  public void registerObserver(final Observer observer) {
     observers.add(observer);
   }
 
@@ -193,7 +194,7 @@ public class SnakesAndLadders implements Subject {
    * @param observer the observer to unregister.
    */
   @Override
-  public void removeObserver(Observer observer) {
+  public void removeObserver(final Observer observer) {
     observers.remove(observer);
   }
 
