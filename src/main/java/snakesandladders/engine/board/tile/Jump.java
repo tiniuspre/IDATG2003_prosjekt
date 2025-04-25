@@ -57,7 +57,7 @@ public class Jump {
    *
    * @param inputFrom the starting position of the jump.
    */
-  @JsonSetter("inputFrom")
+  @JsonSetter("from")
   public void setFrom(final int inputFrom) {
     if (inputFrom < 0) {
       throw new IllegalArgumentException("Invalid jump position.");
@@ -70,7 +70,7 @@ public class Jump {
    *
    * @param inputTo the ending position of the jump.
    */
-  @JsonSetter("inputTo")
+  @JsonSetter("to")
   public void setTo(final int inputTo) {
     if (inputTo < 0) {
       throw new IllegalArgumentException("Invalid jump position.");
