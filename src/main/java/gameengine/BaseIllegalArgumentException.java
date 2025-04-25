@@ -1,8 +1,5 @@
 package gameengine;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * Exception thrown when an IllegalArgumentException
  * occurs in the game engine.
