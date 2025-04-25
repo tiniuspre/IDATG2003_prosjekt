@@ -12,6 +12,7 @@ import java.util.Optional;
 import snakesandladders.engine.actions.SpecialActionFactory;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.SnLBoardException;
 import snakesandladders.engine.board.tile.SnLTile;
 
 /**
@@ -60,7 +61,7 @@ public class SnakesAndLadders {
     if (loadedBoard.isPresent()) {
       board = (SnLBoard) loadedBoard.get();
     } else {
-      throw new IllegalArgumentException("Failed to load the board.");
+      throw new SnLBoardException("Failed to load the board.");
     }
   }
 
