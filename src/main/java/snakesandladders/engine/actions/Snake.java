@@ -38,7 +38,8 @@ public class Snake implements SpecialAction {
    */
   public Map<Integer, Integer> setSnakePositions(final int to, final int from) {
     if (to >= from) {
-      throw new IllegalArgumentException("Invalid snake positions: " + to + " >= " + from);
+      throw new IllegalArgumentException("Invalid snake positions: "
+          + to + " >= " + from);
     }
     return Map.of(from, to);
   }
