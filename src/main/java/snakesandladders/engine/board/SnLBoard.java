@@ -79,6 +79,9 @@ public class SnLBoard extends Board {
    * @param boardConfig the configuration of the board.
    */
   public void setConfig(final SnLBoardConfig boardConfig) {
+    if (boardConfig == null) {
+      throw new IllegalArgumentException("Board configuration cannot be null.");
+    }
     setTiles(boardConfig.getSnakes().toList(),
         boardConfig.getLadders().toList(),
         boardConfig.getSwitches().toList());
