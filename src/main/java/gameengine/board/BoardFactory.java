@@ -49,10 +49,6 @@ public final class BoardFactory {
       };
     } catch (JsonHandlerException | SnLBoardException e) {
       return Optional.empty();
-    } catch (IOException e) {
-      LOGGER.log(java.util.logging.Level.SEVERE,
-          "I/O error while loading board: " + e.getMessage(), e);
-      return Optional.empty();
     } catch (Exception e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
           "Unexpected error while loading board: " + e.getMessage(), e);
