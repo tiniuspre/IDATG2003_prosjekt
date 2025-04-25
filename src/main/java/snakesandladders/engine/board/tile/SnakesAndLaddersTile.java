@@ -8,7 +8,9 @@ public class SnakesAndLaddersTile extends Tile {
    * The type of the tile.
    */
   private String type;
-
+  /**
+   * The next tile to jump to.
+   */
   private int next;
 
   /**
@@ -41,18 +43,29 @@ public class SnakesAndLaddersTile extends Tile {
     return type;
   }
 
+  /**
+   * Gets the next tile to jump to.
+   *
+   * @return the next tile to jump to.
+   */
   public int getNext() {
     return next;
   }
 
-  public void setNext(final int next) {
-    if (next < 0) {
+  /**
+   * Sets the inputNext tile to jump to.
+   *
+   * @param inputNext the inputNext tile to jump to.
+   * @throws IllegalArgumentException if the inputNext tile is invalid.
+   */
+  public void setNext(final int inputNext) {
+    if (inputNext < 0) {
       throw new IllegalArgumentException("Invalid tile position.");
-    } else if ( next > getPosition() && type.equals(Constants.SNAKE) ) {
+    } else if (inputNext > getPosition() && type.equals(Constants.SNAKE)) {
       throw new IllegalArgumentException("Invalid snake position.");
-    } else if ( next < getPosition() && type.equals(Constants.LADDER) ) {
+    } else if (inputNext < getPosition() && type.equals(Constants.LADDER)) {
       throw new IllegalArgumentException("Invalid ladder position.");
     }
-    this.next = next;
+    this.next = inputNext;
   }
 }
