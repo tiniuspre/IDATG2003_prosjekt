@@ -48,16 +48,10 @@ public final class BoardFactory {
         default -> Optional.empty();
       };
     } catch (JsonHandlerException | SnLBoardException e) {
-      LOGGER.log(java.util.logging.Level.SEVERE,
-          "Error loading board: " + e.getMessage(), e);
       return Optional.empty();
     } catch (IOException e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
           "I/O error while loading board: " + e.getMessage(), e);
-      return Optional.empty();
-    } catch (IllegalArgumentException e) {
-      LOGGER.log(java.util.logging.Level.SEVERE,
-          "Invalid argument while loading board: " + e.getMessage(), e);
       return Optional.empty();
     } catch (Exception e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
