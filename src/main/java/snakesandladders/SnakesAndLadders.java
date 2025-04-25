@@ -149,25 +149,6 @@ public class SnakesAndLadders {
    *
    * @param player the player to check.
    */
-//  public void checkSpecialTile(final Player player) {
-//    // Gets Player position
-//    Integer playerPos = player.getPosition();
-//    // Prepares a special action factory.
-//    SpecialActionFactory specialActionFactory =
-//        new SpecialActionFactory(board, players, player);
-//    // Checks if the player is on a special tile and applies the action.
-//    if (board.getSnakes().containsKey(playerPos)) {
-//      specialActionFactory.createSpecialAction("Snake")
-//          .ifPresent(snake -> snake.apply(player));
-//    } else if (board.getLadders().containsKey(playerPos)) {
-//      specialActionFactory.createSpecialAction("Ladder")
-//          .ifPresent(ladder -> ladder.apply(player));
-//    } else if (board.getSwitches().contains(playerPos)) {
-//      specialActionFactory.createSpecialAction("Switch")
-//          .ifPresent(switchAction -> switchAction.apply(player));
-//    }
-//  }
-
   public void checkSpecialTile(final Player player) {
     // Gets Player position
     int playerPos = player.getPosition();
