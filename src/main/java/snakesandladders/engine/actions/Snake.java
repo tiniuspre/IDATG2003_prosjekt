@@ -29,6 +29,13 @@ public class Snake implements SpecialAction {
     this.snakePositions = setSnakePositions(to, from);
   }
 
+  /**
+   * Set the snake positions.
+   *
+   * @param to the ending position of the snake.
+   * @param from the starting position of the snake.
+   * @return a map of snake positions.
+   */
   public Map<Integer, Integer> setSnakePositions(final int to, final int from) {
     return Map.of(from, to);
   }
