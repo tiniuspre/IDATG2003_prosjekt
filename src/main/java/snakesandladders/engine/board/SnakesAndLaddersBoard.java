@@ -1,11 +1,12 @@
 package snakesandladders.engine.board;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import constants.Constants;
 import gameengine.board.Board;
+import snakesandladders.engine.board.tile.Jump;
+import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * The {@code SnakesAndLaddersBoard} class represents
@@ -21,18 +22,8 @@ import java.util.Map;
  * @see Board
  */
 public class SnakesAndLaddersBoard extends Board {
-  /**
-   * The map of snakes on the board.
-   */
-  private Map<Integer, Integer> snakes;
-  /**
-   * The map of ladders on the board.
-   */
-  private Map<Integer, Integer> ladders;
-  /**
-   * The list of positions on the board that act as switches.
-   */
-  private List<Integer> switches;
+
+  private final List<SnakesAndLaddersTile> tiles = new ArrayList<>();
   /**
    * The size of the board.
    */
@@ -44,116 +35,57 @@ public class SnakesAndLaddersBoard extends Board {
    * @param width the width of the board.
    * @param height the height of the board.
    */
-  public SnakesAndLaddersBoard(final int width, final int height) {
+  public SnakesAndLaddersBoard(final int width, final int height,
+                               final SnLBoardConfig boardConfig) {
     super(width, height);
+    setConfig(boardConfig);
+    setBoardSize(width, height);
   }
 
-  /**
-   * Default constructor for the {@code SnakesAndLaddersBoard} class.
-   * Used exclusively for JSON deserialization.
-   */
-  @JsonCreator
-  public SnakesAndLaddersBoard() {
-  }
-
-  /**
-   * Sets the snakes on the board.
-   *
-   * @param inputSnakes a map where keys are the start
-   *                   positions of snakes and values are the end positions.
-   * @throws IllegalArgumentException if the inputSnakes is null or empty.
-   */
-  @JsonSetter("snakes")
-  public void setSnakes(final Map<Integer, Integer> inputSnakes) {
-    if (inputSnakes == null || inputSnakes.isEmpty()) {
-      throw new IllegalArgumentException("Snakes cannot be null or empty.");
+  public void setTiles(final List<Jump> snakes,
+                       final List<Jump> ladders,
+                       final List<Jump> switches) {
+    for (int i = 0; i < getWidth() * getHeight(); i++) {
+      SnakesAndLaddersTile tile = new SnakesAndLaddersTile(i, Constants.NORMAL);
+      tiles.add(tile);
     }
-    this.snakes = inputSnakes;
-  }
-
-  /**
-   * Gets the snakes on the board.
-   *
-   * @return a map where keys are the start
-   *        positions of snakes and values are the end positions.
-   */
-  @JsonGetter("snakes")
-  public Map<Integer, Integer> getSnakes() {
-    return snakes;
-  }
-
-  /**
-   * Sets the ladders on the board.
-   *
-   * @param inputLadders a map where keys are the start
-   *                    positions of ladders and values are the end positions.
-   * @throws IllegalArgumentException if the inputLadders is null or empty.
-   */
-  @JsonSetter("ladders")
-  public void setLadders(final Map<Integer, Integer> inputLadders) {
-    if (inputLadders == null || inputLadders.isEmpty()) {
-      throw new IllegalArgumentException("Ladders cannot be null or empty.");
+    for (Jump snake : snakes) {
+      tiles.get(snake.getFrom()).setType(Constants.SNAKE);
+      tiles.get(snake.getFrom()).setNext(snake.getTo());
     }
-    this.ladders = inputLadders;
-  }
-
-  /**
-   * Gets the ladders on the board.
-   *
-   * @return a map where keys are the start
-   *        positions of ladders and values are the end positions.
-   */
-  @JsonGetter("ladders")
-  public Map<Integer, Integer> getLadders() {
-    return ladders;
-  }
-
-  /**
-   * Sets the size of the board.
-   *
-   * @param inputSize the size of the board.
-   * @throws IllegalArgumentException if the input
-   *        size is not a positive integer.
-   */
-  @JsonSetter("size")
-  public void setSize(final int inputSize) {
-    if (inputSize <= 0) {
-      throw new IllegalArgumentException("Size must be a positive integer.");
+    for (Jump ladder : ladders) {
+      tiles.get(ladder.getFrom()).setType(Constants.LADDER);
+      tiles.get(ladder.getFrom()).setNext(ladder.getTo());
+    } for (Jump switchTile : switches) {
+      tiles.get(switchTile.getFrom()).setType(Constants.SWITCH);
     }
-    this.size = inputSize;
   }
 
-  /**
-   * Sets the switches on the board.
-   *
-   * @param inputSwitches a list of positions
-   *                     on the board that act as switches.
-   */
-  @JsonSetter("switches")
-  public void setSwitches(final List<Integer> inputSwitches) {
-    if (inputSwitches == null || inputSwitches.isEmpty()) {
-      throw new IllegalArgumentException("Switches cannot be null or empty.");
-    }
-    this.switches = inputSwitches;
+  public void setConfig(final SnLBoardConfig boardConfig) {
+    setTiles(boardConfig.getSnakes().toList(),
+        boardConfig.getLadders().toList(),
+        boardConfig.getSwitches().toList());
   }
 
-  /**
-   * Gets the switches on the board.
-   *
-   * @return a list of positions on the board that act as switches.
-   */
-  @JsonGetter("switches")
-  public List<Integer> getSwitches() {
-    return switches;
-  }
-
-  /**
-   * Returns the size of the board.
-   *
-   * @return the size of the board.
-   */
-  @JsonGetter("size")
   public int getBoardSize() {
     return size;
+  }
+
+  public void setBoardSize(final int width, final int height) {
+    if (width <= 0 || height <= 0) {
+      throw new IllegalArgumentException("Invalid board size.");
+    }
+    this.size = width * height;
+  }
+
+  public List<SnakesAndLaddersTile> getTiles() {
+    return tiles;
+  }
+
+  public SnakesAndLaddersTile getTile(final int position) {
+    if (position < 0 || position >= tiles.size()) {
+      throw new IllegalArgumentException("Invalid tile position.");
+    }
+    return tiles.get(position);
   }
 }
