@@ -29,7 +29,15 @@ public class Ladder implements SpecialAction {
     this.ladderPositions = setLadderPositions(to, from);
   }
 
-  public Map<Integer, Integer> setLadderPositions(final int to, final int from) {
+  /**
+   * Sets the ladder positions.
+   *
+   * @param to the ending position of the ladder.
+   * @param from the starting position of the ladder.
+   * @return a map of ladder positions.
+   */
+  public Map<Integer, Integer> setLadderPositions(final int to,
+                                                  final int from) {
     return Map.of(from,  to);
   }
 
