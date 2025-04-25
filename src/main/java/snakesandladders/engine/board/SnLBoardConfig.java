@@ -65,7 +65,7 @@ public final class SnLBoardConfig {
   /**
    * Sets the jumps on the board.
    *
-   * @param inputJumps
+   * @param inputJumps the list of jumps to set.
    */
   @JsonSetter("jumps")
   public void setJumps(final List<Jump> inputJumps) {
