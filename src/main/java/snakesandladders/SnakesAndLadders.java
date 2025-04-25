@@ -176,15 +176,30 @@ public class SnakesAndLadders implements Subject {
           .ifPresent(snake -> snake.apply(player));
     }
   }
+
+  /**
+   * Register an observer to the game.
+   *
+   * @param observer the observer to register.
+   */
   @Override
   public void registerObserver(Observer observer) {
     observers.add(observer);
   }
+
+  /**
+   * Unregister an observer from the game.
+   *
+   * @param observer the observer to unregister.
+   */
   @Override
   public void removeObserver(Observer observer) {
     observers.remove(observer);
   }
 
+  /**
+   * Notifies all observers.
+   */
   @Override
   public void notifyObservers() {
     for (Observer observer : observers) {
