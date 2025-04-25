@@ -19,6 +19,9 @@ public class BaseBoardException extends IllegalArgumentException {
     super(message);
   }
 
+  /**
+   * Default constructor.
+   */
   public BaseBoardException() {
     // Default constructor
   }
