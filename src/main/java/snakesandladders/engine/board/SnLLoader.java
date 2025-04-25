@@ -55,7 +55,7 @@ public final class SnLLoader {
           Constants.SNL_HEIGHT,
           boardConfigs.getFirst());
     } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Invalid board configuration: "
+      throw new SnLBoardException("Invalid board configuration: "
           + e.getMessage());
     } catch (JsonHandlerException e) {
       throw new JsonHandlerException("Error processing JSON file: "

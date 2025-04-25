@@ -1,6 +1,10 @@
 package gameengine.board;
 
+import filehandler.jsonhandling.JsonHandlerException;
+import snakesandladders.engine.board.SnLBoardException;
 import snakesandladders.engine.board.SnLLoader;
+
+import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -43,9 +47,21 @@ public final class BoardFactory {
         case "snl" -> Optional.of(SnLLoader.loadBoard(boardName));
         default -> Optional.empty();
       };
-    } catch (Exception e) {
+    } catch (JsonHandlerException | SnLBoardException e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
           "Error loading board: " + e.getMessage(), e);
+      return Optional.empty();
+    } catch (IOException e) {
+      LOGGER.log(java.util.logging.Level.SEVERE,
+          "I/O error while loading board: " + e.getMessage(), e);
+      return Optional.empty();
+    } catch (IllegalArgumentException e) {
+      LOGGER.log(java.util.logging.Level.SEVERE,
+          "Invalid argument while loading board: " + e.getMessage(), e);
+      return Optional.empty();
+    } catch (Exception e) {
+      LOGGER.log(java.util.logging.Level.SEVERE,
+          "Unexpected error while loading board: " + e.getMessage(), e);
       return Optional.empty();
     }
   }
