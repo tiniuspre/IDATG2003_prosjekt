@@ -1,5 +1,6 @@
 package snakesandladders.engine.board.tile;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import snakesandladders.engine.board.SnLBoardException;
@@ -29,6 +30,7 @@ public class Jump {
    * Default constructor for the Jump class.
    * Only to be used for file handling.
    */
+  @JsonCreator
   public Jump() {
     // Default constructor
   }
