@@ -1,5 +1,6 @@
 package snakesandladders.engine.board;
 
+import constants.Constants;
 import filehandler.jsonhandling.JsonHandler;
 import filehandler.jsonhandling.JsonHandlerException;
 
@@ -37,31 +38,24 @@ public final class SnakesLaddersLoader {
   public static SnakesAndLaddersBoard loadBoard(final String boardName)
       throws IOException {
     // Creates a handler for the JSON file containing the boards
-    JsonHandler jsonHandler = new JsonHandler("boards/snl/snl_boards.json");
+    JsonHandler jsonHandler = new JsonHandler("boards/snl/" + boardName + ".json");
     // Reads the list of all boards from the JSON file
-    List<SnakesAndLaddersBoard> board = jsonHandler
-        .readFromFile(SnakesAndLaddersBoard.class);
-    // Checks if the board list is null or empty
-    if (board == null) {
+    List<SnLBoardConfig> boardConfigs = jsonHandler
+        .readFromFile(SnLBoardConfig.class);
+    // Checks if the boardConfigs list is null or empty
+    if (boardConfigs == null) {
       throw new JsonHandlerException(
           "Failed to load the boards from JSON file.");
-    } else if (board.isEmpty()) {
+    } else if (boardConfigs.isEmpty()) {
       throw new JsonHandlerException("No boards found in JSON file.");
     }
-    // Iterates through the list to find the board with the specified name
     try {
-      for (SnakesAndLaddersBoard b : board) {
-        // Returns the board if the name matches
-        if (b.getName().equals(boardName)) {
-          return b;
-        }
-      }
-      // Throws an exception if the board name is not found
-      throw new IllegalArgumentException("Board not found in JSON file.");
-    } catch (Exception e) {
-      // Throws an exception if an error occurs while processing the file
-      throw new IllegalArgumentException(
-          e.getMessage());
+      return new SnakesAndLaddersBoard(Constants.SNL_WIDTH, Constants.SNL_HEIGHT,
+          boardConfigs.getFirst());
+    } catch (IllegalArgumentException e) {
+      throw new IllegalArgumentException("Invalid board configuration: " + e.getMessage());
+    } catch (JsonHandlerException e) {
+      throw new JsonHandlerException("Error processing JSON file: " + e.getMessage());
     }
   }
 }
