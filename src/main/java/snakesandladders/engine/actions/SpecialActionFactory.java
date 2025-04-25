@@ -1,11 +1,13 @@
 package snakesandladders.engine.actions;
 
+import constants.Constants;
 import gameengine.player.Player;
 import gameengine.player.PlayerSelector;
 import java.util.List;
 import java.util.Optional;
 import snakesandladders.engine.board.SnakesAndLaddersBoard;
 import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
 
 
 /**
@@ -24,10 +26,6 @@ import snakesandladders.engine.SnakesAndLaddersPlayer;
 public class SpecialActionFactory {
 
   /**
-   * The Snakes and Ladders game board.
-   */
-  private final SnakesAndLaddersBoard board;
-  /**
    * Utility for selecting players.
    */
   private final PlayerSelector playerSelector;
@@ -36,30 +34,27 @@ public class SpecialActionFactory {
    * Constructs a SpecialActionFactory with the
    * specified boardContext, playerList, and current player.
    *
-   * @param boardContext The Snakes and Ladders game boardContext.
    * @param playerList The list of playerList in the game.
    * @param currentPlayer The current player in the game.
    */
-  public SpecialActionFactory(final SnakesAndLaddersBoard boardContext,
-                              final List<SnakesAndLaddersPlayer> playerList,
+  public SpecialActionFactory(final List<SnakesAndLaddersPlayer> playerList,
                               final Player currentPlayer) {
-    this.board = boardContext;
     this.playerSelector = new PlayerSelector(playerList, currentPlayer);
   }
 
   /**
    * Creates a special action based on the specified action type.
    *
-   * @param actionType The type of action to create
-   *                  (e.g., "Ladder", "Snake", "Switch").
+   * @param tile The tile on which the action is to be performed.
    * @return An Optional containing the created SpecialAction,
    *        or an empty Optional if the action type is invalid.
    */
-  public Optional<SpecialAction> createSpecialAction(final String actionType) {
-    return switch (actionType) {
-      case "Ladder" -> Optional.of(new Ladder(board.getLadders()));
-      case "Snake" -> Optional.of(new Snake(board.getSnakes()));
-      case "Switch" -> Optional.of(new Switch(playerSelector));
+  public Optional<SpecialAction> createSpecialAction(final SnakesAndLaddersTile tile) {
+
+    return switch (tile.getType()) {
+      case (Constants.LADDER) -> Optional.of(new Ladder(tile.getNext(),tile.getPosition()));
+      case (Constants.SNAKE) -> Optional.of(new Snake(tile.getNext(), tile.getPosition()));
+      case (Constants.SWITCH) -> Optional.of(new Switch(playerSelector));
       default -> Optional.empty();
     };
   }
