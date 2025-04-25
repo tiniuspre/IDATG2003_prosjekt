@@ -50,7 +50,7 @@ public abstract class Board {
    */
   public void setWidth(final int inputWidth) throws IllegalArgumentException {
     if (inputWidth < 0) {
-      throw new IllegalArgumentException("Invalid board width.");
+      throw new BaseBoardException("Invalid board width.");
     }
     this.width = inputWidth;
   }
@@ -62,7 +62,7 @@ public abstract class Board {
    */
   public void setHeight(final int inputHeight) throws IllegalArgumentException {
     if (inputHeight < 0) {
-      throw new IllegalArgumentException("Invalid height width");
+      throw new BaseBoardException("Invalid height width");
     }
     this.height = inputHeight;
   }
@@ -103,7 +103,7 @@ public abstract class Board {
   @JsonSetter("name")
   public void setName(final String inputName) throws IllegalArgumentException {
     if (inputName == null || inputName.isBlank()) {
-      throw new IllegalArgumentException("Invalid name of board.");
+      throw new BaseBoardException("Invalid name of board.");
     }
     this.name = inputName;
   }
