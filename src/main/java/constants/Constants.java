@@ -44,6 +44,8 @@ public final class Constants {
    * CSV handler.
    */
   public static final String DECLARE_PIECE = "Piece";
+
+  // Constants for Snakes and Ladders
   /**
    * Width of the Snakes and Ladders Board.
    */
