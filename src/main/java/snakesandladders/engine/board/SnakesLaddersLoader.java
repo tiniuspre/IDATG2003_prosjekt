@@ -38,7 +38,8 @@ public final class SnakesLaddersLoader {
   public static SnakesAndLaddersBoard loadBoard(final String boardName)
       throws IOException {
     // Creates a handler for the JSON file containing the boards
-    JsonHandler jsonHandler = new JsonHandler("boards/snl/" + boardName + ".json");
+    JsonHandler jsonHandler = new JsonHandler("boards/snl/"
+        + boardName + ".json");
     // Reads the list of all boards from the JSON file
     List<SnLBoardConfig> boardConfigs = jsonHandler
         .readFromFile(SnLBoardConfig.class);
@@ -50,12 +51,15 @@ public final class SnakesLaddersLoader {
       throw new JsonHandlerException("No boards found in JSON file.");
     }
     try {
-      return new SnakesAndLaddersBoard(Constants.SNL_WIDTH, Constants.SNL_HEIGHT,
+      return new SnakesAndLaddersBoard(Constants.SNL_WIDTH,
+          Constants.SNL_HEIGHT,
           boardConfigs.getFirst());
     } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Invalid board configuration: " + e.getMessage());
+      throw new IllegalArgumentException("Invalid board configuration: "
+          + e.getMessage());
     } catch (JsonHandlerException e) {
-      throw new JsonHandlerException("Error processing JSON file: " + e.getMessage());
+      throw new JsonHandlerException("Error processing JSON file: "
+          + e.getMessage());
     }
   }
 }
