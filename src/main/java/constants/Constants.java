@@ -46,6 +46,15 @@ public final class Constants {
   public static final String DECLARE_PIECE = "Piece";
 
   // Constants for Snakes and Ladders
+
+  /**
+   * The name of the Snakes and Ladders board.
+   */
+  public static final String SNL_BOARD = "snl";
+  /**
+   * The name of the Classic Snakes and Ladders board in the game.
+   */
+  public static final String SNL_BOARD_NAME_CLASSIC = "classic";
   /**
    * Width of the Snakes and Ladders Board.
    */
