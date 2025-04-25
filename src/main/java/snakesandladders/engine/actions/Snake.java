@@ -22,12 +22,16 @@ public class Snake implements SpecialAction {
   /**
    * Constructor for Snake.
    *
-   * @param snakeContext Map of snake positions.
+   * @param from The starting position of the snake.
+   * @param to The ending position of the snake.
    */
-  public Snake(final Map<Integer, Integer> snakeContext) {
-    this.snakePositions = snakeContext;
+  public Snake(final int to, final int from) {
+    this.snakePositions = setSnakePositions(to, from);
   }
 
+  public Map<Integer, Integer> setSnakePositions(final int to, final int from) {
+    return Map.of(from, to);
+  }
   /**
    * Apply the snake action to the current player.
    *

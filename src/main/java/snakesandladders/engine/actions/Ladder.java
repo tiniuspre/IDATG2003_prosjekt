@@ -22,10 +22,15 @@ public class Ladder implements SpecialAction {
   /**
    * Constructor for Ladder.
    *
-   * @param ladderContext Map of ladder positions.
+   * @param to The ending position of the ladder.
+   * @param from The starting position of the ladder.
    */
-  public Ladder(final Map<Integer, Integer> ladderContext) {
-    this.ladderPositions = ladderContext;
+  public Ladder(final int to, final int from) {
+    this.ladderPositions = setLadderPositions(to, from);
+  }
+
+  public Map<Integer, Integer> setLadderPositions(final int to, final int from) {
+    return Map.of(from,  to);
   }
 
   /**
