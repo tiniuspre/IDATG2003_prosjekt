@@ -1,6 +1,8 @@
 package gameengine.player;
 
 import java.util.List;
+
+import gameengine.BaseIllegalArgumentException;
 import snakesandladders.engine.SnLPlayer;
 
 /**
@@ -10,7 +12,7 @@ import snakesandladders.engine.SnLPlayer;
  * from a list of players, excluding the current player.
  *
  * @author jonastomren
- * @version 14.04.2025
+ * @version 25.04.2025
  * @since 14.04.2025
  * @see SnLPlayer
  */
@@ -18,11 +20,11 @@ public class PlayerSelector {
   /**
    * The list of all players in the game.
    */
-  private final List<SnLPlayer> allPlayers;
+  private List<SnLPlayer> allPlayers;
   /**
    * The current player in the game.
    */
-  private final Player current;
+  private Player current;
 
   /**
    * Constructs a {@code PlayerSelector} with the specified list
@@ -33,8 +35,36 @@ public class PlayerSelector {
    */
   public PlayerSelector(final List<SnLPlayer> players,
                         final Player currentPlayer) {
-    this.allPlayers = players;
-    this.current = currentPlayer;
+    setAllPlayers(players);
+    setCurrentPlayer(currentPlayer);
+  }
+
+  /**
+   * Sets the list of all players in the game.
+   *
+   * @param inputPlayers The list of all players in the game.
+   * @throws BaseIllegalArgumentException If the list of player list
+   *        is null or empty.
+   */
+  public void setAllPlayers(final List<SnLPlayer> inputPlayers) {
+    if (inputPlayers == null || inputPlayers.isEmpty()) {
+      throw new BaseIllegalArgumentException(
+          "Player list cannot be null or empty");
+    }
+    this.allPlayers = inputPlayers;
+  }
+
+  /**
+   * Sets the current player the player selector is working with.
+   *
+   * @param inputPlayer The current player in the game.
+   */
+  public void setCurrentPlayer(final Player inputPlayer) {
+    if (inputPlayer == null) {
+      throw new BaseIllegalArgumentException(
+          "Current player cannot be null");
+    }
+    this.current = inputPlayer;
   }
 
   /**
