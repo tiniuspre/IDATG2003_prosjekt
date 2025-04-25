@@ -44,19 +44,33 @@ public final class Constants {
    * CSV handler.
    */
   public static final String DECLARE_PIECE = "Piece";
-
+  /**
+   * Width of the Snakes and Ladders Board.
+   */
   public static final int SNL_WIDTH = 10;
-
+  /**
+   * Height of the Snakes and Ladders Board.
+   */
   public static final int SNL_HEIGHT = 9;
-
+  /**
+   * Snake tile type.
+   */
   public static final String SNAKE = "SNAKE";
-
+  /**
+   * Ladder tile type.
+   */
   public static final String LADDER = "LADDER";
-
+  /**
+   * Switch tile type.
+   */
   public static final String SWITCH = "SWITCH";
-
+  /**
+   * Normal tile type.
+   */
   public static final String NORMAL = "NORMAL";
-
+  /**
+   * List of valid tile types.
+   */
   public static final List<String> VALID_TILE_TYPES = List.of(
       SNAKE,
       LADDER,
