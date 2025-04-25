@@ -11,4 +11,5 @@ module IDATG2003.prosjekt {
   opens gameengine.board to com.fasterxml.jackson.databind;
   opens snakesandladders.engine to com.fasterxml.jackson.databind;
   opens snakesandladders.engine.board to com.fasterxml.jackson.databind;
+  opens snakesandladders.engine.board.tile to com.fasterxml.jackson.databind;
 }
