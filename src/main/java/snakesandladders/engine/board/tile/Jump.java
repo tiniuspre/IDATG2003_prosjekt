@@ -2,6 +2,7 @@ package snakesandladders.engine.board.tile;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import snakesandladders.engine.board.SnLBoardException;
 
 public class Jump {
   /**
@@ -60,7 +61,7 @@ public class Jump {
   @JsonSetter("from")
   public void setFrom(final int inputFrom) {
     if (inputFrom < 0) {
-      throw new IllegalArgumentException("Invalid jump position.");
+      throw new SnLBoardException("Invalid jump position.");
     }
     this.from = inputFrom;
   }
@@ -73,7 +74,7 @@ public class Jump {
   @JsonSetter("to")
   public void setTo(final int inputTo) {
     if (inputTo < 0) {
-      throw new IllegalArgumentException("Invalid jump position.");
+      throw new SnLBoardException("Invalid jump position.");
     }
     this.to = inputTo;
   }
