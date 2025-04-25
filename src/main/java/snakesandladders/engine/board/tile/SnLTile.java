@@ -3,7 +3,7 @@ package snakesandladders.engine.board.tile;
 import constants.Constants;
 import gameengine.board.tile.Tile;
 
-public class SnakesAndLaddersTile extends Tile {
+public class SnLTile extends Tile {
   /**
    * The type of the tile.
    */
@@ -19,8 +19,8 @@ public class SnakesAndLaddersTile extends Tile {
    * @param inputPosition the position of the tile.
    * @param inputType     the type of the tile.
    */
-  public SnakesAndLaddersTile(final int inputPosition,
-                              final String inputType) {
+  public SnLTile(final int inputPosition,
+                 final String inputType) {
     super(inputPosition);
     setType(inputType);
   }

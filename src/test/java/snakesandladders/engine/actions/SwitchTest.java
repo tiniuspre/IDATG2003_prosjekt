@@ -5,21 +5,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import gameengine.player.PlayerSelector;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.SnLPlayer;
 
 import java.util.List;
 
 class SwitchTest {
 
   private Switch switchAction;
-  private SnakesAndLaddersPlayer currentPlayer;
-  private SnakesAndLaddersPlayer targetPlayer;
+  private SnLPlayer currentPlayer;
+  private SnLPlayer targetPlayer;
 
   @BeforeEach
   void setUp() {
-    currentPlayer = new SnakesAndLaddersPlayer("CurrentPlayer", "hat");
-    targetPlayer = new SnakesAndLaddersPlayer("TargetPlayer", "hat");
-    List<SnakesAndLaddersPlayer> players = List.of(currentPlayer, targetPlayer);
+    currentPlayer = new SnLPlayer("CurrentPlayer", "hat");
+    targetPlayer = new SnLPlayer("TargetPlayer", "hat");
+    List<SnLPlayer> players = List.of(currentPlayer, targetPlayer);
     PlayerSelector playerSelector = new PlayerSelector(players, currentPlayer);
     switchAction = new Switch(playerSelector);
   }

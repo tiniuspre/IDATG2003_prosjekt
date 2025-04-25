@@ -13,13 +13,13 @@ import java.util.List;
  * @author jonastomren
  * @version 14.04.2025
  * @since 14.04.2025
- * @see SnakesAndLaddersBoard
+ * @see SnLBoard
  */
-public final class SnakesLaddersLoader {
+public final class SnLLoader {
   /**
    * Private constructor to prevent instantiation.
    */
-  private SnakesLaddersLoader() {
+  private SnLLoader() {
     // Prevent instantiation
   }
   /**
@@ -35,7 +35,7 @@ public final class SnakesLaddersLoader {
    * @throws JsonHandlerException If there is an error
    *        while processing the JSON file.
    */
-  public static SnakesAndLaddersBoard loadBoard(final String boardName)
+  public static SnLBoard loadBoard(final String boardName)
       throws IOException {
     // Creates a handler for the JSON file containing the boards
     JsonHandler jsonHandler = new JsonHandler("boards/snl/"
@@ -51,7 +51,7 @@ public final class SnakesLaddersLoader {
       throw new JsonHandlerException("No boards found in JSON file.");
     }
     try {
-      return new SnakesAndLaddersBoard(Constants.SNL_WIDTH,
+      return new SnLBoard(Constants.SNL_WIDTH,
           Constants.SNL_HEIGHT,
           boardConfigs.getFirst());
     } catch (IllegalArgumentException e) {

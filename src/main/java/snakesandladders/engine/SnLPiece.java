@@ -7,9 +7,9 @@ package snakesandladders.engine;
  * @author jonastomren
  * @version 15.04.2025
  * @since 15.04.2025
- * @see SnakesAndLaddersPlayer
+ * @see SnLPlayer
  */
-public enum SnakesAndLaddersPiece {
+public enum SnLPiece {
   /**
    * Enum value representing a hat.
    */

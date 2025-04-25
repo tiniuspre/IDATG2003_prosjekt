@@ -3,7 +3,7 @@ package snakesandladders.engine.board;
 import constants.Constants;
 import gameengine.board.Board;
 import snakesandladders.engine.board.tile.Jump;
-import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
+import snakesandladders.engine.board.tile.SnLTile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,11 @@ import java.util.List;
  * @since 14.04.2025
  * @see Board
  */
-public class SnakesAndLaddersBoard extends Board {
+public class SnLBoard extends Board {
   /**
    * The list of tiles on the board.
    */
-  private final List<SnakesAndLaddersTile> tiles = new ArrayList<>();
+  private final List<SnLTile> tiles = new ArrayList<>();
   /**
    * The size of the board.
    */
@@ -38,8 +38,8 @@ public class SnakesAndLaddersBoard extends Board {
    * @param height the height of the board.
    * @param boardConfig the configuration of the board.
    */
-  public SnakesAndLaddersBoard(final int width, final int height,
-                               final SnLBoardConfig boardConfig) {
+  public SnLBoard(final int width, final int height,
+                  final SnLBoardConfig boardConfig) {
     super(width, height);
     setConfig(boardConfig);
     setBoardSize(width, height);
@@ -57,7 +57,7 @@ public class SnakesAndLaddersBoard extends Board {
                        final List<Jump> switches) {
     // set the size of the board and default tile type
     for (int i = 0; i < getWidth() * getHeight(); i++) {
-      SnakesAndLaddersTile tile = new SnakesAndLaddersTile(i, Constants.NORMAL);
+      SnLTile tile = new SnLTile(i, Constants.NORMAL);
       tiles.add(tile);
     }
     // set the type of the tiles based on the snakes, ladders, and switches
@@ -112,7 +112,7 @@ public class SnakesAndLaddersBoard extends Board {
    * @param position the position of the tile.
    * @return the tile at the specified position.
    */
-  public SnakesAndLaddersTile getTile(final int position) {
+  public SnLTile getTile(final int position) {
     if (position < 0 || position >= tiles.size()) {
       throw new IllegalArgumentException("Invalid tile position.");
     }

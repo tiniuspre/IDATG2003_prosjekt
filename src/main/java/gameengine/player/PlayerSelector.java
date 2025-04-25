@@ -1,7 +1,7 @@
 package gameengine.player;
 
 import java.util.List;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.SnLPlayer;
 
 /**
  * The {@code PlayerSelector} class is responsible for
@@ -12,13 +12,13 @@ import snakesandladders.engine.SnakesAndLaddersPlayer;
  * @author jonastomren
  * @version 14.04.2025
  * @since 14.04.2025
- * @see SnakesAndLaddersPlayer
+ * @see SnLPlayer
  */
 public class PlayerSelector {
   /**
    * The list of all players in the game.
    */
-  private final List<SnakesAndLaddersPlayer> allPlayers;
+  private final List<SnLPlayer> allPlayers;
   /**
    * The current player in the game.
    */
@@ -31,7 +31,7 @@ public class PlayerSelector {
    * @param players The list of all players in the game.
    * @param currentPlayer The current player in the game.
    */
-  public PlayerSelector(final List<SnakesAndLaddersPlayer> players,
+  public PlayerSelector(final List<SnLPlayer> players,
                         final Player currentPlayer) {
     this.allPlayers = players;
     this.current = currentPlayer;
@@ -48,7 +48,7 @@ public class PlayerSelector {
    */
   public Player selectRandomPlayer() {
     // Filter out the current player from the list
-    List<SnakesAndLaddersPlayer> availablePlayers = allPlayers.stream()
+    List<SnLPlayer> availablePlayers = allPlayers.stream()
         .filter(player -> !player.equals(current))
         .toList();
     // If no players are available, throw an exception

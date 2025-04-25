@@ -14,7 +14,7 @@ import gameengine.player.Player;
  * @since 10.03.2025
  * @see Player
  */
-public class SnakesAndLaddersPlayer extends Player {
+public class SnLPlayer extends Player {
   /**
    * The piece of the player.
    */
@@ -26,8 +26,8 @@ public class SnakesAndLaddersPlayer extends Player {
    * @param inputName the name of the player.
    * @param inputPiece the piece of the player.
    */
-  public SnakesAndLaddersPlayer(final String inputName,
-                                final String inputPiece) {
+  public SnLPlayer(final String inputName,
+                   final String inputPiece) {
     super(inputName);
     setPiece(inputPiece);
   }
@@ -37,7 +37,7 @@ public class SnakesAndLaddersPlayer extends Player {
    * NOTE: Only for file handling.
    */
   @JsonCreator
-  public SnakesAndLaddersPlayer() {
+  public SnLPlayer() {
   }
 
   /**
@@ -52,7 +52,7 @@ public class SnakesAndLaddersPlayer extends Player {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
     try {
-      SnakesAndLaddersPiece.valueOf(inputPiece.toUpperCase());
+      SnLPiece.valueOf(inputPiece.toUpperCase());
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException("Invalid piece: " + inputPiece);
     }

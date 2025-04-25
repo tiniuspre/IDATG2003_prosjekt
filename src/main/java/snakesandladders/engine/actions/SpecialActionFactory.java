@@ -5,8 +5,8 @@ import gameengine.player.Player;
 import gameengine.player.PlayerSelector;
 import java.util.List;
 import java.util.Optional;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
+import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.tile.SnLTile;
 
 
 /**
@@ -36,7 +36,7 @@ public class SpecialActionFactory {
    * @param playerList The list of playerList in the game.
    * @param currentPlayer The current player in the game.
    */
-  public SpecialActionFactory(final List<SnakesAndLaddersPlayer> playerList,
+  public SpecialActionFactory(final List<SnLPlayer> playerList,
                               final Player currentPlayer) {
     this.playerSelector = new PlayerSelector(playerList, currentPlayer);
   }
@@ -49,7 +49,7 @@ public class SpecialActionFactory {
    *        or an empty Optional if the action type is invalid.
    */
   public Optional<SpecialAction> createSpecialAction(
-      final SnakesAndLaddersTile tile) {
+      final SnLTile tile) {
 
     return switch (tile.getType()) {
       case (Constants.LADDER) -> Optional.of(

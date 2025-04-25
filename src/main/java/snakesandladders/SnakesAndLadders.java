@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 import snakesandladders.engine.actions.SpecialActionFactory;
-import snakesandladders.engine.board.SnakesAndLaddersBoard;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
+import snakesandladders.engine.board.SnLBoard;
+import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.tile.SnLTile;
 
 /**
  * The {@code SnakesAndLadders} class represents the snaked and ladders game.
@@ -27,20 +27,20 @@ import snakesandladders.engine.board.tile.SnakesAndLaddersTile;
  * @author jonastomren
  * @version 14.04.2025
  * @since 26.02.2025
- * @see SnakesAndLaddersBoard
- * @see SnakesAndLaddersPlayer
+ * @see SnLBoard
+ * @see SnLPlayer
  * @see Dice
  */
 public class SnakesAndLadders {
   /**
    * The game board for the Snakes and Ladders game.
    */
-  private SnakesAndLaddersBoard board;
+  private SnLBoard board;
 
   /**
    * The list of players in the game.
    */
-  private final List<SnakesAndLaddersPlayer> players = new ArrayList<>();
+  private final List<SnLPlayer> players = new ArrayList<>();
   /**
    * The dice used in the game.
    */
@@ -58,7 +58,7 @@ public class SnakesAndLadders {
   public void setBoard() {
     Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "classic");
     if (loadedBoard.isPresent()) {
-      board = (SnakesAndLaddersBoard) loadedBoard.get();
+      board = (SnLBoard) loadedBoard.get();
     } else {
       throw new IllegalArgumentException("Failed to load the board.");
     }
@@ -71,14 +71,14 @@ public class SnakesAndLadders {
    * @param piece the piece of the player.
    */
   public void addPlayer(final String name, final String piece) {
-    players.add(new SnakesAndLaddersPlayer(name, piece));
+    players.add(new SnLPlayer(name, piece));
   }
 
   /**
    * Plays one round of the game.
    */
   public void playOneRound() {
-    for (SnakesAndLaddersPlayer player : players) {
+    for (SnLPlayer player : players) {
       int roll = dice.rollDice();
       if (player.getPosition() + roll >= board.getBoardSize()) {
         reachedEndOfBoard(player);
@@ -156,7 +156,7 @@ public class SnakesAndLadders {
     SpecialActionFactory specialActionFactory =
         new SpecialActionFactory(players, player);
     // Gets the current tile of the player.
-    SnakesAndLaddersTile currentTile = board.getTile(playerPos);
+    SnLTile currentTile = board.getTile(playerPos);
     // Checks if the player is on a special tile and applies the action.
     if (board.getTile(playerPos).getType().equals(Constants.SNAKE)) {
       specialActionFactory.createSpecialAction(currentTile)

@@ -1,6 +1,6 @@
 package gameengine.board;
 
-import snakesandladders.engine.board.SnakesLaddersLoader;
+import snakesandladders.engine.board.SnLLoader;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -40,7 +40,7 @@ public final class BoardFactory {
     try {
       // To be extended with more cases
       return switch (boardType) {
-        case "snl" -> Optional.of(SnakesLaddersLoader.loadBoard(boardName));
+        case "snl" -> Optional.of(SnLLoader.loadBoard(boardName));
         default -> Optional.empty();
       };
     } catch (Exception e) {
