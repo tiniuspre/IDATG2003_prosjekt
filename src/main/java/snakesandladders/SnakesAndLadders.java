@@ -56,7 +56,7 @@ public class SnakesAndLadders {
    * Sets up the game board with snakes and ladders.
    */
   public void setBoard() {
-    Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "test");
+    Optional<Board> loadedBoard = BoardFactory.createBoard("snl", "classic");
     if (loadedBoard.isPresent()) {
       board = (SnakesAndLaddersBoard) loadedBoard.get();
     } else {
