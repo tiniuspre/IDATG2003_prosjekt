@@ -48,12 +48,16 @@ public class SpecialActionFactory {
    * @return An Optional containing the created SpecialAction,
    *        or an empty Optional if the action type is invalid.
    */
-  public Optional<SpecialAction> createSpecialAction(final SnakesAndLaddersTile tile) {
+  public Optional<SpecialAction> createSpecialAction(
+      final SnakesAndLaddersTile tile) {
 
     return switch (tile.getType()) {
-      case (Constants.LADDER) -> Optional.of(new Ladder(tile.getNext(),tile.getPosition()));
-      case (Constants.SNAKE) -> Optional.of(new Snake(tile.getNext(), tile.getPosition()));
-      case (Constants.SWITCH) -> Optional.of(new Switch(playerSelector));
+      case (Constants.LADDER) -> Optional.of(
+          new Ladder(tile.getNext(), tile.getPosition()));
+      case (Constants.SNAKE) -> Optional.of(
+          new Snake(tile.getNext(), tile.getPosition()));
+      case (Constants.SWITCH) -> Optional.of(
+          new Switch(playerSelector));
       default -> Optional.empty();
     };
   }
