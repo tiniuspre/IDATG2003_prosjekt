@@ -18,4 +18,8 @@ public class BaseBoardException extends IllegalArgumentException {
   public BaseBoardException(String message) {
     super(message);
   }
+
+  public BaseBoardException() {
+    // Default constructor
+  }
 }

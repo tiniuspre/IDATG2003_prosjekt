@@ -18,4 +18,11 @@ public class BaseIllegalArgumentException extends IllegalArgumentException {
   public BaseIllegalArgumentException(String message) {
     super(message);
   }
+
+  /**
+   * Default constructor.
+   */
+  public BaseIllegalArgumentException() {
+    // Default constructor
+  }
 }
