@@ -1,5 +1,8 @@
 package constants;
 
+
+import java.util.List;
+
 /**
  * Utility class containing constants.
  * This class should not be instantiated.
@@ -41,6 +44,25 @@ public final class Constants {
    * CSV handler.
    */
   public static final String DECLARE_PIECE = "Piece";
+
+  public static final int SNL_WIDTH = 10;
+
+  public static final int SNL_HEIGHT = 9;
+
+  public static final String SNAKE = "SNAKE";
+
+  public static final String LADDER = "LADDER";
+
+  public static final String SWITCH = "SWITCH";
+
+  public static final String NORMAL = "NORMAL";
+
+  public static final List<String> VALID_TILE_TYPES = List.of(
+      SNAKE,
+      LADDER,
+      SWITCH,
+      NORMAL
+  );
   /**
    * Private constructor to prevent instantiation.
    * Throws IllegalStateException if called.
