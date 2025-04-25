@@ -13,7 +13,7 @@ public interface Observer {
   /**
    * Update method to be called when the subject changes.
    *
-   * @param subject the player that has changed.
+   * @param player the player that has changed.
    */
-  void update(Subject subject);
+  void update(Player player);
 }

@@ -1,6 +1,8 @@
 package snakesandladders;
 
 import constants.Constants;
+import gameengine.Observer;
+import gameengine.Subject;
 import gameengine.board.Board;
 import gameengine.board.BoardFactory;
 import gameengine.dice.Dice;
@@ -32,7 +34,7 @@ import snakesandladders.engine.board.tile.SnLTile;
  * @see SnLPlayer
  * @see Dice
  */
-public class SnakesAndLadders {
+public class SnakesAndLadders implements Subject {
   /**
    * The game board for the Snakes and Ladders game.
    */
@@ -43,9 +45,17 @@ public class SnakesAndLadders {
    */
   private final List<SnLPlayer> players = new ArrayList<>();
   /**
+   * The current player in the game.
+   */
+  private SnLPlayer currentPlayer;
+  /**
    * The dice used in the game.
    */
   private final Dice dice = new Dice(2);
+  /**
+   * The list of observers for the game.
+   */
+  private List<Observer> observers = new ArrayList<>();
 
   /**
    * Default constructor for the {@code SnakesAndLadders} class.
@@ -169,6 +179,21 @@ public class SnakesAndLadders {
     } else if (board.getTile(playerPos).getType().equals(Constants.SWITCH)) {
       specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(switchAction -> switchAction.apply(player));
+    }
+  }
+  @Override
+  public void registerObserver(Observer observer) {
+    observers.add(observer);
+  }
+  @Override
+  public void removeObserver(Observer observer) {
+    observers.remove(observer);
+  }
+
+  @Override
+  public void notifyObservers() {
+    for (Observer observer : observers) {
+      observer.update(currentPlayer);
     }
   }
 }
