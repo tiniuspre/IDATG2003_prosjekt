@@ -1,79 +1,65 @@
 package snakesandladders.engine.board;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import snakesandladders.engine.board.tile.Jump;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class SnLBoardConfig {
-  private List<Jump> snakes;
-  private List<Jump> ladders;
-  private List<Jump> switches;
+
+
+  private final List<Jump> jumps = new ArrayList<>();
+
+  private final List<Jump> snakes = new ArrayList<>();
+  private final List<Jump> ladders = new ArrayList<>();
+  private final List<Jump> switches = new ArrayList<>();
 
   /**
    * Constructor for the SnLBoardConfig class.
-   *
-   * @param inputSnakes the list of snakes.
-   * @param inputLadders the list of ladders.
    */
-  public SnLBoardConfig(final List<Jump> inputSnakes,
-                        final List<Jump> inputLadders,
-                        final List<Jump> inputSwitches) {
-    setSnakes(inputSnakes);
-    setLadders(inputLadders);
-    setSwitches(inputSwitches);
+  @JsonCreator
+  public SnLBoardConfig(final List<Jump> inputJumps) {
+    setJumps(inputJumps);
   }
 
-  /**
-   * Gets the list of snakes.
-   *
-   * @return the list of snakes.
-   */
-  public List<Jump> getSnakes() {
-    return snakes;
+  public SnLBoardConfig() {
+    // Default constructor
   }
 
-  /**
-   * Sets the list of snakes.
-   *
-   * @param inputSnakes the list of snakes.
-   */
-  public void setSnakes(final List<Jump> inputSnakes) {
-    this.snakes = inputSnakes;
+
+  public void configureJumps(final List<Jump> inputJumps) {
+    for (Jump jump : inputJumps) {
+      if (jump.getFrom() > jump.getTo()) {
+        snakes.add(jump);
+      } else if (jump.getFrom() < jump.getTo()) {
+        ladders.add(jump);
+      } else {
+        switches.add(jump);
+      }
+    }
   }
 
-  /**
-   * Gets the list of ladders.
-   *
-   * @return the list of ladders.
-   */
-  public List<Jump> getLadders() {
-    return ladders;
+  public void setJumps(final List<Jump> inputJumps) {
+    this.jumps.clear();
+    this.jumps.addAll(inputJumps);
+    configureJumps(inputJumps);
   }
 
-  /**
-   * Sets the list of ladders.
-   *
-   * @param inputLadders the list of ladders.
-   */
-  public void setLadders(final List<Jump> inputLadders) {
-    this.ladders = inputLadders;
+  public Stream<Jump> getSnakes() {
+    return snakes.stream();
   }
 
-  /**
-   * Gets the list of switches.
-   *
-   * @return the list of switches.
-   */
-  public List<Jump> getSwitches() {
-    return switches;
+  public Stream<Jump> getLadders() {
+    return ladders.stream();
   }
 
-  /**
-   * Sets the list of switches.
-   *
-   * @param inputSwitches the list of switches.
-   */
-  public void setSwitches(final List<Jump> inputSwitches) {
-    this.switches = inputSwitches;
+  public Stream<Jump> getSwitches() {
+    return switches.stream();
+  }
+
+  public Stream<Jump> getJumps() {
+    return jumps.stream();
   }
 }
