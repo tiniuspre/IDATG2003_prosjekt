@@ -2,6 +2,7 @@ package snakesandladders.engine.board.tile;
 
 import constants.Constants;
 import gameengine.board.tile.Tile;
+import snakesandladders.engine.board.SnLBoardException;
 
 public class SnLTile extends Tile {
   /**
@@ -60,11 +61,11 @@ public class SnLTile extends Tile {
    */
   public void setNext(final int inputNext) {
     if (inputNext < 0) {
-      throw new IllegalArgumentException("Invalid tile position.");
+      throw new SnLBoardException("Invalid tile position.");
     } else if (inputNext > getPosition() && type.equals(Constants.SNAKE)) {
-      throw new IllegalArgumentException("Invalid snake position.");
+      throw new SnLBoardException("Invalid snake position.");
     } else if (inputNext < getPosition() && type.equals(Constants.LADDER)) {
-      throw new IllegalArgumentException("Invalid ladder position.");
+      throw new SnLBoardException("Invalid ladder position.");
     }
     this.next = inputNext;
   }

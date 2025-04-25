@@ -4,7 +4,6 @@ import filehandler.jsonhandling.JsonHandlerException;
 import snakesandladders.engine.board.SnLBoardException;
 import snakesandladders.engine.board.SnLLoader;
 
-import java.io.IOException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
