@@ -26,7 +26,7 @@ public class SnLBoardException extends BaseBoardException {
    *
    * @param message The error message.
    */
-  public SnLBoardException(String message) {
+  public SnLBoardException(final String message) {
     super(message);
   }
 
@@ -36,7 +36,7 @@ public class SnLBoardException extends BaseBoardException {
    * @param message The error message.
    * @param level The level of the error message,
    */
-  public SnLBoardException(String message, Level level) {
+  public SnLBoardException(final String message, final Level level) {
     LOGGER.log(level, message);
   }
 }

@@ -15,7 +15,7 @@ public class BaseIllegalArgumentException extends IllegalArgumentException {
    *
    * @param message The error message.
    */
-  public BaseIllegalArgumentException(String message) {
+  public BaseIllegalArgumentException(final String message) {
     super(message);
   }
 
