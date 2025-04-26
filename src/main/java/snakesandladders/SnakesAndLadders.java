@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import snakesandladders.engine.SnLGameContext;
 import snakesandladders.engine.actions.SpecialActionFactory;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.SnLPlayer;
@@ -90,7 +91,10 @@ public class SnakesAndLadders implements Subject {
    * Plays one round of the game.
    */
   public void playOneRound() {
+    SnLGameContext context = SnLGameContext.getInstance();
+    context.setPlayers(players);
     for (SnLPlayer player : players) {
+      context.setCurrentPlayer(player);
       int roll = dice.rollDice();
       if (player.getPosition() + roll >= board.getBoardSize()) {
         reachedEndOfBoard(player);
@@ -166,7 +170,7 @@ public class SnakesAndLadders implements Subject {
     int playerPos = player.getPosition();
     // Prepares a special action factory.
     SpecialActionFactory specialActionFactory =
-        new SpecialActionFactory(players, player);
+        new SpecialActionFactory();
     // Gets the current tile of the player.
     SnLTile currentTile = board.getTile(playerPos);
     // Checks if the player is on a special tile and applies the action.
@@ -174,6 +178,9 @@ public class SnakesAndLadders implements Subject {
       case Constants.SNAKE, Constants.LADDER, Constants.SWITCH
           -> specialActionFactory.createSpecialAction(currentTile)
           .ifPresent(snake -> snake.apply(player));
+      case Constants.NORMAL -> {
+        // Do nothing
+      }
       default -> throw new SnLBoardException("Invalid tile type.");
     }
   }
