@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 import snakesandladders.engine.SnLGameContext;
-import snakesandladders.engine.actions.SpecialActionFactory;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.SnLBoardException;
-import snakesandladders.engine.board.tile.SnLTile;
+import snakesandladders.engine.board.SnLTileChecker;
+
 
 /**
  * The {@code SnakesAndLadders} class represents the snaked and ladders game.
@@ -76,6 +76,7 @@ public class SnakesAndLadders implements Subject {
     } else {
       throw new SnLBoardException("Failed to load the board.");
     }
+    registerObserver(new SnLTileChecker());
   }
 
   /**
@@ -96,6 +97,7 @@ public class SnakesAndLadders implements Subject {
     context.setPlayers(players);
     for (SnLPlayer player : players) {
       context.setCurrentPlayer(player);
+      this.currentPlayer = player;
       int roll = dice.rollDice();
       if (player.getPosition() + roll >= board.getBoardSize()) {
         reachedEndOfBoard(player);
@@ -104,7 +106,7 @@ public class SnakesAndLadders implements Subject {
         System.out.println(player.getName()
             + " rolled a " + roll
             + " and moved to position " + player.getPosition());
-        checkSpecialTile(player);
+        notifyObservers();
       }
     }
   }
@@ -159,31 +161,6 @@ public class SnakesAndLadders implements Subject {
       }
     }
     return true;
-  }
-
-  /**
-   * Checks if the player is on a special tile (snake, ladder, or switch).
-   *
-   * @param player the player to check.
-   */
-  public void checkSpecialTile(final Player player) {
-    // Gets Player position
-    int playerPos = player.getPosition();
-    // Prepares a special action factory.
-    SpecialActionFactory specialActionFactory =
-        new SpecialActionFactory();
-    // Gets the current tile of the player.
-    SnLTile currentTile = board.getTile(playerPos);
-    // Checks if the player is on a special tile and applies the action.
-    switch (currentTile.getType()) {
-      case Constants.SNAKE, Constants.LADDER, Constants.SWITCH
-          -> specialActionFactory.createSpecialAction(currentTile)
-          .ifPresent(snake -> snake.apply(player));
-      case Constants.NORMAL -> {
-        // Do nothing
-      }
-      default -> throw new SnLBoardException("Invalid tile type.");
-    }
   }
 
   /**
