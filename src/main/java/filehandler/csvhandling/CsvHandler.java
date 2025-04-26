@@ -36,10 +36,10 @@ public final class CsvHandler extends AbstractFileHandler {
    *
    * @param <T> the type of objects in the list
    * @param records the list of objects to write
-   * @throws IOException if an I/O error occurs
+   * @throws CsvHandlerException if an I/O error occurs.
    * @throws IllegalArgumentException if the records list is null or empty
    */
-  public <T> void writeToFile(final List<T> records) throws IOException {
+  public <T> void writeToFile(final List<T> records) {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
       throw new CsvHandlerException("Records list is empty.", Level.SEVERE);
@@ -67,6 +67,8 @@ public final class CsvHandler extends AbstractFileHandler {
         writer.write(String.join(",", values));
         writer.newLine();
       }
+    } catch (IOException e) {
+      throw new CsvHandlerException("I/O error: " + e.getMessage(), Level.SEVERE);
     }
   }
 
