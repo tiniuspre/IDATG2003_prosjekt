@@ -15,10 +15,6 @@ public final class Constants {
 
   // File paths
   /**
-   * File extension for JSON files.
-   */
-  public static final String JSON_FILE = ".json";
-  /**
    * Path to the Snakes and Ladders board JSON file.
    */
   public static final String BOARD_FILE_PATH =
