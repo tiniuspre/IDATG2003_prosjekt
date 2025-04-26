@@ -35,7 +35,7 @@ public final class SnLLoader {
       throw new SnLBoardException("Board name cannot be null or empty");
     }
     // get board loader
-    JsonHandler jsonHandler = new JsonHandler("boards/boards.json");
+    JsonHandler jsonHandler = new JsonHandler(Constants.BOARD_FILE_PATH);
     List<BoardLoader> boardLoaders = jsonHandler
         .readFromFile(BoardLoader.class);
     BoardLoader boardLoader = boardLoaders.getFirst();
