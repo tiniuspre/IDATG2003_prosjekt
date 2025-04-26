@@ -37,7 +37,8 @@ public class SnLTileChecker implements Observer {
    * @param currentTile the current tile the player is on.
    * @param player the player that is on the tile.
    */
-  public void checkSpecialTile (final SnLTile currentTile, final Player player) {
+  public void checkSpecialTile(final SnLTile currentTile,
+                                final Player player) {
     SpecialActionFactory specialActionFactory =
         new SpecialActionFactory();
     // Checks if the player is on a special tile and applies the action.
