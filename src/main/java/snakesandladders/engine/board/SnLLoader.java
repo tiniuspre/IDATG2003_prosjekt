@@ -38,7 +38,7 @@ public final class SnLLoader {
     JsonHandler jsonHandler = new JsonHandler("boards/boards.json");
     List<BoardLoader> boardLoaders = jsonHandler
         .readFromFile(BoardLoader.class);
-    BoardLoader boardLoader = boardLoaders.get(0);
+    BoardLoader boardLoader = boardLoaders.getFirst();
     // get board according to board name
     SnLBoardConfig boardConfig = boardLoader.getSnLBoards().filter(board ->
         board.getBoardName().equals(boardName)).findFirst()
