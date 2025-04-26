@@ -4,10 +4,8 @@ import constants.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.tile.SnLTile;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,10 +18,7 @@ class SpecialActionFactoryTest {
 
   @BeforeEach
   void setUp() {
-    SnLPlayer player1 = new SnLPlayer("Player1", "CAR");
-    SnLPlayer player2 = new SnLPlayer("Player2", "DOG");
-    List<SnLPlayer> mockPlayerList = List.of(player1, player2);
-    factory = new SpecialActionFactory(mockPlayerList, player1);
+    factory = new SpecialActionFactory();
   }
 
   @Test

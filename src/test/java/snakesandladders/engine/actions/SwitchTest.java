@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import gameengine.player.PlayerSelector;
+import snakesandladders.engine.SnLGameContext;
 import snakesandladders.engine.SnLPlayer;
 
 import java.util.List;
@@ -20,8 +21,10 @@ class SwitchTest {
     currentPlayer = new SnLPlayer("CurrentPlayer", "hat");
     targetPlayer = new SnLPlayer("TargetPlayer", "hat");
     List<SnLPlayer> players = List.of(currentPlayer, targetPlayer);
-    PlayerSelector playerSelector = new PlayerSelector(players, currentPlayer);
-    switchAction = new Switch(playerSelector);
+    SnLGameContext gameContext = SnLGameContext.getInstance();
+    gameContext.setPlayers(players);
+    gameContext.setCurrentPlayer(currentPlayer);
+    switchAction = new Switch();
   }
 
   @Test
