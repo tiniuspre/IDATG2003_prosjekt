@@ -4,7 +4,6 @@ import constants.Constants;
 import filehandler.jsonhandling.JsonHandler;
 import filehandler.jsonhandling.JsonHandlerException;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
