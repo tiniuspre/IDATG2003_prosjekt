@@ -72,6 +72,7 @@ public class SnakesAndLadders implements Subject {
         Constants.SNL_BOARD, Constants.SNL_BOARD_NAME_CLASSIC);
     if (loadedBoard.isPresent()) {
       board = (SnLBoard) loadedBoard.get();
+      SnLGameContext.getInstance().setBoard(board);
     } else {
       throw new SnLBoardException("Failed to load the board.");
     }
