@@ -3,11 +3,24 @@ package snakesandladders.engine;
 import java.util.List;
 
 public class SnLGameContext {
-
+  /**
+   * The current player in the game context.
+   */
   private SnLPlayer currentPlayer;
+  /**
+   * The list of players in the game context.
+   */
   private List<SnLPlayer> players;
+  /**
+   * Singleton instance of the SnLGameContext.
+   */
   private static SnLGameContext instance;
 
+  /**
+   * Constructor for the SnLGameContext class.
+   *
+   * @return The singleton instance of the SnLGameContext.
+   */
   public static SnLGameContext getInstance() {
     if (instance == null) {
       instance = new SnLGameContext();
@@ -15,26 +28,46 @@ public class SnLGameContext {
     return instance;
   }
 
+  /**
+   * Gets the current Player in the game context.
+   *
+   * @return The current player.
+   */
   public SnLPlayer getCurrentPlayer() {
     return currentPlayer;
   }
 
-  public void setCurrentPlayer(SnLPlayer currentPlayer) {
-    if (currentPlayer == null) {
+  /**
+   * Sets the current player in the game context.
+   *
+   * @param current The current player to set.
+   */
+  public void setCurrentPlayer(final SnLPlayer current) {
+    if (current == null) {
       throw new IllegalArgumentException("Current player cannot be null");
     }
-    this.currentPlayer = currentPlayer;
+    this.currentPlayer = current;
   }
 
+  /**
+   * Gets the list of players in the game context.
+   *
+   * @return The list of players.
+   */
   public List<SnLPlayer> getPlayers() {
     return players;
   }
 
-  public void setPlayers(List<SnLPlayer> players) {
-    if (players == null || players.isEmpty()) {
+  /**
+   * Sets the list of allPlayers in the game context.
+   *
+   * @param allPlayers The list of allPlayers to set.
+   */
+  public void setPlayers(final List<SnLPlayer> allPlayers) {
+    if (allPlayers == null || allPlayers.isEmpty()) {
       throw new IllegalArgumentException("Players cannot be null or empty");
     }
-    this.players = players;
+    this.players = allPlayers;
   }
 
 }

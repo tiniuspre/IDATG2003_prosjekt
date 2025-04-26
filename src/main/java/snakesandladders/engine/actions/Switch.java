@@ -30,7 +30,8 @@ public class Switch implements SpecialAction {
   @Override
   public void apply(final Player currentPlayer) {
     SnLGameContext gameContext = SnLGameContext.getInstance();
-    PlayerSelector playerSelector = new PlayerSelector(gameContext.getPlayers(), currentPlayer);
+    PlayerSelector playerSelector = new PlayerSelector(
+        gameContext.getPlayers(), currentPlayer);
     // Select a random target player
     Player targetPlayer = playerSelector.selectRandomPlayer();
 
