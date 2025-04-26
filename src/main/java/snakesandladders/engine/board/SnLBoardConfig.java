@@ -1,6 +1,7 @@
 package snakesandladders.engine.board;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import snakesandladders.engine.board.tile.Jump;
 
@@ -17,7 +18,10 @@ import java.util.stream.Stream;
  * @since 25.04.2025
  */
 public final class SnLBoardConfig {
-
+  /**
+   * The name of the board config.
+   */
+  private String boardName;
   /**
    * The list of jumps on the board.
    */
@@ -39,10 +43,11 @@ public final class SnLBoardConfig {
    * Constructor for the SnLBoardConfig class.
    *
    * @param inputJumps the list of jumps to configure.
+   * @param name the name of the board.
    */
-  @JsonCreator
-  public SnLBoardConfig(final List<Jump> inputJumps) {
+  public SnLBoardConfig(final List<Jump> inputJumps, final String name) {
     setJumps(inputJumps);
+    setBoardName(name);
   }
 
   /**
@@ -114,5 +119,38 @@ public final class SnLBoardConfig {
    */
   public Stream<Jump> getSwitches() {
     return switches.stream();
+  }
+
+  /**
+   * Gets the name of the board config.
+   *
+   * @return the name of the board config.
+   */
+  @JsonGetter("boardName")
+  public String getBoardName() {
+    return boardName;
+  }
+
+  /**
+   * Sets the name of the board config.
+   *
+   * @param name the name of the board config.
+   */
+  @JsonSetter("boardName")
+  public void setBoardName(final String name) {
+    if (name == null || name.isEmpty()) {
+      throw new SnLBoardException("Board name cannot be null or empty.");
+    }
+    this.boardName = name;
+  }
+
+  /**
+   * Gets the list of jumps on the board.
+   *
+   * @return a list of jumps on the board.
+   */
+  @JsonGetter("jumps")
+  public List<Jump> getJumps() {
+    return new ArrayList<>(jumps);
   }
 }
