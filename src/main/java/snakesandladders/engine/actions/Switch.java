@@ -2,30 +2,23 @@ package snakesandladders.engine.actions;
 
 import gameengine.player.Player;
 import gameengine.player.PlayerSelector;
+import snakesandladders.engine.SnLGameContext;
 
 /**
  * The {@code Switch} class represents a switch action in the
  * snakes and ladders game.
  *
  * @author jonastomren
- * @version 14.04.2025
+ * @version 25.04.2025
  * @since 14.04.2025
  * @see SpecialAction
  */
 public class Switch implements SpecialAction {
   /**
-   * Utility for selecting players.
-   */
-  private final PlayerSelector playerSelector;
-
-  /**
    * Constructs a {@code Switch} action with the specified player selector.
    *
-   * @param playerContext The {@code PlayerSelector}
-   *                     used to select a random target player.
    */
-  public Switch(final PlayerSelector playerContext) {
-    this.playerSelector = playerContext;
+  public Switch() {
   }
 
   /**
@@ -36,6 +29,8 @@ public class Switch implements SpecialAction {
    */
   @Override
   public void apply(final Player currentPlayer) {
+    SnLGameContext gameContext = SnLGameContext.getInstance();
+    PlayerSelector playerSelector = new PlayerSelector(gameContext.getPlayers(), currentPlayer);
     // Select a random target player
     Player targetPlayer = playerSelector.selectRandomPlayer();
 
