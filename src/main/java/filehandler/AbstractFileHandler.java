@@ -1,6 +1,5 @@
 package filehandler;
 
-import filehandler.csvhandling.CsvHandlerException;
 import filehandler.csvhandling.CsvUtils;
 import filehandler.jsonhandling.JsonHandler;
 
@@ -53,11 +52,13 @@ public abstract class AbstractFileHandler {
             + "created new directory at: " + file.getParentFile());
       }
       if (file.createNewFile()) {
-        LOGGER.log(Level.WARNING, "File not found, created new file at: " + file);
+        LOGGER.log(Level.WARNING,
+            "File not found, created new file at: " + file);
       }
       return file;
     } catch (IOException e) {
-      throw new FileHandlerException("I/O error when creating file:" + e.getMessage());
+      throw new FileHandlerException("I/O error when creating file:"
+          + e.getMessage());
     }
   }
 
@@ -65,7 +66,6 @@ public abstract class AbstractFileHandler {
    * Sets the path for the CSV or JSON file.
    *
    * @param inputPath The path to the file.
-   * @throws CsvHandlerException If an I/O error occurs.
    * @throws IllegalArgumentException If the path is invalid.
    */
   public void setPath(final String inputPath) {
