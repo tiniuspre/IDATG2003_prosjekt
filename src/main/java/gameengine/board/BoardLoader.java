@@ -25,11 +25,6 @@ public class BoardLoader {
    * The list of Snakes and Ladders boards.
    */
   private List<SnLBoardConfig> snLBoards;
-  /**
-   * The path to the JSON file containing the board configurations.
-   */
-  @JsonIgnore
-  private static final String BOARD_PATH = "boards/boards.json";
 
   /**
    * Default constructor for the {@code BoardLoader} class.
