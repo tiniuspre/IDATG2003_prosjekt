@@ -23,6 +23,10 @@ import java.util.List;
  */
 public class SnLBoard extends Board {
   /**
+   * The name of the board.
+   */
+  private String boardName;
+  /**
    * The list of tiles on the board.
    */
   private final List<SnLTile> tiles = new ArrayList<>();
@@ -85,6 +89,7 @@ public class SnLBoard extends Board {
     setTiles(boardConfig.getSnakes().toList(),
         boardConfig.getLadders().toList(),
         boardConfig.getSwitches().toList());
+    setBoardName(boardConfig.getBoardName());
   }
 
   /**
@@ -120,5 +125,26 @@ public class SnLBoard extends Board {
       throw new IllegalArgumentException("Invalid tile position.");
     }
     return tiles.get(position);
+  }
+
+  /**
+   * Sets the name of the board.
+   *
+   * @param name the name of the board.
+   */
+  public void setBoardName(final String name) {
+    if (name == null || name.isEmpty()) {
+      throw new IllegalArgumentException("Board name cannot be null or empty.");
+    }
+    this.boardName = name;
+  }
+
+  /**
+   * Gets the name of the board.
+   *
+   * @return the name of the board.
+   */
+  public String getBoardName() {
+    return boardName;
   }
 }

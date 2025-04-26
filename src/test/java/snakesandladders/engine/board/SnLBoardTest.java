@@ -20,7 +20,7 @@ class SnLBoardTest {
     List<Jump> snakes = List.of(new Jump(14, 7),
     new Jump(5, 5),
     new Jump(2, 10));
-    SnLBoardConfig config = new SnLBoardConfig(snakes);
+    SnLBoardConfig config = new SnLBoardConfig(snakes, "Test Board");
     board = new SnLBoard(5, 5, config);
   }
 
