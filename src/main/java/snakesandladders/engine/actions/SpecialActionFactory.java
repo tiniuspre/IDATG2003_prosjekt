@@ -1,11 +1,7 @@
 package snakesandladders.engine.actions;
 
 import constants.Constants;
-import gameengine.player.Player;
-import gameengine.player.PlayerSelector;
-import java.util.List;
 import java.util.Optional;
-import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.tile.SnLTile;
 
 
@@ -24,21 +20,13 @@ import snakesandladders.engine.board.tile.SnLTile;
  */
 public class SpecialActionFactory {
 
-  /**
-   * Utility for selecting players.
-   */
-  private final PlayerSelector playerSelector;
 
   /**
    * Constructs a SpecialActionFactory with the
    * specified boardContext, playerList, and current player.
    *
-   * @param playerList The list of playerList in the game.
-   * @param currentPlayer The current player in the game.
    */
-  public SpecialActionFactory(final List<SnLPlayer> playerList,
-                              final Player currentPlayer) {
-    this.playerSelector = new PlayerSelector(playerList, currentPlayer);
+  public SpecialActionFactory() {
   }
 
   /**
@@ -57,7 +45,7 @@ public class SpecialActionFactory {
       case (Constants.SNAKE) -> Optional.of(
           new Snake(tile.getNext(), tile.getPosition()));
       case (Constants.SWITCH) -> Optional.of(
-          new Switch(playerSelector));
+          new Switch());
       default -> Optional.empty();
     };
   }
