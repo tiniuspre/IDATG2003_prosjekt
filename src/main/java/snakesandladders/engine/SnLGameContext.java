@@ -36,15 +36,6 @@ public class SnLGameContext {
   }
 
   /**
-   * Gets the current Player in the game context.
-   *
-   * @return The current player.
-   */
-  public SnLPlayer getCurrentPlayer() {
-    return currentPlayer;
-  }
-
-  /**
    * Sets the current player in the game context.
    *
    * @param current The current player to set.
