@@ -21,8 +21,8 @@ public final class Constants {
   /**
    * Path to the Snakes and Ladders board JSON file.
    */
-  public static final String SNL_BOARD_FILE_PATH =
-      "boards/snl/";
+  public static final String BOARD_FILE_PATH =
+      "boards/boards.json";
 
   /**
    * Path to the Snakes and Ladders players CSV file.
@@ -58,7 +58,7 @@ public final class Constants {
   /**
    * The name of the Classic Snakes and Ladders board in the game.
    */
-  public static final String SNL_BOARD_NAME_CLASSIC = "classic";
+  public static final String SNL_BOARD_NAME_CLASSIC = "Classic";
   /**
    * Width of the Snakes and Ladders Board.
    */
