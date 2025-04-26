@@ -8,7 +8,7 @@ import java.util.List;
  * This class should not be instantiated.
  *
  * @author tiniuspre, jonastomren
- * @version 31.03.2025
+ * @version 25.04.2025
  * @since 25.03.2025
  */
 public final class Constants {
