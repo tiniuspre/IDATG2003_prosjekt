@@ -15,10 +15,14 @@ public final class Constants {
 
   // File paths
   /**
+   * File extension for JSON files.
+   */
+  public static final String JSON_FILE = ".json";
+  /**
    * Path to the Snakes and Ladders board JSON file.
    */
   public static final String SNL_BOARD_FILE_PATH =
-      "json-files/snakes_board.json";
+      "boards/snl/";
 
   /**
    * Path to the Snakes and Ladders players CSV file.

@@ -39,8 +39,8 @@ public final class SnLLoader {
     List<SnLBoardConfig> boardConfigs;
     try {
       // Creates a handler for the JSON file containing the boards
-      jsonHandler = new JsonHandler("boards/snl/"
-          + boardName + ".json");
+      jsonHandler = new JsonHandler(Constants.SNL_BOARD_FILE_PATH
+          + boardName + Constants.JSON_FILE);
       // Reads the list of all boards from the JSON file
       boardConfigs = jsonHandler
           .readFromFile(SnLBoardConfig.class);
