@@ -2,7 +2,7 @@ package snakesandladders.engine.board;
 
 import constants.Constants;
 import filehandler.jsonhandling.JsonHandler;
-import filehandler.jsonhandling.JsonHandlerException;
+import gameengine.board.BoardLoader;
 
 import java.util.List;
 
@@ -25,46 +25,27 @@ public final class SnLLoader {
    * Loads a Snakes and Ladders board by its name from a JSON file.
    *
    * @param boardName The name of the board to load.
-   * @return The SnakesAndLaddersBoard object
+   * @return The SnLBoard object
    *        corresponding to the specified board name.
-   * @throws IllegalArgumentException If the board is not found
+   * @throws SnLBoardException If the board is not found
    *        or the JSON file is invalid.
-   * @throws JsonHandlerException If there is an error
-   *        while processing the JSON file.
    */
   public static SnLBoard loadBoard(final String boardName) {
-    // Declare the JsonHandler and boardConfigs variables
-    JsonHandler jsonHandler;
-    List<SnLBoardConfig> boardConfigs;
-    try {
-      // Creates a handler for the JSON file containing the boards
-      jsonHandler = new JsonHandler(Constants.SNL_BOARD_FILE_PATH
-          + boardName + Constants.JSON_FILE);
-      // Reads the list of all boards from the JSON file
-      boardConfigs = jsonHandler
-          .readFromFile(SnLBoardConfig.class);
-    } catch (Exception e) {
-      throw new SnLBoardException("Error loading board: "
-          + e.getMessage());
+    if (boardName == null || boardName.isEmpty()) {
+      throw new SnLBoardException("Board name cannot be null or empty");
     }
-    // Checks if the boardConfigs list is null or empty
-    if (boardConfigs == null) {
-      throw new JsonHandlerException(
-          "Failed to load the boards from JSON file.");
-    } else if (boardConfigs.isEmpty()) {
-      throw new JsonHandlerException("No boards found in JSON file.");
-    }
-    // Creates the board using the first board configuration
-    try {
-      return new SnLBoard(Constants.SNL_WIDTH,
-          Constants.SNL_HEIGHT,
-          boardConfigs.getFirst());
-    } catch (IllegalArgumentException e) {
-      throw new SnLBoardException("Invalid board configuration: "
-          + e.getMessage());
-    } catch (JsonHandlerException e) {
-      throw new SnLBoardException(
-          "Error getting board when processing JSON file: " + e.getMessage());
-    }
+    // get board loader
+    JsonHandler jsonHandler = new JsonHandler("boards/boards.json");
+    List<BoardLoader> boardLoaders = jsonHandler
+        .readFromFile(BoardLoader.class);
+    BoardLoader boardLoader = boardLoaders.get(0);
+    // get board according to board name
+    SnLBoardConfig boardConfig = boardLoader.getSnLBoards().filter(board ->
+        board.getBoardName().equals(boardName)).findFirst()
+        .orElseThrow(() -> new SnLBoardException(
+            "Board not found: " + boardName));
+    // create board
+    return new SnLBoard(Constants.SNL_WIDTH, Constants.SNL_HEIGHT,
+        boardConfig);
   }
 }
