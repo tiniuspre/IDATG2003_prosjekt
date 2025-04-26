@@ -1,5 +1,8 @@
 package snakesandladders.engine;
 
+import snakesandladders.engine.board.SnLBoard;
+import snakesandladders.engine.board.SnLBoardException;
+
 import java.util.List;
 
 public class SnLGameContext {
@@ -11,6 +14,10 @@ public class SnLGameContext {
    * The list of players in the game context.
    */
   private List<SnLPlayer> players;
+  /**
+   * The game board for the Snakes and Ladders game.
+   */
+  private SnLBoard board;
   /**
    * Singleton instance of the SnLGameContext.
    */
@@ -68,6 +75,27 @@ public class SnLGameContext {
       throw new IllegalArgumentException("Players cannot be null or empty");
     }
     this.players = allPlayers;
+  }
+
+  /**
+   * Gets the game board in the game context.
+   *
+   * @return The game board.
+   */
+  public SnLBoard getBoard() {
+    return board;
+  }
+
+  /**
+   * Sets the game board in the game context.
+   *
+   * @param board The game board to set.
+   */
+  public void setBoard(final SnLBoard board) {
+    if (board == null) {
+      throw new SnLBoardException("Board cannot be null");
+    }
+    this.board = board;
   }
 
 }
