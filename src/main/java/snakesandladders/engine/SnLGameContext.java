@@ -87,15 +87,15 @@ public class SnLGameContext {
   }
 
   /**
-   * Sets the game board in the game context.
+   * Sets the game currentBoard in the game context.
    *
-   * @param board The game board to set.
+   * @param currentBoard The game currentBoard to set.
    */
-  public void setBoard(final SnLBoard board) {
-    if (board == null) {
+  public void setBoard(final SnLBoard currentBoard) {
+    if (currentBoard == null) {
       throw new SnLBoardException("Board cannot be null");
     }
-    this.board = board;
+    this.board = currentBoard;
   }
 
 }
