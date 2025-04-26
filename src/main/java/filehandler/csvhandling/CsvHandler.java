@@ -80,6 +80,7 @@ public final class CsvHandler extends AbstractFileHandler {
   public <T> List<T> readFromFile(final Class<T> type) {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
+    List<Field> fields = CsvUtils.getFilteredFields(type);
 
     // Creates BufferedReader to read line by line.
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -87,10 +88,13 @@ public final class CsvHandler extends AbstractFileHandler {
       while ((line = reader.readLine()) != null) {
         // Declare regex.
         String[] values = line.split(",");
+        // Check if line has correct number of values.
+        if (values.length != fields.size()) {
+          throw new CsvHandlerException("Invalid CSV format.", Level.SEVERE);
+        }
         // Get Constructor of generic class.
         T record = type.getDeclaredConstructor().newInstance();
         // Get fields of generic class.
-        List<Field> fields = CsvUtils.getFilteredFields(type);
 
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
