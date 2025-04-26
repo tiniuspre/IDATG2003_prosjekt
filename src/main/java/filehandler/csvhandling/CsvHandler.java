@@ -67,7 +67,8 @@ public final class CsvHandler extends AbstractFileHandler {
         writer.newLine();
       }
     } catch (IOException e) {
-      throw new CsvHandlerException("I/O error: " + e.getMessage(), Level.SEVERE);
+      throw new CsvHandlerException("I/O error: "
+          + e.getMessage(), Level.SEVERE);
     }
   }
 
