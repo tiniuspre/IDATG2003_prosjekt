@@ -29,7 +29,7 @@ import snakesandladders.engine.board.SnLTileChecker;
  * The game is won by the player who reaches the end of the board first.
  *
  * @author jonastomren
- * @version 14.04.2025
+ * @version 25.04.2025
  * @since 26.02.2025
  * @see SnLBoard
  * @see SnLPlayer
