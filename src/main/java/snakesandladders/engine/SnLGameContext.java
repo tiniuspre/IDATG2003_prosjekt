@@ -5,6 +5,14 @@ import snakesandladders.engine.board.SnLBoardException;
 
 import java.util.List;
 
+/**
+ * The {@code SnLGameContext} class represents the context of the
+ * Snakes and Ladders game.
+ *
+ * @author jonastomren
+ * @version 25.04.2025
+ * @since 25.04.2025
+ */
 public class SnLGameContext {
   /**
    * The current player in the game context.
