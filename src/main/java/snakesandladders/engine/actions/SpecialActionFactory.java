@@ -11,7 +11,7 @@ import snakesandladders.engine.board.tile.SnLTile;
  * (e.g., Ladder, Snake, Switch) based on the action type.
  *
  * @author jonastomren
- * @version 14.04.2025
+ * @version 25.04.2025
  * @since 14.04.2025
  * @see SpecialAction
  * @see Ladder

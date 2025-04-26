@@ -4,6 +4,14 @@ import constants.Constants;
 import gameengine.board.tile.Tile;
 import snakesandladders.engine.board.SnLBoardException;
 
+/**
+ * The {@code SnLTile} class represents a tile on the Snakes and Ladders
+ * board.
+ *
+ * @author jonastomren
+ * @version 25.04.2025
+ * @since 25.04.2025
+ */
 public class SnLTile extends Tile {
   /**
    * The type of the tile.

@@ -11,7 +11,7 @@ import java.util.List;
  * Utility class for loading a Snakes and Ladders board from a JSON file.
  *
  * @author jonastomren
- * @version 14.04.2025
+ * @version 25.04.2025
  * @since 14.04.2025
  * @see SnLBoard
  */

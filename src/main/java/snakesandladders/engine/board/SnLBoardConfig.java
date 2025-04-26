@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+/**
+ * The {@code SnLBoardConfig} class represents the configuration
+ * of the Snakes and Ladders game board.
+ *
+ * @author jonastomren
+ * @version 25.04.2025
+ * @since 25.04.2025
+ */
 public final class SnLBoardConfig {
 
   /**

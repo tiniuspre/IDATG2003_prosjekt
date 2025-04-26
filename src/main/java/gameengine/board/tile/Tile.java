@@ -1,5 +1,12 @@
 package gameengine.board.tile;
 
+/**
+ * The {@code Tile} class represents a tile on the game board.
+ *
+ * @author jonastomren
+ * @version 25.04.2025
+ * @since 25.04.2025
+ */
 public abstract class Tile {
   /**
    * The position of the tile on the board.

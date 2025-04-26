@@ -5,6 +5,14 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import snakesandladders.engine.board.SnLBoardException;
 
+/**
+ * The {@code Jump} class represents a jump on the Snakes and Ladders
+ * board.
+ *
+ * @author jonastomren
+ * @version 25.04.2025
+ * @since 25.04.2025
+ */
 public class Jump {
   /**
    * The starting position of the jump.
