@@ -44,8 +44,8 @@ public final class SnLLoader {
       // Reads the list of all boards from the JSON file
       boardConfigs = jsonHandler
           .readFromFile(SnLBoardConfig.class);
-    } catch (IOException e) {
-      throw new SnLBoardException("Failed to create JSON handler: "
+    } catch (Exception e) {
+      throw new SnLBoardException("Error loading board: "
           + e.getMessage());
     }
     // Checks if the boardConfigs list is null or empty
