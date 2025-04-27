@@ -86,6 +86,11 @@ public final class UiConstants {
   public static final String EXIT = "Exit";
 
   /**
+   * The label for the back button.
+   */
+  public static final String BACK = "Back";
+
+  /**
    * The label for the settings button.
    */
   public static final String CHANGE_NAME = "Change Name";

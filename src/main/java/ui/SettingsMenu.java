@@ -19,6 +19,7 @@ import static constants.UiConstants.MENU_V_BOX_SPACING;
 import static constants.UiConstants.CHANGE_NAME;
 import static constants.UiConstants.SETTINGS_TITLE_ID;
 import static constants.UiConstants.MENU_BUTTON_PADDING;
+import static constants.UiConstants.BACK;
 
 /**
  * SettingsMenu class representing the settings menu screen.
@@ -65,6 +66,8 @@ class SettingsMenuView extends BorderPane {
 
   private final Button changeNameButton = new Button(CHANGE_NAME);
 
+  private final Button backButton = new Button(BACK);
+
   SettingsMenuView() {
     buildUi();
   }
@@ -72,7 +75,8 @@ class SettingsMenuView extends BorderPane {
   private void buildUi() {
     VBox settingsMenu = new VBox(
         MENU_V_BOX_SPACING,
-        changeNameButton
+        changeNameButton,
+        backButton
     );
     titleLabel.setId(SETTINGS_TITLE_ID);
     VBox title = new VBox(titleLabel);
@@ -89,12 +93,16 @@ class SettingsMenuView extends BorderPane {
   }
 
   Button getChangeNameButton() {return changeNameButton;}
+
+  Button getBackButton() {return backButton;}
 }
 
 /**
  * The controller for the settings menu.
  *
- *
+ * @author jonastomren
+ * @version 27.04.2025
+ * @since 27.04.2025
  */
 class SettingsMenuController {
   /**
