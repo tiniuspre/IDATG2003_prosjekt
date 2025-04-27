@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -30,6 +31,8 @@ import static constants.UiConstants.MENU_BUTTON_PADDING;
 import static constants.UiConstants.MENU_V_BOX_SPACING;
 import static constants.UiConstants.SNAKES_LADDERS;
 import static constants.UiConstants.TIC_TAC_TOE;
+import static constants.UiConstants.SETTINGS;
+
 
 /**
  * Main application class for the Main Menu.
@@ -142,6 +145,8 @@ class MainMenuView extends BorderPane {
    */
   private final Button exitBtn = new Button(EXIT);
 
+  private final Button SettingsBtn = new Button(SETTINGS);
+
   /**
    * Constructs the main menu view and builds the user interface.
    */
@@ -168,6 +173,12 @@ class MainMenuView extends BorderPane {
     setTop(titleLabel);
     BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
+
+    HBox topRight = new HBox(
+        SettingsBtn
+    );
+    topRight.setAlignment(Pos.TOP_RIGHT);
+    setTop(topRight);
     try {
       getStylesheets().add(CssLoader.getCssPath(MAIN_MENU_CSS));
     } catch (CssLoaderException e) {
@@ -210,6 +221,8 @@ class MainMenuView extends BorderPane {
   Button getExitBtn() {
     return exitBtn;
   }
+
+  Button getSettingsBtn() { return SettingsBtn; }
 }
 
 /**
@@ -253,6 +266,9 @@ class MainMenuController {
     );
     view.getExitBtn().setOnAction(
         e -> Platform.exit()
+    );
+    view.getSettingsBtn().setOnAction(
+        e -> GameRouter.launch(GameId.SETTINGS)
     );
   }
 }
