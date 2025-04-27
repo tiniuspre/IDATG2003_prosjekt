@@ -31,7 +31,7 @@ import static constants.UiConstants.MENU_BUTTON_PADDING;
 import static constants.UiConstants.MENU_V_BOX_SPACING;
 import static constants.UiConstants.SNAKES_LADDERS;
 import static constants.UiConstants.TIC_TAC_TOE;
-import static constants.UiConstants.SETTINGS_ICON;
+import static constants.UiConstants.SETTINGS_BUTTON_ID;
 
 
 /**
@@ -148,7 +148,7 @@ class MainMenuView extends BorderPane {
   /**
    * Button to launch the settings menu.
    */
-  private final Button SettingsBtn = new Button(SETTINGS_ICON);
+  private final Button SettingsBtn = new Button();
 
   /**
    * Constructs the main menu view and builds the user interface.
@@ -176,7 +176,8 @@ class MainMenuView extends BorderPane {
     setTop(titleLabel);
     BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
-
+    // TODO: Add button icon
+    getSettingsBtn().setId(SETTINGS_BUTTON_ID);
     HBox topRight = new HBox(
         SettingsBtn
     );
