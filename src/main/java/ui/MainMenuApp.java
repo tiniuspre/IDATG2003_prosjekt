@@ -18,11 +18,31 @@ import ui.util.DialogUtil;
 
 import static constants.UiConstants.*;
 
+/**
+ * Main application class for the Main Menu.
+ * Sets up the primary stage and initializes the main menu view and controller.
+ *
+ * @author tiniuspre
+ * @version 25.04.2025
+ * @since 25.03.2025
+ */
 public class MainMenuApp extends Application {
 
-  private final MainMenuView view       = new MainMenuView();
+  /**
+   * The view component of the main menu.
+   */
+  private final MainMenuView view = new MainMenuView();
+
+  /**
+   * The controller component of the main menu.
+   */
   private final MainMenuController ctrl = new MainMenuController(view);
 
+  /**
+   * Starts the JavaFX application by setting up the primary stage.
+   *
+   * @param primaryStage the primary stage for this application.
+   */
   @Override
   public void start(Stage primaryStage) {
     primaryStage.setTitle(APP_NAME);
@@ -30,19 +50,57 @@ public class MainMenuApp extends Application {
     primaryStage.show();
   }
 
+  /**
+   * The main entry point for the application.
+   *
+   * @param args the command-line arguments.
+   */
   public static void main(String[] args) { launch(args); }
 }
 
+/**
+ * Represents the view for the main menu.
+ * Builds the user interface components and applies styles.
+ *
+ * @author tiniuspre
+ * @version 25.04.2025
+ * @since 25.03.2025
+ */
 class MainMenuView extends BorderPane {
 
-  private final Label  titleLabel  = new Label(MAIN_MENU);
-  private final Button snakesBtn   = new Button(SNAKES_LADDERS);
-  private final Button tttBtn      = new Button(TIC_TAC_TOE);
-  private final Button connectBtn  = new Button(CONNECT_FOUR);
-  private final Button exitBtn     = new Button(EXIT);
+  /**
+   * Label for the main menu title.
+   */
+  private final Label titleLabel = new Label(MAIN_MENU);
 
+  /**
+   * Button to launch the Snakes and Ladders game.
+   */
+  private final Button snakesBtn = new Button(SNAKES_LADDERS);
+
+  /**
+   * Button to launch the Tic Tac Toe game.
+   */
+  private final Button tttBtn = new Button(TIC_TAC_TOE);
+
+  /**
+   * Button to launch the Connect Four game.
+   */
+  private final Button connectBtn = new Button(CONNECT_FOUR);
+
+  /**
+   * Button to exit the application.
+   */
+  private final Button exitBtn = new Button(EXIT);
+
+  /**
+   * Constructs the main menu view and builds the user interface.
+   */
   MainMenuView() { buildUi(); }
 
+  /**
+   * Builds the user interface components and applies styles.
+   */
   private void buildUi() {
     titleLabel.getStyleClass().add("title-label");
 
@@ -54,31 +112,73 @@ class MainMenuView extends BorderPane {
     BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
     try {
-    getStylesheets().add(CssLoader.getCssPath(MAIN_MENU_CSS));
+      getStylesheets().add(CssLoader.getCssPath(MAIN_MENU_CSS));
     } catch (CssLoaderException e) {
       DialogUtil.exception("CSS file not found: ", e);
     }
   }
 
-  Button getSnakesBtn()  { return snakesBtn;  }
-  Button getTttBtn()     { return tttBtn;     }
+  /**
+   * Gets the button for launching the Snakes and Ladders game.
+   *
+   * @return the Snakes and Ladders button.
+   */
+  Button getSnakesBtn() { return snakesBtn; }
+
+  /**
+   * Gets the button for launching the Tic Tac Toe game.
+   *
+   * @return the Tic Tac Toe button.
+   */
+  Button getTttBtn() { return tttBtn; }
+
+  /**
+   * Gets the button for launching the Connect Four game.
+   *
+   * @return the Connect Four button.
+   */
   Button getConnectBtn() { return connectBtn; }
-  Button getExitBtn()    { return exitBtn;    }
+
+  /**
+   * Gets the button for exiting the application.
+   *
+   * @return the exit button.
+   */
+  Button getExitBtn() { return exitBtn; }
 }
 
-
+/**
+ * Controller for the main menu.
+ * Handles user interactions and routes actions to the appropriate game or functionality.
+ *
+ * @author tiniuspre
+ * @version 25.04.2025
+ * @since 25.03.2025
+ */
 class MainMenuController {
+
+  /**
+   * The view component of the main menu.
+   */
   private final MainMenuView view;
 
+  /**
+   * Constructs the main menu controller and wires actions to the buttons.
+   *
+   * @param view the view component of the main menu.
+   */
   MainMenuController(MainMenuView view) {
     this.view = view;
     wireActions();
   }
 
+  /**
+   * Wires actions to the buttons in the main menu.
+   */
   private void wireActions() {
     view.getSnakesBtn().setOnAction(e -> GameRouter.launch(GameId.SNAKES_AND_LADDERS));
-    view.getTttBtn().setOnAction   (e -> GameRouter.launch(GameId.TIC_TAC_TOE));
+    view.getTttBtn().setOnAction(e -> GameRouter.launch(GameId.TIC_TAC_TOE));
     view.getConnectBtn().setOnAction(e -> GameRouter.launch(GameId.CONNECT_FOUR));
-    view.getExitBtn().setOnAction  (e -> Platform.exit());
+    view.getExitBtn().setOnAction(e -> Platform.exit());
   }
 }
