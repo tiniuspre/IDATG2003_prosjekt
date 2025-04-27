@@ -22,5 +22,9 @@ public enum GameId {
   /**
    * Identifier for the Tic Tac Toe game.
    */
-  TIC_TAC_TOE
+  TIC_TAC_TOE,
+  /**
+   * Identifier for the Settings menu.
+   */
+  SETTINGS
 }
