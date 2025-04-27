@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @version 31.03.2025
  * @since 11.03.2025
  */
-public class JsonHandler extends AbstractFileHandler {
+public final class JsonHandler extends AbstractFileHandler {
   /**
    * The LOGGER object is used to log messages to the console.
    */
@@ -35,9 +35,10 @@ public class JsonHandler extends AbstractFileHandler {
    *
    * @param inputPath the path to the json file.
    */
-  public JsonHandler(final String inputPath) throws IOException {
+  public JsonHandler(final String inputPath) {
     super(inputPath);
   }
+
 
 
   /**
@@ -45,16 +46,8 @@ public class JsonHandler extends AbstractFileHandler {
    *
    * @param obj the object to write to the json file.
    */
-  public void writeToFile(final Object obj) throws IOException {
-    File jsonFile = new File(getPath());
-    if (jsonFile.getParentFile().mkdirs()) {
-      LOGGER.log(Level.WARNING, "Directory not found, "
-          + "created new directory at: " + jsonFile.getParentFile());
-    }
-    if (jsonFile.createNewFile()) {
-      LOGGER.log(Level.WARNING, "File not found, "
-          + "created new file at: " + jsonFile);
-    }
+  public void writeToFile(final Object obj) {
+    File jsonFile = createDir();
     try {
       OBJECT_MAPPER.writeValue(jsonFile, obj);
       LOGGER.log(Level.INFO, "File written to: " + jsonFile);
@@ -64,27 +57,42 @@ public class JsonHandler extends AbstractFileHandler {
   }
 
   /**
+   * Creates a directory for the json file if it does not exist.
+   *
+   * @return the json file.
+   * @throws JsonHandlerException if an error occurs while creating the file.
+   */
+  private File createDir() {
+    File jsonFile = new File(getPath());
+    try {
+      if (jsonFile.getParentFile().mkdirs()) {
+        LOGGER.log(Level.WARNING, "Directory not found, "
+            + "created new directory at: " + jsonFile.getParentFile());
+      }
+      if (jsonFile.createNewFile()) {
+        LOGGER.log(Level.WARNING, "File not found, "
+            + "created new file at: " + jsonFile);
+      }
+    } catch (IOException e) {
+      throw new JsonHandlerException("I/O error occurred "
+          + "while creating the file: " + e.getMessage());
+    }
+    return jsonFile;
+  }
+
+  /**
    * Read from a json file.
    *
    * @param type the type of object to read from the json file.
    * @param <T> the type of object to read from the json file.
    * @return a list of objects read from the json file.
-   * @throws IOException if an error occurs while reading from the file.
    */
   @Override
-  public <T> List<T> readFromFile(final Class<T> type) throws IOException {
+  public <T> List<T> readFromFile(final Class<T> type) {
     if (type == null) {
       throw new NullPointerException("Type cannot be null");
     }
-    File jsonFile = new File(getPath());
-    if (jsonFile.getParentFile().mkdirs()) {
-      LOGGER.log(Level.WARNING, "Directory not found, "
-          + "created new directory at: " + jsonFile.getParentFile());
-    }
-    if (jsonFile.createNewFile()) {
-      LOGGER.log(Level.WARNING, "File not found, "
-          + "created new file at: " + jsonFile);
-    }
+    File jsonFile = createDir();
     try {
       return OBJECT_MAPPER.readValue(jsonFile, OBJECT_MAPPER
           .getTypeFactory().constructCollectionType(List.class, type));

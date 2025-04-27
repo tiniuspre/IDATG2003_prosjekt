@@ -25,9 +25,8 @@ public final class CsvHandler extends AbstractFileHandler {
    * Constructor for the CsvHandler class.
    *
    * @param inputPath the path of the csv file.
-   * @throws IOException if an I/O error occurs.
    */
-  public CsvHandler(final String inputPath) throws IOException {
+  public CsvHandler(final String inputPath) {
     super(inputPath);
   }
 
@@ -36,18 +35,19 @@ public final class CsvHandler extends AbstractFileHandler {
    *
    * @param <T> the type of objects in the list
    * @param records the list of objects to write
-   * @throws IOException if an I/O error occurs
+   * @throws CsvHandlerException if an I/O error occurs.
    * @throws IllegalArgumentException if the records list is null or empty
    */
-  public <T> void writeToFile(final List<T> records) throws IOException {
+  public <T> void writeToFile(final List<T> records) {
     String filePath = getPath();
     if (records == null || records.isEmpty()) {
       throw new CsvHandlerException("Records list is empty.", Level.SEVERE);
     }
     // Creates BufferedWriter to write line by line.
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+      // Get fields of class.
       List<Field> fields = CsvUtils
-          .getAllFields(records.getFirst().getClass());
+          .getFilteredFields(records.getFirst().getClass());
       // Write CSV Data
       for (T record : records) {
         // Get values of fields.
@@ -66,6 +66,9 @@ public final class CsvHandler extends AbstractFileHandler {
         writer.write(String.join(",", values));
         writer.newLine();
       }
+    } catch (IOException e) {
+      throw new CsvHandlerException("I/O error: "
+          + e.getMessage(), Level.SEVERE);
     }
   }
 
@@ -79,6 +82,7 @@ public final class CsvHandler extends AbstractFileHandler {
   public <T> List<T> readFromFile(final Class<T> type) {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
+    List<Field> fields = CsvUtils.getFilteredFields(type);
 
     // Creates BufferedReader to read line by line.
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -86,11 +90,14 @@ public final class CsvHandler extends AbstractFileHandler {
       while ((line = reader.readLine()) != null) {
         // Declare regex.
         String[] values = line.split(",");
+        // Check if line has correct number of values.
+        if (values.length != fields.size()) {
+          throw new CsvHandlerException("Invalid CSV format.", Level.SEVERE);
+        }
         // Get Constructor of generic class.
         T record = type.getDeclaredConstructor().newInstance();
         // Get fields of generic class.
-        List<Field> fields = CsvUtils.getAllFields(type);
-        // Set values to fields.
+
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
           CsvUtils.setField(record, field, values[i]);

@@ -11,10 +11,12 @@ import java.util.logging.Logger;
 
 /**
  * Abstract class for handling file operations.
- * Provides methods to create, set path, and read from files.
+ *
+ * <p>Provides methods to create, set path, and read from files. Writing
+ * is handled in individual concrete classes due to differences.</p>
  *
  * @author jonastomren
- * @version 31.03.2025
+ * @version 27.04.2025
  * @since 31.03.2025
  */
 public abstract class AbstractFileHandler {
@@ -32,9 +34,8 @@ public abstract class AbstractFileHandler {
    * Constructor to initialize the file handler with the given path.
    *
    * @param inputPath The path to the file.
-   * @throws IOException If an I/O error occurs.
    */
-  public AbstractFileHandler(final String inputPath) throws IOException {
+  public AbstractFileHandler(final String inputPath) {
     setPath(inputPath);
   }
 
@@ -44,28 +45,32 @@ public abstract class AbstractFileHandler {
    *
    * @param inputPath The inputPath where the new file should be created.
    * @return The created file.
-   * @throws IOException If an I/O error occurs.
    */
-  public static File createNewFile(final String inputPath) throws IOException {
-    File file = new File(inputPath);
-    if (file.getParentFile().mkdirs()) {
-      LOGGER.log(Level.WARNING, "Directory not found, "
-          + "created new directory at: " + file.getParentFile());
+  public static File createNewFile(final String inputPath) {
+    try {
+      File file = new File(inputPath);
+      if (file.getParentFile().mkdirs()) {
+        LOGGER.log(Level.WARNING, "Directory not found, "
+            + "created new directory at: " + file.getParentFile());
+      }
+      if (file.createNewFile()) {
+        LOGGER.log(Level.WARNING,
+            "File not found, created new file at: " + file);
+      }
+      return file;
+    } catch (IOException e) {
+      throw new FileHandlerException("I/O error when creating file:"
+          + e.getMessage());
     }
-    if (file.createNewFile()) {
-      LOGGER.log(Level.WARNING, "File not found, created new file at: " + file);
-    }
-    return file;
   }
 
   /**
    * Sets the path for the CSV or JSON file.
    *
    * @param inputPath The path to the file.
-   * @throws IOException If an I/O error occurs.
    * @throws IllegalArgumentException If the path is invalid.
    */
-  public void setPath(final String inputPath) throws IOException {
+  public void setPath(final String inputPath) {
     if (inputPath == null || inputPath.isBlank()) {
       throw new IllegalArgumentException("Path cannot be null.");
     }

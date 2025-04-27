@@ -1,5 +1,7 @@
 package snakesandladders;
 
+import java.io.IOException;
+
 /**
  * The {@code TestGameApp} class is the temporary main class
  * for the test snaked and ladders game.
@@ -27,7 +29,7 @@ public final class SnakesAndLaddersApp {
    *
    * @param args the command-line arguments.
    */
-  public static void main(final String[] args) {
+  public static void main(final String[] args) throws IOException {
     TEST_GAME.addPlayer("Alice", "hat");
     TEST_GAME.addPlayer("Bob", "car");
     TEST_GAME.setBoard();
