@@ -31,7 +31,7 @@ import static constants.UiConstants.MENU_BUTTON_PADDING;
 import static constants.UiConstants.MENU_V_BOX_SPACING;
 import static constants.UiConstants.SNAKES_LADDERS;
 import static constants.UiConstants.TIC_TAC_TOE;
-import static constants.UiConstants.SETTINGS;
+import static constants.UiConstants.SETTINGS_ICON;
 
 
 /**
@@ -145,7 +145,7 @@ class MainMenuView extends BorderPane {
    */
   private final Button exitBtn = new Button(EXIT);
 
-  private final Button SettingsBtn = new Button(SETTINGS);
+  private final Button SettingsBtn = new Button(SETTINGS_ICON);
 
   /**
    * Constructs the main menu view and builds the user interface.
@@ -222,6 +222,11 @@ class MainMenuView extends BorderPane {
     return exitBtn;
   }
 
+  /**
+   * Gets the button for launching the settings menu.
+   *
+   * @return the settings button.
+   */
   Button getSettingsBtn() { return SettingsBtn; }
 }
 
