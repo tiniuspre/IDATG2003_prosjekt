@@ -66,6 +66,11 @@ public final class UiConstants {
   public static final String SETTINGS_BUTTON_ID = "settings-button";
 
   /**
+   * Settings title id for css.
+   */
+  public static final String SETTINGS_TITLE_ID = "settings-title";
+
+  /**
    * The title of the settings menu.
    */
   public static final String SETTINGS = "Settings";

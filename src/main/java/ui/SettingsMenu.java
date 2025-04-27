@@ -8,12 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import ui.exceptions.CssLoaderException;
+import ui.util.CssLoader;
+import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.SETTINGS;
-import static constants.UiConstants.CHANGE_NAME;
-import static constants.UiConstants.MENU_V_BOX_SPACING;
-import static constants.UiConstants.MENU_BUTTON_PADDING;
+import static constants.UiConstants.*;
 
 /**
  * SettingsMenu class representing the settings menu screen.
@@ -69,11 +69,18 @@ class SettingsMenuView extends BorderPane {
         MENU_V_BOX_SPACING,
         changeNameButton
     );
-    setTop(titleLabel);
+    titleLabel.setId(SETTINGS_TITLE_ID);
+    VBox title = new VBox(titleLabel);
+    setTop(title);
+    title.setAlignment(Pos.CENTER);
     settingsMenu.setAlignment(Pos.CENTER);
     settingsMenu.setPadding(new Insets(MENU_BUTTON_PADDING));
-
-
+    setCenter(settingsMenu);
+    try {
+      getStylesheets().add(CssLoader.getCssPath(SETTINGS_MENU_CSS));
+    } catch (CssLoaderException e) {
+      DialogUtil.exception("CSS file not found: ", e);
+    }
   }
 
   Button getChangeNameButton() {return changeNameButton;}

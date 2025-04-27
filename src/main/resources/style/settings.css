@@ -32,3 +32,9 @@
     -fx-border-width: 2;
     -fx-border-radius: 8;
 }
+
+#settings-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #15396b;
+}
