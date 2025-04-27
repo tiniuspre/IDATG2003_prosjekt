@@ -12,9 +12,11 @@ import java.util.stream.Stream;
 
 /**
  * The {@code BoardLoader} class is responsible for loading
- * the configuration of the game boards. After use
+ * the configuration of the game boards.
+ *
+ * <p>After use
  * the dedicated game loaders should be used to load
- * each individual board.
+ * each individual board.</p>
  *
  * @author jonastomren
  * @version 26.04.2025
