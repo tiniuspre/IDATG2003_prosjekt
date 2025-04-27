@@ -145,6 +145,9 @@ class MainMenuView extends BorderPane {
    */
   private final Button exitBtn = new Button(EXIT);
 
+  /**
+   * Button to launch the settings menu.
+   */
   private final Button SettingsBtn = new Button(SETTINGS_ICON);
 
   /**
