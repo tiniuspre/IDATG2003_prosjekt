@@ -11,13 +11,27 @@ import java.util.logging.Logger;
  * @since 27.04.2025
  */
 public class BoardLoadException extends BaseBoardException {
-
+  /**
+   * Logger for logging errors and information.
+   */
   private static final Logger LOGGER = Logger
       .getLogger(BoardLoadException.class.getName());
 
+  /**
+   * Default constructor.
+   *
+   * @param message The error message.
+   */
   public BoardLoadException(String message) {
     super(message);
   }
+
+  /**
+   * Constructor for the BoardLoadException class.
+   *
+   * @param message The error message.
+   * @param level  The logging level for the error.
+   */
   public BoardLoadException(String message, Level level) {
     super(message);
     LOGGER.log(level, message);
