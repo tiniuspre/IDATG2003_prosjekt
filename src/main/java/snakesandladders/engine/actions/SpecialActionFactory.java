@@ -7,8 +7,9 @@ import snakesandladders.engine.board.tile.SnLTile;
 
 /**
  * Factory class for creating special actions in the Snakes and Ladders game.
- * This class generates specific actions
- * (e.g., Ladder, Snake, Switch) based on the action type.
+ *
+ * <p>This class generates specific actions
+ * (e.g., Ladder, Snake, Switch) based on the action type.</p>
  *
  * @author jonastomren
  * @version 25.04.2025
