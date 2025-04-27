@@ -20,7 +20,19 @@ import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.*;
+import static constants.UiConstants.MENU_V_BOX_SPACING;
+import static constants.UiConstants.SETTINGS_ICON;
+import static constants.UiConstants.MAIN_MENU;
+import static constants.UiConstants.SNAKES_LADDERS;
+import static constants.UiConstants.TIC_TAC_TOE;
+import static constants.UiConstants.CONNECT_FOUR;
+import static constants.UiConstants.EXIT;
+import static constants.UiConstants.MAIN_MENU_CSS;
+import static constants.UiConstants.MENU_BUTTON_PADDING;
+import static constants.UiConstants.APP_NAME;
+import static constants.UiConstants.APP_WIDTH;
+import static constants.UiConstants.APP_HEIGHT;
+import static constants.UiConstants.SETTINGS_BUTTON_ID;
 
 
 /**
