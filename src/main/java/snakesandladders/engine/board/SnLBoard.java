@@ -11,10 +11,11 @@ import java.util.List;
 /**
  * The {@code SnakesAndLaddersBoard} class represents
  * the game board for the Snakes and Ladders game.
- * It extends the {@code Board} class and includes
+ *
+ * <p>It extends the {@code Board} class and includes
  * additional properties such as snakes, ladders, switches, and size.
  * This class is designed to be compatible
- * with JSON serialization and deserialization.
+ * with JSON serialization and deserialization.</p>
  *
  * @author jonastomren
  * @version 25.04.2025
