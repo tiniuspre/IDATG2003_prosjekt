@@ -2,6 +2,7 @@ package ui.launcher;
 
 import ui.GameId;
 import ui.MainMenuApp;
+import ui.exceptions.UILoaderException;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
@@ -36,7 +37,24 @@ public final class GameRouter {
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
   );
 
-  public static void init(MainMenuApp app) {
+  /**
+   * Initializes the GameRouter with the main application instance.
+   *
+   * @param app the main application instance to be used for routing.
+   */
+  public static void init(final MainMenuApp app) {
+    mainApp = app;
+  }
+
+  /**
+   * Sets the main application instance.
+   *
+   * @param app the main application instance to be set.
+   */
+  public void setMainApp(final MainMenuApp app) {
+    if (mainApp == null) {
+      throw new UILoaderException("Main application cannot be null");
+    }
     mainApp = app;
   }
 
