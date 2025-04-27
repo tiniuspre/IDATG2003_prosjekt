@@ -19,14 +19,14 @@ import snakesandladders.engine.board.SnLTileChecker;
 
 
 /**
- * The {@code SnakesAndLadders} class represents the snaked and ladders game.
+ * The {@code SnakesAndLadders} class represents the snakes and ladders game.
  *
  * <p>The game is played on a board with snakes and ladders.
  * The players take turns to roll dice
  * and move their pieces on the board. If a player lands on a snake tile,
  * the player moves back to the tail of the snake.
  * If a player lands on a ladder tile, the player climbs the ladder to the top.
- * The game is won by the player who reaches the end of the board first.
+ * The game is won by the player who reaches the end of the board first.</p>
  *
  * @author jonastomren
  * @version 25.04.2025
