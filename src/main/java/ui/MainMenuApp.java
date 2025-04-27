@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import ui.exceptions.CssLoaderException;
+import ui.exceptions.UILoaderException;
 import ui.launcher.GameRouter;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
@@ -60,21 +61,40 @@ public class MainMenuApp extends Application {
    */
   @Override
   public void start(final Stage primaryStage) {
-    this.primaryStage = primaryStage;
+    setPrimaryStage(primaryStage);
     GameRouter.init(this);
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
     primaryStage.show();
   }
 
-  public void switchTo(GameScreen screen) {
-    Parent view = screen.getView();
-    if (view != null && primaryStage != null) {
-      primaryStage.getScene().setRoot(view);
+  /**
+   * Switches the current view to the specified game screen.
+   *
+   * @param screen the game screen to switch to.
+   */
+  public void switchTo(final GameScreen screen) {
+    Parent gameView = screen.getView();
+    if (gameView != null && primaryStage != null) {
+      primaryStage.getScene().setRoot(gameView);
     } else {
-      DialogUtil.error("Could not load game", "No view found");
+      DialogUtil.error("Could not load game", "No gameView found");
     }
     primaryStage.show();
+  }
+
+  /**
+   * Sets the primary stage of the application.
+   *
+   * <p>Only to be called at the start() method of the app.</p>
+   *
+   * @param stage the primary stage of the application.
+   */
+  public void setPrimaryStage(final Stage stage) {
+    if (stage == null) {
+      throw new UILoaderException("Stage is null");
+    }
+    this.primaryStage = stage;
   }
 
   /**
