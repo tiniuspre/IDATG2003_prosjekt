@@ -55,10 +55,12 @@ public final class UiConstants {
    */
   public static final String MAIN_MENU = "Main Menu";
 
+  public static final String SETTINGS = "Settings";
+
   /**
    * The title of the settings menu.
    */
-  public static final String SETTINGS_TITLE = "Settings";
+  public static final String SETTINGS_ICON = "⚙";
 
   /**
    * The label for the exit button.
