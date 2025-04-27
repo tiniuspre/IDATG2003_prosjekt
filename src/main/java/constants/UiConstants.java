@@ -36,6 +36,11 @@ public final class UiConstants {
   public static final String MAIN_MENU_CSS = "/style/menu.css";
 
   /**
+   * The path to the settings menu CSS file.
+   */
+  public static final String SETTINGS_MENU_CSS = "/style/settings.css";
+
+  /**
    * The label for the Snakes and Ladders game button.
    */
   public static final String SNAKES_LADDERS = "Snakes & Ladders";
