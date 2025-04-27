@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * is handled in individual concrete classes due to differences.</p>
  *
  * @author jonastomren
- * @version 31.03.2025
+ * @version 27.04.2025
  * @since 31.03.2025
  */
 public abstract class AbstractFileHandler {
