@@ -13,7 +13,12 @@ import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.*;
+import static constants.UiConstants.SETTINGS_MENU_CSS;
+import static constants.UiConstants.SETTINGS;
+import static constants.UiConstants.MENU_V_BOX_SPACING;
+import static constants.UiConstants.CHANGE_NAME;
+import static constants.UiConstants.SETTINGS_TITLE_ID;
+import static constants.UiConstants.MENU_BUTTON_PADDING;
 
 /**
  * SettingsMenu class representing the settings menu screen.
