@@ -17,7 +17,7 @@ public class Ladder implements SpecialAction {
    * Ladder positions map where the key is the starting position
    * and the value is the ending position.
    */
-  private final Map<Integer, Integer> ladderPositions;
+  private Map<Integer, Integer> ladderPositions;
 
   /**
    * Constructor for Ladder.
@@ -26,7 +26,7 @@ public class Ladder implements SpecialAction {
    * @param from The starting position of the ladder.
    */
   public Ladder(final int to, final int from) {
-    this.ladderPositions = setLadderPositions(to, from);
+    setLadderPositions(to,from);
   }
 
   /**
@@ -34,11 +34,14 @@ public class Ladder implements SpecialAction {
    *
    * @param to the ending position of the ladder.
    * @param from the starting position of the ladder.
-   * @return a map of ladder positions.
    */
-  public Map<Integer, Integer> setLadderPositions(final int to,
-                                                  final int from) {
-    return Map.of(from,  to);
+  public void setLadderPositions(final int to,
+                                 final int from) {
+    if (to <= from) {
+      throw new SpecialActionException("Invalid ladder positions: "
+          + to + " <= " + from);
+    }
+    this.ladderPositions = Map.of(from, to);
   }
 
   /**
