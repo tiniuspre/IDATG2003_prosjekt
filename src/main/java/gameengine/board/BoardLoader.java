@@ -65,7 +65,7 @@ public class BoardLoader {
    *
    * @param boardConfigs the list of SnLBoardConfig objects
    */
-  @JsonSetter("boardConfigs")
+  @JsonSetter("snLBoards")
   public void setSnLBoards(final List<SnLBoardConfig> boardConfigs) {
     if (boardConfigs == null || boardConfigs.isEmpty()) {
       throw new SnLBoardException(
