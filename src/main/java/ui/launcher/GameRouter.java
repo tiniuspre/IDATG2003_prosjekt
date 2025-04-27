@@ -2,6 +2,7 @@ package ui.launcher;
 
 import ui.GameId;
 import ui.MainMenuApp;
+import ui.SettingsMenu;
 import ui.exceptions.UILoaderException;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
@@ -35,6 +36,8 @@ public final class GameRouter {
       // TODO : Add game implementations to the map
       // EXAMPLE: GameId.SNAKES_AND_LADDERS,
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
+      GameId.SETTINGS,
+      SettingsMenu::new
   );
 
   /**
@@ -52,7 +55,7 @@ public final class GameRouter {
    * @param app the main application instance to be set.
    */
   public static void setMainApp(final MainMenuApp app) {
-    if (mainApp == null) {
+    if (app == null) {
       throw new UILoaderException("Main application cannot be null");
     }
     mainApp = app;
