@@ -22,7 +22,7 @@ public class BoardLoadException extends BaseBoardException {
    *
    * @param message The error message.
    */
-  public BoardLoadException(String message) {
+  public BoardLoadException(final String message) {
     super(message);
   }
 
@@ -32,7 +32,7 @@ public class BoardLoadException extends BaseBoardException {
    * @param message The error message.
    * @param level  The logging level for the error.
    */
-  public BoardLoadException(String message, Level level) {
+  public BoardLoadException(final String message, final Level level) {
     super(message);
     LOGGER.log(level, message);
   }
