@@ -26,7 +26,7 @@ public class Ladder implements SpecialAction {
    * @param from The starting position of the ladder.
    */
   public Ladder(final int to, final int from) {
-    setLadderPositions(to,from);
+    setLadderPositions(to, from);
   }
 
   /**

@@ -30,9 +30,7 @@ class LadderTest {
   @Test
   @DisplayName("Exception is thrown when ladder end position is invalid")
   void exceptionThrownWhenLadderEndPositionIsInvalid() {
-    Ladder invalidLadder = new Ladder(5, 10);
-    player.setPosition(10);
-    assertThrows(IllegalArgumentException.class, () -> invalidLadder.apply(player));
+    assertThrows(SpecialActionException.class, () -> new Ladder(5, 10));
   }
 
   @Test
