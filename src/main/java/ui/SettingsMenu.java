@@ -10,22 +10,53 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.*;
+import static constants.UiConstants.SETTINGS;
+import static constants.UiConstants.CHANGE_NAME;
+import static constants.UiConstants.MENU_V_BOX_SPACING;
+import static constants.UiConstants.MENU_BUTTON_PADDING;
 
+/**
+ * SettingsMenu class representing the settings menu screen.
+ *
+ * <p>This class implements the GameScreen interface
+ * to be sent to the GAMES map of the Main menu.</p>
+ *
+ * @author jonastomren
+ * @version 27.04.2025
+ * @since 27.04.2025
+ * @see ui.util.GameScreen
+ */
 public class SettingsMenu implements GameScreen {
+  /**
+   * The view component of the settings menu.
+   */
+  private final SettingsMenuView view = new SettingsMenuView();
+  /**
+   * The controller component of the settings menu.
+   */
+  private final SettingsMenuController controller = new SettingsMenuController(view);
 
-
+  /**
+   * Returns the view of the settings menu.
+   *
+   * @return the view component of the settings menu
+   */
   @Override
   public Parent getView() {
-    SettingsMenuView settingsMenuView = new SettingsMenuView();
-    settingsMenuView.getStylesheets().add(MAIN_MENU_CSS);
-    return settingsMenuView;
+    return view;
   }
 }
 
+/**
+ * SettingsMenuView class representing the view of the settings menu.
+ *
+ * @author jonastomren
+ * @version 27.04.2025
+ * @since 27.04.2025
+ */
 class SettingsMenuView extends BorderPane {
 
-  private final Label titleLabel = new Label(SETTINGS_TITLE);
+  private final Label titleLabel = new Label(SETTINGS);
 
   private final Button changeNameButton = new Button(CHANGE_NAME);
 
@@ -44,16 +75,34 @@ class SettingsMenuView extends BorderPane {
 
 
   }
+
+  Button getChangeNameButton() {return changeNameButton;}
 }
 
+/**
+ * The controller for the settings menu.
+ *
+ *
+ */
 class SettingsMenuController {
-  private final SettingsMenu view;
+  /**
+   * The view component of the settings menu.
+   */
+  private final SettingsMenuView view;
 
-  SettingsMenuController(final SettingsMenu view) {
+  /**
+   * Constructor for the SettingsMenuController.
+   *
+   * @param view the view component of the settings menu.
+   */
+  SettingsMenuController(final SettingsMenuView view) {
     this.view = view;
+    wireButtons();
   }
 
-  // Add methods to handle settings logic here
+  private void wireButtons() {
+    // TODO: Add action listeners to buttons
+  }
 }
 
 
