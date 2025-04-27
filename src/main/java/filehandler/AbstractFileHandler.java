@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 /**
  * Abstract class for handling file operations.
- * Provides methods to create, set path, and read from files.
+ *
+ * <p>Provides methods to create, set path, and read from files. Writing
+ * is handled in individual concrete classes due to differences.</p>
  *
  * @author jonastomren
  * @version 31.03.2025
