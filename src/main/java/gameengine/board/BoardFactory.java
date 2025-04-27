@@ -51,7 +51,7 @@ public final class BoardFactory {
     } catch (Exception e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
           "Unexpected error while loading board: " + e.getMessage(), e);
-      return Optional.empty();
+      throw new BoardLoadException("Error loading board: " + e.getMessage());
     }
   }
 }
