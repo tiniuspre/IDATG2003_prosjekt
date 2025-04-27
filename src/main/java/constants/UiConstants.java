@@ -56,9 +56,19 @@ public final class UiConstants {
   public static final String MAIN_MENU = "Main Menu";
 
   /**
+   * The title of the settings menu.
+   */
+  public static final String SETTINGS_TITLE = "Settings";
+
+  /**
    * The label for the exit button.
    */
   public static final String EXIT = "Exit";
+
+  /**
+   * The label for the settings button.
+   */
+  public static final String CHANGE_NAME = "Change Name";
 
   /**
    * The vertical spacing between menu buttons in the main menu.
