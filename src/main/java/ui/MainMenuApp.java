@@ -20,18 +20,7 @@ import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.APP_NAME;
-import static constants.UiConstants.APP_HEIGHT;
-import static constants.UiConstants.APP_WIDTH;
-import static constants.UiConstants.CONNECT_FOUR;
-import static constants.UiConstants.EXIT;
-import static constants.UiConstants.MAIN_MENU;
-import static constants.UiConstants.MAIN_MENU_CSS;
-import static constants.UiConstants.MENU_BUTTON_PADDING;
-import static constants.UiConstants.MENU_V_BOX_SPACING;
-import static constants.UiConstants.SNAKES_LADDERS;
-import static constants.UiConstants.TIC_TAC_TOE;
-import static constants.UiConstants.SETTINGS_BUTTON_ID;
+import static constants.UiConstants.*;
 
 
 /**
@@ -148,7 +137,7 @@ class MainMenuView extends BorderPane {
   /**
    * Button to launch the settings menu.
    */
-  private final Button SettingsBtn = new Button();
+  private final Button settingsBtn = new Button(SETTINGS_ICON);
 
   /**
    * Constructs the main menu view and builds the user interface.
@@ -179,7 +168,7 @@ class MainMenuView extends BorderPane {
     // TODO: Add button icon
     getSettingsBtn().setId(SETTINGS_BUTTON_ID);
     HBox topRight = new HBox(
-        SettingsBtn
+        settingsBtn
     );
     topRight.setAlignment(Pos.TOP_RIGHT);
     setTop(topRight);
@@ -231,7 +220,7 @@ class MainMenuView extends BorderPane {
    *
    * @return the settings button.
    */
-  Button getSettingsBtn() { return SettingsBtn; }
+  Button getSettingsBtn() { return settingsBtn; }
 }
 
 /**
