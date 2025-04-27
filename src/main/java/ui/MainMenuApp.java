@@ -231,7 +231,8 @@ class MainMenuView extends BorderPane {
    *
    * @return the settings button.
    */
-  Button getSettingsBtn() { return settingsBtn; }
+  Button getSettingsBtn() {
+    return settingsBtn; }
 }
 
 /**
