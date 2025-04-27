@@ -61,7 +61,7 @@ public final class UiConstants {
   public static final String SETTINGS = "Settings";
 
   /**
-   * The title of the settings menu.
+   * The icon of the settings button.
    */
   public static final String SETTINGS_ICON = "⚙";
 
