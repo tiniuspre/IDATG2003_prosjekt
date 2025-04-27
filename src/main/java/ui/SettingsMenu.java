@@ -40,7 +40,8 @@ public class SettingsMenu implements GameScreen {
   /**
    * The controller component of the settings menu.
    */
-  private final SettingsMenuController controller = new SettingsMenuController(view);
+  private final SettingsMenuController controller =
+      new SettingsMenuController(view);
 
   /**
    * Returns the view of the settings menu.
@@ -61,17 +62,29 @@ public class SettingsMenu implements GameScreen {
  * @since 27.04.2025
  */
 class SettingsMenuView extends BorderPane {
-
+  /**
+   * The label for the title of the settings menu.
+   */
   private final Label titleLabel = new Label(SETTINGS);
-
+  /**
+   * The button for changing the name.
+   */
   private final Button changeNameButton = new Button(CHANGE_NAME);
-
+  /**
+   * The button for going back to the main menu.
+   */
   private final Button backButton = new Button(BACK);
 
+  /**
+   * Constructor for the SettingsMenuView.
+   */
   SettingsMenuView() {
     buildUi();
   }
 
+  /**
+   * Builds the user interface for the settings menu.
+   */
   private void buildUi() {
     VBox settingsMenu = new VBox(
         MENU_V_BOX_SPACING,
@@ -92,9 +105,22 @@ class SettingsMenuView extends BorderPane {
     }
   }
 
-  Button getChangeNameButton() {return changeNameButton;}
+  /**
+   * Gets the button for changing the name.
+   *
+   * @return the change name button.
+   */
+  Button getChangeNameButton() {
+    return changeNameButton;
+  }
 
-  Button getBackButton() {return backButton;}
+  /**
+   * Gets the button for going back to the main menu.
+   *
+   * @return the back button.
+   */
+  Button getBackButton() {
+    return backButton; }
 }
 
 /**
@@ -113,10 +139,10 @@ class SettingsMenuController {
   /**
    * Constructor for the SettingsMenuController.
    *
-   * @param view the view component of the settings menu.
+   * @param menuView the view component of the settings menu.
    */
-  SettingsMenuController(final SettingsMenuView view) {
-    this.view = view;
+  SettingsMenuController(final SettingsMenuView menuView) {
+    this.view = menuView;
     wireButtons();
   }
 
