@@ -9,8 +9,10 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 /**
- * Utility class responsible for routing and launching games based on their identifiers.
- * Provides a centralized mechanism to manage game initialization and execution.
+ * Utility class responsible for routing
+ * and launching games based on their identifiers.
+ * Provides a centralized mechanism to
+ * manage game initialization and execution.
  *
  * @author tiniuspre
  * @version 25.04.2025
@@ -19,12 +21,15 @@ import java.util.function.Supplier;
 public final class GameRouter {
 
   /**
-   * A map associating game identifiers with their corresponding application suppliers.
-   * Each supplier is responsible for providing an instance of the game application.
+   * A map associating game identifiers
+   * with their corresponding application suppliers.
+   * Each supplier is responsible for
+   * providing an instance of the game application.
    */
   private static final Map<GameId, Supplier<Application>> GAMES = Map.of(
       // TODO : Add game implementations to the map
-      // EXAMPLE: GameId.SNAKES_AND_LADDERS, () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
+      // EXAMPLE: GameId.SNAKES_AND_LADDERS,
+      // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
   );
 
   /**
@@ -33,7 +38,7 @@ public final class GameRouter {
    *
    * @param id the identifier of the game to be launched.
    */
-  public static void launch(GameId id) {
+  public static void launch(final GameId id) {
     Supplier<Application> supplier = GAMES.get(id);
     if (supplier == null) {
       DialogUtil.error("Could not load game", String.valueOf(id));

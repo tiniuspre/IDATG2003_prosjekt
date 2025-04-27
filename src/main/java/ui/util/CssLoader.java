@@ -6,7 +6,8 @@ import java.net.URL;
 
 /**
  * Utility class for loading CSS files.
- * Provides methods to retrieve the path of a CSS file and handle related exceptions.
+ * Provides methods to retrieve
+ * the path of a CSS file and handle related exceptions.
  *
  * This class is final and cannot be instantiated.
  *
@@ -22,14 +23,17 @@ public final class CssLoader {
   private CssLoader() { }
 
   /**
-   * Retrieves the external form of the URL path for the specified CSS file.
-   * Throws a {@link CssLoaderException} if the file name is null, empty, or not found.
+   * Retrieves the external form of the URL
+   * path for the specified CSS file.
+   * Throws a {@link CssLoaderException} if the file
+   * name is null, empty, or not found.
    *
    * @param cssFile the name of the CSS file to load.
    * @return the external form of the URL path for the CSS file.
-   * @throws CssLoaderException if the CSS file name is null, empty, or not found.
+   * @throws CssLoaderException if the CSS file
+   * name is null, empty, or not found.
    */
-  public static String getCssPath(String cssFile) {
+  public static String getCssPath(final String cssFile) {
     if (cssFile == null || cssFile.isEmpty()) {
       throw new CssLoaderException("CSS file name cannot be null or empty");
     }

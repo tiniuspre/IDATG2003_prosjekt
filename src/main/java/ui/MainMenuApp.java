@@ -16,7 +16,17 @@ import ui.launcher.GameRouter;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
 
-import static constants.UiConstants.*;
+import static constants.UiConstants.APP_NAME;
+import static constants.UiConstants.APP_HEIGHT;
+import static constants.UiConstants.APP_WIDTH;
+import static constants.UiConstants.CONNECT_FOUR;
+import static constants.UiConstants.EXIT;
+import static constants.UiConstants.MAIN_MENU;
+import static constants.UiConstants.MAIN_MENU_CSS;
+import static constants.UiConstants.MENU_BUTTON_PADDING;
+import static constants.UiConstants.MENU_VBox_SPACING;
+import static constants.UiConstants.SNAKES_LADDERS;
+import static constants.UiConstants.TIC_TAC_TOE;
 
 /**
  * Main application class for the Main Menu.
@@ -44,7 +54,7 @@ public class MainMenuApp extends Application {
    * @param primaryStage the primary stage for this application.
    */
   @Override
-  public void start(Stage primaryStage) {
+  public void start(final Stage primaryStage) {
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
     primaryStage.show();
@@ -55,7 +65,9 @@ public class MainMenuApp extends Application {
    *
    * @param args the command-line arguments.
    */
-  public static void main(String[] args) { launch(args); }
+  public static void main(final String[] args) {
+    launch(args);
+  }
 }
 
 /**
@@ -96,7 +108,9 @@ class MainMenuView extends BorderPane {
   /**
    * Constructs the main menu view and builds the user interface.
    */
-  MainMenuView() { buildUi(); }
+  MainMenuView() {
+    buildUi();
+  }
 
   /**
    * Builds the user interface components and applies styles.
@@ -104,7 +118,13 @@ class MainMenuView extends BorderPane {
   private void buildUi() {
     titleLabel.getStyleClass().add("title-label");
 
-    VBox buttons = new VBox(MENU_VBox_SPACING, snakesBtn, tttBtn, connectBtn, exitBtn);
+    VBox buttons = new VBox(
+        MENU_VBox_SPACING,
+        snakesBtn,
+        tttBtn,
+        connectBtn,
+        exitBtn
+    );
     buttons.setAlignment(Pos.CENTER);
     buttons.setPadding(new Insets(MENU_BUTTON_PADDING));
 
@@ -123,33 +143,42 @@ class MainMenuView extends BorderPane {
    *
    * @return the Snakes and Ladders button.
    */
-  Button getSnakesBtn() { return snakesBtn; }
+  Button getSnakesBtn() {
+    return snakesBtn;
+  }
 
   /**
    * Gets the button for launching the Tic Tac Toe game.
    *
    * @return the Tic Tac Toe button.
    */
-  Button getTttBtn() { return tttBtn; }
+  Button getTttBtn() {
+    return tttBtn;
+  }
 
   /**
    * Gets the button for launching the Connect Four game.
    *
    * @return the Connect Four button.
    */
-  Button getConnectBtn() { return connectBtn; }
+  Button getConnectBtn() {
+    return connectBtn;
+  }
 
   /**
    * Gets the button for exiting the application.
    *
    * @return the exit button.
    */
-  Button getExitBtn() { return exitBtn; }
+  Button getExitBtn() {
+    return exitBtn;
+  }
 }
 
 /**
  * Controller for the main menu.
- * Handles user interactions and routes actions to the appropriate game or functionality.
+ * Handles user interactions and routes actions
+ * to the appropriate game or functionality.
  *
  * @author tiniuspre
  * @version 25.04.2025
@@ -165,10 +194,10 @@ class MainMenuController {
   /**
    * Constructs the main menu controller and wires actions to the buttons.
    *
-   * @param view the view component of the main menu.
+   * @param menuView the view component of the main menu.
    */
-  MainMenuController(MainMenuView view) {
-    this.view = view;
+  MainMenuController(final MainMenuView menuView) {
+    this.view = menuView;
     wireActions();
   }
 
@@ -176,9 +205,17 @@ class MainMenuController {
    * Wires actions to the buttons in the main menu.
    */
   private void wireActions() {
-    view.getSnakesBtn().setOnAction(e -> GameRouter.launch(GameId.SNAKES_AND_LADDERS));
-    view.getTttBtn().setOnAction(e -> GameRouter.launch(GameId.TIC_TAC_TOE));
-    view.getConnectBtn().setOnAction(e -> GameRouter.launch(GameId.CONNECT_FOUR));
-    view.getExitBtn().setOnAction(e -> Platform.exit());
+    view.getSnakesBtn().setOnAction(
+        e -> GameRouter.launch(GameId.SNAKES_AND_LADDERS)
+    );
+    view.getTttBtn().setOnAction(
+        e -> GameRouter.launch(GameId.TIC_TAC_TOE)
+    );
+    view.getConnectBtn().setOnAction(
+        e -> GameRouter.launch(GameId.CONNECT_FOUR)
+    );
+    view.getExitBtn().setOnAction(
+        e -> Platform.exit()
+    );
   }
 }
