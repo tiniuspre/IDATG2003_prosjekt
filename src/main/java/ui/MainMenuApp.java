@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import ui.exceptions.CssLoaderException;
 import ui.launcher.GameRouter;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
+import ui.util.GameScreen;
 
 import static constants.UiConstants.APP_NAME;
 import static constants.UiConstants.APP_HEIGHT;
@@ -42,7 +44,10 @@ public class MainMenuApp extends Application {
    * The view component of the main menu.
    */
   private final MainMenuView view = new MainMenuView();
-
+  /**
+   * The primary stage for the JavaFX application.
+   */
+  private Stage primaryStage;
   /**
    * The controller component of the main menu.
    */
@@ -55,8 +60,20 @@ public class MainMenuApp extends Application {
    */
   @Override
   public void start(final Stage primaryStage) {
+    this.primaryStage = primaryStage;
+    GameRouter.init(this);
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
+    primaryStage.show();
+  }
+
+  public void switchTo(GameScreen screen) {
+    Parent view = screen.getView();
+    if (view != null && primaryStage != null) {
+      primaryStage.getScene().setRoot(view);
+    } else {
+      DialogUtil.error("Could not load game", "No view found");
+    }
     primaryStage.show();
   }
 
