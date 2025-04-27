@@ -1,8 +1,10 @@
 package constants;
 
 /**
- * A utility class that contains constant values used throughout the application.
- * These constants include application settings, UI configurations, and error handling flags.
+ * A utility class that contains constant
+ * values used throughout the application.
+ * These constants include application settings,
+ * UI configurations, and error handling flags.
  *
  * This class is final and cannot be instantiated.
  * All fields are static and designed for global access.
@@ -59,14 +61,9 @@ public final class UiConstants {
   public static final String EXIT = "Exit";
 
   /**
-   * Flag indicating whether stack traces should be printed for exceptions.
-   */
-  public static boolean PRINT_STACK_TRACE = false;
-
-  /**
    * The vertical spacing between menu buttons in the main menu.
    */
-  public static final Integer MENU_VBox_SPACING = 15;
+  public static final Integer MENU_V_BOX_SPACING = 15;
 
   /**
    * The padding around menu buttons in the main menu.

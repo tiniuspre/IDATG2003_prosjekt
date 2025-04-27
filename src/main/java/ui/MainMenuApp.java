@@ -24,7 +24,7 @@ import static constants.UiConstants.EXIT;
 import static constants.UiConstants.MAIN_MENU;
 import static constants.UiConstants.MAIN_MENU_CSS;
 import static constants.UiConstants.MENU_BUTTON_PADDING;
-import static constants.UiConstants.MENU_VBox_SPACING;
+import static constants.UiConstants.MENU_V_BOX_SPACING;
 import static constants.UiConstants.SNAKES_LADDERS;
 import static constants.UiConstants.TIC_TAC_TOE;
 
@@ -119,7 +119,7 @@ class MainMenuView extends BorderPane {
     titleLabel.getStyleClass().add("title-label");
 
     VBox buttons = new VBox(
-        MENU_VBox_SPACING,
+        MENU_V_BOX_SPACING,
         snakesBtn,
         tttBtn,
         connectBtn,

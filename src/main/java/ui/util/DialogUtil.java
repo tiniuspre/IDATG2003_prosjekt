@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 import static constants.UiConstants.APP_NAME;
-import static constants.UiConstants.PRINT_STACK_TRACE;
 
 /**
  * Utility class for displaying dialog boxes
@@ -97,7 +96,7 @@ public final class DialogUtil {
       alert.setHeaderText(header);
       alert.setContentText(content);
       alert.showAndWait();
-      if (t != null && PRINT_STACK_TRACE) {
+      if (t != null) {
         t.printStackTrace();
       }
     });
