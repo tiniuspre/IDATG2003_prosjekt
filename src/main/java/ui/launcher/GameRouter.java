@@ -34,6 +34,7 @@ public final class GameRouter {
    */
   private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
       // TODO : Add game implementations to the map
+      // TODO : Add way to load main
       // EXAMPLE: GameId.SNAKES_AND_LADDERS,
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
       GameId.SETTINGS,

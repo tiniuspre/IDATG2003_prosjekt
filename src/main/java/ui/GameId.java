@@ -10,6 +10,10 @@ package ui;
  */
 public enum GameId {
   /**
+   * Identifier for the Main menu.
+   */
+  MAIN_MENU,
+  /**
    * Identifier for the Snakes and Ladders game.
    */
   SNAKES_AND_LADDERS,

@@ -121,7 +121,7 @@ class SettingsMenuController {
   }
 
   private void wireButtons() {
-    // TODO: Add action listeners to buttons
+
   }
 }
 
