@@ -85,7 +85,7 @@ public class SnLBoard extends Board {
    */
   public void setConfig(final SnLBoardConfig boardConfig) {
     if (boardConfig == null) {
-      throw new IllegalArgumentException("Board configuration cannot be null.");
+      throw new SnLBoardException("Board configuration cannot be null.");
     }
     setTiles(boardConfig.getSnakes().toList(),
         boardConfig.getLadders().toList(),
@@ -110,7 +110,7 @@ public class SnLBoard extends Board {
    */
   public void setBoardSize(final int width, final int height) {
     if (width <= 0 || height <= 0) {
-      throw new IllegalArgumentException("Invalid board size.");
+      throw new SnLBoardException("Invalid board size.");
     }
     this.size = width * height;
   }
@@ -123,7 +123,7 @@ public class SnLBoard extends Board {
    */
   public SnLTile getTile(final int position) {
     if (position < 0 || position >= tiles.size()) {
-      throw new IllegalArgumentException("Invalid tile position.");
+      throw new SnLBoardException("Invalid tile position.");
     }
     return tiles.get(position);
   }
@@ -135,7 +135,7 @@ public class SnLBoard extends Board {
    */
   public void setBoardName(final String name) {
     if (name == null || name.isEmpty()) {
-      throw new IllegalArgumentException("Board name cannot be null or empty.");
+      throw new SnLBoardException("Board name cannot be null or empty.");
     }
     this.boardName = name;
   }
