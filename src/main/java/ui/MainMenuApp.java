@@ -177,7 +177,6 @@ class MainMenuView extends BorderPane {
     setTop(titleLabel);
     BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
-    // TODO: Add button icon
     getSettingsBtn().setId(SETTINGS_BUTTON_ID);
     HBox topRight = new HBox(
         settingsBtn
