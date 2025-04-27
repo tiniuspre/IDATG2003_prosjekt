@@ -54,6 +54,7 @@ public final class UiConstants {
    * The title of the main menu.
    */
   public static final String MAIN_MENU = "Main Menu";
+
   /**
    * The title of the settings menu.
    */
