@@ -58,7 +58,7 @@ public class Ladder implements SpecialAction {
     if (endPos > startPos) {
       currentPlayer.setPosition(endPos);
     } else {
-      throw new IllegalArgumentException("Invalid ladder position: " + endPos);
+      throw new SpecialActionException("Invalid ladder position: " + endPos);
     }
     System.out.println(currentPlayer.getName()
         + " hit a ladder! Moved from " + startPos + " to " + endPos);

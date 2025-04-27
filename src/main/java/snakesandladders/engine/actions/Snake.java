@@ -56,7 +56,7 @@ public class Snake implements SpecialAction {
     if (endPos < startPos) {
       currentPlayer.setPosition(endPos);
     } else {
-      throw new IllegalArgumentException("Invalid snake position: " + endPos);
+      throw new SpecialActionException("Invalid snake position: " + endPos);
     }
     System.out.println(currentPlayer.getName()
         + " hit a snake! Moved from " + startPos + " to " + endPos);
