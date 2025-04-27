@@ -17,7 +17,7 @@ public class Snake implements SpecialAction {
    * Map of snake positions where the key is the start position
    * and the value is the end position.
    */
-  private final Map<Integer, Integer> snakePositions;
+  private Map<Integer, Integer> snakePositions;
 
   /**
    * Constructor for Snake.
@@ -26,7 +26,7 @@ public class Snake implements SpecialAction {
    * @param to The ending position of the snake.
    */
   public Snake(final int to, final int from) {
-    this.snakePositions = setSnakePositions(to, from);
+    setSnakePositions(to, from);
   }
 
   /**
@@ -34,14 +34,13 @@ public class Snake implements SpecialAction {
    *
    * @param to the ending position of the snake.
    * @param from the starting position of the snake.
-   * @return a map of snake positions.
    */
-  public Map<Integer, Integer> setSnakePositions(final int to, final int from) {
+  public void setSnakePositions(final int to, final int from) {
     if (to >= from) {
-      throw new IllegalArgumentException("Invalid snake positions: "
+      throw new SpecialActionException("Invalid snake positions: "
           + to + " >= " + from);
     }
-    return Map.of(from, to);
+    this.snakePositions = Map.of(from, to);
   }
   /**
    * Apply the snake action to the current player.
