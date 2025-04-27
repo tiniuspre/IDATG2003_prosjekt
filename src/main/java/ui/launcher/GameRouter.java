@@ -52,7 +52,7 @@ public final class GameRouter {
    * @param app the main application instance to be set.
    */
   public static void setMainApp(final MainMenuApp app) {
-    if (mainApp == null) {
+    if (app == null) {
       throw new UILoaderException("Main application cannot be null");
     }
     mainApp = app;

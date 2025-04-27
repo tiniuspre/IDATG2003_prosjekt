@@ -48,7 +48,7 @@ public class MainMenuApp extends Application {
   /**
    * The primary stage for the JavaFX application.
    */
-  private Stage primaryStage;
+  private Stage primaryAppStage;
   /**
    * The controller component of the main menu.
    */
@@ -61,7 +61,7 @@ public class MainMenuApp extends Application {
    */
   @Override
   public void start(final Stage primaryStage) {
-    setPrimaryStage(primaryStage);
+    setPrimaryAppStage(primaryStage);
     GameRouter.init(this);
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
@@ -75,12 +75,12 @@ public class MainMenuApp extends Application {
    */
   public void switchTo(final GameScreen screen) {
     Parent gameView = screen.getView();
-    if (gameView != null && primaryStage != null) {
-      primaryStage.getScene().setRoot(gameView);
+    if (gameView != null && primaryAppStage != null) {
+      primaryAppStage.getScene().setRoot(gameView);
     } else {
       DialogUtil.error("Could not load game", "No gameView found");
     }
-    primaryStage.show();
+    primaryAppStage.show();
   }
 
   /**
@@ -90,11 +90,11 @@ public class MainMenuApp extends Application {
    *
    * @param stage the primary stage of the application.
    */
-  public void setPrimaryStage(final Stage stage) {
+  public void setPrimaryAppStage(final Stage stage) {
     if (stage == null) {
       throw new UILoaderException("Stage is null");
     }
-    this.primaryStage = stage;
+    this.primaryAppStage = stage;
   }
 
   /**
