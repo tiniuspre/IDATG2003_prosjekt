@@ -37,8 +37,7 @@ public final class Router {
       // TODO : Add way to load main
       // EXAMPLE: GameId.SNAKES_AND_LADDERS,
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
-      GameId.SETTINGS,
-      SettingsMenu::new,
+      GameId.SETTINGS, SettingsMenu::new,
       GameId.MAIN_MENU, MainMenu::new
   );
 
