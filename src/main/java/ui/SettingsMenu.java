@@ -14,13 +14,7 @@ import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
-import static constants.UiConstants.SETTINGS_MENU_CSS;
-import static constants.UiConstants.SETTINGS;
-import static constants.UiConstants.MENU_V_BOX_SPACING;
-import static constants.UiConstants.CHANGE_NAME;
-import static constants.UiConstants.SETTINGS_TITLE_ID;
-import static constants.UiConstants.MENU_BUTTON_PADDING;
-import static constants.UiConstants.BACK;
+import static constants.UiConstants.*;
 
 /**
  * SettingsMenu class representing the settings menu screen.
@@ -72,6 +66,10 @@ class SettingsMenuView extends BorderPane {
    */
   private final Button changeNameButton = new Button(CHANGE_NAME);
   /**
+   * The button for changing the theme.
+   */
+  private final Button changeThemeButton = new Button(CHANGE_THEME);
+  /**
    * The button for going back to the main menu.
    */
   private final Button backButton = new Button(BACK);
@@ -90,6 +88,7 @@ class SettingsMenuView extends BorderPane {
     VBox settingsMenu = new VBox(
         MENU_V_BOX_SPACING,
         changeNameButton,
+        changeThemeButton,
         backButton
     );
     titleLabel.setId(SETTINGS_TITLE_ID);
