@@ -20,7 +20,7 @@ import java.util.function.Supplier;
  * @version 25.04.2025
  * @since 25.03.2025
  */
-public final class GameRouter {
+public final class Router {
   /**
    * The main application.
    */
@@ -38,7 +38,8 @@ public final class GameRouter {
       // EXAMPLE: GameId.SNAKES_AND_LADDERS,
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
       GameId.SETTINGS,
-      SettingsMenu::new
+      SettingsMenu::new,
+      GameId.MAIN_MENU, MainMenuApp::new
   );
 
   /**
@@ -85,5 +86,5 @@ public final class GameRouter {
   /**
    * Private constructor to prevent instantiation of this utility class.
    */
-  private GameRouter() { }
+  private Router() { }
 }
