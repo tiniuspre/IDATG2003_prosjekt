@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import ui.exceptions.CssLoaderException;
+import ui.launcher.Router;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
@@ -147,7 +148,9 @@ class SettingsMenuController {
   }
 
   private void wireButtons() {
-
+    view.getBackButton().setOnAction(
+        e -> Router.launch(GameId.MAIN_MENU)
+    );
   }
 }
 
