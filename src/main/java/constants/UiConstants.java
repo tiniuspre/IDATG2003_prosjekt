@@ -96,6 +96,11 @@ public final class UiConstants {
   public static final String CHANGE_NAME = "Change Name";
 
   /**
+   * The label for the change theme button.
+   */
+  public static final String CHANGE_THEME = "Change Theme";
+
+  /**
    * The vertical spacing between menu buttons in the main menu.
    */
   public static final Integer MENU_V_BOX_SPACING = 15;
