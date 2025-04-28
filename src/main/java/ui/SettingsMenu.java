@@ -134,7 +134,7 @@ class SettingsMenuView extends BorderPane {
  * The controller for the settings menu.
  *
  * @author jonastomren
- * @version 27.04.2025
+ * @version 28.04.2025
  * @since 27.04.2025
  */
 class SettingsMenuController {
