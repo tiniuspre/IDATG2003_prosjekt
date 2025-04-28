@@ -7,7 +7,7 @@ public class UIApplication extends Application {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    MainMenuApp mainMenuApp = new MainMenuApp();
+    MainMenu mainMenuApp = new MainMenu();
     mainMenuApp.startMain(stage);
   }
 
