@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @version 28.04.2025
  * @since 28.04.2025
  */
-public class UIApplication extends Application {
+public final class UIApplication extends Application {
   /**
    * The start method is the main entry point for JavaFX applications.
    *
