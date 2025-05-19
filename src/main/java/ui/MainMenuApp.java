@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,9 +13,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import ui.exceptions.CssLoaderException;
+import ui.exceptions.UILoaderException;
 import ui.launcher.GameRouter;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
+import ui.util.GameScreen;
 
 import static constants.UiConstants.APP_NAME;
 import static constants.UiConstants.APP_HEIGHT;
@@ -42,7 +45,10 @@ public class MainMenuApp extends Application {
    * The view component of the main menu.
    */
   private final MainMenuView view = new MainMenuView();
-
+  /**
+   * The primary stage for the JavaFX application.
+   */
+  private Stage primaryAppStage;
   /**
    * The controller component of the main menu.
    */
@@ -55,9 +61,40 @@ public class MainMenuApp extends Application {
    */
   @Override
   public void start(final Stage primaryStage) {
+    setPrimaryAppStage(primaryStage);
+    GameRouter.init(this);
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
     primaryStage.show();
+  }
+
+  /**
+   * Switches the current view to the specified game screen.
+   *
+   * @param screen the game screen to switch to.
+   */
+  public void switchTo(final GameScreen screen) {
+    Parent gameView = screen.getView();
+    if (gameView != null && primaryAppStage != null) {
+      primaryAppStage.getScene().setRoot(gameView);
+    } else {
+      DialogUtil.error("Could not load game", "No gameView found");
+    }
+    primaryAppStage.show();
+  }
+
+  /**
+   * Sets the primary stage of the application.
+   *
+   * <p>Only to be called at the start() method of the app.</p>
+   *
+   * @param stage the primary stage of the application.
+   */
+  public void setPrimaryAppStage(final Stage stage) {
+    if (stage == null) {
+      throw new UILoaderException("Stage is null");
+    }
+    this.primaryAppStage = stage;
   }
 
   /**

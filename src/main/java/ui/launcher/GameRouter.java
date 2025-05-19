@@ -1,9 +1,10 @@
 package ui.launcher;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import ui.GameId;
+import ui.MainMenuApp;
+import ui.exceptions.UILoaderException;
 import ui.util.DialogUtil;
+import ui.util.GameScreen;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -19,6 +20,10 @@ import java.util.function.Supplier;
  * @since 25.03.2025
  */
 public final class GameRouter {
+  /**
+   * The main application.
+   */
+  private static MainMenuApp mainApp;
 
   /**
    * A map associating game identifiers
@@ -26,9 +31,30 @@ public final class GameRouter {
    * Each supplier is responsible for
    * providing an instance of the game application.
    */
-  private static final Map<GameId, Supplier<Application>> GAMES = Map.of(
+  private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
       GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new
   );
+
+  /**
+   * Initializes the GameRouter with the main application instance.
+   *
+   * @param app the main application instance to be used for routing.
+   */
+  public static void init(final MainMenuApp app) {
+    setMainApp(app);
+  }
+
+  /**
+   * Sets the main application instance.
+   *
+   * @param app the main application instance to be set.
+   */
+  public static void setMainApp(final MainMenuApp app) {
+    if (app == null) {
+      throw new UILoaderException("Main application cannot be null");
+    }
+    mainApp = app;
+  }
 
   /**
    * Launches the game associated with the specified game identifier.
@@ -37,14 +63,14 @@ public final class GameRouter {
    * @param id the identifier of the game to be launched.
    */
   public static void launch(final GameId id) {
-    Supplier<Application> supplier = GAMES.get(id);
+    Supplier<GameScreen> supplier = GAMES.get(id);
     if (supplier == null) {
       DialogUtil.error("Could not load game", String.valueOf(id));
       return;
     }
-    Stage stage = new Stage();
     try {
-      supplier.get().start(stage);
+      GameScreen game = supplier.get();
+      mainApp.switchTo(game);
     } catch (Exception ex) {
       DialogUtil.exception("An exception occurred while launching " + id, ex);
     }
