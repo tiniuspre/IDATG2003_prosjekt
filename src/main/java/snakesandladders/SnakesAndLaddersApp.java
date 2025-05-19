@@ -1,6 +1,8 @@
 package snakesandladders;
 
-import java.io.IOException;
+import javafx.application.Application;
+import snakesandladders.ui.SnakesAndLaddersUI;
+
 
 /**
  * The {@code TestGameApp} class is the temporary main class
@@ -12,10 +14,6 @@ import java.io.IOException;
  * @see SnakesAndLadders
  */
 public final class SnakesAndLaddersApp {
-  /**
-   * Initializes a new {@code TestGame} snaked and ladders object.
-   */
-  private static final SnakesAndLadders TEST_GAME = new SnakesAndLadders();
 
   /**
    * Private constructor to hide the implicit public one.
@@ -29,14 +27,7 @@ public final class SnakesAndLaddersApp {
    *
    * @param args the command-line arguments.
    */
-  public static void main(final String[] args) throws IOException {
-    TEST_GAME.addPlayer("Alice", "hat");
-    TEST_GAME.addPlayer("Bob", "car");
-    TEST_GAME.setBoard();
-    while (TEST_GAME.isNotFinished()) {
-      TEST_GAME.printStatus();
-      TEST_GAME.playOneRound();
-    }
-    System.out.println(TEST_GAME.getWinner().getName() + " wins!");
+  public static void main(final String[] args) {
+    Application.launch(SnakesAndLaddersUI.class, args);
   }
 }
