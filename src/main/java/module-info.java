@@ -18,4 +18,7 @@ module IDATG2003.prosjekt {
   exports ui.util;
   exports gameengine;
   exports snakesandladders.engine;
+  exports snakesandladders.engine.board;
+  exports snakesandladders.engine.board.tile;
+  exports gameengine.player;
 }
