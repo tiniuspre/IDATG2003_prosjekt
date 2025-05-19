@@ -33,7 +33,7 @@ public final class Router {
    * providing an instance of the game application.
    */
   private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
-      GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new
+      GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new,
       GameId.SETTINGS, SettingsMenu::new,
       GameId.MAIN_MENU, MainMenu::new
   );
