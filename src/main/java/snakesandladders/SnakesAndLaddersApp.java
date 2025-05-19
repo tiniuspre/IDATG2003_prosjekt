@@ -7,7 +7,7 @@ import ui.util.GameScreen;
 
 
 /**
- * The {@code TestGameApp} class is the temporary main class
+ * The {@code SnakesAndLaddersApp} class is the temporary main class
  * for the test snaked and ladders game.
  *
  * @author jonastomren
