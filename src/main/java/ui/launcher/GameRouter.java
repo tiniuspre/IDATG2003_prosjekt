@@ -35,6 +35,7 @@ public final class GameRouter {
       // TODO : Add game implementations to the map
       // EXAMPLE: GameId.SNAKES_AND_LADDERS,
       // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
+      GameId.SNAKES_AND_LADDERS, snakesandladders.SnakesAndLaddersApp::new
   );
 
   /**
