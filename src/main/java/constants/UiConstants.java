@@ -69,6 +69,19 @@ public final class UiConstants {
    * The padding around menu buttons in the main menu.
    */
   public static final Integer MENU_BUTTON_PADDING = 40;
+  /* TTT constants */
+  /**
+   * Spacing between buttons in the Tic Tac Toe grid.
+   */
+  public static final Integer TTT_SPACING = 10;
+  /**
+   * The size of the Tic Tac Toe board.
+   */
+  public static final Integer TTT_H_V_GAP = 5;
+  /**
+   * Btn min size for Tic Tac Toe.
+   */
+  public static final Integer TTT_BTN_MIN_SIZE = 60;
 
   /**
    * Private constructor to prevent instantiation of this utility class.
