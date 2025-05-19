@@ -6,7 +6,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import renderengine.AbstractTileUI;
 import snakesandladders.engine.board.tile.SnLTile;
 
 /**
@@ -17,7 +16,7 @@ import snakesandladders.engine.board.tile.SnLTile;
  * @version 25.03.2025
  * @since 25.03.2025
  */
-public class SnakesAndLaddersTileUI extends AbstractTileUI {
+public class SnakesAndLaddersTileUI {
   /**
    * The size of a tile in pixels.
    */
@@ -80,7 +79,6 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
    *
    * @return a Node representing the tile.
    */
-  @Override
   public Node createTileNode() {
     // 1) Make the background rectangle
     Rectangle rect = new Rectangle(tileSize, tileSize);
@@ -114,17 +112,6 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
     tileNumberText.setY(textY);
 
     // 3) Return a Group containing both the rectangle + the text
-    Group group = new Group(rect, tileNumberText);
-    return group;
-  }
-
-  /**
-   * Updates the tile node\’s state (not used in this implementation).
-   *
-   * @param state any state or parameter you need to pass in.
-   */
-  @Override
-  public void updateTileState(final Object state) {
-    // Not used
+    return new Group(rect, tileNumberText);
   }
 }
