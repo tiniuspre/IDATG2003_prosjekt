@@ -2,32 +2,28 @@ package tictactoe.ui;
 
 import gameengine.grid.GridPlayer;
 import gameengine.grid.Marker;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import static constants.GameConstants.TTT_TITLE;
+import javafx.scene.Parent;
+import ui.util.GameScreen;
 
 /**
- * Main JavaFX application for TicTacToe.
- * This class initializes the game,
- * sets up the user interface, and starts the application.
+ * Game screen implementation for TicTacToe.
+ * Initializes game logic, view, and controller.
  *
  * @author tiniuspre
  * @version 19.05.2025
  * @since 25.03.2025
  */
-public class TicTacToeApp extends Application {
+public class TicTacToeApp implements GameScreen {
+  /**
+   * The view of the TicTacToe game screen.
+   */
+  private final TicTacToeView view = new TicTacToeView();
 
   /**
-   * Starts the JavaFX application.
-   * Initializes the game logic, view,
-   * and controller, and sets up the primary stage.
-   *
-   * @param primaryStage The primary stage for this application.
+   * Constructs the TicTacToe game screen,
+   * setting up players, game engine, and controller.
    */
-  @Override
-  public void start(final Stage primaryStage) {
+  public TicTacToeApp() {
     // Create players for the game
     GridPlayer p1 = new GridPlayer("X", Marker.PLAYER_ONE);
     GridPlayer p2 = new GridPlayer("O", Marker.PLAYER_TWO);
@@ -38,23 +34,17 @@ public class TicTacToeApp extends Application {
         p2
     );
 
-    // Set up the view and controller
-    TicTacToeView view = new TicTacToeView();
+    // Set up the controller with the view
     new TicTacToeController(game, view);
-
-    // Configure the primary stage
-    primaryStage.setTitle(TTT_TITLE);
-    primaryStage.setScene(new Scene(view));
-    primaryStage.show();
   }
 
   /**
-   * The main entry point for the application.
-   * Launches the JavaFX application.
+   * Returns the view of the game screen.
    *
-   * @param args The command-line arguments.
+   * @return the Parent object representing the TicTacToe view.
    */
-  public static void main(final String[] args) {
-    launch(args);
+  @Override
+  public Parent getView() {
+    return view;
   }
 }
