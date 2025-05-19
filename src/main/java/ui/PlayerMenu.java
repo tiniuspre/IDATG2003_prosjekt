@@ -13,6 +13,7 @@ import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,8 @@ class PlayerMenuView extends BorderPane {
 
   private final VBox playerMenuLayout = new VBox();
 
+  private final HBox addPlayerLayout = new HBox();
+
   private Map<String, CheckBox> playerCheckBoxes = new HashMap<>();
 
   private final Button backBtn = new Button(BACK);
@@ -49,11 +52,7 @@ class PlayerMenuView extends BorderPane {
   private final TextField playerNameField = new TextField();
 
   // TODO : Implement file handling logic
-  private final List<String> registeredPlayers = List.of(
-      "Player 1",
-      "Player 2",
-      "Player 3"
-  );
+  private List<String> registeredPlayers = new ArrayList<>();
 
   PlayerMenuView() {
     buildUI();
@@ -75,6 +74,7 @@ class PlayerMenuView extends BorderPane {
     setCenter(playerMenuLayout);
     setupPlayerSelectionMenu();
     setupPlayerCreation();
+    addPlayerLayout.setAlignment(Pos.CENTER);
     try {
       getStylesheets().add(CssLoader.getCssPath(UiConstants.PLAYER_MENU_CSS));
     } catch (CssLoaderException e) {
@@ -89,10 +89,10 @@ class PlayerMenuView extends BorderPane {
 
     HBox playerCreationBox = new HBox(10, playerNameField, addPlayerBtn);
     playerCreationBox.setAlignment(Pos.CENTER);
-    playerMenuLayout.getChildren().add(playerCreationBox);
+    addPlayerLayout.getChildren().add(playerCreationBox);
   }
 
-  private void setupPlayerSelectionMenu() {
+  void setupPlayerSelectionMenu() {
     playerMenuLayout.getChildren().clear();
     playerMenuLayout.setAlignment(Pos.CENTER);
     playerCheckBoxes.clear();
@@ -108,6 +108,32 @@ class PlayerMenuView extends BorderPane {
       playerBox.setSpacing(10);
       playerBox.setPadding(new Insets(5));
 
+
+      CheckBox checkBox = new CheckBox(player);
+      checkBox.setStyle("-fx-font-size: 20px;");
+      checkBox.setPadding(new Insets(5));
+
+      playerCheckBoxes.put(player, checkBox);
+      playerBox.getChildren().addAll(checkBox);
+      playerMenuLayout.getChildren().add(playerBox);
+    }
+  }
+
+  void updatePlayers() {
+    playerMenuLayout.getChildren().clear();
+    playerMenuLayout.setAlignment(Pos.CENTER);
+    playerCheckBoxes.clear();
+
+    Label title = new Label("Select Players for the Game:");
+    title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+
+    playerMenuLayout.getChildren().add(title);
+
+    for (String player : registeredPlayers) {
+      HBox playerBox = new HBox();
+      playerBox.setAlignment(Pos.CENTER);
+      playerBox.setSpacing(10);
+      playerBox.setPadding(new Insets(5));
 
       CheckBox checkBox = new CheckBox(player);
       checkBox.setStyle("-fx-font-size: 20px;");
@@ -138,6 +164,10 @@ class PlayerMenuView extends BorderPane {
   TextField getPlayerNameField() {
     return playerNameField;
   }
+
+  void addPlayer(final String playerName) {
+    registeredPlayers.add(playerName);
+  }
 }
 
 class PlayerMenuController {
@@ -159,7 +189,14 @@ class PlayerMenuController {
     });
 
     view.getAddPlayerBtn().setOnAction(event -> {
-
+      String playerName = view.getPlayerNameField().getText();
+      if (playerName.isEmpty()) {
+        DialogUtil.error("Player name cannot be empty", "Please enter a valid player name.");
+        return;
+      }
+      view.addPlayer(playerName);
+      view.getPlayerNameField().clear();
+      view.updatePlayers();
     });
   }
 }

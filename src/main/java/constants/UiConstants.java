@@ -40,6 +40,11 @@ public final class UiConstants {
   public static final String SETTINGS_MENU_CSS = "/style/settings.css";
 
   /**
+   * The path to the player menu CSS file.
+   */
+  public static final String PLAYER_MENU_CSS = "/style/playermenu.css";
+
+  /**
    * The label for the Snakes and Ladders game button.
    */
   public static final String SNAKES_LADDERS = "Snakes & Ladders";
@@ -180,6 +185,8 @@ public final class UiConstants {
    * The Y offset for the text on Snakes and Ladders tiles.
    */
   public static final Integer SNL_TILE_TEXT_OFFSET_Y = 12;
+
+  public static final String PLAYER_MENU_TITLE = "Player Menu";
   /**
    * Private constructor to prevent instantiation of this utility class.
    */

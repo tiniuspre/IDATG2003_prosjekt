@@ -150,6 +150,9 @@ class MainMenuView extends BorderPane {
    */
   private final Button settingsBtn = new Button(SETTINGS_ICON);
 
+  // TODO : REMOVE THIS BUTTON
+  private final Button playerMenuBtn = new Button("temp");
+
   /**
    * Constructs the main menu view and builds the user interface.
    */
@@ -168,6 +171,7 @@ class MainMenuView extends BorderPane {
         snakesBtn,
         tttBtn,
         connectBtn,
+        playerMenuBtn,
         exitBtn
     );
     buttons.setAlignment(Pos.CENTER);
@@ -232,6 +236,11 @@ class MainMenuView extends BorderPane {
    */
   Button getSettingsBtn() {
     return settingsBtn; }
+
+  // TODO : REMOVE THIS METHOD
+  Button getPlayerMenuBtn() {
+    return playerMenuBtn;
+  }
 }
 
 /**
@@ -278,6 +287,9 @@ class MainMenuController {
     );
     view.getSettingsBtn().setOnAction(
         e -> Router.launch(GameId.SETTINGS)
+    );
+    view.getPlayerMenuBtn().setOnAction(
+        e -> Router.launch(GameId.PLAYER_MENU)
     );
   }
 }
