@@ -1,15 +1,21 @@
 package snakesandladders.ui;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import snakesandladders.SnakesAndLadders;
 import snakesandladders.engine.SnLPlayer;
-
 import java.util.List;
 
+/**
+ * The {@code SnLController} class is responsible for
+ * controlling the UI of the Snakes and Ladders Game.
+ * It handles all changes to the UI and updates the game state
+ * based on user interactions.
+ *
+ * @author jonastomren
+ * @version 19.05.2025
+ * @since 19.05.2025
+ *´
+ * @see SnLView
+ */
 public class SnLController {
 
   /**
@@ -25,14 +31,26 @@ public class SnLController {
    */
   private int currentPlayerIndex = 0;
 
-  public SnLController(final SnLView view, final SnakesAndLadders gameInstance) {
+  /**
+   * Constructs a SnLController with the given view and game instance.
+   *
+   * @param view the SnLView instance.
+   * @param gameInstance the SnakesAndLadders game instance.
+   */
+  public SnLController(final SnLView view,
+                       final SnakesAndLadders gameInstance) {
     boardUI = view;
     game = gameInstance;
     init();
   }
 
+  /**
+   * Initializes the controller by setting up the next turn button action.
+   */
   public void init() {
     boardUI.getNextTurnBtn().setOnAction(e -> handleNextTurn());
+    boardUI.getCurrentPlayerLabel().setText("Player: "
+        + getCurrentPlayer().getName());
   }
 
   /**
@@ -41,7 +59,8 @@ public class SnLController {
    */
   private void handleNextTurn() {
     if (!game.isNotFinished()) {
-      boardUI.getStatusLabel().setText("Game Over! Winner: " + game.getWinner().getName());
+      boardUI.getStatusLabel().setText("Game Over! Winner: "
+          + game.getWinner().getName());
       return;
     }
 
@@ -55,12 +74,14 @@ public class SnLController {
     boardUI.updatePlayers();
 
     if (!game.isNotFinished()) {
-      boardUI.getStatusLabel().setText("Game Over! " + current.getName() + " wins!");
+      boardUI.getStatusLabel().setText("Game Over! "
+          + current.getName() + " wins!");
       return;
     }
 
     nextPlayer();
-    boardUI.getCurrentPlayerLabel().setText("Player: " + getCurrentPlayer().getName());
+    boardUI.getCurrentPlayerLabel().setText("Player: "
+        + getCurrentPlayer().getName());
   }
 
   /**
