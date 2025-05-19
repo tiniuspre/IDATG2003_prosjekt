@@ -1,7 +1,14 @@
 package snakesandladders;
 
-import javafx.application.Application;
-import snakesandladders.ui.SnakesAndLaddersUI;
+import javafx.scene.Parent;
+import javafx.scene.layout.VBox;
+import snakesandladders.engine.SnLPlayer;
+import snakesandladders.ui.SnLController;
+import snakesandladders.ui.SnLView;
+import ui.util.GameScreen;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -13,21 +20,29 @@ import snakesandladders.ui.SnakesAndLaddersUI;
  * @version 13.02.2025
  * @see SnakesAndLadders
  */
-public final class SnakesAndLaddersApp {
+public final class SnakesAndLaddersApp implements GameScreen {
 
-  /**
-   * Private constructor to hide the implicit public one.
-   */
-  private SnakesAndLaddersApp() {
-    // Private constructor to hide the implicit public one.
+  private final SnLView view;
+
+  private final SnLController controller;
+
+  private final SnakesAndLadders game = new SnakesAndLadders();
+
+
+  public SnakesAndLaddersApp() {
+    game.setBoard();
+    game.addPlayer("Player 1", "hat");
+    game.addPlayer("Player 2", "car");
+    view = new SnLView(game);
+    controller = new SnLController(view, game);
   }
 
-  /**
-   * The main method for the test snakes and ladders game.
-   *
-   * @param args the command-line arguments.
-   */
-  public static void main(final String[] args) {
-    Application.launch(SnakesAndLaddersUI.class, args);
+
+  @Override
+  public Parent getView() {
+    view.setPrefWidth(800);  // Set preferred width
+    view.setPrefHeight(600); // Set preferred height
+    VBox.setVgrow(view, javafx.scene.layout.Priority.ALWAYS);
+    return view;
   }
 }
