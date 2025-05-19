@@ -155,15 +155,6 @@ public class SnLBoard extends Board {
   }
 
   /**
-   * Gets the name of the board.
-   *
-   * @return the name of the board.
-   */
-  public String getBoardName() {
-    return boardName;
-  }
-
-  /**
    * Gets the list of tiles on the board.
    *
    * @return the list of tiles.
