@@ -4,7 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import renderengine.AbstractPlayerUI;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.SnLPlayer;
 
 /**
  * Player UI for Snakes and Ladders: draws a circle for the token.
@@ -21,7 +21,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
   /**
    * The player instance.
    */
-  private SnakesAndLaddersPlayer player;
+  private SnLPlayer player;
   /**
    * The piece node.
    */
@@ -35,7 +35,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    * @param boardHeight the height of the board.
    */
   public SnakesAndLaddersPlayerUI(final int tileSizePx,
-                                  final SnakesAndLaddersPlayer playerInstance,
+                                  final SnLPlayer playerInstance,
                                   final int boardHeight) {
     setTileSize(tileSizePx);
     setPlayer(playerInstance);
@@ -56,7 +56,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    *
    * @param playerInstance the player instance.
    */
-  private void setPlayer(final SnakesAndLaddersPlayer playerInstance) {
+  private void setPlayer(final SnLPlayer playerInstance) {
     this.player = playerInstance;
   }
 
@@ -65,7 +65,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    *
    * @return the player instance.
    */
-  private SnakesAndLaddersPlayer getPlayer() {
+  private SnLPlayer getPlayer() {
     return player;
   }
 
