@@ -67,7 +67,7 @@ public class TicTacToeController {
    * the game grid.
    */
   private void init() {
-    view.setStatus("Next: " + game.currentPlayer.getName());
+    view.setStatus("Next: " + game.getCurrentPlayer().getName());
     for (int r = 0; r < TTT_BOARD_SIZE; r++) {
       for (int c = 0; c < TTT_BOARD_SIZE; c++) {
         int rr = r;
@@ -99,7 +99,7 @@ public class TicTacToeController {
       view.setStatus("Draw!");
       DialogUtil.info("Draw", "Draw!");
     } else {
-      view.setStatus("Next: " + game.currentPlayer.getName());
+      view.setStatus("Next: " + game.getCurrentPlayer().getName());
     }
   }
 

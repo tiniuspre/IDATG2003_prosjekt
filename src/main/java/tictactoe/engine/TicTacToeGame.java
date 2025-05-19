@@ -3,7 +3,6 @@ package tictactoe.engine;
 import gameengine.grid.GridGame;
 import gameengine.grid.GridPlayer;
 import gameengine.grid.Marker;
-
 import static constants.GameConstants.TTT_BOARD_SIZE;
 
 /**
@@ -32,9 +31,9 @@ public class TicTacToeGame extends GridGame {
    */
   public TicTacToeGame(final GridPlayer p1, final GridPlayer p2) {
     super(new TicTacToeBoard(), p1, p2);
-    state = new Marker[board.getRows()][board.getCols()];
-    for (int r = 0; r < board.getRows(); r++) {
-      for (int c = 0; c < board.getCols(); c++) {
+    state = new Marker[getBoard().getRows()][getBoard().getCols()];
+    for (int r = 0; r < getBoard().getRows(); r++) {
+      for (int c = 0; c < getBoard().getCols(); c++) {
         state[r][c] = Marker.NONE;
       }
     }
@@ -49,8 +48,8 @@ public class TicTacToeGame extends GridGame {
    */
   @Override
   protected boolean canMove(final int row, final int col) {
-    return row >= 0 && row < board.getRows()
-        && col >= 0 && col < board.getCols()
+    return row >= 0 && row < getBoard().getRows()
+        && col >= 0 && col < getBoard().getCols()
         && state[row][col] == Marker.NONE;
   }
 
@@ -63,7 +62,7 @@ public class TicTacToeGame extends GridGame {
    */
   @Override
   protected void applyMove(final int row, final int col) {
-    state[row][col] = currentPlayer.getMarker();
+    state[row][col] = getCurrentPlayer().getMarker();
   }
 
   /**
@@ -72,26 +71,30 @@ public class TicTacToeGame extends GridGame {
    * @return The winning player, or null if there is no winner.
    */
   @Override
-  public gameengine.grid.GridPlayer checkWinner() {
+  public GridPlayer checkWinner() {
     // rows & cols
     for (int i = 0; i < TTT_BOARD_SIZE; i++) {
-      if (rowWinner(i) != null) {
-        return rowWinner(i);
+      GridPlayer rw = rowWinner(i);
+      if (rw != null) {
+        return rw;
       }
-      if (colWinner(i) != null) {
-        return colWinner(i);
+      GridPlayer cw = colWinner(i);
+      if (cw != null) {
+        return cw;
       }
     }
     // diagonals
     if (state[0][0] != Marker.NONE
         && state[0][0] == state[1][1]
         && state[1][1] == state[2][2]) {
-      return state[0][0] == playerOne.getMarker() ? playerOne : playerTwo;
+      return state[0][0] == getPlayerOne().getMarker()
+          ? getPlayerOne() : getPlayerTwo();
     }
     if (state[0][2] != Marker.NONE
         && state[0][2] == state[1][1]
         && state[1][1] == state[2][0]) {
-      return state[0][2] == playerOne.getMarker() ? playerOne : playerTwo;
+      return state[0][2] == getPlayerOne().getMarker()
+          ? getPlayerOne() : getPlayerTwo();
     }
     return null;
   }
@@ -102,11 +105,12 @@ public class TicTacToeGame extends GridGame {
    * @param r The row index to check.
    * @return The winning player, or null if there is no winner in the row.
    */
-  private gameengine.grid.GridPlayer rowWinner(final int r) {
+  private GridPlayer rowWinner(final int r) {
     if (state[r][0] != Marker.NONE
         && state[r][0] == state[r][1]
         && state[r][1] == state[r][2]) {
-      return state[r][0] == playerOne.getMarker() ? playerOne : playerTwo;
+      return state[r][0] == getPlayerOne().getMarker()
+          ? getPlayerOne() : getPlayerTwo();
     }
     return null;
   }
@@ -117,11 +121,12 @@ public class TicTacToeGame extends GridGame {
    * @param c The column index to check.
    * @return The winning player, or null if there is no winner in the column.
    */
-  private gameengine.grid.GridPlayer colWinner(final int c) {
+  private GridPlayer colWinner(final int c) {
     if (state[0][c] != Marker.NONE
         && state[0][c] == state[1][c]
         && state[1][c] == state[2][c]) {
-      return state[0][c] == playerOne.getMarker() ? playerOne : playerTwo;
+      return state[0][c] == getPlayerOne().getMarker()
+          ? getPlayerOne() : getPlayerTwo();
     }
     return null;
   }
@@ -156,7 +161,9 @@ public class TicTacToeGame extends GridGame {
    */
   public Marker getMarkerAt(final int row, final int col) {
     if (row < 0 || row >= TTT_BOARD_SIZE || col < 0 || col >= TTT_BOARD_SIZE) {
-      throw new IndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException(
+          "Cell row is out of bounds."
+              + " Row: " + row + ", Col: " + col);
     }
     return state[row][col];
   }

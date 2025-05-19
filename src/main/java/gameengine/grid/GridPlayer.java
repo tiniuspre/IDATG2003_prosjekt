@@ -7,16 +7,23 @@ import java.util.Objects;
  * Represents a player in a grid-based game, with a specific marker.
  */
 public class GridPlayer extends Player {
-  private final Marker marker;
+  /**
+   * Serial version UID for serialization.
+   */
+  private Marker marker;
 
   /**
    * Constructs a GridPlayer with name and marker.
    * @param name player name
-   * @param marker the Marker assigned
+   * @param markInst the Marker assigned
    */
-  public GridPlayer(String name, Marker marker) {
+  public GridPlayer(final String name, final Marker markInst) {
     super(name);
-    this.marker = Objects.requireNonNull(marker);
+    setMarker(Objects.requireNonNull(markInst));
+  }
+
+  private void setMarker(final Marker markInst) {
+    this.marker = markInst;
   }
 
   /**
