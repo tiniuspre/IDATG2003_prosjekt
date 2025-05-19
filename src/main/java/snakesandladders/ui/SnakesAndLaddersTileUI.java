@@ -13,8 +13,8 @@ import snakesandladders.engine.board.tile.SnLTile;
  * Concrete tile UI for a single tile in Snakes and Ladders,
  * also showing the tile ID in the top-right corner.
  *
- * @author tiniuspre
- * @version 25.03.2025
+ * @author tiniuspre, jonastom
+ * @version 19.05.2025
  * @since 25.03.2025
  */
 public class SnakesAndLaddersTileUI {

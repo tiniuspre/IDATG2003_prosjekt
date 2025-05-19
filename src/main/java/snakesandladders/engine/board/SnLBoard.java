@@ -18,7 +18,7 @@ import java.util.List;
  * with JSON serialization and deserialization.</p>
  *
  * @author jonastomren
- * @version 25.04.2025
+ * @version 19.05.2025
  * @since 14.04.2025
  * @see Board
  */
