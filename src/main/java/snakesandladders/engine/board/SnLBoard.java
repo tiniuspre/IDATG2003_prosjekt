@@ -18,15 +18,12 @@ import java.util.List;
  * with JSON serialization and deserialization.</p>
  *
  * @author jonastomren
- * @version 25.04.2025
+ * @version 19.05.2025
  * @since 14.04.2025
  * @see Board
  */
 public class SnLBoard extends Board {
-  /**
-   * The name of the board.
-   */
-  private String boardName;
+
   /**
    * The list of tiles on the board.
    */
@@ -65,6 +62,19 @@ public class SnLBoard extends Board {
       SnLTile tile = new SnLTile(i, Constants.NORMAL);
       tiles.add(tile);
     }
+    // set the position of the tiles
+    for (int i = 0; i < getWidth() * getHeight(); i++) {
+      int row = i / getWidth();
+      int col;
+
+      if (row % 2 == 0) {
+        col = i % getWidth();
+      } else {
+        col = getWidth() - 1 - (i % getWidth());
+      }
+      tiles.get(i).setPosX(col);
+      tiles.get(i).setPosY(row);
+    }
     // set the type of the tiles based on the snakes, ladders, and switches
     for (Jump snake : snakes) {
       tiles.get(snake.getFrom()).setType(Constants.SNAKE);
@@ -90,7 +100,6 @@ public class SnLBoard extends Board {
     setTiles(boardConfig.getSnakes().toList(),
         boardConfig.getLadders().toList(),
         boardConfig.getSwitches().toList());
-    setBoardName(boardConfig.getBoardName());
   }
 
   /**
@@ -122,30 +131,19 @@ public class SnLBoard extends Board {
    * @return the tile at the specified position.
    */
   public SnLTile getTile(final int position) {
-    if (position < 0 || position >= tiles.size()) {
-      throw new SnLBoardException("Invalid tile position.");
+    if (position < 0 || position > tiles.size()) {
+      throw new SnLBoardException("Invalid tile position: " + tiles.size()
+          + ".");
     }
     return tiles.get(position);
   }
 
   /**
-   * Sets the name of the board.
+   * Gets the list of tiles on the board.
    *
-   * @param name the name of the board.
+   * @return the list of tiles.
    */
-  public void setBoardName(final String name) {
-    if (name == null || name.isEmpty()) {
-      throw new SnLBoardException("Board name cannot be null or empty.");
-    }
-    this.boardName = name;
-  }
-
-  /**
-   * Gets the name of the board.
-   *
-   * @return the name of the board.
-   */
-  public String getBoardName() {
-    return boardName;
+  public List<SnLTile> getTiles() {
+    return new ArrayList<>(tiles);
   }
 }

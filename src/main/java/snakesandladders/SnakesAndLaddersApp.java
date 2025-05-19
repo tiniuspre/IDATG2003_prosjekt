@@ -1,9 +1,13 @@
 package snakesandladders;
 
-import java.io.IOException;
+import javafx.scene.Parent;
+import snakesandladders.ui.SnLController;
+import snakesandladders.ui.SnLView;
+import ui.util.GameScreen;
+
 
 /**
- * The {@code TestGameApp} class is the temporary main class
+ * The {@code SnakesAndLaddersApp} class is the temporary main class
  * for the test snaked and ladders game.
  *
  * @author jonastomren
@@ -11,32 +15,39 @@ import java.io.IOException;
  * @version 13.02.2025
  * @see SnakesAndLadders
  */
-public final class SnakesAndLaddersApp {
+public final class SnakesAndLaddersApp implements GameScreen {
   /**
-   * Initializes a new {@code TestGame} snaked and ladders object.
+   * The view for the Snakes and Ladders game.
    */
-  private static final SnakesAndLadders TEST_GAME = new SnakesAndLadders();
+  private final SnLView view;
+  /**
+   * The controller for the Snakes and Ladders game.
+   */
+  private final SnLController controller;
+  /**
+   * The game instance for the Snakes and Ladders game.
+   */
+  private final SnakesAndLadders game = new SnakesAndLadders();
 
   /**
-   * Private constructor to hide the implicit public one.
+   * Constructs a SnakesAndLaddersApp instance.
+   *
    */
-  private SnakesAndLaddersApp() {
-    // Private constructor to hide the implicit public one.
+  public SnakesAndLaddersApp() {
+    game.setBoard();
+    game.addPlayer("Player 1", "hat");
+    game.addPlayer("Player 2", "car");
+    view = new SnLView(game);
+    controller = new SnLController(view, game);
   }
 
   /**
-   * The main method for the test snakes and ladders game.
+   * Returns the view for the Snakes and Ladders game.
    *
-   * @param args the command-line arguments.
+   * @return the view for the Snakes and Ladders game
    */
-  public static void main(final String[] args) throws IOException {
-    TEST_GAME.addPlayer("Alice", "hat");
-    TEST_GAME.addPlayer("Bob", "car");
-    TEST_GAME.setBoard();
-    while (TEST_GAME.isNotFinished()) {
-      TEST_GAME.printStatus();
-      TEST_GAME.playOneRound();
-    }
-    System.out.println(TEST_GAME.getWinner().getName() + " wins!");
+  @Override
+  public Parent getView() {
+    return view;
   }
 }

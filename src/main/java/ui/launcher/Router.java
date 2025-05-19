@@ -16,8 +16,8 @@ import java.util.function.Supplier;
  * Provides a centralized mechanism to
  * manage game initialization and execution.
  *
- * @author tiniuspre
- * @version 25.04.2025
+ * @author tiniuspre, jonastom
+ * @version 19.05.2025
  * @since 25.03.2025
  */
 public final class Router {
@@ -35,7 +35,8 @@ public final class Router {
   private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
       GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new,
       GameId.SETTINGS, SettingsMenu::new,
-      GameId.MAIN_MENU, MainMenu::new
+      GameId.MAIN_MENU, MainMenu::new,
+      GameId.SNAKES_AND_LADDERS, snakesandladders.SnakesAndLaddersApp::new
   );
 
   /**
