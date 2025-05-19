@@ -23,12 +23,12 @@ public final class UiConstants {
   /**
    * The width of the application window.
    */
-  public static final Integer APP_WIDTH = 600;
+  public static final Integer APP_WIDTH = 900;
 
   /**
    * The height of the application window.
    */
-  public static final Integer APP_HEIGHT = 400;
+  public static final Integer APP_HEIGHT = 650;
 
   /**
    * The path to the main menu CSS file.
@@ -69,6 +69,12 @@ public final class UiConstants {
    * The padding around menu buttons in the main menu.
    */
   public static final Integer MENU_BUTTON_PADDING = 40;
+
+  public static final Integer SNL_TILE_SIZE = 50;
+
+  public static final Integer SNL_ARROW_SIZE = 6;
+
+  public static final Integer SNL_ARROW_HEAD_SIZE = 3;
 
   /**
    * Private constructor to prevent instantiation of this utility class.
