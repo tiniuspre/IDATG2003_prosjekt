@@ -65,6 +65,19 @@ public class SnLBoard extends Board {
       SnLTile tile = new SnLTile(i, Constants.NORMAL);
       tiles.add(tile);
     }
+    // set the position of the tiles
+    for (int i = 0; i < getWidth() * getHeight(); i++) {
+      int row = i / getWidth();
+      int col;
+
+      if (row % 2 == 0) {
+        col = i % getWidth();
+      } else {
+        col = getWidth() - 1 - (i % getWidth());
+      }
+      tiles.get(i).setPosX(col);
+      tiles.get(i).setPosY(row);
+    }
     // set the type of the tiles based on the snakes, ladders, and switches
     for (Jump snake : snakes) {
       tiles.get(snake.getFrom()).setType(Constants.SNAKE);
@@ -123,7 +136,8 @@ public class SnLBoard extends Board {
    */
   public SnLTile getTile(final int position) {
     if (position < 0 || position >= tiles.size()) {
-      throw new SnLBoardException("Invalid tile position.");
+      throw new SnLBoardException("Invalid tile position: " + tiles.size() +
+          ".");
     }
     return tiles.get(position);
   }
@@ -147,5 +161,14 @@ public class SnLBoard extends Board {
    */
   public String getBoardName() {
     return boardName;
+  }
+
+  /**
+   * Gets the list of tiles on the board.
+   *
+   * @return the list of tiles.
+   */
+  public List<SnLTile> getTiles() {
+    return new ArrayList<>(tiles);
   }
 }
