@@ -1,32 +1,38 @@
 package ui;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import ui.exceptions.CssLoaderException;
-import ui.launcher.GameRouter;
+import ui.exceptions.UILoaderException;
+import ui.launcher.Router;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
+import ui.util.GameScreen;
 
-import static constants.UiConstants.APP_NAME;
-import static constants.UiConstants.APP_HEIGHT;
-import static constants.UiConstants.APP_WIDTH;
-import static constants.UiConstants.CONNECT_FOUR;
-import static constants.UiConstants.EXIT;
-import static constants.UiConstants.MAIN_MENU;
-import static constants.UiConstants.MAIN_MENU_CSS;
-import static constants.UiConstants.MENU_BUTTON_PADDING;
 import static constants.UiConstants.MENU_V_BOX_SPACING;
+import static constants.UiConstants.SETTINGS_ICON;
+import static constants.UiConstants.MAIN_MENU;
 import static constants.UiConstants.SNAKES_LADDERS;
 import static constants.UiConstants.TIC_TAC_TOE;
+import static constants.UiConstants.CONNECT_FOUR;
+import static constants.UiConstants.EXIT;
+import static constants.UiConstants.MAIN_MENU_CSS;
+import static constants.UiConstants.MENU_BUTTON_PADDING;
+import static constants.UiConstants.APP_NAME;
+import static constants.UiConstants.APP_WIDTH;
+import static constants.UiConstants.APP_HEIGHT;
+import static constants.UiConstants.SETTINGS_BUTTON_ID;
+
 
 /**
  * Main application class for the Main Menu.
@@ -36,37 +42,71 @@ import static constants.UiConstants.TIC_TAC_TOE;
  * @version 25.04.2025
  * @since 25.03.2025
  */
-public class MainMenuApp extends Application {
+public class MainMenu implements GameScreen {
 
   /**
    * The view component of the main menu.
    */
   private final MainMenuView view = new MainMenuView();
-
+  /**
+   * The primary stage for the JavaFX application.
+   */
+  private Stage primaryAppStage;
   /**
    * The controller component of the main menu.
    */
   private final MainMenuController ctrl = new MainMenuController(view);
 
   /**
-   * Starts the JavaFX application by setting up the primary stage.
+   * Starts the main menu application.
    *
    * @param primaryStage the primary stage for this application.
    */
-  @Override
-  public void start(final Stage primaryStage) {
+  public void startMain(final Stage primaryStage) {
+    setPrimaryAppStage(primaryStage);
+    Router.init(this);
     primaryStage.setTitle(APP_NAME);
     primaryStage.setScene(new Scene(view, APP_WIDTH, APP_HEIGHT));
     primaryStage.show();
   }
 
   /**
-   * The main entry point for the application.
+   * Switches the current view to the specified game screen.
    *
-   * @param args the command-line arguments.
+   * @param screen the game screen to switch to.
    */
-  public static void main(final String[] args) {
-    launch(args);
+  public void switchTo(final GameScreen screen) {
+    Parent gameView = screen.getView();
+    if (gameView != null && primaryAppStage != null) {
+      primaryAppStage.getScene().setRoot(gameView);
+    } else {
+      DialogUtil.error("Could not load game", "No gameView found");
+    }
+    primaryAppStage.show();
+  }
+
+  /**
+   * Sets the primary stage of the application.
+   *
+   * <p>Only to be called at the start() method of the app.</p>
+   *
+   * @param stage the primary stage of the application.
+   */
+  public void setPrimaryAppStage(final Stage stage) {
+    if (stage == null) {
+      throw new UILoaderException("Stage is null");
+    }
+    this.primaryAppStage = stage;
+  }
+
+  /**
+   * Gets the view of the main menu.
+   *
+   * @return the view component of the main menu.
+   */
+  @Override
+  public Parent getView() {
+    return view;
   }
 }
 
@@ -106,6 +146,11 @@ class MainMenuView extends BorderPane {
   private final Button exitBtn = new Button(EXIT);
 
   /**
+   * Button to launch the settings menu.
+   */
+  private final Button settingsBtn = new Button(SETTINGS_ICON);
+
+  /**
    * Constructs the main menu view and builds the user interface.
    */
   MainMenuView() {
@@ -131,6 +176,12 @@ class MainMenuView extends BorderPane {
     setTop(titleLabel);
     BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
+    getSettingsBtn().setId(SETTINGS_BUTTON_ID);
+    HBox topRight = new HBox(
+        settingsBtn
+    );
+    topRight.setAlignment(Pos.TOP_RIGHT);
+    setTop(topRight);
     try {
       getStylesheets().add(CssLoader.getCssPath(MAIN_MENU_CSS));
     } catch (CssLoaderException e) {
@@ -173,6 +224,14 @@ class MainMenuView extends BorderPane {
   Button getExitBtn() {
     return exitBtn;
   }
+
+  /**
+   * Gets the button for launching the settings menu.
+   *
+   * @return the settings button.
+   */
+  Button getSettingsBtn() {
+    return settingsBtn; }
 }
 
 /**
@@ -206,16 +265,19 @@ class MainMenuController {
    */
   private void wireActions() {
     view.getSnakesBtn().setOnAction(
-        e -> GameRouter.launch(GameId.SNAKES_AND_LADDERS)
+        e -> Router.launch(GameId.SNAKES_AND_LADDERS)
     );
     view.getTttBtn().setOnAction(
-        e -> GameRouter.launch(GameId.TIC_TAC_TOE)
+        e -> Router.launch(GameId.TIC_TAC_TOE)
     );
     view.getConnectBtn().setOnAction(
-        e -> GameRouter.launch(GameId.CONNECT_FOUR)
+        e -> Router.launch(GameId.CONNECT_FOUR)
     );
     view.getExitBtn().setOnAction(
         e -> Platform.exit()
+    );
+    view.getSettingsBtn().setOnAction(
+        e -> Router.launch(GameId.SETTINGS)
     );
   }
 }

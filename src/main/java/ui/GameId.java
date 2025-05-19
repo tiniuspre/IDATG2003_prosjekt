@@ -10,6 +10,10 @@ package ui;
  */
 public enum GameId {
   /**
+   * Identifier for the Main menu.
+   */
+  MAIN_MENU,
+  /**
    * Identifier for the Snakes and Ladders game.
    */
   SNAKES_AND_LADDERS,
@@ -22,5 +26,9 @@ public enum GameId {
   /**
    * Identifier for the Tic Tac Toe game.
    */
-  TIC_TAC_TOE
+  TIC_TAC_TOE,
+  /**
+   * Identifier for the Settings menu.
+   */
+  SETTINGS
 }
