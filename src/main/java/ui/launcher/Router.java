@@ -33,9 +33,7 @@ public final class Router {
    * providing an instance of the game application.
    */
   private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
-      // TODO : Add game implementations to the map
-      // EXAMPLE: GameId.SNAKES_AND_LADDERS,
-      // () -> new edu.ntnu.games.snakesandladders.SnakesAndLaddersApp(),
+      GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new,
       GameId.SETTINGS, SettingsMenu::new,
       GameId.MAIN_MENU, MainMenu::new
   );
@@ -77,7 +75,7 @@ public final class Router {
       GameScreen game = supplier.get();
       mainApp.switchTo(game);
     } catch (Exception ex) {
-      DialogUtil.exception("An exception occurred", ex);
+      DialogUtil.exception("An exception occurred while launching " + id, ex);
     }
   }
 

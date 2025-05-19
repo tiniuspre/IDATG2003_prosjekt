@@ -90,7 +90,7 @@ public abstract class Board {
    *
    * @return the name of the board.
    */
-  public final String getName() {
+  public String getName() {
     return name;
   }
 
