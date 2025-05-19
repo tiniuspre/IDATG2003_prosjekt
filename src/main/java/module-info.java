@@ -13,4 +13,5 @@ module IDATG2003.prosjekt {
   opens snakesandladders.engine.board to com.fasterxml.jackson.databind;
   opens snakesandladders.engine.board.tile to com.fasterxml.jackson.databind;
   exports ui;
+  exports ui.util;
 }
