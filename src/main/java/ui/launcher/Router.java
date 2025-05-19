@@ -1,7 +1,8 @@
 package ui.launcher;
 
 import ui.GameId;
-import ui.MainMenuApp;
+import ui.MainMenu;
+import ui.SettingsMenu;
 import ui.exceptions.UILoaderException;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
@@ -19,11 +20,11 @@ import java.util.function.Supplier;
  * @version 25.04.2025
  * @since 25.03.2025
  */
-public final class GameRouter {
+public final class Router {
   /**
    * The main application.
    */
-  private static MainMenuApp mainApp;
+  private static MainMenu mainApp;
 
   /**
    * A map associating game identifiers
@@ -33,6 +34,8 @@ public final class GameRouter {
    */
   private static final Map<GameId, Supplier<GameScreen>> GAMES = Map.of(
       GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new
+      GameId.SETTINGS, SettingsMenu::new,
+      GameId.MAIN_MENU, MainMenu::new
   );
 
   /**
@@ -40,7 +43,7 @@ public final class GameRouter {
    *
    * @param app the main application instance to be used for routing.
    */
-  public static void init(final MainMenuApp app) {
+  public static void init(final MainMenu app) {
     setMainApp(app);
   }
 
@@ -49,7 +52,7 @@ public final class GameRouter {
    *
    * @param app the main application instance to be set.
    */
-  public static void setMainApp(final MainMenuApp app) {
+  public static void setMainApp(final MainMenu app) {
     if (app == null) {
       throw new UILoaderException("Main application cannot be null");
     }
@@ -79,5 +82,5 @@ public final class GameRouter {
   /**
    * Private constructor to prevent instantiation of this utility class.
    */
-  private GameRouter() { }
+  private Router() { }
 }
