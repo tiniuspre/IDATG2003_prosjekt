@@ -35,6 +35,11 @@ public final class UiConstants {
   public static final String MAIN_MENU_CSS = "/style/menu.css";
 
   /**
+   * The path to the settings menu CSS file.
+   */
+  public static final String SETTINGS_MENU_CSS = "/style/settings.css";
+
+  /**
    * The label for the Snakes and Ladders game button.
    */
   public static final String SNAKES_LADDERS = "Snakes & Ladders";
@@ -55,9 +60,44 @@ public final class UiConstants {
   public static final String MAIN_MENU = "Main Menu";
 
   /**
+   * Settings button id for css.
+   */
+  public static final String SETTINGS_BUTTON_ID = "settings-button";
+
+  /**
+   * Settings title id for css.
+   */
+  public static final String SETTINGS_TITLE_ID = "settings-title";
+
+  /**
+   * The title of the settings menu.
+   */
+  public static final String SETTINGS = "Settings";
+
+  /**
+   * The icon of the settings button.
+   */
+  public static final String SETTINGS_ICON = "⚙";
+
+  /**
    * The label for the exit button.
    */
   public static final String EXIT = "Exit";
+
+  /**
+   * The label for the back button.
+   */
+  public static final String BACK = "Back";
+
+  /**
+   * The label for the settings button.
+   */
+  public static final String CHANGE_NAME = "Change Name";
+
+  /**
+   * The label for the change theme button.
+   */
+  public static final String CHANGE_THEME = "Change Theme";
 
   /**
    * The vertical spacing between menu buttons in the main menu.

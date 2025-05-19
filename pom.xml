@@ -43,6 +43,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -62,7 +63,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>ui.MainMenuApp</mainClass>
+                    <mainClass>ui.UIApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
