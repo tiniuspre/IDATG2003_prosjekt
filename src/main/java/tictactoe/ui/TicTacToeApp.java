@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import static constants.GameConstants.TTT_TITLE;
+
 /**
  * Main JavaFX application for TicTacToe.
  * This class initializes the game,
@@ -37,7 +39,7 @@ public class TicTacToeApp extends Application {
     new TicTacToeController(game, view);
 
     // Configure the primary stage
-    primaryStage.setTitle("Tic Tac Toe");
+    primaryStage.setTitle(TTT_TITLE);
     primaryStage.setScene(new Scene(view));
     primaryStage.show();
   }

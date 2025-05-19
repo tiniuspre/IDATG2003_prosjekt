@@ -14,6 +14,11 @@ public final class GameConstants {
    */
   public static final int TTT_BOARD_SIZE = 3;
 
+  /**
+   * Title of the Tic Tac Toe game.
+   */
+  public static final String TTT_TITLE = "Tic Tac Toe";
+
   private GameConstants() {
     throw new IllegalStateException("Should not be instantiated");
   }
