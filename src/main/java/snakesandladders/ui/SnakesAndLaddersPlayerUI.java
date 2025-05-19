@@ -3,7 +3,6 @@ package snakesandladders.ui;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import renderengine.AbstractPlayerUI;
 import snakesandladders.engine.SnLPlayer;
 
 /**
@@ -13,7 +12,7 @@ import snakesandladders.engine.SnLPlayer;
  * @version 25.03.2025
  * @since 25.03.2025
  */
-public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
+public class SnakesAndLaddersPlayerUI {
   /**
    * The size of a tile in pixels.
    */
@@ -90,10 +89,7 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    * Creates and returns the visual representation of the player.
    *
    * @return a Node representing the player's piece.
-   *
-   * NOTE: Change with file handling
    */
-  @Override
   public Node createPlayerNode() {
     setPieceNode(new Circle(tileSize * 0.2));
 
@@ -124,21 +120,10 @@ public class SnakesAndLaddersPlayerUI extends AbstractPlayerUI {
    * @param newX the new X coordinate.
    * @param newY the new Y coordinate.
    */
-  @Override
   public void updatePlayerPosition(final double newX, final double newY) {
     if (this.pieceNode != null) {
       this.pieceNode.setTranslateX(newX);
       this.pieceNode.setTranslateY(newY);
     }
-  }
-
-  /**
-   * Updates the player info (not used in this implementation).
-   *
-   * @param info some player info to display.
-   */
-  @Override
-  public void updatePlayerInfo(final Object info) {
-    // Not used
   }
 }
