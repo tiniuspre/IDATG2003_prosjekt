@@ -1,6 +1,5 @@
 package snakesandladders.ui;
 
-import gameengine.board.Tile;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -8,6 +7,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import renderengine.AbstractTileUI;
+import snakesandladders.engine.board.tile.SnLTile;
 
 /**
  * Concrete tile UI for a single tile in Snakes and Ladders,
@@ -25,7 +25,7 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
   /**
    * The tile instance.
    */
-  private Tile tile;
+  private SnLTile tile;
   /**
    * The height of the board.
    */
@@ -40,7 +40,7 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
    */
   public SnakesAndLaddersTileUI(
       final int tileSizePx,
-      final Tile tileParam,
+      final SnLTile tileParam,
       final int boardHeightParam
   ) {
     setTileSize(tileSizePx);
@@ -62,7 +62,7 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
    *
    * @param tileInstance the tile instance.
    */
-  private void setTile(final Tile tileInstance) {
+  private void setTile(final SnLTile tileInstance) {
     this.tile = tileInstance;
   }
 
@@ -86,7 +86,7 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
     Rectangle rect = new Rectangle(tileSize, tileSize);
 
     // Simple color alternation
-    if (tile.getNumber() % 2 == 0) {
+    if (tile.getPosition() % 2 == 0) {
       rect.setFill(Color.LIGHTGRAY);
     } else {
       rect.setFill(Color.WHITE);
@@ -101,7 +101,7 @@ public class SnakesAndLaddersTileUI extends AbstractTileUI {
     rect.setTranslateY(yPos);
 
     // 2) Add the tile number text in the top-right corner
-    Text tileNumberText = new Text(String.valueOf(tile.getNumber()));
+    Text tileNumberText = new Text(String.valueOf(tile.getPosition()));
     tileNumberText.setFont(Font.font(10));
 
     // Position offset: near top-right corner
