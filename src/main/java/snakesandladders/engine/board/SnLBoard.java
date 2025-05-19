@@ -135,7 +135,7 @@ public class SnLBoard extends Board {
    * @return the tile at the specified position.
    */
   public SnLTile getTile(final int position) {
-    if (position < 0 || position >= tiles.size()) {
+    if (position < 0 || position > tiles.size()) {
       throw new SnLBoardException("Invalid tile position: " + tiles.size() +
           ".");
     }
