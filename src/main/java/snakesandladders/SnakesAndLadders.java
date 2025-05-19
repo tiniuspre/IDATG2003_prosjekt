@@ -90,48 +90,24 @@ public class SnakesAndLadders implements Subject {
   }
 
   /**
-   * Plays one round of the game.
+   * Plays one turn of the game.
    */
-  public void playOneRound() {
+  public int playOneTurn(final SnLPlayer player) {
     SnLGameContext context = SnLGameContext.getInstance();
-    context.setPlayers(players);
-    for (SnLPlayer player : players) {
-      context.setCurrentPlayer(player);
-      this.currentPlayer = player;
-      int roll = dice.rollDice();
-      if (player.getPosition() + roll >= board.getBoardSize()) {
-        reachedEndOfBoard(player);
-      } else {
-        player.move(roll);
-        System.out.println(player.getName()
-            + " rolled a " + roll
-            + " and moved to position " + player.getPosition());
-        notifyObservers();
-      }
+    if (player.getPosition() >= board.getBoardSize()) {
+      return 0;
     }
-  }
-
-  /**
-   * Moves the player to the end of the board.
-   *
-   * @param player the player to move to the end of the board.
-   */
-  public void reachedEndOfBoard(final Player player) {
-    player.setPosition(board.getBoardSize());
-    System.out.println(player.getName()
-        + " has reached the end of the board.");
-  }
-
-
-
-  /**
-   * Prints the status of the players in the game with their current positions.
-   */
-  public void printStatus() {
-    for (Player player : players) {
-      System.out.println(player.getName()
-          + " is at position " + player.getPosition());
+    int roll = dice.rollDice();
+    int newPos = player.getPosition() + roll;
+    if (newPos >= board.getBoardSize()) {
+      player.setPosition(board.getBoardSize());
+      return roll;
     }
+    player.move(roll);
+    context.setCurrentPlayer(player);
+    setCurrentPlayer(player);
+    notifyObservers();
+    return roll;
   }
 
   /**
@@ -161,6 +137,36 @@ public class SnakesAndLadders implements Subject {
       }
     }
     return true;
+  }
+
+  /**
+   * Returns the players in the game.
+   *
+   * @return the players in the game.
+   */
+  public List<SnLPlayer> getPlayers() {
+    return new ArrayList<>(players);
+  }
+
+  /**
+   * Returns the board.
+   *
+   * @return the board.
+   */
+  public SnLBoard getBoard() {
+    return board;
+  }
+
+  /**
+   * Sets the current player.
+   *
+   * @param player the current player.
+   */
+  public void setCurrentPlayer(final SnLPlayer player) {
+    if (player == null) {
+      throw new SnLBoardException("Current player cannot be null");
+    }
+    this.currentPlayer = player;
   }
 
   /**
