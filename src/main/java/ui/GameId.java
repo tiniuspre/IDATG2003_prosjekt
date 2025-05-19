@@ -30,5 +30,10 @@ public enum GameId {
   /**
    * Identifier for the Settings menu.
    */
-  SETTINGS
+  SETTINGS,
+
+  /**
+   * Identifier for the Player selection menu.
+   */
+  PLAYER_MENU
 }
