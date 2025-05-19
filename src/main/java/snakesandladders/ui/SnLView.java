@@ -88,8 +88,8 @@ public class SnLView extends VBox {
     renderBoard();
 
     // Side panel with current player + status
-    VBox sidePanel = new VBox(UiConstants.SNL_SIDEPANEL_WIDTH);
-    sidePanel.setPrefWidth(UiConstants.SNL_SIDEPANEL_PREF_WIDTH);
+    VBox sidePanel = new VBox(UiConstants.SNL_SIDE_PANEL_WIDTH);
+    sidePanel.setPrefWidth(UiConstants.SNL_SIDE_PANEL_PREF_WIDTH);
 
     currentPlayerLabel = new Label("Player: ");
     sidePanel.getChildren().add(currentPlayerLabel);
