@@ -15,4 +15,7 @@ module IDATG2003.prosjekt {
   exports ui;
   exports snakesandladders;
   exports snakesandladders.ui;
+  exports ui.util;
+  exports gameengine;
+  exports snakesandladders.engine;
 }
