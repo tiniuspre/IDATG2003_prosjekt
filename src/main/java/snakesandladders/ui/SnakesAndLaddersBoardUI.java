@@ -2,19 +2,17 @@ package snakesandladders.ui;
 
 import java.util.HashMap;
 import java.util.Map;
-import gameengine.board.Tile;
+
+import constants.Constants;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import renderengine.AbstractBoardUI;
 import snakesandladders.SnakesAndLadders;
-import snakesandladders.engine.SnakesAndLaddersBoard;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
-import snakesandladders.engine.actions.LadderAction;
-import snakesandladders.engine.actions.SnakeAction;
-import snakesandladders.engine.tiles.LadderTile;
-import snakesandladders.engine.tiles.SnakeTile;
+import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.SnLBoard;
+import snakesandladders.engine.board.tile.SnLTile;
 
 /**
  * Board UI for Snakes and Ladders (JavaFX).
@@ -34,11 +32,11 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
   /**
    * The game board.
    */
-  private final SnakesAndLaddersBoard board;
+  private final SnLBoard board;
   /**
    * Map of player -> player UI.
    */
-  private final Map<SnakesAndLaddersPlayer, SnakesAndLaddersPlayerUI> playerUIs
+  private final Map<SnLPlayer, SnakesAndLaddersPlayerUI> playerUIs
       = new HashMap<>();
 
   // Tile: 50x50 px
@@ -75,7 +73,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
     getBoardRoot().getChildren().clear();
 
     // 1) Draw each tile (with ID text)
-    board.getTiles().values().forEach(tile -> {
+    board.getTiles().forEach(tile -> {
       SnakesAndLaddersTileUI tileUI =
           new SnakesAndLaddersTileUI(tileSize, tile, board.getHeight());
       // The tileUI returns a Group containing the rectangle + tile number text
@@ -89,7 +87,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
     drawSnakesAndLadders();
 
     // 4) Create and add player pieces
-    for (SnakesAndLaddersPlayer p : game.getPlayers()) {
+    for (SnLPlayer p : game.getPlayers()) {
       SnakesAndLaddersPlayerUI playerUI
           = new SnakesAndLaddersPlayerUI(tileSize, p, board.getHeight());
       playerUIs.put(p, playerUI);
@@ -105,9 +103,9 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
   private void drawTileArrows() {
     int size = board.getBoardSize();
     // For each tile from 1 to (last-1), draw an arrow to the next tile
-    for (int i = 1; i < size; i++) {
-      Tile startTile = board.getTile(i);
-      Tile endTile = board.getTile(i + 1);
+    for (int i = 1; i < size-1; i++) {
+      SnLTile startTile = board.getTile(i);
+      SnLTile endTile = board.getTile(i + 1);
 
       double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
       double startY = (board.getHeight() - startTile.getPosY()) * tileSize
@@ -168,18 +166,16 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
    * Draws lines for snakes (red) and ladders (green).
    */
   private void drawSnakesAndLadders() {
-    for (Tile tile : board.getTiles().values()) {
-      if (tile instanceof SnakeTile) {
-        SnakeAction snakeAction = (SnakeAction) tile.getAction();
-        int head = tile.getNumber();
-        int tail = snakeAction.landAction(head);
+    for (SnLTile tile : board.getTiles()) {
+      if (tile.getType().equals(Constants.SNAKE)) {
+        int head = tile.getPosition();
+        int tail = tile.getNext();
         if (head > tail) {
           drawLine(head, tail, Color.RED);
         }
-      } else if (tile instanceof LadderTile) {
-        LadderAction ladderAction = (LadderAction) tile.getAction();
-        int bottom = tile.getNumber();
-        int top = ladderAction.landAction(bottom);
+      } else if (tile.getType().equals(Constants.LADDER)) {
+        int bottom = tile.getPosition();
+        int top = tile.getNext();
         if (bottom < top) {
           drawLine(bottom, top, Color.GREEN);
         }
@@ -198,8 +194,8 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
   private void drawLine(
       final int startNum,
       final int endNum, final Color color) {
-    Tile startTile = board.getTile(startNum);
-    Tile endTile = board.getTile(endNum);
+    SnLTile startTile = board.getTile(startNum);
+    SnLTile endTile = board.getTile(endNum);
 
     double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
     double startY = (board.getHeight() - startTile.getPosY()) * tileSize
@@ -220,7 +216,7 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
    * Called after a turn, repositions every player's piece.
    */
   public void updatePlayers() {
-    for (SnakesAndLaddersPlayer p : game.getPlayers()) {
+    for (SnLPlayer p : game.getPlayers()) {
       updatePlayerPosition(p);
     }
   }
@@ -230,14 +226,14 @@ public class SnakesAndLaddersBoardUI extends AbstractBoardUI {
    *
    * @param player the player whose position is to be updated.
    */
-  private void updatePlayerPosition(final SnakesAndLaddersPlayer player) {
+  private void updatePlayerPosition(final SnLPlayer player) {
     SnakesAndLaddersPlayerUI ui = playerUIs.get(player);
     if (ui == null) {
       return;
     }
 
     int tileNum = player.getPosition();
-    Tile tile = board.getTile(tileNum);
+    SnLTile tile = board.getTile(tileNum);
 
     double xPos = (tile.getPosX() - 1) * tileSize + tileSize * 0.2;
     double yPos = (board.getHeight() - tile.getPosY()) * tileSize
