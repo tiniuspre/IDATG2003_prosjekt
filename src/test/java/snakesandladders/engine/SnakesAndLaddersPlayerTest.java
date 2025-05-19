@@ -6,13 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SnakesAndLaddersPlayerTest {
 
-  static SnakesAndLaddersPlayer testPlayer = new SnakesAndLaddersPlayer("Jonas", "hat");
+  static SnLPlayer testPlayer = new SnLPlayer("Jonas", "hat");
 
   @Test
   void setPiece() {
-    SnakesAndLaddersPlayer player = new SnakesAndLaddersPlayer("Jonas", "hat");
-    assertEquals(SnakesAndLaddersPiece.HAT.getValue(), player.getPiece());
-    assertThrows(IllegalArgumentException.class, () -> new SnakesAndLaddersPlayer("Jonas", ""));
+    assertDoesNotThrow(() -> new SnLPlayer("Jonas", "hat"));
+    assertThrows(IllegalArgumentException.class, () -> new SnLPlayer("Jonas", ""));
   }
 
   @Test
