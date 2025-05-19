@@ -5,9 +5,8 @@ package constants;
  * values used throughout the application.
  * These constants include application settings,
  * UI configurations, and error handling flags.
- *
- * This class is final and cannot be instantiated.
- * All fields are static and designed for global access.
+ * <p>This class is final and cannot be instantiated.
+ * All fields are static and designed for global access.</p>
  *
  * @author tiniuspre, jonastom
  * @version 29.05.2025
