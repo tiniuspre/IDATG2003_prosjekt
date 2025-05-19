@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import renderengine.AbstractGameUI;
 import snakesandladders.SnakesAndLadders;
-import snakesandladders.engine.SnakesAndLaddersPlayer;
+import snakesandladders.engine.SnLPlayer;
 
 import java.util.List;
 
@@ -106,7 +106,7 @@ public class SnakesAndLaddersUI extends AbstractGameUI {
       return;
     }
 
-    SnakesAndLaddersPlayer current = getCurrentPlayer();
+    SnLPlayer current = getCurrentPlayer();
     int roll = game.playOneTurn(current);
 
     statusLabel.setText(current.getName()
@@ -139,8 +139,8 @@ public class SnakesAndLaddersUI extends AbstractGameUI {
    *
    * @return the current player.
    */
-  private SnakesAndLaddersPlayer getCurrentPlayer() {
-    List<SnakesAndLaddersPlayer> p = game.getPlayers();
+  private SnLPlayer getCurrentPlayer() {
+    List<SnLPlayer> p = game.getPlayers();
     return p.get(currentPlayerIndex);
   }
 }
