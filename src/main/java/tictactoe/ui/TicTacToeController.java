@@ -11,6 +11,10 @@ import static constants.GameConstants.TTT_BOARD_SIZE;
  * logic and the user interface,
  * including updating the view, processing user moves,
  * and managing game state transitions.
+ *
+ * @author tiniuspre
+ * @version 19.05.2025
+ * @since 25.03.2025
  */
 public class TicTacToeController {
   /**

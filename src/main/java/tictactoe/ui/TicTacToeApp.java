@@ -12,6 +12,10 @@ import static constants.GameConstants.TTT_TITLE;
  * Main JavaFX application for TicTacToe.
  * This class initializes the game,
  * sets up the user interface, and starts the application.
+ *
+ * @author tiniuspre
+ * @version 19.05.2025
+ * @since 25.03.2025
  */
 public class TicTacToeApp extends Application {
 
