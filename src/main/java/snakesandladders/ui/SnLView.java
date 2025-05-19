@@ -2,10 +2,10 @@ package snakesandladders.ui;
 
 import constants.Constants;
 import constants.UiConstants;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,8 +19,22 @@ import snakesandladders.engine.board.tile.SnLTile;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The {@code SnLView} class is responsible
+ * for initializing and managing the Snakes and Ladders game UI.
+ * Together with the {@link SnLController} class,
+ * it handles all changes to the UI.
+ *
+ * @author jonastomren
+ * @version 19.05.2025
+ * @since 19.05.2025
+ *
+ * @see SnLController
+ */
 public class SnLView extends VBox {
-
+  /**
+   * The root pane for the game board UI.
+   */
   private final Pane boardRoot = new Pane();
   /**
    * The Snakes and Ladders game instance.
@@ -47,10 +61,17 @@ public class SnLView extends VBox {
    * The current player label.
    */
   private Label currentPlayerLabel;
-
+  /**
+   * The button to proceed to the next turn.
+   */
   private Button nextTurnBtn;
 
-
+  /**
+   * Constructs a SnLView with the given game instance.
+   * And then initializes the UI components.
+   *
+   * @param gameInstance the Snakes and Ladders game instance.
+   */
   public SnLView(final SnakesAndLadders gameInstance) {
     this.game = gameInstance;
     this.board = game.getBoard();
@@ -67,8 +88,8 @@ public class SnLView extends VBox {
     renderBoard();
 
     // Side panel with current player + status
-    VBox sidePanel = new VBox(10);
-    sidePanel.setPrefWidth(240);
+    VBox sidePanel = new VBox(UiConstants.SNL_SIDEPANEL_WIDTH);
+    sidePanel.setPrefWidth(UiConstants.SNL_SIDEPANEL_PREF_WIDTH);
 
     currentPlayerLabel = new Label("Player: ");
     sidePanel.getChildren().add(currentPlayerLabel);
@@ -79,21 +100,33 @@ public class SnLView extends VBox {
     nextTurnBtn = new Button("Next Turn");
     sidePanel.getChildren().add(nextTurnBtn);
 
-    // Layout
-    BorderPane root = new BorderPane();
-    root.setCenter(getBoardRoot());
-    root.setRight(sidePanel);
+    sidePanel.setAlignment(Pos.CENTER);
     getChildren().addAll(boardRoot, sidePanel);
   }
 
+  /**
+   * Returns the button for the next turn.
+   *
+   * @return the button for the next turn.
+   */
   public Button getNextTurnBtn() {
     return nextTurnBtn;
   }
 
+  /**
+   * Returns the status label.
+   *
+   * @return the status label.
+   */
   public Label getStatusLabel() {
     return statusLabel;
   }
 
+  /**
+   * Returns the current player label.
+   *
+   * @return the current player label.
+   */
   public Label getCurrentPlayerLabel() {
     return currentPlayerLabel;
   }
@@ -115,7 +148,7 @@ public class SnLView extends VBox {
    */
   public void renderBoard() {
     getBoardRoot().getChildren().clear();
-    getBoardRoot().setTranslateX(100);
+    getBoardRoot().setTranslateX(UiConstants.SNL_GAME_OFFSET);
 
     // 1) Draw each tile (with ID text)
     board.getTiles().forEach(tile -> {
@@ -148,7 +181,7 @@ public class SnLView extends VBox {
   private void drawTileArrows() {
     int size = board.getBoardSize();
     // For each tile from 1 to (last-1), draw an arrow to the next tile
-    for (int i = 1; i < size-1; i++) {
+    for (int i = 1; i < size - 1; i++) {
       SnLTile startTile = board.getTile(i);
       SnLTile endTile = board.getTile(i + 1);
 
@@ -254,7 +287,7 @@ public class SnLView extends VBox {
 
     Line line = new Line(startX, startY, endX, endY);
     line.setStroke(color);
-    line.setStrokeWidth(3.0);
+    line.setStrokeWidth(UiConstants.SNL_LINE_WIDTH);
 
     getBoardRoot().getChildren().add(line);
   }
@@ -282,9 +315,10 @@ public class SnLView extends VBox {
     int tileNum = player.getPosition();
     SnLTile tile = board.getTile(tileNum);
 
-    double xPos = (tile.getPosX() - 1) * tileSize + tileSize * 0.2;
+    double xPos = (tile.getPosX() - 1) * tileSize + tileSize
+        * UiConstants.SNL_PLAYER_ICON_RADIUS;
     double yPos = (board.getHeight() - tile.getPosY()) * tileSize
-        + tileSize * 0.2;
+        + tileSize * UiConstants.SNL_PLAYER_ICON_RADIUS;
 
     ui.updatePlayerPosition(xPos, yPos);
   }

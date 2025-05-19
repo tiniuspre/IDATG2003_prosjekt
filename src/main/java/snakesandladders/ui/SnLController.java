@@ -13,7 +13,7 @@ import java.util.List;
  * @author jonastomren
  * @version 19.05.2025
  * @since 19.05.2025
- *´
+ *
  * @see SnLView
  */
 public class SnLController {

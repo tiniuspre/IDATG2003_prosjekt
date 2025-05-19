@@ -1,5 +1,6 @@
 package snakesandladders.ui;
 
+import constants.UiConstants;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -91,7 +92,7 @@ public class SnakesAndLaddersPlayerUI {
    * @return a Node representing the player's piece.
    */
   public Node createPlayerNode() {
-    setPieceNode(new Circle(tileSize * 0.2));
+    setPieceNode(new Circle(tileSize * UiConstants.SNL_PLAYER_ICON_RADIUS));
 
     switch (player.getPiece().toLowerCase()) {
       case "hat":
@@ -108,8 +109,8 @@ public class SnakesAndLaddersPlayerUI {
     }
 
     // Start offscreen; the boardUI will place it properly.
-    this.pieceNode.setTranslateX(-999);
-    this.pieceNode.setTranslateY(-999);
+    this.pieceNode.setTranslateX(UiConstants.SNL_PLAYER_OFFSCREEN_PLACEMENT);
+    this.pieceNode.setTranslateY(UiConstants.SNL_PLAYER_OFFSCREEN_PLACEMENT);
 
     return this.pieceNode;
   }

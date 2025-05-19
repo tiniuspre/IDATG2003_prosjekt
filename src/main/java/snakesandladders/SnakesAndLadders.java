@@ -91,6 +91,9 @@ public class SnakesAndLadders implements Subject {
 
   /**
    * Plays one turn of the game.
+   *
+   * @param player the player to play the turn.
+   * @return the number of spaces moved.
    */
   public int playOneTurn(final SnLPlayer player) {
     SnLGameContext context = SnLGameContext.getInstance();

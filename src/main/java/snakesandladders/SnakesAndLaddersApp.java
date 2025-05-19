@@ -1,14 +1,9 @@
 package snakesandladders;
 
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
-import snakesandladders.engine.SnLPlayer;
 import snakesandladders.ui.SnLController;
 import snakesandladders.ui.SnLView;
 import ui.util.GameScreen;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -21,14 +16,23 @@ import java.util.List;
  * @see SnakesAndLadders
  */
 public final class SnakesAndLaddersApp implements GameScreen {
-
+  /**
+   * The view for the Snakes and Ladders game.
+   */
   private final SnLView view;
-
+  /**
+   * The controller for the Snakes and Ladders game.
+   */
   private final SnLController controller;
-
+  /**
+   * The game instance for the Snakes and Ladders game.
+   */
   private final SnakesAndLadders game = new SnakesAndLadders();
 
-
+  /**
+   * Constructs a SnakesAndLaddersApp instance.
+   *
+   */
   public SnakesAndLaddersApp() {
     game.setBoard();
     game.addPlayer("Player 1", "hat");
@@ -37,12 +41,13 @@ public final class SnakesAndLaddersApp implements GameScreen {
     controller = new SnLController(view, game);
   }
 
-
+  /**
+   * Returns the view for the Snakes and Ladders game.
+   *
+   * @return the view for the Snakes and Ladders game
+   */
   @Override
   public Parent getView() {
-    view.setPrefWidth(800);  // Set preferred width
-    view.setPrefHeight(600); // Set preferred height
-    VBox.setVgrow(view, javafx.scene.layout.Priority.ALWAYS);
     return view;
   }
 }

@@ -1,5 +1,6 @@
 package snakesandladders.ui;
 
+import constants.UiConstants;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
@@ -80,38 +81,27 @@ public class SnakesAndLaddersTileUI {
    * @return a Node representing the tile.
    */
   public Node createTileNode() {
-    // 1) Make the background rectangle
     Rectangle rect = new Rectangle(tileSize, tileSize);
-
-    // Simple color alternation
+    // add tile color
     if (tile.getPosition() % 2 == 0) {
       rect.setFill(Color.LIGHTGRAY);
     } else {
       rect.setFill(Color.WHITE);
     }
     rect.setStroke(Color.BLACK);
-
-    // Invert Y so row=1 is at bottom
+    // add tile node
     double xPos = (tile.getPosX() - 1) * tileSize;
     double yPos = (boardHeight - tile.getPosY()) * tileSize;
-
     rect.setTranslateX(xPos);
     rect.setTranslateY(yPos);
-
-    // 2) Add the tile number text in the top-right corner
+    // add tile number
     Text tileNumberText = new Text(String.valueOf(tile.getPosition()));
-    tileNumberText.setFont(Font.font(10));
-
-    // Position offset: near top-right corner
-    // We'll pad 2 px from top and 5 px from right
-    double textX = xPos + (tileSize - 15);
-    double textY = yPos + 12;
-    // '12' so the text is near the top (font size ~10)
-
+    tileNumberText.setFont(Font.font(UiConstants.SNL_FONT_SIZE));
+    // add text position
+    double textX = xPos + (tileSize - UiConstants.SNL_TILE_TEXT_OFFSET_X);
+    double textY = yPos + UiConstants.SNL_TILE_TEXT_OFFSET_Y;
     tileNumberText.setX(textX);
     tileNumberText.setY(textY);
-
-    // 3) Return a Group containing both the rectangle + the text
     return new Group(rect, tileNumberText);
   }
 }
