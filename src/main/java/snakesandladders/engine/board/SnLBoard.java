@@ -23,10 +23,7 @@ import java.util.List;
  * @see Board
  */
 public class SnLBoard extends Board {
-  /**
-   * The name of the board.
-   */
-  private String boardName;
+
   /**
    * The list of tiles on the board.
    */
@@ -103,7 +100,6 @@ public class SnLBoard extends Board {
     setTiles(boardConfig.getSnakes().toList(),
         boardConfig.getLadders().toList(),
         boardConfig.getSwitches().toList());
-    setBoardName(boardConfig.getBoardName());
   }
 
   /**
@@ -140,18 +136,6 @@ public class SnLBoard extends Board {
           + ".");
     }
     return tiles.get(position);
-  }
-
-  /**
-   * Sets the name of the board.
-   *
-   * @param name the name of the board.
-   */
-  public void setBoardName(final String name) {
-    if (name == null || name.isEmpty()) {
-      throw new SnLBoardException("Board name cannot be null or empty.");
-    }
-    this.boardName = name;
   }
 
   /**
