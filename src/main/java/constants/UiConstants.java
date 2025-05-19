@@ -76,6 +76,23 @@ public final class UiConstants {
 
   public static final Integer SNL_ARROW_HEAD_SIZE = 3;
 
+  public static final Integer SNL_SIDEPANEL_WIDTH = 10;
+
+  public static final Integer SNL_SIDEPANEL_PREF_WIDTH = 240;
+
+  public static final Integer SNL_GAME_OFFSET = 100;
+
+  public static final double SNL_LINE_WIDTH = 3.0;
+
+  public static final double SNL_PLAYER_ICON_RADIUS = 0.2;
+
+  public static final Integer SNL_PLAYER_OFFSCREEN_PLACEMENT = -999;
+
+  public static final Integer SNL_FONT_SIZE = 10;
+
+  public static final Integer SNL_TILE_TEXT_OFFSET_X = 15;
+
+  public static final Integer SNL_TILE_TEXT_OFFSET_Y = 12;
   /**
    * Private constructor to prevent instantiation of this utility class.
    */
