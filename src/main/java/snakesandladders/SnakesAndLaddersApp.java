@@ -64,7 +64,8 @@ public final class SnakesAndLaddersApp implements GameScreen {
     if (view.isInitialized()) {
       return view;
     } else {
-      throw new IllegalStateException("View is not initialized, returning to main menu.");
+      throw new IllegalStateException("View is not initialized,"
+          + " returning to main menu.");
     }
   }
 }

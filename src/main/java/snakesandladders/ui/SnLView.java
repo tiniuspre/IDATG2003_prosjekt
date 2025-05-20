@@ -348,6 +348,7 @@ public class SnLView extends VBox {
    * Displays a popup dialog for selecting pieces for each player.
    *
    * @param players the list of players to select pieces for.
+   * @return true if the user confirmed the selection, false otherwise.
    */
   private boolean showPieceSelectionPopup(final List<SnLPlayer> players) {
     Dialog<Map<SnLPlayer, String>> dialog = new Dialog<>();
