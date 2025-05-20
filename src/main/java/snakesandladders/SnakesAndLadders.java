@@ -174,6 +174,8 @@ public class SnakesAndLadders implements Subject {
 
   /**
    * Adds selected players to the game from a CSV file.
+   *
+   * @return a list of selected players.
    */
   private List<SnLPlayer> addPlayers() {
     CsvHandler csvHandler = new CsvHandler("player/selected_players.csv");

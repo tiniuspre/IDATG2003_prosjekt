@@ -291,7 +291,7 @@ class MainMenuController {
    * Wires actions to the buttons in the main menu.
    */
   private void wireActions() {
-    view.getSnakesBtn().setOnAction( e -> {
+    view.getSnakesBtn().setOnAction(e -> {
       if (PlayerUtil.checkPlayerCount(GameId.SNAKES_AND_LADDERS)) {
         Router.launch(GameId.SNAKES_AND_LADDERS);
       } else {

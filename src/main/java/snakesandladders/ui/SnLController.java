@@ -1,6 +1,5 @@
 package snakesandladders.ui;
 
-import filehandler.csvhandling.CsvHandler;
 import snakesandladders.SnakesAndLadders;
 import snakesandladders.engine.SnLPlayer;
 import java.util.List;
@@ -107,7 +106,14 @@ public class SnLController {
     return p.get(currentPlayerIndex);
   }
 
-  public static boolean handlePieceSelection(final Optional<Map<SnLPlayer, String>> result) {
+  /**
+   * Handles the selection of pieces for each player.
+   *
+   * @param result the result of the piece selection dialog.
+   * @return true if the selection was successful, false otherwise.
+   */
+  public static boolean handlePieceSelection(
+      final Optional<Map<SnLPlayer, String>> result) {
     if (result.isPresent()) {
       Map<SnLPlayer, String> selectedPieces = result.get();
       for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
