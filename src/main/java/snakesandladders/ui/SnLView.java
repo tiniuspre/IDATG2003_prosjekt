@@ -59,7 +59,7 @@ public class SnLView extends VBox {
   /**
    * The size of a tile in pixels.
    */
-  private final int tileSize = UiConstants.SNL_TILE_SIZE;
+  private static final int tileSize = UiConstants.SNL_TILE_SIZE;
   /**
    * The status label.
    */
