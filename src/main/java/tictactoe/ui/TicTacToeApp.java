@@ -1,7 +1,7 @@
 package tictactoe.ui;
 
 import gameengine.grid.GridPlayer;
-import gameengine.grid.Marker;
+import gameengine.player.PlayerUtil;
 import javafx.scene.Parent;
 import ui.util.GameScreen;
 
@@ -25,8 +25,8 @@ public class TicTacToeApp implements GameScreen {
    */
   public TicTacToeApp() {
     // Create players for the game
-    GridPlayer p1 = new GridPlayer("X", Marker.PLAYER_ONE);
-    GridPlayer p2 = new GridPlayer("O", Marker.PLAYER_TWO);
+    GridPlayer p1 = PlayerUtil.getGridPlayers().getFirst();
+    GridPlayer p2 = PlayerUtil.getGridPlayers().getLast();
 
     // Initialize the game engine
     tictactoe.engine.TicTacToeGame game = new tictactoe.engine.TicTacToeGame(

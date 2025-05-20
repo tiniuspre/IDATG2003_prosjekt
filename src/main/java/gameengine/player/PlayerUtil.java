@@ -1,9 +1,13 @@
 package gameengine.player;
 
 import filehandler.csvhandling.CsvHandler;
+import gameengine.grid.GridPlayer;
+import gameengine.grid.Marker;
 import snakesandladders.engine.SnLPlayer;
 import ui.GameId;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public final class PlayerUtil {
@@ -31,6 +35,18 @@ public final class PlayerUtil {
     }
     GameRules rules = GAME_RULES_MAP.get(gameId);
     return playerCount >= rules.minPlayers && playerCount <= rules.maxPlayers;
+  }
+
+  public static List<GridPlayer> getGridPlayers() {
+    List<SnLPlayer> players = new CsvHandler("player/selected_players.csv")
+        .readFromFile(SnLPlayer.class);
+    if (players.size() != 2) {
+      throw new IllegalArgumentException("Two players are required");
+    }
+    List<GridPlayer> gridPlayers = new ArrayList<>();
+    gridPlayers.add(new GridPlayer(players.getFirst().getName(), Marker.PLAYER_ONE));
+    gridPlayers.add(new GridPlayer(players.getLast().getName(), Marker.PLAYER_TWO));
+    return gridPlayers;
   }
 
   private static class GameRules {
