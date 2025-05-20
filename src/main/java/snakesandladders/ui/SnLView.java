@@ -20,6 +20,9 @@ import snakesandladders.engine.SnLPiece;
 import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.board.tile.SnLTile;
+import ui.GameId;
+import ui.launcher.Router;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -74,6 +77,11 @@ public class SnLView extends VBox {
   private Button nextTurnBtn;
 
   /**
+   * The flag to check if the UI is initialized.
+   */
+  private boolean isInitialized = false;
+
+  /**
    * Constructs a SnLView with the given game instance.
    * And then initializes the UI components.
    *
@@ -82,7 +90,13 @@ public class SnLView extends VBox {
   public SnLView(final SnakesAndLadders gameInstance) {
     this.game = gameInstance;
     this.board = game.getBoard();
-    initializeUI();
+
+    if (showPieceSelectionPopup(game.getPlayers())) {
+      initializeUI();
+      isInitialized = true;
+    } else {
+      Router.launch(GameId.MAIN_MENU);
+    }
   }
 
   /**
@@ -97,8 +111,6 @@ public class SnLView extends VBox {
     // Side panel with current player + status
     VBox sidePanel = new VBox(UiConstants.SNL_SIDE_PANEL_WIDTH);
     sidePanel.setPrefWidth(UiConstants.SNL_SIDE_PANEL_PREF_WIDTH);
-
-    showPieceSelectionPopup(game.getPlayers());
 
     currentPlayerLabel = new Label("Player: ");
     sidePanel.getChildren().add(currentPlayerLabel);
@@ -337,7 +349,7 @@ public class SnLView extends VBox {
    *
    * @param players the list of players to select pieces for.
    */
-  private void showPieceSelectionPopup(final List<SnLPlayer> players) {
+  private boolean showPieceSelectionPopup(final List<SnLPlayer> players) {
     Dialog<Map<SnLPlayer, String>> dialog = new Dialog<>();
     dialog.setTitle("Select Player Pieces");
     dialog.setHeaderText("Select pieces for each player:");
@@ -379,10 +391,23 @@ public class SnLView extends VBox {
 
     // Show the dialog and handle the result
     Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
-    result.ifPresent(selectedPieces -> {
+    if (result.isPresent()) {
+      Map<SnLPlayer, String> selectedPieces = result.get();
       for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
-        entry.getKey().setPiece(entry.getValue());
+        SnLPlayer player = entry.getKey();
+        player.setPiece(entry.getValue());
       }
-    });
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Returns whether the UI is initialized.
+   *
+   * @return true if the UI is initialized, false otherwise.
+   */
+  public boolean isInitialized() {
+    return isInitialized;
   }
 }
