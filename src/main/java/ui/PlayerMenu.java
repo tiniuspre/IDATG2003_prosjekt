@@ -151,6 +151,14 @@ class PlayerMenuView extends BorderPane {
   void addPlayer(final String playerName) {
     registeredPlayers.add(playerName);
   }
+
+  void setRegisteredPlayers(final List<SnLPlayer> players) {
+    registeredPlayers.clear();
+    for (SnLPlayer player : players) {
+      registeredPlayers.add(player.getName());
+    }
+    populatePlayerMenu();
+  }
 }
 
 class PlayerMenuController {
@@ -159,6 +167,7 @@ class PlayerMenuController {
 
   PlayerMenuController(final PlayerMenuView playerMenuView) {
     this.view = playerMenuView;
+    view.setRegisteredPlayers(loadPlayers());
     wireButtons();
   }
 
@@ -197,5 +206,17 @@ class PlayerMenuController {
       view.getPlayerNameField().clear();
       view.populatePlayerMenu();
     });
+  }
+
+  List<SnLPlayer> loadPlayers() {
+    List<SnLPlayer> players;
+    CsvHandler csvHandler = new CsvHandler("player/all_players.csv");
+    try {
+      players = csvHandler.readFromFile(SnLPlayer.class);
+    } catch (Exception e) {
+      DialogUtil.error("Error loading players", "Could not load players from file.");
+      return new ArrayList<>();
+    }
+    return players;
   }
 }
