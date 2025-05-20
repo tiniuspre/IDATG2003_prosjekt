@@ -195,6 +195,8 @@ public final class UiConstants {
    * The title of the player menu.
    */
   public static final String PLAYER_MENU_TITLE = "Player Menu";
+
+  public static final String INVALID_PLAYER_AMOUNT = "Invalid player amount";
   /**
    * Private constructor to prevent instantiation of this utility class.
    */

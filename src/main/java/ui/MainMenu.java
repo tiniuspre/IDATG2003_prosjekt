@@ -34,6 +34,7 @@ import static constants.UiConstants.APP_WIDTH;
 import static constants.UiConstants.APP_HEIGHT;
 import static constants.UiConstants.SETTINGS_BUTTON_ID;
 import static constants.UiConstants.PLAYER_MENU_BUTTON_ID;
+import static constants.UiConstants.INVALID_PLAYER_AMOUNT;
 
 
 /**
@@ -295,21 +296,21 @@ class MainMenuController {
       if (PlayerUtil.checkPlayerCount(GameId.SNAKES_AND_LADDERS)) {
         Router.launch(GameId.SNAKES_AND_LADDERS);
       } else {
-        DialogUtil.error("Invalid player amount", "2 to 5 players required");
+        DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 to 5 players required");
       }
     });
     view.getTttBtn().setOnAction(e -> {
           if (PlayerUtil.checkPlayerCount(GameId.TIC_TAC_TOE)) {
             Router.launch(GameId.TIC_TAC_TOE);
           } else {
-            DialogUtil.error("Invalid player amount", "2 players");
+            DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 players");
           }
     });
     view.getConnectBtn().setOnAction(e -> {
           if (PlayerUtil.checkPlayerCount(GameId.CONNECT_FOUR)) {
             Router.launch(GameId.CONNECT_FOUR);
           } else {
-            DialogUtil.error("Invalid player amount", "2 players");
+            DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 players");
           }
     });
     view.getExitBtn().setOnAction(

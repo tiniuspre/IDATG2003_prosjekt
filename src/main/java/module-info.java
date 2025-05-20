@@ -21,4 +21,5 @@ module IDATG2003.prosjekt {
   exports snakesandladders.engine.board;
   exports snakesandladders.engine.board.tile;
   exports gameengine.player;
+  exports gameengine.grid;
 }
