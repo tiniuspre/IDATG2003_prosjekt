@@ -29,6 +29,10 @@
     -fx-cursor: hand;
 }
 
+.check-box {
+    -fx-font-size: 20px;
+}
+
 .button:hover {
     -fx-background-color: linear-gradient(#8fc3ff 0%, #458dff 100%);
 }

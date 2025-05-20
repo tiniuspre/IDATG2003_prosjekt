@@ -168,7 +168,6 @@ class PlayerMenuView extends BorderPane {
       playerBox.setPadding(new Insets(TTT_H_V_GAP));
 
       CheckBox checkBox = new CheckBox(player);
-      checkBox.setStyle("-fx-font-size: 20px;");
       checkBox.setPadding(new Insets(TTT_H_V_GAP));
 
       playerCheckBoxes.put(player, checkBox);
