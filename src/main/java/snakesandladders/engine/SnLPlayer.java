@@ -51,10 +51,6 @@ public class SnLPlayer extends Player {
     if (inputPiece == null || inputPiece.isBlank()) {
       throw new IllegalArgumentException("Piece cannot be null or empty");
     }
-    if (inputPiece.toUpperCase().equals(
-        SnLPiece.DEFAULT.toString())) {
-      throw new IllegalArgumentException("Piece cannot be default");
-    }
     try {
       SnLPiece.valueOf(inputPiece.toUpperCase());
     } catch (IllegalArgumentException e) {
