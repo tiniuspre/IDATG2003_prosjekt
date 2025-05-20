@@ -1,8 +1,8 @@
 package connectfour.ui;
 
+import gameengine.player.PlayerUtil;
 import javafx.scene.Parent;
 import gameengine.grid.GridPlayer;
-import gameengine.grid.Marker;
 import ui.util.GameScreen;
 import connectfour.engine.ConnectFourGame;
 
@@ -29,8 +29,8 @@ public class ConnectFourApp implements GameScreen {
    * and wiring the controller to the view.
    */
   public ConnectFourApp() {
-    GridPlayer p1 = new GridPlayer("X", Marker.PLAYER_ONE);
-    GridPlayer p2 = new GridPlayer("O", Marker.PLAYER_TWO);
+    GridPlayer p1 = PlayerUtil.getGridPlayers().getFirst();
+    GridPlayer p2 = PlayerUtil.getGridPlayers().getLast();
     ConnectFourGame game = new ConnectFourGame(p1, p2);
     new ConnectFourController(game, view);
   }
