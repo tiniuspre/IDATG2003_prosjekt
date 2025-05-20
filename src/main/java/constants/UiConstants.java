@@ -131,7 +131,7 @@ public final class UiConstants {
    * Btn min size for Tic Tac Toe.
    */
   public static final Integer TTT_BTN_MIN_SIZE = 60;
-
+  /* SNL constants */
   /**
    * The size of the Snakes and Ladders game board tiles.
    */

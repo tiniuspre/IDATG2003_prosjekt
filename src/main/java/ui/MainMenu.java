@@ -158,8 +158,7 @@ class MainMenuView extends BorderPane {
   /**
    * Button to launch the player menu.
    */
-  // TODO : Add icon
-  private final Button playerMenuBtn = new Button("temp");
+  private final Button playerMenuBtn = new Button("\uD83D\uDC64");
 
   /**
    * Constructs the main menu view and builds the user interface.
