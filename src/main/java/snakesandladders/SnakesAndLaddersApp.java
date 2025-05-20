@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author jonastomren
  * @since 13.02.2025
- * @version 13.02.2025
+ * @version 20.05.2025
  * @see SnakesAndLadders
  */
 public final class SnakesAndLaddersApp implements GameScreen {
@@ -23,10 +23,7 @@ public final class SnakesAndLaddersApp implements GameScreen {
    * The view for the Snakes and Ladders game.
    */
   private final SnLView view;
-  /**
-   * The controller for the Snakes and Ladders game.
-   */
-  private final SnLController controller;
+
   /**
    * The game instance for the Snakes and Ladders game.
    */
@@ -41,7 +38,9 @@ public final class SnakesAndLaddersApp implements GameScreen {
     game.setBoard();
     addPlayers();
     view = new SnLView(game);
-    controller = new SnLController(view, game);
+    if (view.isInitialized()) {
+      SnLController controller = new SnLController(view, game);
+    }
   }
 
   /**
@@ -62,6 +61,10 @@ public final class SnakesAndLaddersApp implements GameScreen {
    */
   @Override
   public Parent getView() {
-    return view;
+    if (view.isInitialized()) {
+      return view;
+    } else {
+      throw new IllegalStateException("View is not initialized, returning to main menu.");
+    }
   }
 }
