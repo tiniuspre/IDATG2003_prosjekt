@@ -59,6 +59,7 @@ public class ConnectFourGame extends GridGame {
 
   /**
    * Applies the move to the board.
+   *
    * @param rowIgnored the row index of the cell
    * @param col the column index of the cell
    */
