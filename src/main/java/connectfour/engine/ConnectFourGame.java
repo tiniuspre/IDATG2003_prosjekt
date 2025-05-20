@@ -106,7 +106,7 @@ public class ConnectFourGame extends GridGame {
         }
         // Check down-left diagonal
         if (r + CONNECT_WIN_LENGTH - 1 < rows
-            && c - (CONNECT_LENGTHCONNECT_WIN_LENGTH - 1) >= 0
+            && c - (CONNECT_WIN_LENGTH - 1) >= 0
             && hasFourInDirection(r, c, 1, -1, m)) {
           return playerForMarker(m);
         }

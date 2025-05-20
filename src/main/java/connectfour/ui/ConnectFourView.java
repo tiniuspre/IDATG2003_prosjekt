@@ -11,6 +11,7 @@ import static constants.GameConstants.CF_BOARD_SIZE;
 import static constants.GameConstants.CF_TITLE;
 import static constants.UiConstants.CF_H_V_GAP;
 import static constants.UiConstants.CF_SPACING;
+import static constants.UiConstants.CF_BTN_MIN_SIZE;
 
 /**
  * JavaFX view for a 4×4 Connect-Four grid.
