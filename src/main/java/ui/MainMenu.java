@@ -1,5 +1,6 @@
 package ui;
 
+import gameengine.player.PlayerUtil;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -290,15 +291,27 @@ class MainMenuController {
    * Wires actions to the buttons in the main menu.
    */
   private void wireActions() {
-    view.getSnakesBtn().setOnAction(
-        e -> Router.launch(GameId.SNAKES_AND_LADDERS)
-    );
-    view.getTttBtn().setOnAction(
-        e -> Router.launch(GameId.TIC_TAC_TOE)
-    );
-    view.getConnectBtn().setOnAction(
-        e -> Router.launch(GameId.CONNECT_FOUR)
-    );
+    view.getSnakesBtn().setOnAction( e -> {
+      if (PlayerUtil.checkPlayerCount(GameId.SNAKES_AND_LADDERS)) {
+        Router.launch(GameId.SNAKES_AND_LADDERS);
+      } else {
+        DialogUtil.error("Invalid player amount", "2 to 5 players required");
+      }
+    });
+    view.getTttBtn().setOnAction(e -> {
+          if (PlayerUtil.checkPlayerCount(GameId.TIC_TAC_TOE)) {
+            Router.launch(GameId.TIC_TAC_TOE);
+          } else {
+            DialogUtil.error("Invalid player amount", "2 players");
+          }
+    });
+    view.getConnectBtn().setOnAction(e -> {
+          if (PlayerUtil.checkPlayerCount(GameId.CONNECT_FOUR)) {
+            Router.launch(GameId.CONNECT_FOUR);
+          } else {
+            DialogUtil.error("Invalid player amount", "2 players");
+          }
+    });
     view.getExitBtn().setOnAction(
         e -> Platform.exit()
     );
