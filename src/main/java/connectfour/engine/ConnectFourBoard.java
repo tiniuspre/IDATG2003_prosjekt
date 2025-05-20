@@ -9,7 +9,7 @@ import static constants.GameConstants.CF_BOARD_SIZE;
  * Extends the generic GridBoard with fixed dimensions.
  * Gravity applies in the corresponding game class.
  *
- * @author
+ * @author tiniuspre
  * @version 19.05.2025
  * @since 19.05.2025
  */
