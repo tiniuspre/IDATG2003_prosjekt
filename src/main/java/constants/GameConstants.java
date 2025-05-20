@@ -19,6 +19,19 @@ public final class GameConstants {
    */
   public static final String TTT_TITLE = "Tic Tac Toe";
 
+  /**
+   * The size of the Connect Four board.
+   */
+  public static final String CF_TITLE = "Connect Four";
+  /**
+   * The size of the Connect Four board.
+   */
+  public static final int CF_BOARD_SIZE = 7;
+  /**
+   * The number of markers in a row needed to win.
+   */
+  public static final int CONNECT_WIN_LENGTH = 4;
+
   private GameConstants() {
     throw new IllegalStateException("Should not be instantiated");
   }
