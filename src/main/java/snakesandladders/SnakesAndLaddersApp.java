@@ -3,6 +3,7 @@ package snakesandladders;
 import filehandler.csvhandling.CsvHandler;
 import javafx.scene.Parent;
 import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.SnLBoardException;
 import snakesandladders.ui.SnLController;
 import snakesandladders.ui.SnLView;
 import ui.util.GameScreen;
@@ -63,9 +64,7 @@ public final class SnakesAndLaddersApp implements GameScreen {
   public Parent getView() {
     if (view.isInitialized()) {
       return view;
-    } else {
-      throw new IllegalStateException("View is not initialized,"
-          + " returning to main menu.");
     }
+    throw new IllegalStateException("Game creation was cancelled.");
   }
 }
