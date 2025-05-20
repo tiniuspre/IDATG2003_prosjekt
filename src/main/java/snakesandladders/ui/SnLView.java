@@ -4,20 +4,18 @@ import constants.Constants;
 import constants.UiConstants;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import snakesandladders.SnakesAndLadders;
+import snakesandladders.engine.SnLPiece;
 import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.board.tile.SnLTile;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * The {@code SnLView} class is responsible
@@ -90,6 +88,8 @@ public class SnLView extends VBox {
     // Side panel with current player + status
     VBox sidePanel = new VBox(UiConstants.SNL_SIDE_PANEL_WIDTH);
     sidePanel.setPrefWidth(UiConstants.SNL_SIDE_PANEL_PREF_WIDTH);
+
+    showPieceSelectionPopup(game.getPlayers());
 
     currentPlayerLabel = new Label("Player: ");
     sidePanel.getChildren().add(currentPlayerLabel);
@@ -321,5 +321,56 @@ public class SnLView extends VBox {
         + tileSize * UiConstants.SNL_PLAYER_ICON_RADIUS;
 
     ui.updatePlayerPosition(xPos, yPos);
+  }
+
+  /**
+   * Displays a popup dialog for selecting pieces for each player.
+   *
+   * @param players the list of players to select pieces for.
+   */
+  private void showPieceSelectionPopup(List<SnLPlayer> players) {
+    Dialog<Map<SnLPlayer, String>> dialog = new Dialog<>();
+    dialog.setTitle("Select Player Pieces");
+    dialog.setHeaderText("Select pieces for each player:");
+
+    ButtonType okButtonType = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(okButtonType, ButtonType.CANCEL);
+
+    VBox content = new VBox(10);
+    Map<SnLPlayer, ComboBox<String>> playerPieceSelectors = new HashMap<>();
+    List<String> availablePieces = Arrays.stream(SnLPiece.values())
+        .map(SnLPiece::name)
+        .toList();
+
+    for (SnLPlayer player : players) {
+      Label playerLabel = new Label(player.getName());
+      ComboBox<String> pieceSelector = new ComboBox<>();
+      pieceSelector.getItems().addAll(availablePieces);
+      pieceSelector.setValue(player.getPiece());
+      playerPieceSelectors.put(player, pieceSelector);
+
+      content.getChildren().addAll(playerLabel, pieceSelector);
+    }
+
+    dialog.getDialogPane().setContent(content);
+
+    dialog.setResultConverter(dialogButton -> {
+      if (dialogButton == okButtonType) {
+        Map<SnLPlayer, String> selectedPieces = new HashMap<>();
+        for (Map.Entry<SnLPlayer, ComboBox<String>> entry : playerPieceSelectors.entrySet()) {
+          selectedPieces.put(entry.getKey(), entry.getValue().getValue());
+        }
+        return selectedPieces;
+      }
+      return null;
+    });
+
+    // Show the dialog and handle the result
+    Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
+    result.ifPresent(selectedPieces -> {
+      for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
+        entry.getKey().setPiece(entry.getValue());
+      }
+    });
   }
 }
