@@ -181,6 +181,19 @@ public final class UiConstants {
    */
   public static final Integer SNL_TILE_TEXT_OFFSET_Y = 12;
   /**
+   * The font size for the Snakes and Ladders tile text.
+   */
+  public static final Integer CF_SPACING = 10;
+  /**
+   * The font size for the Snakes and Ladders tile text.
+   */
+  public static final Integer CF_H_V_GAP = 5;
+  /**
+   * The font size for the Snakes and Ladders tile text.
+   */
+  public static final Integer CF_BTN_MIN_SIZE = 50;
+
+  /**
    * Private constructor to prevent instantiation of this utility class.
    */
   private UiConstants() { }

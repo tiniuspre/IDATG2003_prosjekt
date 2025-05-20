@@ -36,7 +36,8 @@ public final class Router {
       GameId.TIC_TAC_TOE, tictactoe.ui.TicTacToeApp::new,
       GameId.SETTINGS, SettingsMenu::new,
       GameId.MAIN_MENU, MainMenu::new,
-      GameId.SNAKES_AND_LADDERS, snakesandladders.SnakesAndLaddersApp::new
+      GameId.SNAKES_AND_LADDERS, snakesandladders.SnakesAndLaddersApp::new,
+      GameId.CONNECT_FOUR, connectfour.ui.ConnectFourApp::new
   );
 
   /**
