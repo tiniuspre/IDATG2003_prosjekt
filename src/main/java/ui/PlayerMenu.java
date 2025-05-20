@@ -38,6 +38,7 @@ public class PlayerMenu implements GameScreen {
 }
 
 class PlayerMenuView extends BorderPane {
+
   private final Label titleLabel = new Label(UiConstants.PLAYER_MENU_TITLE);
 
   private final VBox playerMenuLayout = new VBox();
@@ -56,7 +57,6 @@ class PlayerMenuView extends BorderPane {
 
   private final TextField playerNameField = new TextField();
 
-  // TODO : Implement file handling logic
   private final List<String> registeredPlayers = new ArrayList<>();
 
   PlayerMenuView() {
@@ -91,8 +91,6 @@ class PlayerMenuView extends BorderPane {
   private void setupPlayerCreation() {
     playerNameField.setPromptText("Enter player name");
     Label playerNameLabel = new Label("Player Name:");
-
-    // TODO : Implement add player logic
 
     HBox playerCreationBox = new HBox(10, playerNameLabel, playerNameField, addPlayerBtn);
     playerCreationBox.setAlignment(Pos.CENTER);
