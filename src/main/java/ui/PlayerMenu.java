@@ -84,7 +84,7 @@ class PlayerMenuView extends BorderPane {
   /**
    * A map to store checkboxes for each player.
    */
-  private Map<String, CheckBox> playerCheckBoxes = new HashMap<>();
+  private final Map<String, CheckBox> playerCheckBoxes = new HashMap<>();
   /**
    * The button to go back to the main menu.
    */
