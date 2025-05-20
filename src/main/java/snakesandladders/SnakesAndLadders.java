@@ -82,11 +82,10 @@ public class SnakesAndLadders implements Subject {
   /**
    * Adds a player to the game.
    *
-   * @param name the name of the player.
-   * @param piece the piece of the player.
+   * @param player the player to add.
    */
-  public void addPlayer(final String name, final String piece) {
-    players.add(new SnLPlayer(name, piece));
+  public void addPlayer(final SnLPlayer player) {
+    players.add(player);
   }
 
   /**
