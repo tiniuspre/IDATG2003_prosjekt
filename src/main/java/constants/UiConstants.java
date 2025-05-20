@@ -40,6 +40,11 @@ public final class UiConstants {
   public static final String SETTINGS_MENU_CSS = "/style/settings.css";
 
   /**
+   * The path to the player menu CSS file.
+   */
+  public static final String PLAYER_MENU_CSS = "/style/playermenu.css";
+
+  /**
    * The label for the Snakes and Ladders game button.
    */
   public static final String SNAKES_LADDERS = "Snakes & Ladders";
@@ -63,6 +68,11 @@ public final class UiConstants {
    * Settings button id for css.
    */
   public static final String SETTINGS_BUTTON_ID = "settings-button";
+
+  /**
+   * Player menu button id for css.
+   */
+  public static final String PLAYER_MENU_BUTTON_ID = "player-menu-button";
 
   /**
    * Settings title id for css.
@@ -121,7 +131,7 @@ public final class UiConstants {
    * Btn min size for Tic Tac Toe.
    */
   public static final Integer TTT_BTN_MIN_SIZE = 60;
-
+  /* SNL constants */
   /**
    * The size of the Snakes and Ladders game board tiles.
    */
@@ -180,6 +190,16 @@ public final class UiConstants {
    * The Y offset for the text on Snakes and Ladders tiles.
    */
   public static final Integer SNL_TILE_TEXT_OFFSET_Y = 12;
+
+  /**
+   * The title of the player menu.
+   */
+  public static final String PLAYER_MENU_TITLE = "Player Menu";
+
+  /**
+   * The invalid player amount error message.
+   */
+  public static final String INVALID_PLAYER_AMOUNT = "Invalid player amount";
   /**
    * The font size for the Snakes and Ladders tile text.
    */

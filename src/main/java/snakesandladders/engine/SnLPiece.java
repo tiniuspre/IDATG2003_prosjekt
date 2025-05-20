@@ -33,5 +33,9 @@ public enum SnLPiece {
   /**
    * Enum value representing a wheelbarrow.
    */
-  WHEELBARROW
+  WHEELBARROW,
+  /**
+   * Default enum value representing a default piece.
+   */
+  DEFAULT
 }

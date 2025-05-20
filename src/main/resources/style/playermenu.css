@@ -19,6 +19,20 @@
     -fx-cursor: hand;
 }
 
+.combo-box {
+    -fx-font-size: 16px;
+    -fx-pref-width: 220;
+    -fx-background-radius: 8;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(#6db3f2 0%, #1e69de 100%);
+    -fx-cursor: hand;
+}
+
+.check-box {
+    -fx-font-size: 20px;
+}
+
 .button:hover {
     -fx-background-color: linear-gradient(#8fc3ff 0%, #458dff 100%);
 }
@@ -33,14 +47,8 @@
     -fx-border-radius: 8;
 }
 
-#settings-button {
-    -fx-font-size: 20px;
-    -fx-max-height: 50;
-    -fx-max-width: 50;
-}
-
-#player-menu-button {
-    -fx-font-size: 20px;
-    -fx-max-height: 50;
-    -fx-max-width: 50;
+#settings-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #15396b;
 }

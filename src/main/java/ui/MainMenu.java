@@ -1,5 +1,6 @@
 package ui;
 
+import gameengine.player.PlayerUtil;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -32,14 +33,16 @@ import static constants.UiConstants.APP_NAME;
 import static constants.UiConstants.APP_WIDTH;
 import static constants.UiConstants.APP_HEIGHT;
 import static constants.UiConstants.SETTINGS_BUTTON_ID;
+import static constants.UiConstants.PLAYER_MENU_BUTTON_ID;
+import static constants.UiConstants.INVALID_PLAYER_AMOUNT;
 
 
 /**
  * Main application class for the Main Menu.
  * Sets up the primary stage and initializes the main menu view and controller.
  *
- * @author tiniuspre
- * @version 25.04.2025
+ * @author tiniuspre, jonastom
+ * @version 20.05.2025
  * @since 25.03.2025
  */
 public class MainMenu implements GameScreen {
@@ -74,6 +77,7 @@ public class MainMenu implements GameScreen {
    * Switches the current view to the specified game screen.
    *
    * @param screen the game screen to switch to.
+   * @throws UILoaderException if the game view is null.
    */
   public void switchTo(final GameScreen screen) {
     Parent gameView = screen.getView();
@@ -81,6 +85,7 @@ public class MainMenu implements GameScreen {
       primaryAppStage.getScene().setRoot(gameView);
     } else {
       DialogUtil.error("Could not load game", "No gameView found");
+      throw new UILoaderException("No gameView found");
     }
     primaryAppStage.show();
   }
@@ -151,6 +156,11 @@ class MainMenuView extends BorderPane {
   private final Button settingsBtn = new Button(SETTINGS_ICON);
 
   /**
+   * Button to launch the player menu.
+   */
+  private final Button playerMenuBtn = new Button("\uD83D\uDC64");
+
+  /**
    * Constructs the main menu view and builds the user interface.
    */
   MainMenuView() {
@@ -172,16 +182,24 @@ class MainMenuView extends BorderPane {
     );
     buttons.setAlignment(Pos.CENTER);
     buttons.setPadding(new Insets(MENU_BUTTON_PADDING));
-
-    setTop(titleLabel);
-    BorderPane.setAlignment(titleLabel, Pos.CENTER);
     setCenter(buttons);
+
     getSettingsBtn().setId(SETTINGS_BUTTON_ID);
+    getPlayerMenuBtn().setId(PLAYER_MENU_BUTTON_ID);
+
     HBox topRight = new HBox(
         settingsBtn
     );
-    topRight.setAlignment(Pos.TOP_RIGHT);
-    setTop(topRight);
+    HBox topLeft = new HBox(
+        playerMenuBtn
+    );
+
+    BorderPane top = new BorderPane();
+    top.setLeft(topLeft);
+    top.setRight(topRight);
+    top.setCenter(titleLabel);
+    setTop(top);
+
     try {
       getStylesheets().add(CssLoader.getCssPath(MAIN_MENU_CSS));
     } catch (CssLoaderException e) {
@@ -232,6 +250,15 @@ class MainMenuView extends BorderPane {
    */
   Button getSettingsBtn() {
     return settingsBtn; }
+
+  /**
+   * Gets the button for launching the player menu.
+   *
+   * @return the player menu button.
+   */
+  Button getPlayerMenuBtn() {
+    return playerMenuBtn;
+  }
 }
 
 /**
@@ -264,20 +291,35 @@ class MainMenuController {
    * Wires actions to the buttons in the main menu.
    */
   private void wireActions() {
-    view.getSnakesBtn().setOnAction(
-        e -> Router.launch(GameId.SNAKES_AND_LADDERS)
-    );
-    view.getTttBtn().setOnAction(
-        e -> Router.launch(GameId.TIC_TAC_TOE)
-    );
-    view.getConnectBtn().setOnAction(
-        e -> Router.launch(GameId.CONNECT_FOUR)
-    );
+    view.getSnakesBtn().setOnAction(e -> {
+      if (PlayerUtil.checkPlayerCount(GameId.SNAKES_AND_LADDERS)) {
+        Router.launch(GameId.SNAKES_AND_LADDERS);
+      } else {
+        DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 to 5 players required");
+      }
+    });
+    view.getTttBtn().setOnAction(e -> {
+          if (PlayerUtil.checkPlayerCount(GameId.TIC_TAC_TOE)) {
+            Router.launch(GameId.TIC_TAC_TOE);
+          } else {
+            DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 players");
+          }
+    });
+    view.getConnectBtn().setOnAction(e -> {
+          if (PlayerUtil.checkPlayerCount(GameId.CONNECT_FOUR)) {
+            Router.launch(GameId.CONNECT_FOUR);
+          } else {
+            DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 players");
+          }
+    });
     view.getExitBtn().setOnAction(
         e -> Platform.exit()
     );
     view.getSettingsBtn().setOnAction(
         e -> Router.launch(GameId.SETTINGS)
+    );
+    view.getPlayerMenuBtn().setOnAction(
+        e -> Router.launch(GameId.PLAYER_MENU)
     );
   }
 }

@@ -3,6 +3,8 @@ package snakesandladders.ui;
 import snakesandladders.SnakesAndLadders;
 import snakesandladders.engine.SnLPlayer;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * The {@code SnLController} class is responsible for
@@ -102,5 +104,24 @@ public class SnLController {
   private SnLPlayer getCurrentPlayer() {
     List<SnLPlayer> p = game.getPlayers();
     return p.get(currentPlayerIndex);
+  }
+
+  /**
+   * Handles the selection of pieces for each player.
+   *
+   * @param result the result of the piece selection dialog.
+   * @return true if the selection was successful, false otherwise.
+   */
+  public static boolean handlePieceSelection(
+      final Optional<Map<SnLPlayer, String>> result) {
+    if (result.isPresent()) {
+      Map<SnLPlayer, String> selectedPieces = result.get();
+      for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
+        SnLPlayer player = entry.getKey();
+        player.setPiece(entry.getValue());
+      }
+      return true;
+    }
+    return false;
   }
 }

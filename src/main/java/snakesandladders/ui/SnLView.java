@@ -5,19 +5,29 @@ import constants.UiConstants;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import snakesandladders.SnakesAndLadders;
+import snakesandladders.engine.SnLPiece;
 import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.board.tile.SnLTile;
+import ui.GameId;
+import ui.launcher.Router;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * The {@code SnLView} class is responsible
@@ -52,7 +62,7 @@ public class SnLView extends VBox {
   /**
    * The size of a tile in pixels.
    */
-  private final int tileSize = UiConstants.SNL_TILE_SIZE;
+  private static final int TILE_SIZE = UiConstants.SNL_TILE_SIZE;
   /**
    * The status label.
    */
@@ -67,6 +77,11 @@ public class SnLView extends VBox {
   private Button nextTurnBtn;
 
   /**
+   * The flag to check if the UI is initialized.
+   */
+  private boolean isInitialized = false;
+
+  /**
    * Constructs a SnLView with the given game instance.
    * And then initializes the UI components.
    *
@@ -75,7 +90,13 @@ public class SnLView extends VBox {
   public SnLView(final SnakesAndLadders gameInstance) {
     this.game = gameInstance;
     this.board = game.getBoard();
-    initializeUI();
+
+    if (showPieceSelectionPopup(game.getPlayers())) {
+      initializeUI();
+      isInitialized = true;
+    } else {
+      Router.launch(GameId.MAIN_MENU);
+    }
   }
 
   /**
@@ -153,7 +174,7 @@ public class SnLView extends VBox {
     // 1) Draw each tile (with ID text)
     board.getTiles().forEach(tile -> {
       SnakesAndLaddersTileUI tileUI =
-          new SnakesAndLaddersTileUI(tileSize, tile, board.getHeight());
+          new SnakesAndLaddersTileUI(TILE_SIZE, tile, board.getHeight());
       // The tileUI returns a Group containing the rectangle + tile number text
       getBoardRoot().getChildren().add(tileUI.createTileNode());
     });
@@ -167,7 +188,7 @@ public class SnLView extends VBox {
     // 4) Create and add player pieces
     for (SnLPlayer p : game.getPlayers()) {
       SnakesAndLaddersPlayerUI playerUI
-          = new SnakesAndLaddersPlayerUI(tileSize, p, board.getHeight());
+          = new SnakesAndLaddersPlayerUI(TILE_SIZE, p, board.getHeight());
       playerUIs.put(p, playerUI);
 
       getBoardRoot().getChildren().add(playerUI.createPlayerNode());
@@ -185,13 +206,13 @@ public class SnLView extends VBox {
       SnLTile startTile = board.getTile(i);
       SnLTile endTile = board.getTile(i + 1);
 
-      double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-      double startY = (board.getHeight() - startTile.getPosY()) * tileSize
-          + tileSize / 2.0;
+      double startX = (startTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+      double startY = (board.getHeight() - startTile.getPosY()) * TILE_SIZE
+          + TILE_SIZE / 2.0;
 
-      double endX = (endTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-      double endY = (board.getHeight() - endTile.getPosY()) * tileSize
-          + tileSize / 2.0;
+      double endX = (endTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+      double endY = (board.getHeight() - endTile.getPosY()) * TILE_SIZE
+          + TILE_SIZE / 2.0;
 
       // Draw the line
       Line line = new Line(startX, startY, endX, endY);
@@ -277,13 +298,13 @@ public class SnLView extends VBox {
     SnLTile startTile = board.getTile(startNum);
     SnLTile endTile = board.getTile(endNum);
 
-    double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-    double startY = (board.getHeight() - startTile.getPosY()) * tileSize
-        + tileSize / 2.0;
+    double startX = (startTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+    double startY = (board.getHeight() - startTile.getPosY()) * TILE_SIZE
+        + TILE_SIZE / 2.0;
 
-    double endX = (endTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-    double endY = (board.getHeight() - endTile.getPosY()) * tileSize
-        + tileSize / 2.0;
+    double endX = (endTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+    double endY = (board.getHeight() - endTile.getPosY()) * TILE_SIZE
+        + TILE_SIZE / 2.0;
 
     Line line = new Line(startX, startY, endX, endY);
     line.setStroke(color);
@@ -315,11 +336,71 @@ public class SnLView extends VBox {
     int tileNum = player.getPosition();
     SnLTile tile = board.getTile(tileNum);
 
-    double xPos = (tile.getPosX() - 1) * tileSize + tileSize
+    double xPos = (tile.getPosX() - 1) * TILE_SIZE + TILE_SIZE
         * UiConstants.SNL_PLAYER_ICON_RADIUS;
-    double yPos = (board.getHeight() - tile.getPosY()) * tileSize
-        + tileSize * UiConstants.SNL_PLAYER_ICON_RADIUS;
+    double yPos = (board.getHeight() - tile.getPosY()) * TILE_SIZE
+        + TILE_SIZE * UiConstants.SNL_PLAYER_ICON_RADIUS;
 
     ui.updatePlayerPosition(xPos, yPos);
+  }
+
+  /**
+   * Displays a popup dialog for selecting pieces for each player.
+   *
+   * @param players the list of players to select pieces for.
+   * @return true if the user confirmed the selection, false otherwise.
+   */
+  private boolean showPieceSelectionPopup(final List<SnLPlayer> players) {
+    Dialog<Map<SnLPlayer, String>> dialog = new Dialog<>();
+    dialog.setTitle("Select Player Pieces");
+    dialog.setHeaderText("Select pieces for each player:");
+
+    ButtonType okButtonType = new ButtonType("OK",
+        ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(okButtonType,
+        ButtonType.CANCEL);
+
+    VBox content = new VBox(UiConstants.TTT_SPACING);
+    Map<SnLPlayer, ComboBox<String>> playerPieceSelectors = new HashMap<>();
+    List<String> availablePieces = Arrays.stream(SnLPiece.values())
+        .map(SnLPiece::name)
+        .toList();
+
+    for (SnLPlayer player : players) {
+      Label playerLabel = new Label(player.getName());
+      ComboBox<String> pieceSelector = new ComboBox<>();
+      pieceSelector.getItems().addAll(availablePieces);
+      pieceSelector.setValue(player.getPiece());
+      playerPieceSelectors.put(player, pieceSelector);
+
+      content.getChildren().addAll(playerLabel, pieceSelector);
+    }
+
+    dialog.getDialogPane().setContent(content);
+
+    dialog.setResultConverter(dialogButton -> {
+      if (dialogButton == okButtonType) {
+        Map<SnLPlayer, String> selectedPieces = new HashMap<>();
+        for (Map.Entry<SnLPlayer, ComboBox<String>>
+            entry : playerPieceSelectors.entrySet()) {
+          selectedPieces.put(entry.getKey(), entry.getValue().getValue());
+        }
+        return selectedPieces;
+      }
+      return null;
+    });
+
+    // Show the dialog and handle the result
+    Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
+    return SnLController.handlePieceSelection(result);
+  }
+
+  /**
+   * Returns whether the UI is initialized.
+   *
+   * @return true if the UI is initialized, false otherwise.
+   */
+  public boolean isInitialized() {
+    return isInitialized;
   }
 }
