@@ -76,6 +76,7 @@ public class ConnectFourGame extends GridGame {
 
   /**
    * Checks if the game has a winner.
+   *
    * @return the winning player, or null if no winner
     */
   @Override
