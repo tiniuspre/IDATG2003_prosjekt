@@ -392,15 +392,7 @@ public class SnLView extends VBox {
 
     // Show the dialog and handle the result
     Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
-    if (result.isPresent()) {
-      Map<SnLPlayer, String> selectedPieces = result.get();
-      for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
-        SnLPlayer player = entry.getKey();
-        player.setPiece(entry.getValue());
-      }
-      return true;
-    }
-    return false;
+    return SnLController.handlePieceSelection(result);
   }
 
   /**

@@ -4,6 +4,8 @@ import filehandler.csvhandling.CsvHandler;
 import snakesandladders.SnakesAndLadders;
 import snakesandladders.engine.SnLPlayer;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * The {@code SnLController} class is responsible for
@@ -103,5 +105,17 @@ public class SnLController {
   private SnLPlayer getCurrentPlayer() {
     List<SnLPlayer> p = game.getPlayers();
     return p.get(currentPlayerIndex);
+  }
+
+  public static boolean handlePieceSelection(final Optional<Map<SnLPlayer, String>> result) {
+    if (result.isPresent()) {
+      Map<SnLPlayer, String> selectedPieces = result.get();
+      for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
+        SnLPlayer player = entry.getKey();
+        player.setPiece(entry.getValue());
+      }
+      return true;
+    }
+    return false;
   }
 }
