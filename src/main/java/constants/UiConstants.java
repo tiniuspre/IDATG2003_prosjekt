@@ -191,6 +191,9 @@ public final class UiConstants {
    */
   public static final Integer SNL_TILE_TEXT_OFFSET_Y = 12;
 
+  /**
+   * The title of the player menu.
+   */
   public static final String PLAYER_MENU_TITLE = "Player Menu";
   /**
    * Private constructor to prevent instantiation of this utility class.
