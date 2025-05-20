@@ -1,13 +1,9 @@
 package snakesandladders;
 
-import filehandler.csvhandling.CsvHandler;
 import javafx.scene.Parent;
-import snakesandladders.engine.SnLPlayer;
-import snakesandladders.engine.board.SnLBoardException;
 import snakesandladders.ui.SnLController;
 import snakesandladders.ui.SnLView;
 import ui.util.GameScreen;
-import java.util.List;
 
 
 /**
@@ -37,23 +33,13 @@ public final class SnakesAndLaddersApp implements GameScreen {
    */
   public SnakesAndLaddersApp() {
     game.setBoard();
-    addPlayers();
     view = new SnLView(game);
     if (view.isInitialized()) {
       SnLController controller = new SnLController(view, game);
     }
   }
 
-  /**
-   * Adds selected players to the game from a CSV file.
-   */
-  private void addPlayers() {
-    CsvHandler csvHandler = new CsvHandler("player/selected_players.csv");
-    List<SnLPlayer> players = csvHandler.readFromFile(SnLPlayer.class);
-    for (SnLPlayer player : players) {
-      game.addPlayer(player);
-    }
-  }
+
 
   /**
    * Returns the view for the Snakes and Ladders game.

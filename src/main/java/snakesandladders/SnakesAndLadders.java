@@ -1,6 +1,7 @@
 package snakesandladders;
 
 import constants.Constants;
+import filehandler.csvhandling.CsvHandler;
 import gameengine.Observer;
 import gameengine.Subject;
 import gameengine.board.Board;
@@ -44,7 +45,7 @@ public class SnakesAndLadders implements Subject {
   /**
    * The list of players in the game.
    */
-  private final List<SnLPlayer> players = new ArrayList<>();
+  private final List<SnLPlayer> players = new ArrayList<>(addPlayers());
   /**
    * The current player in the game.
    */
@@ -169,6 +170,14 @@ public class SnakesAndLadders implements Subject {
       throw new SnLBoardException("Current player cannot be null");
     }
     this.currentPlayer = player;
+  }
+
+  /**
+   * Adds selected players to the game from a CSV file.
+   */
+  private List<SnLPlayer> addPlayers() {
+    CsvHandler csvHandler = new CsvHandler("player/selected_players.csv");
+    return new ArrayList<>(csvHandler.readFromFile(SnLPlayer.class));
   }
 
   /**
