@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import ui.exceptions.CssLoaderException;
+import ui.launcher.Router;
 import ui.util.CssLoader;
 import ui.util.DialogUtil;
 import ui.util.GameScreen;
@@ -39,6 +40,8 @@ class PlayerMenuView extends BorderPane {
 
   private final VBox playerMenuLayout = new VBox();
 
+  private final VBox addedPlayers = new VBox();
+
   private final HBox addPlayerLayout = new HBox();
 
   private Map<String, CheckBox> playerCheckBoxes = new HashMap<>();
@@ -52,7 +55,7 @@ class PlayerMenuView extends BorderPane {
   private final TextField playerNameField = new TextField();
 
   // TODO : Implement file handling logic
-  private List<String> registeredPlayers = new ArrayList<>();
+  private final List<String> registeredPlayers = new ArrayList<>();
 
   PlayerMenuView() {
     buildUI();
@@ -72,7 +75,8 @@ class PlayerMenuView extends BorderPane {
     footer.setAlignment(Pos.CENTER);
     title.setAlignment(Pos.CENTER);
     setCenter(playerMenuLayout);
-    setupPlayerSelectionMenu();
+    playerMenuLayout.getChildren().addAll(addPlayerLayout ,addedPlayers);
+    populatePlayerMenu();
     setupPlayerCreation();
     addPlayerLayout.setAlignment(Pos.CENTER);
     try {
@@ -84,50 +88,20 @@ class PlayerMenuView extends BorderPane {
 
   private void setupPlayerCreation() {
     playerNameField.setPromptText("Enter player name");
+    Label playerNameLabel = new Label("Player Name:");
 
     // TODO : Implement add player logic
 
-    HBox playerCreationBox = new HBox(10, playerNameField, addPlayerBtn);
+    HBox playerCreationBox = new HBox(10, playerNameLabel, playerNameField, addPlayerBtn);
     playerCreationBox.setAlignment(Pos.CENTER);
     addPlayerLayout.getChildren().add(playerCreationBox);
   }
 
-  void setupPlayerSelectionMenu() {
-    playerMenuLayout.getChildren().clear();
-    playerMenuLayout.setAlignment(Pos.CENTER);
+
+  void populatePlayerMenu() {
+    addedPlayers.getChildren().clear();
+    addedPlayers.setAlignment(Pos.CENTER);
     playerCheckBoxes.clear();
-
-    Label title = new Label("Select Players for the Game:");
-    title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
-
-    playerMenuLayout.getChildren().add(title);
-
-    for (String player : registeredPlayers) {
-      HBox playerBox = new HBox();
-      playerBox.setAlignment(Pos.CENTER);
-      playerBox.setSpacing(10);
-      playerBox.setPadding(new Insets(5));
-
-
-      CheckBox checkBox = new CheckBox(player);
-      checkBox.setStyle("-fx-font-size: 20px;");
-      checkBox.setPadding(new Insets(5));
-
-      playerCheckBoxes.put(player, checkBox);
-      playerBox.getChildren().addAll(checkBox);
-      playerMenuLayout.getChildren().add(playerBox);
-    }
-  }
-
-  void updatePlayers() {
-    playerMenuLayout.getChildren().clear();
-    playerMenuLayout.setAlignment(Pos.CENTER);
-    playerCheckBoxes.clear();
-
-    Label title = new Label("Select Players for the Game:");
-    title.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
-
-    playerMenuLayout.getChildren().add(title);
 
     for (String player : registeredPlayers) {
       HBox playerBox = new HBox();
@@ -141,7 +115,7 @@ class PlayerMenuView extends BorderPane {
 
       playerCheckBoxes.put(player, checkBox);
       playerBox.getChildren().addAll(checkBox);
-      playerMenuLayout.getChildren().add(playerBox);
+      addedPlayers.getChildren().add(playerBox);
     }
   }
 
@@ -180,9 +154,7 @@ class PlayerMenuController {
   }
 
   private void wireButtons() {
-    view.getBackBtn().setOnAction(event -> {
-      // TODO : Implement back button logic
-    });
+    view.getBackBtn().setOnAction(event -> Router.launch(GameId.MAIN_MENU));
 
     view.getSaveBtn().setOnAction(event -> {
       // TODO : Implement save button logic
@@ -196,7 +168,7 @@ class PlayerMenuController {
       }
       view.addPlayer(playerName);
       view.getPlayerNameField().clear();
-      view.updatePlayers();
+      view.populatePlayerMenu();
     });
   }
 }
