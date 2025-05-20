@@ -1,6 +1,7 @@
 package ui;
 
 import constants.UiConstants;
+import filehandler.csvhandling.CsvHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import snakesandladders.engine.SnLPlayer;
 import ui.exceptions.CssLoaderException;
 import ui.launcher.Router;
 import ui.util.CssLoader;
@@ -139,6 +141,13 @@ class PlayerMenuView extends BorderPane {
     return playerNameField;
   }
 
+  Map<String, CheckBox> getPlayerCheckBoxes() {
+    return playerCheckBoxes;
+  }
+  List<String> getRegisteredPlayers() {
+    return new ArrayList<>(registeredPlayers);
+  }
+
   void addPlayer(final String playerName) {
     registeredPlayers.add(playerName);
   }
@@ -157,7 +166,25 @@ class PlayerMenuController {
     view.getBackBtn().setOnAction(event -> Router.launch(GameId.MAIN_MENU));
 
     view.getSaveBtn().setOnAction(event -> {
-      // TODO : Implement save button logic
+      CsvHandler csvHandlerSelected = new CsvHandler("player/selected_players.csv");
+      CsvHandler csvHandler = new CsvHandler("player/all_players.csv");
+
+      List<SnLPlayer> selectedPlayers = new ArrayList<>();
+      List<SnLPlayer> allPlayers = new ArrayList<>();
+      for (Map.Entry<String, CheckBox> entry : view.getPlayerCheckBoxes().entrySet()) {
+        if (entry.getValue().isSelected()) {
+          selectedPlayers.add(new SnLPlayer(entry.getKey(), "DEFAULT"));
+        }
+      }
+      if (selectedPlayers.isEmpty()) {
+        DialogUtil.error("No selectedPlayers selected", "Please select at least one player.");
+      }
+      csvHandlerSelected.writeToFile(selectedPlayers);
+
+      for (String playerName : view.getRegisteredPlayers()) {
+        allPlayers.add(new SnLPlayer(playerName, "DEFAULT"));
+      }
+      csvHandler.writeToFile(allPlayers);
     });
 
     view.getAddPlayerBtn().setOnAction(event -> {
