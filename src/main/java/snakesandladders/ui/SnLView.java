@@ -59,7 +59,7 @@ public class SnLView extends VBox {
   /**
    * The size of a tile in pixels.
    */
-  private static final int tileSize = UiConstants.SNL_TILE_SIZE;
+  private static final int TILE_SIZE = UiConstants.SNL_TILE_SIZE;
   /**
    * The status label.
    */
@@ -162,7 +162,7 @@ public class SnLView extends VBox {
     // 1) Draw each tile (with ID text)
     board.getTiles().forEach(tile -> {
       SnakesAndLaddersTileUI tileUI =
-          new SnakesAndLaddersTileUI(tileSize, tile, board.getHeight());
+          new SnakesAndLaddersTileUI(TILE_SIZE, tile, board.getHeight());
       // The tileUI returns a Group containing the rectangle + tile number text
       getBoardRoot().getChildren().add(tileUI.createTileNode());
     });
@@ -176,7 +176,7 @@ public class SnLView extends VBox {
     // 4) Create and add player pieces
     for (SnLPlayer p : game.getPlayers()) {
       SnakesAndLaddersPlayerUI playerUI
-          = new SnakesAndLaddersPlayerUI(tileSize, p, board.getHeight());
+          = new SnakesAndLaddersPlayerUI(TILE_SIZE, p, board.getHeight());
       playerUIs.put(p, playerUI);
 
       getBoardRoot().getChildren().add(playerUI.createPlayerNode());
@@ -194,13 +194,13 @@ public class SnLView extends VBox {
       SnLTile startTile = board.getTile(i);
       SnLTile endTile = board.getTile(i + 1);
 
-      double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-      double startY = (board.getHeight() - startTile.getPosY()) * tileSize
-          + tileSize / 2.0;
+      double startX = (startTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+      double startY = (board.getHeight() - startTile.getPosY()) * TILE_SIZE
+          + TILE_SIZE / 2.0;
 
-      double endX = (endTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-      double endY = (board.getHeight() - endTile.getPosY()) * tileSize
-          + tileSize / 2.0;
+      double endX = (endTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+      double endY = (board.getHeight() - endTile.getPosY()) * TILE_SIZE
+          + TILE_SIZE / 2.0;
 
       // Draw the line
       Line line = new Line(startX, startY, endX, endY);
@@ -286,13 +286,13 @@ public class SnLView extends VBox {
     SnLTile startTile = board.getTile(startNum);
     SnLTile endTile = board.getTile(endNum);
 
-    double startX = (startTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-    double startY = (board.getHeight() - startTile.getPosY()) * tileSize
-        + tileSize / 2.0;
+    double startX = (startTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+    double startY = (board.getHeight() - startTile.getPosY()) * TILE_SIZE
+        + TILE_SIZE / 2.0;
 
-    double endX = (endTile.getPosX() - 1) * tileSize + tileSize / 2.0;
-    double endY = (board.getHeight() - endTile.getPosY()) * tileSize
-        + tileSize / 2.0;
+    double endX = (endTile.getPosX() - 1) * TILE_SIZE + TILE_SIZE / 2.0;
+    double endY = (board.getHeight() - endTile.getPosY()) * TILE_SIZE
+        + TILE_SIZE / 2.0;
 
     Line line = new Line(startX, startY, endX, endY);
     line.setStroke(color);
@@ -324,10 +324,10 @@ public class SnLView extends VBox {
     int tileNum = player.getPosition();
     SnLTile tile = board.getTile(tileNum);
 
-    double xPos = (tile.getPosX() - 1) * tileSize + tileSize
+    double xPos = (tile.getPosX() - 1) * TILE_SIZE + TILE_SIZE
         * UiConstants.SNL_PLAYER_ICON_RADIUS;
-    double yPos = (board.getHeight() - tile.getPosY()) * tileSize
-        + tileSize * UiConstants.SNL_PLAYER_ICON_RADIUS;
+    double yPos = (board.getHeight() - tile.getPosY()) * TILE_SIZE
+        + TILE_SIZE * UiConstants.SNL_PLAYER_ICON_RADIUS;
 
     ui.updatePlayerPosition(xPos, yPos);
   }
