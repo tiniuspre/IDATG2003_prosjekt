@@ -70,6 +70,11 @@ public final class UiConstants {
   public static final String SETTINGS_BUTTON_ID = "settings-button";
 
   /**
+   * Player menu button id for css.
+   */
+  public static final String PLAYER_MENU_BUTTON_ID = "player-menu-button";
+
+  /**
    * Settings title id for css.
    */
   public static final String SETTINGS_TITLE_ID = "settings-title";
