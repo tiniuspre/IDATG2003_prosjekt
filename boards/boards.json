@@ -22,7 +22,49 @@
           { "from": 66, "to": 66 },
           { "from": 88, "to": 88 }
         ]
-      }
+      },
+        {
+            "boardName": "Twister",
+            "jumps": [
+            { "from": 8, "to": 34 },
+            { "from": 20, "to": 77 },
+            { "from": 32, "to": 62 },
+            { "from": 41, "to": 79 },
+            { "from": 74, "to": 85 },
+
+            { "from": 22, "to": 10 },
+            { "from": 43, "to": 26 },
+            { "from": 55, "to": 13 },
+            { "from": 69, "to": 60 },
+            { "from": 87, "to": 24 },
+
+            { "from": 11, "to": 11 },
+            { "from": 45, "to": 45 },
+            { "from": 33, "to": 33 },
+            { "from": 88, "to": 88 }
+            ]
+        },
+        {
+          "boardName": "Canyon",
+          "jumps": [
+            { "from": 5, "to": 25 },
+            { "from": 14, "to": 38 },
+            { "from": 22, "to": 58 },
+            { "from": 36, "to": 70 },
+            { "from": 49, "to": 80 },
+            { "from": 67, "to": 88 },
+
+            { "from": 27, "to": 9 },
+            { "from": 44, "to": 19 },
+            { "from": 53, "to": 31 },
+            { "from": 61, "to": 42 },
+            { "from": 84, "to": 28 },
+
+            { "from": 17, "to": 17 },
+            { "from": 52, "to": 52 },
+            { "from": 73, "to": 73 }
+          ]
+        }
     ]
   }
 ]
