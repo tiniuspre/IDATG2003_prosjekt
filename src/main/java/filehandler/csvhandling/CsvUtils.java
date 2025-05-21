@@ -86,21 +86,20 @@ public final class CsvUtils {
   }
 
   /**
-   * Sets the value of a field in a record object.
+   * Sets the value of a field in a recordHolder object.
    *
-   * @param <T> The type of the record object.
-   * @param record The record object to set the field value in.
+   * @param <T> The type of the recordHolder object.
+   * @param recordHolder The recordHolder object to set the field value in.
    * @param field The field to set the value for.
    * @param value The value to set.
    */
-  public static <T> void setField(final T record,
+  public static <T> void setField(final T recordHolder,
                                   final Field field, final String value) {
-    Class<?> clazz = record.getClass();
+    Class<?> clazz = recordHolder.getClass();
     while (clazz != null) {
       try {
         field.setAccessible(true);
-
-        field.set(record, convertValue(field.getType(), value));
+        field.set(recordHolder, convertValue(field.getType(), value));
         return;
       } catch (IllegalArgumentException | IllegalAccessException e) {
         throw new CsvHandlerException(e.getMessage(), Level.SEVERE);

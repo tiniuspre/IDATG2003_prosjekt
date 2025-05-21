@@ -20,18 +20,6 @@ public final class Constants {
   public static final String BOARD_FILE_PATH =
       "boards/boards.json";
 
-  /**
-   * Path to the Snakes and Ladders players CSV file.
-   */
-  public static final String SNL_PLAYER_FILE_PATH =
-      "csv-files/snakes_players.csv";
-
-  /**
-   * Path to the test Snakes and Ladders players CSV file.
-   */
-  public static final String SNL_PLAYER_FILE_PATH_TEST =
-      "src/test/resources/csv-files/snakes_players_test.csv";
-
   // CSV Field Settings
   /**
    * Declares the field of the player name to the
@@ -55,6 +43,14 @@ public final class Constants {
    * The name of the Classic Snakes and Ladders board in the game.
    */
   public static final String SNL_BOARD_NAME_CLASSIC = "Classic";
+  /**
+   * The name of the Twister Snakes and Ladders board in the game.
+   */
+  public static final String SNL_BOARD_NAME_TWISTER = "Twister";
+  /**
+   * The name of the Canyon Snakes and Ladders board in the game.
+   */
+  public static final String SNL_BOARD_NAME_CANYON = "Canyon";
   /**
    * Width of the Snakes and Ladders Board.
    */
@@ -80,13 +76,12 @@ public final class Constants {
    */
   public static final String NORMAL = "NORMAL";
   /**
-   * List of valid tile types.
+   * List of valid board names.
    */
-  public static final List<String> VALID_TILE_TYPES = List.of(
-      SNAKE,
-      LADDER,
-      SWITCH,
-      NORMAL
+  public static final List<String> BOARD_NAMES = List.of(
+      SNL_BOARD_NAME_CLASSIC,
+      SNL_BOARD_NAME_TWISTER,
+      SNL_BOARD_NAME_CANYON
   );
   /**
    * Private constructor to prevent instantiation.

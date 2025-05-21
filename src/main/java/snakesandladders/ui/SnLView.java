@@ -53,7 +53,7 @@ public class SnLView extends VBox {
   /**
    * The game board.
    */
-  private final SnLBoard board;
+  private SnLBoard board;
   /**
    * Map of player -> player UI.
    */
@@ -89,9 +89,10 @@ public class SnLView extends VBox {
    */
   public SnLView(final SnakesAndLadders gameInstance) {
     this.game = gameInstance;
-    this.board = game.getBoard();
-
-    if (showPieceSelectionPopup(game.getPlayers())) {
+    if (showPieceSelectionPopup(game.getPlayers())
+        && showBoardSelectionPopup()) {
+      game.setBoard();
+      this.board = game.getBoard();
       initializeUI();
       isInitialized = true;
     } else {
@@ -103,12 +104,10 @@ public class SnLView extends VBox {
    * Initializes the UI components and sets up the game.
    */
   public void initializeUI() {
-    game.setBoard(); // build the board with snakes/ladders
+    game.setBoard();
 
-    // Draw the board
     renderBoard();
 
-    // Side panel with current player + status
     VBox sidePanel = new VBox(UiConstants.SNL_SIDE_PANEL_WIDTH);
     sidePanel.setPrefWidth(UiConstants.SNL_SIDE_PANEL_PREF_WIDTH);
 
@@ -171,21 +170,16 @@ public class SnLView extends VBox {
     getBoardRoot().getChildren().clear();
     getBoardRoot().setTranslateX(UiConstants.SNL_GAME_OFFSET);
 
-    // 1) Draw each tile (with ID text)
     board.getTiles().forEach(tile -> {
       SnakesAndLaddersTileUI tileUI =
           new SnakesAndLaddersTileUI(TILE_SIZE, tile, board.getHeight());
-      // The tileUI returns a Group containing the rectangle + tile number text
       getBoardRoot().getChildren().add(tileUI.createTileNode());
     });
 
-    // 2) Draw tile->tile arrows
     drawTileArrows();
 
-    // 3) Draw lines for snakes & ladders
     drawSnakesAndLadders();
 
-    // 4) Create and add player pieces
     for (SnLPlayer p : game.getPlayers()) {
       SnakesAndLaddersPlayerUI playerUI
           = new SnakesAndLaddersPlayerUI(TILE_SIZE, p, board.getHeight());
@@ -201,7 +195,6 @@ public class SnLView extends VBox {
    */
   private void drawTileArrows() {
     int size = board.getBoardSize();
-    // For each tile from 1 to (last-1), draw an arrow to the next tile
     for (int i = 1; i < size - 1; i++) {
       SnLTile startTile = board.getTile(i);
       SnLTile endTile = board.getTile(i + 1);
@@ -214,15 +207,12 @@ public class SnLView extends VBox {
       double endY = (board.getHeight() - endTile.getPosY()) * TILE_SIZE
           + TILE_SIZE / 2.0;
 
-      // Draw the line
       Line line = new Line(startX, startY, endX, endY);
       line.setStroke(Color.DARKGRAY);
       line.setStrokeWidth(1.0);
 
-      // Create a small arrowhead polygon
       Polygon arrowHead = createArrowHead(startX, startY, endX, endY);
 
-      // Group them so we can add to the Pane
       Group arrowGroup = new Group(line, arrowHead);
       getBoardRoot().getChildren().add(arrowGroup);
     }
@@ -240,7 +230,6 @@ public class SnLView extends VBox {
    */
   private Polygon createArrowHead(final double startX, final double startY,
                                   final double endX, final double endY) {
-    // A small triangle polygon around (0,0)
     int arrowSize = UiConstants.SNL_ARROW_SIZE;
     int arrowHeadSize = UiConstants.SNL_ARROW_HEAD_SIZE;
     Polygon arrowHead = new Polygon(
@@ -250,14 +239,11 @@ public class SnLView extends VBox {
     );
     arrowHead.setFill(Color.DARKGRAY);
 
-    // Angle of the line
     double angle = Math.atan2(endY - startY, endX - startX);
 
-    // Move the arrowhead to (endX, endY)
     arrowHead.setTranslateX(endX);
     arrowHead.setTranslateY(endY);
 
-    // Rotate to point in direction of the line
     arrowHead.setRotate(Math.toDegrees(angle));
 
     return arrowHead;
@@ -390,9 +376,41 @@ public class SnLView extends VBox {
       return null;
     });
 
-    // Show the dialog and handle the result
     Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
     return SnLController.handlePieceSelection(result);
+  }
+
+  /**
+   * Displays a popup dialog for selecting the game board.
+   *
+   * @return true if the user confirmed the selection, false otherwise.
+   */
+  private boolean showBoardSelectionPopup() {
+    Dialog<String> dialog = new Dialog<>();
+    dialog.setTitle("Select Board");
+    dialog.setHeaderText("Select a board:");
+
+    ButtonType okButtonType = new ButtonType("OK",
+        ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(okButtonType,
+        ButtonType.CANCEL);
+
+    VBox content = new VBox(UiConstants.TTT_SPACING);
+    ComboBox<String> boardSelector = new ComboBox<>();
+    boardSelector.getItems().addAll(Constants.BOARD_NAMES);
+    content.getChildren().addAll(boardSelector);
+
+    dialog.getDialogPane().setContent(content);
+
+    dialog.setResultConverter(dialogButton -> {
+      if (dialogButton == okButtonType) {
+        return boardSelector.getValue();
+      }
+      return null;
+    });
+
+    Optional<String> result = dialog.showAndWait();
+    return SnLController.handleBoardSelection(result);
   }
 
   /**

@@ -20,9 +20,13 @@ public final class GameConstants {
   public static final String TTT_TITLE = "Tic Tac Toe";
 
   /**
-   * The size of the Connect Four board.
+   * Title of the Connect Four game.
    */
   public static final String CF_TITLE = "Connect Four";
+  /**
+   * Title of the Snakes and Ladders game.
+   */
+  public static final String SNL_TITLE = "Snakes and Ladders";
   /**
    * The size of the Connect Four board.
    */
