@@ -20,18 +20,6 @@ public final class Constants {
   public static final String BOARD_FILE_PATH =
       "boards/boards.json";
 
-  /**
-   * Path to the Snakes and Ladders players CSV file.
-   */
-  public static final String SNL_PLAYER_FILE_PATH =
-      "csv-files/snakes_players.csv";
-
-  /**
-   * Path to the test Snakes and Ladders players CSV file.
-   */
-  public static final String SNL_PLAYER_FILE_PATH_TEST =
-      "src/test/resources/csv-files/snakes_players_test.csv";
-
   // CSV Field Settings
   /**
    * Declares the field of the player name to the
@@ -87,15 +75,6 @@ public final class Constants {
    * Normal tile type.
    */
   public static final String NORMAL = "NORMAL";
-  /**
-   * List of valid tile types.
-   */
-  public static final List<String> VALID_TILE_TYPES = List.of(
-      SNAKE,
-      LADDER,
-      SWITCH,
-      NORMAL
-  );
   /**
    * List of valid board names.
    */

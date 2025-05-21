@@ -1,16 +1,12 @@
 package snakesandladders;
 
-import constants.Constants;
 import filehandler.csvhandling.CsvHandler;
 import gameengine.Observer;
 import gameengine.Subject;
-import gameengine.board.Board;
-import gameengine.board.BoardFactory;
 import gameengine.dice.Dice;
 import gameengine.player.Player;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import snakesandladders.engine.SnLGameContext;
 import snakesandladders.engine.board.SnLBoard;
