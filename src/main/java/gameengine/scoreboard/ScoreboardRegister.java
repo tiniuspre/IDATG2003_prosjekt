@@ -53,6 +53,6 @@ public class ScoreboardRegister {
    * @return a list of player data
    */
   public List<String> getScoreboardData() {
-    return getCsvHandler().readFromFile(String.class);
+    return getCsvHandler().readStringLineFromFile();
   }
 }

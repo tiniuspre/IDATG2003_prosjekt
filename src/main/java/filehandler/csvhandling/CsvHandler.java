@@ -126,4 +126,24 @@ public final class CsvHandler extends AbstractFileHandler {
           + e.getMessage(), Level.SEVERE);
     }
   }
+
+  /**
+   * Reads a list of strings from a CSV file.
+   *
+   * @return the list of strings read from the CSV file
+   */
+  public List<String> readStringLineFromFile() {
+    String filePath = getPath();
+    List<String> records = new ArrayList<>();
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        records.add(line);
+      }
+    } catch (IOException e) {
+      throw new CsvHandlerException("I/O error: "
+          + e.getMessage(), Level.SEVERE);
+    }
+    return records;
+  }
 }
