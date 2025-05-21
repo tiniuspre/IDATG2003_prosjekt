@@ -53,7 +53,8 @@ public final class CsvHandler extends AbstractFileHandler {
           try {
             String value = field.get(record).toString();
             if (value.contains(",")) {
-              throw new CsvHandlerException("Field value contains a comma: " + value, Level.WARNING);
+              throw new CsvHandlerException("Field value contains a comma: "
+                  + value, Level.WARNING);
             }
             values.add(value);
           } catch (IllegalAccessException e) {
