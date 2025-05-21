@@ -72,6 +72,7 @@ public final class CsvHandler extends AbstractFileHandler {
    * @param type the class type of the objects to read
    * @return the list of objects read from the CSV file
    */
+  @Override
   public <T> List<T> readFromFile(final Class<T> type) {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
@@ -83,13 +84,13 @@ public final class CsvHandler extends AbstractFileHandler {
         if (values.length != fields.size()) {
           throw new CsvHandlerException("Invalid CSV format.", Level.SEVERE);
         }
-        T record = type.getDeclaredConstructor().newInstance();
+        T recordHolder = type.getDeclaredConstructor().newInstance();
 
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
-          CsvUtils.setField(record, field, values[i]);
+          CsvUtils.setField(recordHolder, field, values[i]);
         }
-        records.add(record);
+        records.add(recordHolder);
       }
     } catch (Exception e) {
       throw new CsvHandlerException(e.getMessage(), Level.SEVERE);
