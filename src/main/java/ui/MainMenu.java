@@ -35,6 +35,7 @@ import static constants.UiConstants.APP_HEIGHT;
 import static constants.UiConstants.SETTINGS_BUTTON_ID;
 import static constants.UiConstants.PLAYER_MENU_BUTTON_ID;
 import static constants.UiConstants.INVALID_PLAYER_AMOUNT;
+import static constants.UiConstants.SCOREBOARD_ICO;
 
 
 /**
@@ -42,7 +43,7 @@ import static constants.UiConstants.INVALID_PLAYER_AMOUNT;
  * Sets up the primary stage and initializes the main menu view and controller.
  *
  * @author tiniuspre, jonastom
- * @version 20.05.2025
+ * @version 21.05.2025
  * @since 25.03.2025
  */
 public class MainMenu implements GameScreen {
@@ -161,6 +162,11 @@ class MainMenuView extends BorderPane {
   private final Button playerMenuBtn = new Button("\uD83D\uDC64");
 
   /**
+   * Button for scoreboard.
+   */
+  private final Button scoreboardBtn = new Button(SCOREBOARD_ICO);
+
+  /**
    * Constructs the main menu view and builds the user interface.
    */
   MainMenuView() {
@@ -188,8 +194,12 @@ class MainMenuView extends BorderPane {
     getPlayerMenuBtn().setId(PLAYER_MENU_BUTTON_ID);
 
     HBox topRight = new HBox(
-        settingsBtn
+        settingsBtn,
+        scoreboardBtn
     );
+
+    topRight.setSpacing(MENU_V_BOX_SPACING);
+
     HBox topLeft = new HBox(
         playerMenuBtn
     );
@@ -259,6 +269,15 @@ class MainMenuView extends BorderPane {
   Button getPlayerMenuBtn() {
     return playerMenuBtn;
   }
+
+  /**
+   * Gets the button for launching the scoreboard.
+   *
+   * @return the scoreboard button.
+   */
+  Button getScoreboardBtn() {
+    return scoreboardBtn;
+  }
 }
 
 /**
@@ -312,6 +331,11 @@ class MainMenuController {
             DialogUtil.error(INVALID_PLAYER_AMOUNT, "2 players");
           }
     });
+
+    view.getScoreboardBtn().setOnAction(
+        e -> Router.launch(GameId.SCOREBOARD)
+    );
+
     view.getExitBtn().setOnAction(
         e -> Platform.exit()
     );
