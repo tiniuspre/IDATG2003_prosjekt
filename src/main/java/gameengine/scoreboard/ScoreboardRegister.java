@@ -6,6 +6,16 @@ import gameengine.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The ScoreboardRegister class manages the scoreboard data.
+ * <p>This class is responsible for adding players to the scoreboard
+ * and retrieving the scoreboard data.
+ * It uses a CSV file to store the data.</p>
+ *
+ * @author tiniuspre
+ * @version 21.05.2025
+ * @since 21.05.2025
+ */
 public class ScoreboardRegister {
   /**
    * The CSV handler for managing scoreboard data.
