@@ -56,6 +56,14 @@ public final class Constants {
    */
   public static final String SNL_BOARD_NAME_CLASSIC = "Classic";
   /**
+   * The name of the Twister Snakes and Ladders board in the game.
+   */
+  public static final String SNL_BOARD_NAME_TWISTER = "Twister";
+  /**
+   * The name of the Canyon Snakes and Ladders board in the game.
+   */
+  public static final String SNL_BOARD_NAME_CANYON = "Canyon";
+  /**
    * Width of the Snakes and Ladders Board.
    */
   public static final int SNL_WIDTH = 10;
@@ -87,6 +95,14 @@ public final class Constants {
       LADDER,
       SWITCH,
       NORMAL
+  );
+  /**
+   * List of valid board names.
+   */
+  public static final List<String> BOARD_NAMES = List.of(
+      SNL_BOARD_NAME_CLASSIC,
+      SNL_BOARD_NAME_TWISTER,
+      SNL_BOARD_NAME_CANYON
   );
   /**
    * Private constructor to prevent instantiation.
