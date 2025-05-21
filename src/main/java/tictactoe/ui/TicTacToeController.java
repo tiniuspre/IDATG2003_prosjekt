@@ -4,6 +4,8 @@ import gameengine.grid.Marker;
 import ui.util.DialogUtil;
 
 import static constants.GameConstants.TTT_BOARD_SIZE;
+import static constants.GameConstants.TTT_TITLE;
+
 
 /**
  * Controller binding TicTacToeGame to the JavaFX view.
@@ -94,6 +96,7 @@ public class TicTacToeController {
     if (winner != null) {
       view.setStatus("Winner: " + winner.getName());
       DialogUtil.info("Winner", "Winner: " + winner.getName());
+      winner.registerWin(TTT_TITLE, 1);
       disableAll();
     } else if (game.isDraw()) {
       view.setStatus("Draw!");

@@ -35,5 +35,9 @@ public enum GameId {
   /**
    * Identifier for the Player selection menu.
    */
-  PLAYER_MENU
+  PLAYER_MENU,
+  /**
+   * Scoreboard identifier.
+   */
+  SCOREBOARD,
 }

@@ -6,6 +6,7 @@ import connectfour.engine.ConnectFourGame;
 import javafx.event.ActionEvent;
 
 import static constants.GameConstants.CF_BOARD_SIZE;
+import static constants.GameConstants.CF_TITLE;
 
 /**
  * Controller binding ConnectFourGame to the JavaFX view.
@@ -77,6 +78,7 @@ public class ConnectFourController {
     var winner = game.checkWinner();
     if (winner != null) {
       view.setStatus("Winner: " + winner.getName());
+      winner.registerWin(CF_TITLE, 1);
       DialogUtil.info("Winner", "Winner: " + winner.getName());
       disableAll();
     } else if (game.isDraw()) {
