@@ -51,7 +51,11 @@ public final class CsvHandler extends AbstractFileHandler {
         for (Field field : fields) {
           field.setAccessible(true);
           try {
-            values.add(field.get(record).toString());
+            String value = field.get(record).toString();
+            if (value.contains(",")) {
+              throw new CsvHandlerException("Field value contains a comma: " + value, Level.WARNING);
+            }
+            values.add(value);
           } catch (IllegalAccessException e) {
             values.add("");
           }
