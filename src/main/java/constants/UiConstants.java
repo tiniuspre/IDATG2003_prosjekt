@@ -9,7 +9,7 @@ package constants;
  * All fields are static and designed for global access.</p>
  *
  * @author tiniuspre, jonastom
- * @version 29.05.2025
+ * @version 21.05.2025
  * @since 25.03.2025
  */
 public final class UiConstants {
@@ -88,6 +88,11 @@ public final class UiConstants {
    * The icon of the settings button.
    */
   public static final String SETTINGS_ICON = "⚙";
+
+  /**
+   * The label for the scoreboard button.
+   */
+  public static final String SCOREBOARD_ICO = "Scoreboard";
 
   /**
    * The label for the exit button.
@@ -212,7 +217,30 @@ public final class UiConstants {
    * The font size for the Snakes and Ladders tile text.
    */
   public static final Integer CF_BTN_MIN_SIZE = 50;
-
+  /**
+   * Scoreboard UI parts length.
+   */
+  public static final Integer SUI_PARTS_LENGTH = 4;
+  /**
+   * Scoreboard UI padding.
+   */
+  public static final Integer SUI_PADDING = 10;
+  /**
+   * Scoreboard UI player index.
+   */
+  public static final Integer SUI_PLAYER_INDEX = 0;
+  /**
+   * Scoreboard UI game index.
+   */
+  public static final Integer SUI_GAME_INDEX = 1;
+  /**
+   * Scoreboard UI score index.
+   */
+  public static final Integer SUI_SCORE_INDEX = 2;
+  /**
+   * Scoreboard UI date index.
+   */
+  public static final Integer SUI_DATE_INDEX = 3;
   /**
    * Private constructor to prevent instantiation of this utility class.
    */

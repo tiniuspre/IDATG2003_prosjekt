@@ -38,7 +38,8 @@ public final class Router {
       GameId.MAIN_MENU, MainMenu::new,
       GameId.SNAKES_AND_LADDERS, snakesandladders.SnakesAndLaddersApp::new,
       GameId.CONNECT_FOUR, connectfour.ui.ConnectFourApp::new,
-      GameId.PLAYER_MENU, ui.PlayerMenu::new
+      GameId.PLAYER_MENU, ui.PlayerMenu::new,
+      GameId.SCOREBOARD, ui.ScoreBoardUi::new
   );
 
   /**
