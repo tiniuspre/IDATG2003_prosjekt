@@ -63,19 +63,16 @@ public class SnakesAndLadders implements Subject {
    * Default constructor for the {@code SnakesAndLadders} class.
    */
   public SnakesAndLadders() {
+    // Default constructor
   }
 
   /**
    * Sets up the game board with snakes and ladders.
    */
   public void setBoard() {
-    Optional<Board> loadedBoard = BoardFactory.createBoard(
-        Constants.SNL_BOARD, Constants.SNL_BOARD_NAME_CLASSIC);
-    if (loadedBoard.isPresent()) {
-      board = (SnLBoard) loadedBoard.get();
-      SnLGameContext.getInstance().setBoard(board);
-    } else {
-      throw new SnLBoardException("Failed to load the board.");
+    board = SnLGameContext.getInstance().getBoard();
+    if (board == null) {
+      throw new SnLBoardException("Failed to load board");
     }
     registerObserver(new SnLTileChecker());
   }
