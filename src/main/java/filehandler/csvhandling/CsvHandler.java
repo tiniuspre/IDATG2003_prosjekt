@@ -16,8 +16,8 @@ import java.util.logging.Level;
  * The {@code CsvHandler} class handles all writing,
  * and reading to and from the csv files.
  *
- * @author jonastomren
- * @version 31.03.2025
+ * @author jonastomren, tiniuspre
+ * @version 21.05.2025
  * @since 15.03.2025
  */
 public final class CsvHandler extends AbstractFileHandler {
@@ -109,5 +109,21 @@ public final class CsvHandler extends AbstractFileHandler {
       throw new CsvHandlerException(e.getMessage(), Level.SEVERE);
     }
     return records;
+  }
+
+  /**
+   * Adds a list of strings to a CSV file.
+   * @param values the list of strings to add
+   */
+  public void addStringToFile(final List<String> values) {
+    String filePath = getPath();
+    try (BufferedWriter writer = new BufferedWriter(
+        new FileWriter(filePath, true))) {
+      writer.write(String.join(",", values));
+      writer.newLine();
+    } catch (IOException e) {
+      throw new CsvHandlerException("I/O error: "
+          + e.getMessage(), Level.SEVERE);
+    }
   }
 }
