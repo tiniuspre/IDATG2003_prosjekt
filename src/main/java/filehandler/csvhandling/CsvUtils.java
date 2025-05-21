@@ -99,7 +99,6 @@ public final class CsvUtils {
     while (clazz != null) {
       try {
         field.setAccessible(true);
-
         field.set(record, convertValue(field.getType(), value));
         return;
       } catch (IllegalArgumentException | IllegalAccessException e) {

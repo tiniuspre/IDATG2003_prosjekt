@@ -43,26 +43,19 @@ public final class CsvHandler extends AbstractFileHandler {
     if (records == null || records.isEmpty()) {
       throw new CsvHandlerException("Records list is empty.", Level.SEVERE);
     }
-    // Creates BufferedWriter to write line by line.
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-      // Get fields of class.
       List<Field> fields = CsvUtils
           .getFilteredFields(records.getFirst().getClass());
-      // Write CSV Data
       for (T record : records) {
-        // Get values of fields.
         List<String> values = new ArrayList<>();
         for (Field field : fields) {
-          // Set field accessible.
           field.setAccessible(true);
           try {
-            // Add value to list.
             values.add(field.get(record).toString());
           } catch (IllegalAccessException e) {
-            values.add(""); // Handle inaccessible fields gracefully
+            values.add("");
           }
         }
-        // Write values to file.
         writer.write(String.join(",", values));
         writer.newLine();
       }
@@ -83,26 +76,19 @@ public final class CsvHandler extends AbstractFileHandler {
     String filePath = getPath();
     List<T> records = new ArrayList<>();
     List<Field> fields = CsvUtils.getFilteredFields(type);
-
-    // Creates BufferedReader to read line by line.
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       String line;
       while ((line = reader.readLine()) != null) {
-        // Declare regex.
         String[] values = line.split(",");
-        // Check if line has correct number of values.
         if (values.length != fields.size()) {
           throw new CsvHandlerException("Invalid CSV format.", Level.SEVERE);
         }
-        // Get Constructor of generic class.
         T record = type.getDeclaredConstructor().newInstance();
-        // Get fields of generic class.
 
         for (int i = 0; i < fields.size(); i++) {
           Field field = fields.get(i);
           CsvUtils.setField(record, field, values[i]);
         }
-        // Add record to list.
         records.add(record);
       }
     } catch (Exception e) {

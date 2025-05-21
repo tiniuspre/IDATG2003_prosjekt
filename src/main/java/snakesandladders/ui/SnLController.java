@@ -142,7 +142,8 @@ public class SnLController {
     if (result.isPresent()) {
       String selectedBoard = result.get();
       SnLGameContext context = SnLGameContext.getInstance();
-      Optional<Board> loadedBoard = BoardFactory.createBoard(Constants.SNL_BOARD,
+      Optional<Board> loadedBoard = BoardFactory
+          .createBoard(Constants.SNL_BOARD,
           selectedBoard);
       if (loadedBoard.isPresent()) {
         context.setBoard((SnLBoard) loadedBoard.get());
