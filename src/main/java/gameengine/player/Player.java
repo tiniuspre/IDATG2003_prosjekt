@@ -3,13 +3,14 @@ package gameengine.player;
 import com.opencsv.bean.CsvBindByName;
 import constants.Constants;
 import filehandler.csvhandling.CsvIgnore;
+import gameengine.scoreboard.ScoreboardRegister;
 
 /**
  * The {@code Player} class represents a player in the test
  * snakes and ladders game.
  *
- * @author jonastomren
- * @version 10.03.2025
+ * @author jonastomren, tiniuspre
+ * @version 21.05.2025
  * @since 13.02.2025
  */
 public abstract class Player {
@@ -23,6 +24,13 @@ public abstract class Player {
    */
   @CsvIgnore
   private int position;
+
+  /**
+   * The scoreboard register for the player.
+   */
+  @CsvIgnore
+  private final ScoreboardRegister scoreboardRegister =
+      new ScoreboardRegister();
 
   /**
    * Constructor for the Player class.
@@ -74,6 +82,15 @@ public abstract class Player {
       throw new IllegalArgumentException("Invalid inputPosition");
     }
     this.position = inputPosition;
+  }
+
+  /**
+   * Registers a win for the player.
+   * @param game the name of the game.
+   * @param score the score of the player.
+   */
+  public void registerWin(final String game, final int score) {
+    scoreboardRegister.addPlayerToScoreboard(this, game, score);
   }
 
   /**
