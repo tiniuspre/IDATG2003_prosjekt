@@ -58,7 +58,7 @@ public class SnLBoard extends Board {
                        final List<Jump> ladders,
                        final List<Jump> switches) {
     // set the size of the board and default tile type
-    for (int i = 0; i < getWidth() * getHeight(); i++) {
+    for (int i = 0; i < getWidth() * getHeight() + 1; i++) {
       SnLTile tile = new SnLTile(i, Constants.NORMAL);
       tiles.add(tile);
     }

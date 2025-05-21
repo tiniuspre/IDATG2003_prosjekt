@@ -8,10 +8,13 @@ import snakesandladders.engine.SnLGameContext;
 import snakesandladders.engine.SnLPlayer;
 import snakesandladders.engine.board.SnLBoard;
 import snakesandladders.engine.board.SnLBoardException;
+import ui.util.DialogUtil;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static constants.GameConstants.SNL_TITLE;
 
 /**
  * The {@code SnLController} class is responsible for
@@ -85,6 +88,8 @@ public class SnLController {
     if (!game.isNotFinished()) {
       boardUI.getStatusLabel().setText("Game Over! "
           + current.getName() + " wins!");
+      DialogUtil.info("Winner", "Winner: " + game.getWinner().getName());
+      game.getWinner().registerWin(SNL_TITLE, 1);
       return;
     }
 
