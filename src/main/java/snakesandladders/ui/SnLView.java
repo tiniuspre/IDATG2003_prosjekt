@@ -53,7 +53,7 @@ public class SnLView extends VBox {
   /**
    * The game board.
    */
-  private final SnLBoard board;
+  private SnLBoard board;
   /**
    * Map of player -> player UI.
    */
@@ -89,9 +89,10 @@ public class SnLView extends VBox {
    */
   public SnLView(final SnakesAndLadders gameInstance) {
     this.game = gameInstance;
-    this.board = game.getBoard();
-
-    if (showPieceSelectionPopup(game.getPlayers())) {
+    if (showPieceSelectionPopup(game.getPlayers()) &&
+        showBoardSelectionPopup()) {
+      game.setBoard();
+      this.board = game.getBoard();
       initializeUI();
       isInitialized = true;
     } else {
@@ -393,6 +394,40 @@ public class SnLView extends VBox {
     // Show the dialog and handle the result
     Optional<Map<SnLPlayer, String>> result = dialog.showAndWait();
     return SnLController.handlePieceSelection(result);
+  }
+
+  /**
+   * Displays a popup dialog for selecting the game board.
+   *
+   * @return true if the user confirmed the selection, false otherwise.
+   */
+  private boolean showBoardSelectionPopup() {
+    Dialog<String> dialog = new Dialog<>();
+    dialog.setTitle("Select Board");
+    dialog.setHeaderText("Select a board:");
+
+    ButtonType okButtonType = new ButtonType("OK",
+        ButtonBar.ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(okButtonType,
+        ButtonType.CANCEL);
+
+    VBox content = new VBox(UiConstants.TTT_SPACING);
+    ComboBox<String> boardSelector = new ComboBox<>();
+    boardSelector.getItems().addAll(Constants.BOARD_NAMES);
+    content.getChildren().addAll(boardSelector);
+
+    dialog.getDialogPane().setContent(content);
+
+    dialog.setResultConverter(dialogButton -> {
+      if (dialogButton == okButtonType) {
+        return boardSelector.getValue();
+      }
+      return null;
+    });
+
+    // Show the dialog and handle the result
+    Optional<String> result = dialog.showAndWait();
+    return SnLController.handleBoardSelection(result);
   }
 
   /**

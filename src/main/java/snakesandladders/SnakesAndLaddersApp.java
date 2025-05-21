@@ -32,7 +32,6 @@ public final class SnakesAndLaddersApp implements GameScreen {
    *
    */
   public SnakesAndLaddersApp() {
-    game.setBoard();
     view = new SnLView(game);
     if (view.isInitialized()) {
       SnLController controller = new SnLController(view, game);

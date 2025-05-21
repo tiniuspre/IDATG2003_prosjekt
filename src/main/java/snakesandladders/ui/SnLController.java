@@ -1,7 +1,14 @@
 package snakesandladders.ui;
 
+import constants.Constants;
+import gameengine.board.Board;
+import gameengine.board.BoardFactory;
 import snakesandladders.SnakesAndLadders;
+import snakesandladders.engine.SnLGameContext;
 import snakesandladders.engine.SnLPlayer;
+import snakesandladders.engine.board.SnLBoard;
+import snakesandladders.engine.board.SnLBoardException;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -119,6 +126,28 @@ public class SnLController {
       for (Map.Entry<SnLPlayer, String> entry : selectedPieces.entrySet()) {
         SnLPlayer player = entry.getKey();
         player.setPiece(entry.getValue());
+      }
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Handles the selection of the board.
+   *
+   * @param result the result of the board selection dialog.
+   * @return true if the selection was successful, false otherwise.
+   */
+  public static boolean handleBoardSelection(final Optional<String> result) {
+    if (result.isPresent()) {
+      String selectedBoard = result.get();
+      SnLGameContext context = SnLGameContext.getInstance();
+      Optional<Board> loadedBoard = BoardFactory.createBoard(Constants.SNL_BOARD,
+          selectedBoard);
+      if (loadedBoard.isPresent()) {
+        context.setBoard((SnLBoard) loadedBoard.get());
+      } else {
+        throw new SnLBoardException("Failed to load the board.");
       }
       return true;
     }
