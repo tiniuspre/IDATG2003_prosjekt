@@ -2,6 +2,7 @@ package snakesandladders.engine.board;
 
 import constants.Constants;
 import filehandler.jsonhandling.JsonHandler;
+import gameengine.board.BoardLoadException;
 import gameengine.board.BoardLoader;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public final class SnLLoader {
     // get board according to board name
     SnLBoardConfig boardConfig = boardLoader.getSnLBoards().filter(board ->
         board.getBoardName().equals(boardName)).findFirst()
-        .orElseThrow(() -> new SnLBoardException(
+        .orElseThrow(() -> new BoardLoadException(
             "Board not found: " + boardName));
     // create board
     return new SnLBoard(Constants.SNL_WIDTH, Constants.SNL_HEIGHT,

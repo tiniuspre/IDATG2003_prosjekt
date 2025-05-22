@@ -1,5 +1,6 @@
 package snakesandladders.engine.board;
 
+import gameengine.board.BoardLoadException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,6 @@ class SnLLoaderIntegrationTest {
 
   @Test
   void loadBoardThrowsExceptionWhenBoardNameNotFound() {
-    Assertions.assertThrows(SnLBoardException.class, () -> SnLLoader.loadBoard("NonExistentBoard"));
+    Assertions.assertThrows(BoardLoadException.class, () -> SnLLoader.loadBoard("NonExistentBoard"));
   }
 }
