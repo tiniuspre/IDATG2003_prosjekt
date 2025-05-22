@@ -41,7 +41,7 @@ class JsonHandlerTest {
   }
 
   @Test
-  void setPath() throws IOException {
+  void setPath() {
     JsonHandler jsonhandler = new JsonHandler("json-files/pretest.json");
     jsonhandler.setPath("json-files/test.json");
     assertEquals("json-files/test.json", jsonhandler.getPath());
@@ -50,7 +50,7 @@ class JsonHandlerTest {
 
 
   @Test
-  void writeAndReadToFile() throws IOException {
+  void writeAndReadToFile() {
     TestPerson originalPerson = new TestPerson("Test", 20);
     ArrayList<TestPerson> testPeople = new ArrayList<>();
     testPeople.add(originalPerson);
@@ -63,7 +63,7 @@ class JsonHandlerTest {
   }
 
   @AfterAll
-  static void tearDown() throws IOException {
+  static void tearDown() {
     JsonHandler jsonHandler = new JsonHandler(testFilePath);
     jsonHandler.deleteFile();
   }
