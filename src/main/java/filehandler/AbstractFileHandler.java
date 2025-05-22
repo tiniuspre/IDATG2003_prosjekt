@@ -98,9 +98,8 @@ public abstract class AbstractFileHandler {
    * @param <T> The type of the data to be read.
    * @param type The class of the type.
    * @return A list of data read from the file.
-   * @throws IOException If an I/O error occurs.
    */
-  public <T> List<T> readFromFile(final Class<T> type) throws IOException {
+  public <T> List<T> readFromFile(final Class<T> type) {
     throw new IllegalStateException();
   }
 

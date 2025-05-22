@@ -35,7 +35,7 @@ class CsvHandlerTest {
   }
 
   @Test
-  void readFromFile_validCsvFile_returnsListOfObjects() throws IOException {
+  void readFromFile_validCsvFile_returnsListOfObjects() {
     CsvHandler handler = new CsvHandler("src/test/resources/csv-files/test.csv");
     handler.setPath("src/test/resources/csv-files/test.csv");
 
@@ -77,4 +77,20 @@ class CsvHandlerTest {
 
     new File("src/test/resources/csv-files/invalid.csv").delete();
   }
+
+  @Test
+  void readStringLineFromFile_returnsAllLines() throws IOException {
+    CsvHandler handler = new CsvHandler("src/test/resources/csv-files/lines.csv");
+    handler.setPath("src/test/resources/csv-files/lines.csv");
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/test/resources/csv-files/lines.csv"))) {
+      writer.write("a,b,c\n");
+      writer.write("d,e,f\n");
+    }
+    List<String> lines = handler.readStringLineFromFile();
+    assertEquals(2, lines.size());
+    assertEquals("a,b,c", lines.get(0));
+    assertEquals("d,e,f", lines.get(1));
+    new File("src/test/resources/csv-files/lines.csv").delete();
+  }
+
 }

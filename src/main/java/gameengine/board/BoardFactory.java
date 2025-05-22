@@ -47,8 +47,6 @@ public final class BoardFactory {
         default -> Optional.empty();
       };
     } catch (JsonHandlerException | SnLBoardException e) {
-      return Optional.empty();
-    } catch (Exception e) {
       LOGGER.log(java.util.logging.Level.SEVERE,
           "Unexpected error while loading board: " + e.getMessage(), e);
       throw new BoardLoadException("Error loading board: " + e.getMessage());
