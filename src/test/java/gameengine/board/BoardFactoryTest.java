@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class BoardFactoryIntegrationTest {
 
   @Test
@@ -18,11 +20,10 @@ class BoardFactoryIntegrationTest {
     Optional<Board> result = BoardFactory.createBoard("unknown", "AnyName");
     Assertions.assertTrue(result.isEmpty());
   }
-
   @Test
-  void createBoard_ReturnsEmpty_WhenInvalidBoardName_Integration() {
-    Optional<Board> result = BoardFactory.createBoard("snl", "NonExistentBoard");
-    Assertions.assertTrue(result.isEmpty());
+  void createBoard_ThrowsBoardLoadException_WhenUnexpectedExceptionOccurs_Integration() {
+    assertThrows(BoardLoadException.class, () -> {
+      BoardFactory.createBoard("snl", "CauseUnexpectedException");
+    });
   }
-
 }
