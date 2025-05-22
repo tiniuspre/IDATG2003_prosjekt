@@ -60,4 +60,22 @@ public class Cell extends Tile {
   private void setCol(final int colInd) {
     this.col = colInd;
   }
+
+  /**
+   * Gets the row index of the cell.
+   *
+   * @return the row index (0-based)
+   */
+  public int getRow() {
+    return row;
+  }
+
+  /**
+   * Gets the column index of the cell.
+   *
+   * @return the column index (0-based)
+   */
+  public int getCol() {
+    return col;
+  }
 }
